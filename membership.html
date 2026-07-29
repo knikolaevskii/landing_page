@@ -21,7 +21,7 @@ a{text-decoration:none}
 
 <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,48px) 16px clamp(8px,2vw,20px);background:#203c2c;border-bottom:1px solid rgba(241,234,218,.25)">
   <a href="index.dc.html" style="display:flex;align-items:flex-end;gap:8px;flex-shrink:0">
-    <img src="assets/logo-beige-house.svg" alt="The Court House" style="height:46px;width:auto;display:block"/>
+    <img src="assets/logo-beige-house.svg" alt="The Court House" style="height:46px;width:auto;display:block;filter:drop-shadow(0 0 1px rgba(0,0,0,.9))"/>
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px)">
@@ -107,7 +107,7 @@ a{text-decoration:none}
 <section id="join" style="scroll-margin-top:90px;background:#203c2c;color:#f1eada;padding:clamp(56px,9vw,120px) clamp(28px,6vw,72px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px">
   <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.08;font-size:clamp(30px,5vw,54px);max-width:760px">{{ t.join.heading }}</h2>
   <p style="margin:0;max-width:520px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(241,234,218,.8)">{{ t.join.body }}</p>
-  <a href="#" style="display:inline-block;padding:18px 48px;background:#f1eada;color:#203c2c;font:600 13px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-hover="background:#390102;color:#f1eada">{{ t.join.signUp }}</a>
+  <a href="#" style="display:inline-block;padding:18px 48px;background:#f1eada;color:#203c2c;font:600 13px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-hover="background:#203c2c;color:#f1eada">{{ t.join.signUp }}</a>
 </section>
 
 <footer style="background:#203c2c;color:#f1eada;padding:clamp(48px,6vw,72px) clamp(28px,6vw,72px) 28px;border-top:1px solid rgba(241,234,218,.15)">
