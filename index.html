@@ -19,7 +19,7 @@ a{text-decoration:none}
 </helmet>
 <div style="font-family:'EB Garamond',serif;color:#2a2620;background:#f2ede3;overflow-x:hidden;min-height:100vh">
 
-<nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,48px) 16px clamp(8px,2vw,20px);background:#f2ede3;border-bottom:1px solid rgba(31,58,43,.2)">
+<nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,48px) 16px clamp(8px,2vw,20px);background:#f2ede3;border-bottom:1px solid rgba(30,59,43,.2)">
   <a href="index.dc.html" style="display:flex;align-items:flex-end;gap:8px;flex-shrink:0">
     <img src="assets/logo-dark-green-house.svg" alt="The Court House" style="height:46px;width:auto;display:block"/>
     <sc-if value="{{ showTextLogo }}" hint-placeholder-val="{{ true }}">
@@ -28,12 +28,12 @@ a{text-decoration:none}
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px)">
-      <a href="#" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1f3a2b">{{ t.nav.ourStory }}</a>
-      <a href="#" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1f3a2b">{{ t.nav.howToPlay }}</a>
-      <a href="membership.html" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1f3a2b">{{ t.nav.membership }}</a>
-      <a href="#contact" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1f3a2b">{{ t.nav.contact }}</a>
+      <a href="#" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1e3b2b">{{ t.nav.ourStory }}</a>
+      <a href="#" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1e3b2b">{{ t.nav.howToPlay }}</a>
+      <a href="membership.html" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1e3b2b">{{ t.nav.membership }}</a>
+      <a href="#contact" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2a2620" style-hover="color:#1e3b2b">{{ t.nav.contact }}</a>
       <div style="position:relative">
-        <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#f2ede3;border:1px solid rgba(31,58,43,.3);border-radius:999px;padding:8px 14px;font:600 12px/1 'Jost',sans-serif;color:#1f3a2b;cursor:pointer" style-hover="border-color:#1f3a2b">
+        <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#f2ede3;border:1px solid rgba(30,59,43,.3);border-radius:999px;padding:8px 14px;font:600 12px/1 'Jost',sans-serif;color:#1e3b2b;cursor:pointer" style-hover="border-color:#1e3b2b">
           <span style="font-size:16px;line-height:1">{{ currentFlag }}</span>
           <span style="font-size:9px">▾</span>
         </button>
@@ -41,23 +41,23 @@ a{text-decoration:none}
           <div style="position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(23,20,15,.18);padding:8px;display:flex;flex-direction:column;gap:2px;min-width:150px;z-index:60">
             <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f2ede3">
               <span style="font-size:17px">🇬🇧</span><span style="flex:1">ENGLISH</span>
-              <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#1f3a2b">✓</span></sc-if>
+              <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#1e3b2b">✓</span></sc-if>
             </button>
             <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f2ede3">
               <span style="font-size:17px">🇸🇰</span><span style="flex:1">SLOVAK</span>
-              <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#1f3a2b">✓</span></sc-if>
+              <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#1e3b2b">✓</span></sc-if>
             </button>
           </div>
         </sc-if>
       </div>
-      <a href="#" style="padding:12px 28px;background:#1f3a2b;border:1px solid #1f3a2b;color:#f1ead9;font:600 11.5px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#16291f;border-color:#16291f">{{ t.nav.reserve }}</a>
+      <a href="#" style="padding:12px 28px;background:#1e3b2b;border:1px solid #1e3b2b;color:#f2ede3;font:600 11.5px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase" style-hover="background:#1e3b2b;border-color:#1e3b2b">{{ t.nav.reserve }}</a>
     </div>
   </sc-if>
   <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
     <button onClick="{{ toggleMenu }}" style="display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer">
-      <span style="width:24px;height:1.5px;background:#1f3a2b;display:block"></span>
-      <span style="width:24px;height:1.5px;background:#1f3a2b;display:block"></span>
-      <span style="width:24px;height:1.5px;background:#1f3a2b;display:block"></span>
+      <span style="width:24px;height:1.5px;background:#1e3b2b;display:block"></span>
+      <span style="width:24px;height:1.5px;background:#1e3b2b;display:block"></span>
+      <span style="width:24px;height:1.5px;background:#1e3b2b;display:block"></span>
     </button>
   </sc-if>
 </nav>
@@ -69,7 +69,7 @@ a{text-decoration:none}
     <a href="membership.html" style="font:600 15px/1 'Jost',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#2a2620">{{ t.nav.membership }}</a>
     <a href="#contact" onClick="{{ closeMenu }}" style="font:600 15px/1 'Jost',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#2a2620">{{ t.nav.contact }}</a>
     <div style="position:relative;align-self:flex-end">
-      <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#f2ede3;border:1px solid rgba(31,58,43,.3);border-radius:999px;padding:10px 16px;font:600 12px/1 'Jost',sans-serif;color:#1f3a2b;cursor:pointer">
+      <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#f2ede3;border:1px solid rgba(30,59,43,.3);border-radius:999px;padding:10px 16px;font:600 12px/1 'Jost',sans-serif;color:#1e3b2b;cursor:pointer">
         <span style="font-size:17px;line-height:1">{{ currentFlag }}</span>
         <span style="font-size:9px">▾</span>
       </button>
@@ -77,16 +77,16 @@ a{text-decoration:none}
         <div style="position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(23,20,15,.18);padding:8px;display:flex;flex-direction:column;gap:2px;min-width:150px;z-index:60">
           <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left">
             <span style="font-size:17px">🇬🇧</span><span style="flex:1">ENGLISH</span>
-            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#1f3a2b">✓</span></sc-if>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#1e3b2b">✓</span></sc-if>
           </button>
           <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left">
             <span style="font-size:17px">🇸🇰</span><span style="flex:1">SLOVAK</span>
-            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#1f3a2b">✓</span></sc-if>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#1e3b2b">✓</span></sc-if>
           </button>
         </div>
       </sc-if>
     </div>
-    <a href="#" onClick="{{ closeMenu }}" style="align-self:flex-end;padding:14px 30px;background:#1f3a2b;color:#f1ead9;font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase">{{ t.nav.reserve }}</a>
+    <a href="#" onClick="{{ closeMenu }}" style="align-self:flex-end;padding:14px 30px;background:#1e3b2b;color:#f2ede3;font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase">{{ t.nav.reserve }}</a>
   </div>
 </sc-if>
 
@@ -96,11 +96,11 @@ a{text-decoration:none}
   <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,7,.4),rgba(10,9,7,0) 58%)"></div>
   <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(32px,6vw,64px)">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-      <span style="width:32px;height:1px;background:#f1ead9"></span>
-      <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f1ead9">{{ t.hero.tag }}</span>
+      <span style="width:32px;height:1px;background:#f2ede3"></span>
+      <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f2ede3">{{ t.hero.tag }}</span>
     </div>
-    <h1 style="margin:0 0 32px;color:#f7f4ee;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.06;font-size:clamp(38px,6.4vw,84px);max-width:820px">{{ t.hero.headline }}</h1>
-    <a href="#" style="display:inline-block;padding:16px 40px;border:1px solid #f7f4ee;color:#f7f4ee;font:600 12px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-hover="background:#f7f4ee;color:#1f3a2b">{{ t.hero.reserve }}</a>
+    <h1 style="margin:0 0 32px;color:#f2ede3;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.06;font-size:clamp(38px,6.4vw,84px);max-width:820px">{{ t.hero.headline }}</h1>
+    <a href="#" style="display:inline-block;padding:16px 40px;border:1px solid #f2ede3;color:#f2ede3;font:600 12px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-hover="background:#f2ede3;color:#1e3b2b">{{ t.hero.reserve }}</a>
   </div>
 </section>
 
@@ -157,8 +157,8 @@ a{text-decoration:none}
 
 <section id="contact" style="scroll-margin-top:90px;background:#f2ede3;padding:clamp(56px,8vw,104px) clamp(28px,6vw,72px)">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-    <span style="width:28px;height:1px;background:#1f3a2b"></span>
-    <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">{{ t.contact.tag }}</span>
+    <span style="width:28px;height:1px;background:#1e3b2b"></span>
+    <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1e3b2b">{{ t.contact.tag }}</span>
   </div>
   <h2 style="margin:0 0 40px;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.05;font-size:clamp(28px,4.2vw,52px);max-width:760px">{{ t.contact.heading }}</h2>
   <div style="display:grid;grid-template-columns:{{ splitCols }};gap:clamp(32px,5vw,64px);align-items:start">
@@ -168,40 +168,40 @@ a{text-decoration:none}
         <div style="font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.8);margin-top:6px">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia</div>
       </div>
       <div>
-        <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1f3a2b">{{ t.contact.hoursLabel }}</span>
+        <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1e3b2b">{{ t.contact.hoursLabel }}</span>
         <div style="font:400 16px/1.7 'EB Garamond',serif;color:rgba(42,38,32,.8);margin-top:6px">Mon – Sun · 7:00 – 22:00</div>
       </div>
       <div style="display:flex;gap:12px;margin-top:6px">
-        <a href="#" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(31,58,43,.4);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Jost',sans-serif;color:#1f3a2b" style-hover="background:#1f3a2b;color:#f1ead9">IG</a>
-        <a href="#" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(31,58,43,.4);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Jost',sans-serif;color:#1f3a2b" style-hover="background:#1f3a2b;color:#f1ead9">WA</a>
+        <a href="#" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(30,59,43,.4);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Jost',sans-serif;color:#1e3b2b" style-hover="background:#1e3b2b;color:#f2ede3">IG</a>
+        <a href="#" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(30,59,43,.4);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Jost',sans-serif;color:#1e3b2b" style-hover="background:#1e3b2b;color:#f2ede3">WA</a>
       </div>
     </div>
-    <div style="position:relative;min-height:280px;background:#e2ddca;overflow:hidden">
-      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(31,58,43,.08) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgba(31,58,43,.08) 0 1px,transparent 1px 32px)"></div>
+    <div style="position:relative;min-height:280px;background:#f2ede3;overflow:hidden">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(30,59,43,.08) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgba(30,59,43,.08) 0 1px,transparent 1px 32px)"></div>
       <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div style="width:16px;height:16px;border-radius:50%;background:#1f3a2b"></div>
-        <span style="font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(31,58,43,.6)">[ map embed ]</span>
+        <div style="width:16px;height:16px;border-radius:50%;background:#1e3b2b"></div>
+        <span style="font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(30,59,43,.6)">[ map embed ]</span>
       </div>
     </div>
   </div>
 </section>
 
-<footer style="background:#1f3a2b;color:#f1ead9;padding:clamp(48px,6vw,72px) clamp(28px,6vw,72px) 28px">
-  <div style="display:grid;grid-template-columns:{{ splitCols }};gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(241,234,217,.2)">
+<footer style="background:#1e3b2b;color:#f2ede3;padding:clamp(48px,6vw,72px) clamp(28px,6vw,72px) 28px">
+  <div style="display:grid;grid-template-columns:{{ splitCols }};gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(242,237,227,.2)">
     <div>
-      <img src="assets/logo-off-white.svg" alt="The Court House" style="height:46px;width:auto;display:block;margin-bottom:16px"/>
-      <p style="margin:0;max-width:340px;font:400 15px/1.6 'EB Garamond',serif;color:rgba(241,234,217,.75)">{{ t.footer.tagline }}</p>
+      <img src="assets/logo-beige.svg" alt="The Court House" style="height:clamp(88px,9vw,120px);width:auto;display:block;margin-bottom:24px"/>
+      <p style="margin:0;max-width:340px;font:400 15px/1.6 'EB Garamond',serif;color:rgba(242,237,227,.75)">{{ t.footer.tagline }}</p>
     </div>
     <div>
-      <div style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,217,.6)">{{ t.footer.visitUs }}</div>
-      <div style="margin-top:14px;font:400 16px/1.7 'EB Garamond',serif;color:rgba(241,234,217,.85)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
+      <div style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,227,.6)">{{ t.footer.visitUs }}</div>
+      <div style="margin-top:14px;font:400 16px/1.7 'EB Garamond',serif;color:rgba(242,237,227,.85)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
     </div>
   </div>
-  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font:400 12px/1 'Jost',sans-serif;color:rgba(241,234,217,.55)">
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font:400 12px/1 'Jost',sans-serif;color:rgba(242,237,227,.55)">
     <span>{{ t.footer.copyright }}</span>
     <div style="display:flex;gap:20px">
-      <a href="#" style="color:rgba(241,234,217,.55)">{{ t.footer.privacy }}</a>
-      <a href="#" style="color:rgba(241,234,217,.55)">{{ t.footer.terms }}</a>
+      <a href="#" style="color:rgba(242,237,227,.55)">{{ t.footer.privacy }}</a>
+      <a href="#" style="color:rgba(242,237,227,.55)">{{ t.footer.terms }}</a>
     </div>
   </div>
 </footer>
