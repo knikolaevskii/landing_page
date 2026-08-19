@@ -95,9 +95,9 @@ a{text-decoration:none}
   <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(32px,6vw,64px)">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
       <span style="width:32px;height:1px;background:#f1eada"></span>
-      <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f1eada">{{ t.hero.tag }}</span>
+      <span style="font:600 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f1eada;text-shadow:0 0 1px rgba(0,0,0,.9)">{{ t.hero.tag }}</span>
     </div>
-    <h1 style="margin:0 0 32px;color:#f1eada;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.06;font-size:clamp(38px,6.4vw,84px);max-width:820px">{{ t.hero.headline }}</h1>
+    <h1 style="margin:0 0 32px;color:#f1eada;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.01em;line-height:1.06;font-size:clamp(38px,6.4vw,84px);max-width:820px;text-shadow:0 0 1px rgba(0,0,0,.9)">{{ t.hero.headline }}</h1>
     <a href="#" style="display:inline-block;padding:clamp(18px,2vw,22px) clamp(43px,5.6vw,66px);background:#f1eada;border:1px solid #f1eada;color:#203c2c;font:600 clamp(12px,1.1vw,14px)/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#fff;border-color:#fff;color:#203c2c">{{ t.hero.reserve }}</a>
   </div>
 </section>
@@ -120,8 +120,8 @@ a{text-decoration:none}
 
 <section style="display:grid;grid-template-columns:{{ splitCols }}">
   <div style="position:relative;min-height:clamp(320px,50vw,560px);order:{{ gameImageOrder }}">
-    <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#4a4438,#4a4438 14px,#544d3f 14px,#544d3f 28px)"></div>
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(247,244,238,.4);font:500 11.5px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:24px">[ action photo — paddle and ball ]</div>
+    <img src="assets/how-to-play.png" alt="Pickleball paddle and ball" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+    <div style="position:absolute;inset:0;background:rgba(74,68,56,.1);mix-blend-mode:multiply;pointer-events:none"></div>
   </div>
   <div style="background:#f2ede3;padding:clamp(48px,7vw,96px) clamp(28px,6vw,72px);display:flex;flex-direction:column;justify-content:center;gap:22px;min-height:clamp(420px,50vw,560px);order:{{ gameTextOrder }}">
     <div style="display:flex;align-items:center;gap:10px">
