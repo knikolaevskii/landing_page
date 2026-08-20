@@ -18,7 +18,8 @@ a{text-decoration:none}
 .hero-shell{height:calc(100svh - 66px);min-height:600px;padding:2px clamp(20px,2vw,30px) 102px;background:#203c2c}
 .hero-card{position:relative;width:100%;height:100%;overflow:hidden;border-radius:14px}
 @keyframes heroLogoReveal{0%{opacity:0;transform:translateY(20px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.hero-logo-reveal{width:min(72vw,1100px);height:auto;display:block;animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;will-change:opacity,transform}
+.hero-content-reveal{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,2.5vw,32px);animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;will-change:opacity,transform}
+.hero-logo-reveal{width:min(72vw,1100px);height:auto;display:block}
 @media(max-width:859px){.hero-shell{height:calc(100svh - 76px);min-height:540px;padding:12px 12px 28px}.hero-card{border-radius:10px}}
 </style>
 </helmet>
@@ -101,7 +102,10 @@ a{text-decoration:none}
     <div style="position:absolute;inset:0;background:rgba(10,9,7,.1)"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,7,.4),rgba(10,9,7,0) 58%)"></div>
     <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:clamp(24px,5vw,72px);pointer-events:none">
-      <img class="hero-logo-reveal" src="assets/logo-dark-green-text.svg" alt="The Court House"/>
+      <div class="hero-content-reveal">
+        <img class="hero-logo-reveal" src="assets/logo-dark-green-text.svg" alt="The Court House"/>
+        <a href="#" style="pointer-events:auto;display:inline-block;min-width:210px;padding:17px 48px;border:1px solid rgba(241,234,218,.92);border-radius:999px;background:rgba(32,60,44,.72);color:#f1eada;box-shadow:inset 0 0 0 1px rgba(241,234,218,.12),0 10px 30px rgba(8,18,12,.2);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);font:500 14px/1 'Jost',sans-serif;letter-spacing:.1em;text-align:center;text-transform:uppercase;transition:background .25s ease,box-shadow .25s ease,transform .25s ease" style-hover="background:#203c2c;color:#fff;box-shadow:inset 0 0 0 1px rgba(241,234,218,.2),0 13px 34px rgba(8,18,12,.28);transform:translateY(-2px)">Book a Court</a>
+      </div>
     </div>
   </div>
 </section>
