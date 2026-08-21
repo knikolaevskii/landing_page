@@ -29,6 +29,10 @@ a:hover{color:#16291f}
   .hero-reveal{animation:none!important;opacity:1!important;transform:none!important}
   .hero-scroll{animation:none!important;opacity:.88!important}
   [data-rv]{transform:none!important;will-change:auto!important}
+  /* dvh resizes while the URL bar hides/shows, which makes the page grow and shrink mid-scroll */
+  section[data-screen-label]{min-height:100svh!important}
+  /* snap is already disabled by applySnap(), but not until JS mounts */
+  html{scroll-snap-type:none!important}
 }
 @media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
 </style>
