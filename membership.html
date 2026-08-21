@@ -31,17 +31,17 @@ a{text-decoration:none}
       <a href="index.dc.html#contact" style="font:600 12px/1 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#f1eada" style-hover="color:#fff">{{ t.nav.contact }}</a>
       <div style="position:relative">
         <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#203c2c;border:1px solid rgba(241,234,218,.45);border-radius:999px;padding:8px 14px;font:600 12px/1 'Jost',sans-serif;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
-          <span style="font-size:16px;line-height:1">{{ currentFlag }}</span>
+          <span style="font-size:12px;line-height:1;letter-spacing:.08em">{{ currentFlag }}</span>
           <span style="font-size:9px">▾</span>
         </button>
         <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(23,20,15,.18);padding:8px;display:flex;flex-direction:column;gap:2px;min-width:150px;z-index:60">
             <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
-              <span style="font-size:17px">🇬🇧</span><span style="flex:1">ENGLISH</span>
+              <span style="flex:1">ENGLISH</span>
               <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
             </button>
             <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
-              <span style="font-size:17px">🇸🇰</span><span style="flex:1">SLOVAK</span>
+              <span style="flex:1">SLOVENČINA</span>
               <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
             </button>
           </div>
@@ -67,17 +67,17 @@ a{text-decoration:none}
     <a href="index.dc.html#contact" onClick="{{ closeMenu }}" style="font:600 15px/1 'Jost',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#2a2620">{{ t.nav.contact }}</a>
     <div style="position:relative;align-self:flex-end">
       <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;gap:8px;background:#f1eada;border:1px solid rgba(32,60,44,.3);border-radius:999px;padding:10px 16px;font:600 12px/1 'Jost',sans-serif;color:#203c2c;cursor:pointer">
-        <span style="font-size:17px;line-height:1">{{ currentFlag }}</span>
+        <span style="font-size:12px;line-height:1;letter-spacing:.08em">{{ currentFlag }}</span>
         <span style="font-size:9px">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(23,20,15,.18);padding:8px;display:flex;flex-direction:column;gap:2px;min-width:150px;z-index:60">
           <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left">
-            <span style="font-size:17px">🇬🇧</span><span style="flex:1">ENGLISH</span>
+            <span style="flex:1">ENGLISH</span>
             <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
           <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:600 13px/1 'Jost',sans-serif;color:#2a2620;cursor:pointer;text-align:left">
-            <span style="font-size:17px">🇸🇰</span><span style="flex:1">SLOVAK</span>
+            <span style="flex:1">SLOVENČINA</span>
             <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
         </div>
@@ -177,7 +177,7 @@ class Component extends DCLogic {
       t: TRANSLATIONS[this.state.lang],
       isEn: this.state.lang === 'en',
       isSk: this.state.lang === 'sk',
-      currentFlag: this.state.lang === 'en' ? '🇬🇧' : '🇸🇰',
+      currentFlag: this.state.lang === 'en' ? 'EN' : 'SK',
       langMenuOpen: this.state.langMenuOpen,
       toggleLangMenu: () => this.setState(s => ({ langMenuOpen: !s.langMenuOpen })),
       selectEn: () => this.setState({ lang: 'en', langMenuOpen: false }),
