@@ -24,10 +24,8 @@ a:hover{color:#16291f}
 @keyframes heroLogoReveal{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes heroScrollReveal{from{opacity:0}to{opacity:.88}}
 @media(max-width:999px){.game-image{object-fit:contain!important;object-position:center}}
-/* mobile: no entrance/parallax motion */
+/* mobile: hero keeps its desktop entrance reveal; section parallax stays off */
 @media(max-width:999px){
-  .hero-reveal{animation:none!important;opacity:1!important;transform:none!important}
-  .hero-scroll{animation:none!important;opacity:.88!important}
   [data-rv]{transform:none!important;will-change:auto!important}
   /* dvh resizes while the URL bar hides/shows, which makes the page grow and shrink mid-scroll */
   section[data-screen-label]{min-height:100svh!important}
