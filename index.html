@@ -24,6 +24,12 @@ a:hover{color:#16291f}
 @keyframes heroLogoReveal{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes heroScrollReveal{from{opacity:0}to{opacity:.88}}
 @media(max-width:999px){.game-image{object-fit:contain!important;object-position:center}}
+/* mobile: no entrance/parallax motion */
+@media(max-width:999px){
+  .hero-reveal{animation:none!important;opacity:1!important;transform:none!important}
+  .hero-scroll{animation:none!important;opacity:.88!important}
+  [data-rv]{transform:none!important;will-change:auto!important}
+}
 @media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
 </style>
 </helmet>
@@ -87,14 +93,14 @@ a:hover{color:#16291f}
 <section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
   <div style="position:relative;flex:1;border-radius:14px;overflow:hidden;background:#2d2a24">
     <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
-    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>
+    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" autoplay playsinline webkit-playsinline preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>
     <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.34),rgba(16,24,18,.16) 45%,rgba(16,24,18,.5))"></div>
-    <div ref="{{ heroMarkRef }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;animation-play-state:paused;will-change:opacity,transform">
+    <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;animation-play-state:paused;will-change:opacity,transform">
       <img src="assets/logo-beige-text.svg" alt="The Court House" style="width:min(86vw,912px);height:auto;display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
       <a ref="{{ heroCtaRef }}" href="#contact" data-goto="contact" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
-    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;animation:heroScrollReveal .8s ease 1.7s both;animation-play-state:paused;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
+    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;animation:heroScrollReveal .8s ease 1.7s both;animation-play-state:paused;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
   </div>
 </section>
 
@@ -252,7 +258,12 @@ class Component extends DCLogic {
     this.items = [];
     this.active = 0;
     this.checkSize();
-    this._onResize = () => { this.checkSize(); this.applySnap(); this.collect(); };
+    this._onResize = () => {
+      this.checkSize();
+      this.applySnap();
+      this.collect();
+      if (window.innerWidth >= 1000 && !this.raf) this.startParallax();
+    };
     window.addEventListener('resize', this._onResize);
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.applySnap();
@@ -266,6 +277,7 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
     window.clearTimeout(this._heroStartTimer);
+    window.clearTimeout(this._heroRevealTimer);
     if (this.raf) cancelAnimationFrame(this.raf);
   }
   componentDidUpdate() {
@@ -296,23 +308,48 @@ class Component extends DCLogic {
       const reveal = () => {
         if (video.paused || video.readyState < 2) return;
         video.style.opacity = '1';
-        if (this.heroMark) this.heroMark.style.animationPlayState = 'running';
-        if (this.heroFoot) this.heroFoot.style.animationPlayState = 'running';
+        this.runHeroReveal();
       };
       video.addEventListener('playing', reveal, { once: true });
-      video.addEventListener('error', () => { video.style.opacity = '0'; }, { once: true });
+      video.addEventListener('error', () => { video.style.opacity = '0'; this.runHeroReveal(); }, { once: true });
+      // never leave the hero text hidden if the video stalls or is blocked
+      this._heroRevealTimer = window.setTimeout(() => this.runHeroReveal(), 2500);
       const playback = video.play();
-      if (playback && playback.catch) playback.catch(() => {});
+      // some mobile browsers reject autoplay until the first gesture — retry once then
+      if (playback && playback.catch) playback.catch(() => this.retryHeroVideo(video));
     });
+  }
+
+  runHeroReveal() {
+    if (this.heroMark) this.heroMark.style.animationPlayState = 'running';
+    if (this.heroFoot) this.heroFoot.style.animationPlayState = 'running';
+  }
+
+  retryHeroVideo(video) {
+    if (this._heroRetryBound) return;
+    this._heroRetryBound = true;
+    const kick = () => {
+      video.muted = true;
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+      document.removeEventListener('touchstart', kick);
+      document.removeEventListener('click', kick);
+      document.removeEventListener('scroll', kick);
+    };
+    document.addEventListener('touchstart', kick, { passive: true });
+    document.addEventListener('click', kick);
+    document.addEventListener('scroll', kick, { passive: true });
   }
 
   collect() {
     if (!this.sc) return;
     const cols = new Map();
+    const mobile = window.innerWidth < 1000;
     this.items = Array.from(this.sc.querySelectorAll('[data-rv]')).map(el => {
       el.style.transition = 'none';
-      el.style.willChange = 'transform, opacity';
-      el.style.backfaceVisibility = 'hidden';
+      el.style.willChange = mobile ? 'auto' : 'transform, opacity';
+      el.style.backfaceVisibility = mobile ? '' : 'hidden';
+      if (mobile) el.style.transform = '';
       const sec = el.closest('section');
       let grid = null;
       for (let n = el; n && n !== sec; n = n.parentElement) {
@@ -338,6 +375,12 @@ class Component extends DCLogic {
   startParallax() {
     this.collect();
     const step = () => {
+      if (window.innerWidth < 1000) {
+        // mobile: no parallax — park elements at rest and stop the loop (resize restarts it)
+        for (const it of this.items) { it.y = 0; it.el.style.transform = ''; }
+        this.raf = null;
+        return;
+      }
       const vh = window.innerHeight;
       const vc = window.scrollY + vh / 2;
       for (const it of this.items) {
