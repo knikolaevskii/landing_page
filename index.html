@@ -21,7 +21,7 @@ a:hover{color:#16291f}
 ::selection{background:#203c2c;color:#f1eada}
 @keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @keyframes chFade{from{opacity:0}to{opacity:1}}
-@keyframes heroLogoReveal{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes heroLogoReveal{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes heroScrollReveal{from{opacity:0}to{opacity:.88}}
 @media(max-width:999px){.game-image{object-fit:contain!important;object-position:center}}
 /* mobile: no entrance/parallax motion */
@@ -99,11 +99,11 @@ a:hover{color:#16291f}
     <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.34),rgba(16,24,18,.16) 45%,rgba(16,24,18,.5))"></div>
-    <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;animation-play-state:paused;will-change:opacity,transform">
+    <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);animation:heroLogoReveal .9s cubic-bezier(.22,.61,.36,1) .1s both;will-change:opacity,transform">
       <img src="assets/logo-beige-text.svg" alt="The Court House" style="width:min(86vw,912px);height:auto;display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
       <a ref="{{ heroCtaRef }}" href="#contact" data-goto="contact" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
-    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;animation:heroScrollReveal .8s ease 1.7s both;animation-play-state:paused;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
+    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;animation:heroScrollReveal .6s ease .8s both;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
   </div>
 </section>
 
@@ -270,7 +270,7 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._onResize);
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.applySnap();
-    this._heroStartTimer = window.setTimeout(() => this.startHeroVideo(), 500);
+    this.startHeroVideo();
     requestAnimationFrame(() => {
       this.startParallax();
       this.paintDots(0);
@@ -279,8 +279,6 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
-    window.clearTimeout(this._heroStartTimer);
-    window.clearTimeout(this._heroRevealTimer);
     if (this.raf) cancelAnimationFrame(this.raf);
   }
   componentDidUpdate() {
@@ -308,24 +306,17 @@ class Component extends DCLogic {
       video.defaultMuted = true;
       video.loop = true;
       video.playsInline = true;
+      // the hero text no longer waits on this — the video just fades in over the poster whenever it is ready
       const reveal = () => {
         if (video.paused || video.readyState < 2) return;
         video.style.opacity = '1';
-        this.runHeroReveal();
       };
       video.addEventListener('playing', reveal, { once: true });
-      video.addEventListener('error', () => { video.style.opacity = '0'; this.runHeroReveal(); }, { once: true });
-      // never leave the hero text hidden if the video stalls or is blocked
-      this._heroRevealTimer = window.setTimeout(() => this.runHeroReveal(), 2500);
+      video.addEventListener('error', () => { video.style.opacity = '0'; }, { once: true });
       const playback = video.play();
       // some mobile browsers reject autoplay until the first gesture — retry once then
       if (playback && playback.catch) playback.catch(() => this.retryHeroVideo(video));
     });
-  }
-
-  runHeroReveal() {
-    if (this.heroMark) this.heroMark.style.animationPlayState = 'running';
-    if (this.heroFoot) this.heroFoot.style.animationPlayState = 'running';
   }
 
   retryHeroVideo(video) {
