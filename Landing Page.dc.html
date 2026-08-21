@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preload" href="assets/hero-video-first-frame.jpg" as="image"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{margin:0}
+*{box-sizing:border-box}
+a{text-decoration:none;color:#1f3a2b}
+a:hover{color:#16291f}
+::selection{background:#203c2c;color:#f1eada}
+@keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes chFade{from{opacity:0}to{opacity:1}}
+@keyframes heroLogoReveal{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes heroScrollReveal{from{opacity:0}to{opacity:.88}}
+@media(max-width:999px){.game-image{object-fit:contain!important;object-position:center}}
+@media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
+</style>
+</helmet>
+
+<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#f1eada">
+
+<nav ref="{{ navRef }}" onClick="{{ onNav }}" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(16px,3vw,34px);background:rgba(32,60,44,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)">
+  <a href="#hero" data-goto="hero" style="display:flex;align-items:center;flex-shrink:0">
+    <img src="assets/logo-beige-house.svg" alt="The Court House" style="height:42px;width:auto;display:block"/>
+  </a>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
+      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
+      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
+      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+    </div>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+    <div style="position:relative">
+      <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span ref="{{ langLabelRef }}">EN</span>
+        <span style="font-size:9px;opacity:.7">▾</span>
+      </button>
+      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span style="flex:1">ENGLISH</span>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span style="flex:1">SLOVENSKY</span>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <a href="#membership" data-goto="membership" data-i18n="nav.join" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;background:none;border:none;padding:8px;cursor:pointer">
+        <span style="width:22px;height:1.4px;background:#f1eada;display:block"></span>
+        <span style="width:22px;height:1.4px;background:#f1eada;display:block"></span>
+      </button>
+    </sc-if>
+  </div>
+</nav>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ onNav }}" style="position:fixed;inset:0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 clamp(24px,7vw,64px);animation:chFade .3s ease both">
+    <a href="#story" data-goto="story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
+    <a href="#game" data-goto="game" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
+    <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Membership</a>
+    <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
+  </div>
+</sc-if>
+
+<div ref="{{ scRef }}" style="background:#f1eada;overflow-x:hidden">
+
+<section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
+  <div style="position:relative;flex:1;border-radius:14px;overflow:hidden;background:#2d2a24">
+    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" poster="assets/hero-video-first-frame.jpg" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.34),rgba(16,24,18,.16) 45%,rgba(16,24,18,.5))"></div>
+    <div ref="{{ heroMarkRef }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both;will-change:opacity,transform">
+      <img src="assets/logo-beige-text.svg" alt="The Court House" style="width:min(86vw,912px);height:auto;display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
+      <a ref="{{ heroCtaRef }}" href="#contact" data-goto="contact" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
+    </div>
+    <a href="#story" data-goto="story" aria-label="Scroll to Our Story" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;animation:heroScrollReveal .8s ease 1.7s both;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
+  </div>
+</section>
+
+<section id="story" data-screen-label="02 Our Story" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
+  <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
+    <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
+      <span style="width:26px;height:1px;background:#1f3a2b"></span>
+      <span data-i18n="story.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Our Story</span>
+    </div>
+    <h2 data-rv data-rv-delay=".08" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">
+      <span data-i18n="story.heading">A New Era for Pickleball</span>
+    </h2>
+    <p data-rv data-rv-delay=".16" data-i18n="story.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">The Court House was founded on a simple idea: pickleball deserves a home as refined as the people who play it.</p>
+    <p data-rv data-rv-delay=".22" data-i18n="story.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">Premium courts, considered design, and a members-first mindset — this is our take on the game, and it's just the beginning.</p>
+    <a data-rv data-rv-delay=".28" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Read Our Story</a>
+  </div>
+  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
+    <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+  </div>
+</section>
+
+<section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
+  <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
+    <picture>
+      <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.png"/>
+      <img class="game-image" src="assets/how-to-play.png" alt="Aerial view of a doubles pickleball rally" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+    </picture>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px;justify-self:center">
+    <div data-rv data-rv-delay=".06" style="display:flex;align-items:center;gap:12px">
+      <span style="width:26px;height:1px;background:#1f3a2b"></span>
+      <span data-i18n="game.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">The Game</span>
+    </div>
+    <h2 data-rv data-rv-delay=".12" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px)">
+      <span data-i18n="game.heading">New to Pickleball?</span>
+    </h2>
+    <p data-rv data-rv-delay=".18" data-i18n="game.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Part tennis, part badminton, all fun. Pickleball is fast, social, and easy to pick up — whether you're stepping onto a court for the first time or sharpening a competitive edge.</p>
+    <a data-rv data-rv-delay=".3" href="#membership" data-goto="membership" data-i18n="game.cta" style="align-self:flex-start;margin-top:10px;padding:15px 32px;background:#1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Learn More</a>
+  </div>
+</section>
+
+<section id="membership" data-screen-label="04 Membership" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
+  <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
+    <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
+      <span style="width:26px;height:1px;background:#1f3a2b"></span>
+      <span data-i18n="member.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Membership</span>
+    </div>
+    <h2 data-rv data-rv-delay=".08" data-i18n="member.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">More Than a Court. Your Place to Belong.</h2>
+    <p data-rv data-rv-delay=".16" data-i18n="member.body" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Membership at The Court House means priority access to premium courts, exclusive events, and a community built around the game. Join a club designed for the way you live and play.</p>
+    <div data-rv data-rv-delay=".24" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px">
+      <a href="#contact" data-goto="contact" data-i18n="member.learnMore" style="padding:15px 32px;border:1px solid #1f3a2b;border-radius:999px;color:#1f3a2b;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#1f3a2b;color:#f1ead9">Learn More</a>
+      <a href="#contact" data-goto="contact" data-i18n="member.signUp" style="padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Sign Up</a>
+    </div>
+  </div>
+  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
+    <picture>
+      <source media="(min-width:1000px)" srcset="assets/membership_desktop.png"/>
+      <img class="membership-image" src="assets/membership.png" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+    </picture>
+  </div>
+</section>
+
+<section id="contact" data-screen-label="05 Contact" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:flex;flex-direction:column;background:#ece5d3">
+  <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(96px,10vh,120px) clamp(20px,5vw,72px) clamp(44px,5vh,64px)">
+    <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
+      <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
+        <span style="width:26px;height:1px;background:#1f3a2b"></span>
+        <span data-i18n="contact.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Contact Us</span>
+      </div>
+      <h2 data-rv data-rv-delay=".07" data-i18n="contact.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(30px,4.2vw,54px)">Come play at The Court House.</h2>
+      <div data-rv data-rv-delay=".14" style="display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="font:400 clamp(20px,1.7vw,26px)/1.3 'EB Garamond',serif;color:#1f3a2b">+421 900 000 000</div>
+          <div style="margin-top:6px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia</div>
+        </div>
+        <div>
+          <span data-i18n="contact.hours" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Hours</span>
+          <div style="margin-top:7px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">Mon – Sun · 7:00 – 22:00</div>
+        </div>
+      </div>
+      <div data-rv data-rv-delay=".2" style="display:flex;gap:10px">
+        <a href="#" aria-label="Instagram" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/instagram-logo.svg" alt="" aria-hidden="true" style="width:30px;height:30px;display:block"/></a>
+        <a href="#" aria-label="WhatsApp" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/whatsapp-svgrepo-com.svg" alt="" aria-hidden="true" style="width:32px;height:32px;display:block"/></a>
+      </div>
+    </div>
+    <a data-rv="img" data-rv-delay=".1" href="https://www.google.com/maps/search/?api=1&amp;query=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
+      <iframe title="Google Map showing Na Pántoch 7707/8, Bratislava" src="https://www.google.com/maps?q=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;pointer-events:none;filter:grayscale(.2) sepia(.15) saturate(.9) contrast(1)"></iframe>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(236,229,211,0.0);pointer-events:none"></div>
+      <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:999px;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:600 10px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
+    </a>
+  </div>
+  <footer style="background:#203c2c;color:#f1eada;padding:clamp(40px,5vw,64px) clamp(22px,5vw,72px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(241,234,218,.18)">
+      <div>
+        <img src="assets/logo-beige.svg" alt="The Court House" style="height:clamp(72px,7vw,96px);width:auto;display:block;margin-bottom:18px"/>
+        <p data-i18n="footer.tagline" style="margin:0;max-width:320px;font:400 15px/1.6 'EB Garamond',serif;color:rgba(241,234,218,.7)">Premium pickleball courts and a community built around the game.</p>
+      </div>
+      <div>
+        <div data-i18n="footer.visit" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,234,218,.55)">Visit Us</div>
+        <div style="margin-top:12px;font:400 15px/1.7 'EB Garamond',serif;color:rgba(241,234,218,.82)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:20px;font:400 11px/1 'Jost',sans-serif;letter-spacing:.06em;color:rgba(241,234,218,.5)">
+      <span style="white-space:nowrap">© 2026 The Court House</span>
+      <div style="display:flex;gap:20px">
+        <a href="#" data-i18n="footer.privacy" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Terms</a>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</div>
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ onNav }}" style="position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;padding:10px 6px">
+  <a href="#hero" data-goto="hero" data-dot="0" ref="{{ dotRef }}" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#story" data-goto="story" data-dot="1" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#game" data-goto="game" data-dot="2" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#membership" data-goto="membership" data-dot="3" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#contact" data-goto="contact" data-dot="4" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+</div>
+</sc-if>
+
+<div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
+  <div ref="{{ barRef }}" style="width:100%;height:100%;border-radius:999px;background:#2a2620;transform:scaleX(.16);transform-origin:left center;transition:transform .28s cubic-bezier(.22,1,.36,1)"></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;snapScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const SK = {
+  'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
+  'hero.book':'Rezervovať Kurt',
+  'story.tag':'Náš Príbeh','story.heading':'Nová Éra Pickleballu',
+  'story.p1':'The Court House vznikol z jednoduchej myšlienky: pickleball si zaslúži domov rovnako prepracovaný ako ľudia, ktorí ho hrajú.',
+  'story.p2':'Prémiové kurty, premyslený dizajn a prístup zameraný na členov — toto je náš pohľad na hru, a je to len začiatok.',
+  'story.cta':'Prečítať Náš Príbeh',
+  'game.tag':'Hra','game.heading':'Nový v Pickballi?',
+  'game.p1':'Čiastočne tenis, čiastočne bedminton, samá zábava. Pickleball je rýchly, spoločenský a ľahko sa naučí — či už prvýkrát stojíte na kurte, alebo si brúsite súťažnú hranu.',
+  'game.cta':'Zistiť Viac',
+  'member.tag':'Členstvo','member.heading':'Viac než Kurt. Vaše Miesto, Kam Patríte.',
+  'member.body':'Členstvo v The Court House znamená prioritný prístup k prémiovým kurtom, exkluzívne podujatia a komunitu vybudovanú okolo hry. Pridajte sa ku klubu navrhnutému pre spôsob, akým žijete a hráte.',
+  'member.learnMore':'Zistiť Viac','member.signUp':'Zaregistrovať sa',
+  'contact.tag':'Kontaktujte Nás','contact.heading':'Poďte si Zahrať do The Court House.','contact.hours':'Otváracie Hodiny','contact.map':'Na Pántoch 7707/8',
+  'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
+  'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
+};
+const IDS = ['hero','story','game','membership','contact'];
+
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, langMenuOpen: false, lang: 'en' };
+
+  componentDidMount() {
+    this.items = [];
+    this.active = 0;
+    this.checkSize();
+    this._onResize = () => { this.checkSize(); this.applySnap(); this.collect(); };
+    window.addEventListener('resize', this._onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.applySnap();
+    this._heroStartTimer = window.setTimeout(() => this.startHeroVideo(), 500);
+    requestAnimationFrame(() => {
+      this.startParallax();
+      this.paintDots(0);
+    });
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.clearTimeout(this._heroStartTimer);
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  componentDidUpdate() {
+    this.applySnap();
+    if (this.state.lang === 'sk') this.applyLang('sk');
+    this.paintDots(this.active);
+    if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? 'EN' : 'SK';
+    requestAnimationFrame(() => this.collect());
+  }
+
+  checkSize() {
+    const isMobile = window.innerWidth < 1000;
+    if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false });
+  }
+  applySnap() {
+    const snap = (this.props.snapScroll ?? true) && window.innerWidth >= 1000 && window.innerHeight >= 620;
+    document.documentElement.style.scrollSnapType = snap ? 'y proximity' : 'none';
+  }
+
+  startHeroVideo() {
+    requestAnimationFrame(() => {
+      const video = document.getElementById('hero-video');
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      const playback = video.play();
+      if (playback && playback.catch) playback.catch(() => {});
+    });
+  }
+
+  collect() {
+    if (!this.sc) return;
+    const cols = new Map();
+    this.items = Array.from(this.sc.querySelectorAll('[data-rv]')).map(el => {
+      el.style.transition = 'none';
+      el.style.willChange = 'transform, opacity';
+      el.style.backfaceVisibility = 'hidden';
+      const sec = el.closest('section');
+      let grid = null;
+      for (let n = el; n && n !== sec; n = n.parentElement) {
+        const d = getComputedStyle(n.parentElement).display;
+        if (d === 'grid' || d === 'inline-grid') { grid = n.parentElement; break; }
+      }
+      const key = grid || sec;
+      if (key && !cols.has(key)) {
+        const gt = grid ? getComputedStyle(grid).gridTemplateColumns : 'none';
+        cols.set(key, gt && gt !== 'none' ? gt.split(' ').filter(Boolean).length : 1);
+      }
+      return {
+        el: el,
+        sec: sec,
+        stacked: (cols.get(key) || 1) < 2,
+        img: el.getAttribute('data-rv') === 'img',
+        depth: parseFloat(el.getAttribute('data-rv-delay') || '0'),
+        y: 0
+      };
+    });
+  }
+
+  startParallax() {
+    this.collect();
+    const step = () => {
+      const vh = window.innerHeight;
+      const vc = window.scrollY + vh / 2;
+      for (const it of this.items) {
+        if (!it.sec) continue;
+        const span = Math.max(vh, it.sec.offsetHeight);
+        let t = ((it.sec.offsetTop + it.sec.offsetHeight / 2) - vc) / span;
+        t = Math.max(-1.1, Math.min(1.1, t));
+        const amp = (it.img ? 132 : 104) * (1 + it.depth * 1.15) * (it.stacked ? 0.42 : 1);
+        // wide: text descends from above, image rises from below — they meet at centre
+        // stacked (one column): both travel the same way, so they can never converge into each other
+        const conv = it.stacked ? -1 : (it.img ? 1 : -1);
+        const target = t >= 0 ? t * amp * conv : t * amp * 0.62;
+        const a = Math.abs(t);
+        it.y += (target - it.y) * 0.11;
+        it.el.style.transform = it.img
+          ? 'translate3d(0,' + it.y.toFixed(2) + 'px,0) scale(' + (1 + a * 0.035).toFixed(4) + ')'
+          : 'translate3d(0,' + it.y.toFixed(2) + 'px,0)';
+      }
+      this.raf = requestAnimationFrame(step);
+    };
+    step();
+  }
+
+  onScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    if (this.bar) this.bar.style.transform = 'scaleX(' + (0.16 + p * 0.84) + ')';
+    const vc = window.scrollY + window.innerHeight / 2;
+    let idx = 0;
+    for (let i = 0; i < IDS.length; i++) {
+      const s = document.getElementById(IDS[i]);
+      if (s && s.offsetTop <= vc) idx = i;
+    }
+    if (idx !== this.active) { this.active = idx; this.paintDots(idx); }
+  };
+
+  paintDots(idx) {
+    if (!this.dotWrap) return;
+    const dark = IDS[idx] === 'hero';
+    const base = dark ? 'rgba(241,234,218,.32)' : 'rgba(42,38,32,.28)';
+    const on = dark ? '#f1eada' : '#2a2620';
+    this.dotWrap.querySelectorAll('[data-dot]').forEach((d, i) => {
+      d.style.background = i === idx ? on : base;
+      d.style.transform = i === idx ? 'scale(1.55)' : 'scale(1)';
+    });
+    if (this.bar) {
+      this.bar.style.background = dark ? '#f1eada' : '#2a2620';
+      this.bar.parentElement.style.background = dark ? 'rgba(241,234,218,.22)' : 'rgba(42,38,32,.18)';
+    }
+  }
+
+  applyLang(lang) {
+    const root = (this.sc && this.sc.parentElement) || document.body;
+    if (!root) return;
+    root.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (!el.dataset.en) el.dataset.en = el.textContent;
+      const next = lang === 'sk' ? (SK[k] || el.dataset.en) : el.dataset.en;
+      if (el.textContent !== next) el.textContent = next;
+    });
+  }
+
+  onNav = (e) => {
+    const a = e.target.closest && e.target.closest('[data-goto]');
+    if (!a) return;
+    e.preventDefault();
+    const el = document.getElementById(a.getAttribute('data-goto'));
+    if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+    if (this.state.menuOpen) this.setState({ menuOpen: false });
+  };
+
+  setLang(lang) {
+    this.setState({ lang, langMenuOpen: false });
+    requestAnimationFrame(() => {
+      this.applyLang(lang);
+      if (this.langLabel) this.langLabel.textContent = lang === 'en' ? 'EN' : 'SK';
+    });
+  }
+
+  renderVals() {
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      langMenuOpen: this.state.langMenuOpen,
+      isEn: this.state.lang === 'en',
+      isSk: this.state.lang === 'sk',
+      scRef: el => { if (el) this.sc = el; },
+      navRef: el => { if (el) this.nav = el; },
+      barRef: el => { if (el) this.bar = el; },
+      dotRef: el => { if (el) this.dotWrap = el.parentElement; },
+      heroImgRef: el => { if (el) this.heroImg = el; },
+      heroMarkRef: el => { if (el) this.heroMark = el; },
+      heroCtaRef: el => { if (el) this.heroCta = el; },
+      heroFootRef: el => { if (el) this.heroFoot = el; },
+      langLabelRef: el => { if (el) this.langLabel = el; },
+      onScroll: this.onScroll,
+      onNav: this.onNav,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      toggleLangMenu: () => this.setState(s => ({ langMenuOpen: !s.langMenuOpen })),
+      selectEn: () => this.setLang('en'),
+      selectSk: () => this.setLang('sk')
+    };
+  }
+}
+</script>
+</body>
+</html>
