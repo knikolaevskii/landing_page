@@ -59,9 +59,12 @@ a:hover{color:#16291f}
     </div>
   </sc-if>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <a href="#membership" data-goto="membership" data-i18n="nav.join" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+    </sc-if>
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
-        <span ref="{{ langLabelRef }}">EN</span>
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span ref="{{ langLabelRef }}" aria-hidden="true" style="display:block;height:12px;font-size:12px;line-height:12px;letter-spacing:0">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
@@ -77,9 +80,6 @@ a:hover{color:#16291f}
         </div>
       </sc-if>
     </div>
-    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-      <a href="#membership" data-goto="membership" data-i18n="nav.join" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
-    </sc-if>
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;background:none;border:none;padding:8px;cursor:pointer">
         <span style="width:22px;height:1.4px;background:#f1eada;display:block"></span>
@@ -292,7 +292,7 @@ class Component extends DCLogic {
     this.applySnap();
     if (this.state.lang === 'sk') this.applyLang('sk');
     this.paintDots(this.active);
-    if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? 'EN' : 'SK';
+    if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
     requestAnimationFrame(() => this.collect());
   }
 
@@ -472,7 +472,7 @@ class Component extends DCLogic {
     this.setState({ lang, langMenuOpen: false });
     requestAnimationFrame(() => {
       this.applyLang(lang);
-      if (this.langLabel) this.langLabel.textContent = lang === 'en' ? 'EN' : 'SK';
+      if (this.langLabel) this.langLabel.textContent = lang === 'en' ? '🇬🇧' : '🇸🇰';
     });
   }
 
