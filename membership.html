@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/site.css"/>
+</helmet>
+
+<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#203c2c">
+
+<a class="skip-link" href="#member-intro" data-i18n="common.skipToContent">Skip to content</a>
+
+<dc-import name="SiteNav" active="membership" cta="membershipJoin" onNav="{{ onNav }}"/>
+
+<div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
+
+  <!-- Intro --------------------------------------------------------------- -->
+  <section id="member-intro" data-screen-label="Membership" class="pg-sec pg-sec--cream pg-sec--first">
+    <div class="pg-frame pg-split">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="member.intro.tag">Membership</span></div>
+        <h1 class="h1" data-reveal data-reveal-i="1" data-i18n="member.intro.h">Your club. Your court.</h1>
+        <p class="lede" data-reveal data-reveal-i="2" data-i18n="member.intro.lede">Membership is for those who want to make The Courthouse part of their routine.</p>
+        <p class="body" data-reveal data-reveal-i="3" data-i18n="member.intro.p1">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="member.intro.kicker">No unnecessary exclusivity. Just more reasons to play.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.membershipJoin }}" target="_blank" rel="noopener noreferrer" data-i18n="member.intro.cta">Join the Club</a>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/membership.webp" type="image/webp"/><img src="assets/membership.png" alt="Members at The Courthouse"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Tier comparison ------------------------------------------------------ -->
+  <section id="tiers" data-screen-label="Membership Options" class="pg-sec pg-sec--cream-alt">
+    <div class="pg-frame">
+      <div class="pg-prose">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="member.tiers.tag">Membership Options</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="member.tiers.h">Find the tier that fits how you play.</h2>
+        <p class="body body--wide" data-reveal data-reveal-i="2" data-i18n="member.tiers.p1">Every tier builds on the one before it. Court discounts apply to the standard non-member rate.</p>
+      </div>
+
+      <!-- Desktop: a real table. <table> survives compilation (RAW_WRAP) and
+           gives correct semantics for screen readers for free. -->
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div data-reveal data-reveal-i="3" style="margin-top:clamp(28px,4vh,44px);overflow-x:auto">
+        <table class="tiers">
+          <thead>
+            <tr>
+              <th class="tiers-lab"><span class="sr-only" data-i18n="member.tiers.feature">Benefit</span></th>
+              <sc-for list="{{ tiers }}" as="t">
+                <th class="tiers-head" scope="col" data-featured="{{ t.featuredAttr }}">
+                  <span class="tiers-name">{{ t.name }}</span>
+                  <span class="tiers-price">{{ t.price }}</span>
+                  <span class="tiers-per">{{ t.per }}</span>
+                </th>
+              </sc-for>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="r">
+              <tr>
+                <th class="tiers-lab" scope="row">{{ r.label }}</th>
+                <sc-for list="{{ r.cells }}" as="c">
+                  <td class="tiers-cell" data-featured="{{ c.featured }}">{{ c.t }}<sc-if value="{{ c.inferred }}"><sup class="infer">*</sup></sc-if></td>
+                </sc-for>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      </sc-if>
+
+      <!-- Mobile: stacked per-tier cards. Five columns on a 390px screen is
+           unreadable whether it scrolls sideways or not. -->
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div class="tier-cards" data-reveal data-reveal-i="3" style="margin-top:clamp(24px,4vh,36px)">
+        <sc-for list="{{ tierCards }}" as="t">
+          <div class="tier-card" data-featured="{{ t.featured }}">
+            <div class="tier-card-h">
+              <span class="tiers-name">{{ t.name }}</span>
+              <span class="tiers-price">{{ t.price }}</span>
+              <span class="tiers-per">{{ t.per }}</span>
+            </div>
+            <sc-for list="{{ t.rows }}" as="r">
+              <div class="tier-line">
+                <span class="tier-line-lab">{{ r.label }}</span>
+                <span class="tier-line-val">{{ r.t }}<sc-if value="{{ r.inferred }}"><sup class="infer">*</sup></sc-if></span>
+              </div>
+            </sc-for>
+            <a class="btn btn--fill" href="{{ joinHref }}" target="_blank" rel="noopener noreferrer" data-i18n="member.intro.cta">Join the Club</a>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <p class="infer-note" data-reveal data-reveal-i="4">
+        <sup>*</sup> <span data-i18n="member.tiers.inferNote">Reconstructed from the source pricing sheet — to be confirmed before launch.</span>
+      </p>
+
+      <div class="pg-prose" style="margin-top:clamp(20px,3vh,32px)">
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.membershipJoin }}" target="_blank" rel="noopener noreferrer" data-i18n="member.intro.cta">Join the Club</a>
+          <a class="btn btn--outline" href="index.html#contact" data-goto="contact" data-i18n="member.tiers.cta2">Ask Us a Question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing ------------------------------------------------------------- -->
+  <section id="member-cta" data-screen-label="Join the Club" class="pg-sec pg-sec--field">
+    <div class="pg-frame">
+      <div class="pg-prose pg-center">
+        <h2 class="h2" data-reveal data-i18n="member.cta.h">Open to everyone. Made special for those who keep coming back.</h2>
+        <p class="lede" data-reveal data-reveal-i="1" data-i18n="member.cta.p">You don't need to be a member to belong at The Courthouse. Membership is simply our way of giving something more to the people who make the club part of their routine.</p>
+        <div class="btn-row" data-reveal data-reveal-i="2" style="justify-content:center">
+          <a class="btn btn--fill" href="{{ links.membershipJoin }}" target="_blank" rel="noopener noreferrer" data-i18n="member.intro.cta">Join the Club</a>
+          <a class="btn btn--outline" href="our-story.html" data-i18n="member.cta.cta2">Read Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="member-footer" data-screen-label="Footer" class="pg-sec pg-sec--field" style="padding-top:0">
+    <dc-import name="SiteFooter"/>
+  </section>
+
+</div>
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ onNav }}" ref="{{ dotWrapRef }}" class="dot-rail">
+  <sc-for list="{{ dots }}" as="d">
+    <a href="#{{ d.id }}" data-goto="{{ d.id }}" data-dot="{{ $index }}" class="dot" aria-label="{{ d.label }}"></a>
+  </sc-for>
+</div>
+</sc-if>
+
+<div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
+  <div ref="{{ barRef }}" style="width:100%;height:100%;border-radius:999px;background:#2a2620;transform:scaleX(.16);transform-origin:left center;transition:transform .28s cubic-bezier(.22,1,.36,1)"></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;snapScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+/* The tier data lives once in assets/site.js. Here it is resolved twice into
+   two shapes — by-row for the desktop table, by-tier for the mobile cards —
+   from the same source, so the two can never disagree. */
+class Component extends TCH.definePage(DCLogic, {
+  page: 'membership',
+  ids: ['member-intro', 'tiers', 'member-cta'],
+  snap: false,
+  parallax: false,
+  reveal: true,
+  scrollOffset: 'nav',
+  darkIds: ['member-cta']
+}) {
+  renderVals() {
+    const lg = this.state.lang;
+    return {
+      ...super.renderVals(),
+      tiers: TCH.tiers(lg),
+      rows: TCH.rows(lg, false),
+      tierCards: TCH.tierCards(lg, false),
+      joinHref: TCH.LINKS.membershipJoin
+    };
+  }
+}
+</script>
+</body>
+</html>

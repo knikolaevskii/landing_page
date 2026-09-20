@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/site.css"/>
+</helmet>
+
+<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#203c2c">
+
+<a class="skip-link" href="#play-intro" data-i18n="common.skipToContent">Skip to content</a>
+
+<dc-import name="SiteNav" active="play" onNav="{{ onNav }}"/>
+
+<div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
+
+  <!-- A. PLAY ------------------------------------------------------------ -->
+  <section id="play-intro" data-screen-label="A Play" class="pg-sec pg-sec--cream pg-sec--first">
+    <div class="pg-frame pg-split">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.intro.tag">Play</span></div>
+        <h1 class="h1" data-reveal data-reveal-i="1" data-i18n="play.intro.h">Everyone starts somewhere.</h1>
+        <p class="lede" data-reveal data-reveal-i="2" data-i18n="play.intro.lede">Some come to compete. Some come to switch off. Some just want an excuse to get their friends together.</p>
+        <p class="body" data-reveal data-reveal-i="3" data-i18n="play.intro.p1">At The Courthouse, there's room for all of it. Seven premium indoor courts. Pickleball and badminton. Coaching, social play, competitive matches and tournaments — whether it's your first time holding a paddle or you've already stopped counting the games.</p>
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="play.intro.kicker">Find your game. We'll provide the court.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.booking }}" target="_blank" rel="noopener noreferrer" data-i18n="common.bookCourt">Book a Court</a>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/arena-wide.webp" type="image/webp"/><img src="assets/arena-wide.png" alt="Seven indoor courts at The Courthouse"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- B. PICKLEBALL ------------------------------------------------------- -->
+  <section id="pickleball" data-screen-label="B Pickleball" class="pg-sec pg-sec--cream-alt">
+    <div class="pg-frame pg-split pg-split--rev">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.pb.tag">Pickleball</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.pb.h">Easy to start. Hard to put down.</h2>
+        <p class="body" data-reveal data-reveal-i="2" data-i18n="play.pb.p1">There's a reason pickleball is one of the fastest-growing sports in the world. It's quick to learn, immediately social and competitive enough to keep you coming back. You don't need years of experience to have a great game — but there's always another level to reach.</p>
+        <p class="body body--muted" data-reveal data-reveal-i="3" data-i18n="play.pb.p2">Seven dedicated indoor courts give you a place to play year-round, whether you're here for a casual game between friends, training for competition or somewhere in between.</p>
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="play.pb.kicker">Come with your own group or come looking for one. This is your court.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.booking }}" target="_blank" rel="noopener noreferrer" data-i18n="play.pb.cta">Book Pickleball</a>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/how-to-play.webp" type="image/webp"/><img src="assets/how-to-play.png" alt="A doubles pickleball rally"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- C. NEW TO PICKLEBALL? + court diagram -------------------------------- -->
+  <section id="new-to" data-screen-label="C New to Pickleball" class="pg-sec pg-sec--field">
+    <div class="pg-frame">
+      <div class="pg-prose" style="max-width:none">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.new.tag">New to Pickleball?</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.new.h">You'll get it in minutes.</h2>
+        <p class="lede" data-reveal data-reveal-i="2" data-i18n="play.new.p1">Never played? Perfect. Pickleball combines elements of tennis, badminton and table tennis into a game that's remarkably easy to pick up.</p>
+        <p class="body body--wide" data-reveal data-reveal-i="3" data-i18n="play.new.p2">You need a paddle, a ball, a court and someone on the other side of the net. We'll help with the rest.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,4vw,60px);align-items:center;margin-top:clamp(32px,5vh,56px)">
+        <!-- Drawn to the real 20 x 44 ft proportion at 10px per foot. Labels are
+             text nodes so they translate; colours come from site.css classes. -->
+        <div data-reveal data-reveal-i="2">
+          <svg class="pb-court" viewBox="0 0 520 268" role="img" aria-labelledby="pb-court-title">
+            <title id="pb-court-title" data-i18n="play.court.title">A pickleball court: 20 by 44 feet, with the non-volley zone either side of the net</title>
+
+            <rect class="pb-surface" x="40" y="30" width="440" height="200" rx="4"/>
+            <rect class="pb-kitchen" x="190" y="30" width="140" height="200"/>
+
+            <!-- outer lines + baselines -->
+            <rect class="pb-line" x="40" y="30" width="440" height="200"/>
+            <!-- kitchen lines, 7 ft either side of the net -->
+            <line class="pb-line" x1="190" y1="30" x2="190" y2="230"/>
+            <line class="pb-line" x1="330" y1="30" x2="330" y2="230"/>
+            <!-- centre line, only across the service courts -->
+            <line class="pb-line pb-line--thin" x1="40" y1="130" x2="190" y2="130"/>
+            <line class="pb-line pb-line--thin" x1="330" y1="130" x2="480" y2="130"/>
+
+            <!-- net -->
+            <line class="pb-net-tape" x1="260" y1="18" x2="260" y2="242"/>
+            <line class="pb-net" x1="260" y1="30" x2="260" y2="230"/>
+            <circle class="pb-ball" cx="260" cy="18" r="3"/>
+            <circle class="pb-ball" cx="260" cy="242" r="3"/>
+
+            <text class="pb-label" x="115" y="85" data-i18n="play.court.service">Service court</text>
+            <text class="pb-label" x="115" y="185" data-i18n="play.court.service2">Service court</text>
+            <text class="pb-label" x="405" y="85" data-i18n="play.court.service3">Service court</text>
+            <text class="pb-label" x="405" y="185" data-i18n="play.court.service4">Service court</text>
+            <text class="pb-label" x="260" y="135" data-i18n="play.court.kitchen">The kitchen</text>
+            <text class="pb-label pb-label--dim" x="260" y="152" data-i18n="play.court.kitchenSub">no volleying</text>
+
+            <text class="pb-label pb-label--dim" x="260" y="260" data-i18n="play.court.long">44 ft · 13.4 m</text>
+            <text class="pb-label pb-label--dim" x="18" y="134" transform="rotate(-90 18 134)" data-i18n="play.court.wide">20 ft · 6.1 m</text>
+          </svg>
+        </div>
+
+        <div class="pg-col" style="max-width:none">
+          <h3 class="h3" data-reveal data-reveal-i="1" data-i18n="play.new.basicsH">The basics</h3>
+          <ul class="pb-legend" data-reveal data-reveal-i="2">
+            <li><b data-i18n="play.new.b1t">Format</b><span data-i18n="play.new.b1">Singles or doubles — doubles is by far the most popular.</span></li>
+            <li><b data-i18n="play.new.b2t">Serve</b><span data-i18n="play.new.b2">Serve diagonally, into the service court across the net.</span></li>
+            <li><b data-i18n="play.new.b3t">Two bounces</b><span data-i18n="play.new.b3">Let the ball bounce once on each side before you start volleying.</span></li>
+            <li><b data-i18n="play.new.b4t">The kitchen</b><span data-i18n="play.new.b4">Don't volley while standing in the zone closest to the net.</span></li>
+            <li><b data-i18n="play.new.b5t">Scoring</b><span data-i18n="play.new.b5">Play your way to 11, win by two.</span></li>
+          </ul>
+          <p class="body body--wide" data-reveal data-reveal-i="3" data-i18n="play.new.p3">That's enough to get your first game started. And yes, we'll explain the rest when you arrive.</p>
+          <p class="body body--muted body--wide" data-reveal data-reveal-i="4" data-i18n="play.new.p4">No equipment? No problem. Paddles and balls are available at the club.</p>
+          <div class="btn-row" data-reveal data-reveal-i="5">
+            <a class="btn btn--fill" href="{{ links.booking }}" target="_blank" rel="noopener noreferrer" data-i18n="play.new.cta">Book Your First Game</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- D. FIND YOUR GAME ---------------------------------------------------- -->
+  <section id="find-your-game" data-screen-label="D Find Your Game" class="pg-sec pg-sec--cream">
+    <div class="pg-frame">
+      <div class="pg-prose">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.find.tag">Find Your Game</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.find.h">Play your way.</h2>
+        <p class="body body--wide" data-reveal data-reveal-i="2" data-i18n="play.find.p1">Not every game needs to mean the same thing.</p>
+      </div>
+      <div class="pg-cards" data-reveal data-reveal-i="3" style="margin-top:clamp(28px,4vh,44px)">
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.find.c1h">Private Play</h3>
+          <p class="body body--wide" data-i18n="play.find.c1">Book a court, bring your people and make the hour yours.</p>
+        </div>
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.find.c2h">Open Play</h3>
+          <p class="body body--wide" data-i18n="play.find.c2">Come on your own and meet players at a similar level. The easiest way to get more games — and meet more of the club.</p>
+        </div>
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.find.c3h">Club Events</h3>
+          <p class="body body--wide" data-i18n="play.find.c3">Sometimes we change the rules entirely. Themed sessions, special formats and signature Courthouse events throughout the season.</p>
+        </div>
+      </div>
+      <div class="pg-prose" style="margin-top:clamp(24px,3vh,36px)">
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="play.find.kicker">However you want to play, there should be a game waiting for you.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.openPlay }}" target="_blank" rel="noopener noreferrer" data-i18n="play.find.cta">Find a Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E. COACHING ---------------------------------------------------------- -->
+  <section id="coaching" data-screen-label="E Coaching" class="pg-sec pg-sec--cream-alt">
+    <div class="pg-frame">
+      <div class="pg-prose">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.coach.tag">Coaching</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.coach.h">Get better at the game.</h2>
+        <p class="lede" data-reveal data-reveal-i="2" data-i18n="play.coach.p1">Your first game gets you interested. Getting better keeps you coming back.</p>
+        <p class="body body--wide" data-reveal data-reveal-i="3" data-i18n="play.coach.p2">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play. Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
+        <p class="body body--muted body--wide" data-reveal data-reveal-i="3" data-i18n="play.coach.p3">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
+      </div>
+      <div class="pg-cards" data-reveal data-reveal-i="4" style="margin-top:clamp(28px,4vh,44px)">
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.coach.c1h">Private Coaching</h3>
+          <p class="body body--wide" data-i18n="play.coach.c1">One-to-one attention built around your game.</p>
+        </div>
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.coach.c2h">Group Coaching</h3>
+          <p class="body body--wide" data-i18n="play.coach.c2">Learn together, improve together.</p>
+        </div>
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.coach.c3h">Beginner Sessions</h3>
+          <p class="body body--wide" data-i18n="play.coach.c3">Everything you need to go from "What is pickleball?" to playing independently.</p>
+        </div>
+        <div class="pg-card">
+          <h3 class="h3" data-i18n="play.coach.c4h">Clinics &amp; Masterclasses</h3>
+          <p class="body body--wide" data-i18n="play.coach.c4">Focused sessions for players looking to sharpen particular parts of their game.</p>
+        </div>
+      </div>
+      <div class="pg-prose" style="margin-top:clamp(24px,3vh,36px)">
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.coaching }}" target="_blank" rel="noopener noreferrer" data-i18n="play.coach.cta">Find a Coach</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- F. BADMINTON --------------------------------------------------------- -->
+  <section id="badminton" data-screen-label="F Badminton" class="pg-sec pg-sec--cream">
+    <div class="pg-frame pg-split pg-split--rev">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.bad.tag">Badminton</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.bad.h">Pickleball isn't the only game in the house.</h2>
+        <p class="body" data-reveal data-reveal-i="2" data-i18n="play.bad.p1">Our indoor courts can be configured for badminton, giving players a high-quality place to train, compete or simply get a game together throughout the year.</p>
+        <p class="body body--muted" data-reveal data-reveal-i="3" data-i18n="play.bad.p2">Bring your own equipment or ask us about rackets at reception.</p>
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="play.bad.kicker">Same club. Different racket.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--fill" href="{{ links.booking }}" target="_blank" rel="noopener noreferrer" data-i18n="play.bad.cta">Book Badminton</a>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/arena-nets.webp" type="image/webp"/><img src="assets/arena-nets.png" alt="Indoor courts configured for play"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- G. COMPETE & CONNECT -------------------------------------------------- -->
+  <section id="compete" data-screen-label="G Compete &amp; Connect" class="pg-sec pg-sec--cream-alt">
+    <div class="pg-frame pg-split">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.comp.tag">Compete &amp; Connect</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.comp.h">There's always something to play for.</h2>
+        <p class="body" data-reveal data-reveal-i="2" data-i18n="play.comp.p1">Every month throughout the season, The Courthouse comes alive with competition — from club ladders and leagues to monthly tournaments and international championships.</p>
+        <ul class="pg-tags" data-reveal data-reveal-i="3">
+          <li data-i18n="play.comp.t1">Singles</li>
+          <li data-i18n="play.comp.t2">Doubles</li>
+          <li data-i18n="play.comp.t3">Mixed Doubles</li>
+          <li data-i18n="play.comp.t4">Team Formats</li>
+          <li data-i18n="play.comp.t5">Special Events</li>
+        </ul>
+        <p class="body body--muted" data-reveal data-reveal-i="4" data-i18n="play.comp.p2">Find your level. Find your rivals. Climb the ladder. Represent your team. Or step onto the court when the stakes get bigger.</p>
+        <p class="lede" data-reveal data-reveal-i="4" data-i18n="play.comp.kicker">From your first club tournament to the international stage — competition has a home here.</p>
+        <div class="btn-row" data-reveal data-reveal-i="5">
+          <a class="btn btn--outline" href="index.html#whats-on" data-goto="whats-on" data-i18n="play.comp.cta1">See What's On</a>
+          <a class="btn btn--fill" href="{{ links.tournaments }}" target="_blank" rel="noopener noreferrer" data-i18n="play.comp.cta2">Enter a Tournament</a>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/arena-sponsors.webp" type="image/webp"/><img src="assets/arena-sponsors.png" alt="Tournament play at The Courthouse"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- H. EQUIPMENT ---------------------------------------------------------- -->
+  <section id="equipment" data-screen-label="H Equipment" class="pg-sec pg-sec--cream">
+    <div class="pg-frame pg-split pg-split--rev">
+      <div class="pg-col">
+        <div class="eyebrow" data-reveal><span class="rule"></span><span data-i18n="play.eq.tag">Equipment</span></div>
+        <h2 class="h2" data-reveal data-reveal-i="1" data-i18n="play.eq.h">Just show up.</h2>
+        <p class="body" data-reveal data-reveal-i="2" data-i18n="play.eq.p1">You don't need to own anything to start playing. Rental paddles and balls are available at The Courthouse, while the Pro Shop carries equipment, footwear, apparel and accessories for players ready to find something of their own.</p>
+        <p class="lede" data-reveal data-reveal-i="3" data-i18n="play.eq.kicker">Start with ours. Eventually, you'll want yours.</p>
+        <div class="btn-row" data-reveal data-reveal-i="4">
+          <span class="btn btn--outline" style="opacity:.6;cursor:default" data-i18n="play.eq.cta">Pro Shop — Coming Soon</span>
+        </div>
+      </div>
+      <figure class="pg-media" data-reveal data-reveal-i="2">
+        <picture><source srcset="assets/paddles.webp" type="image/webp"/><img src="assets/paddles.png" alt="Paddles and balls available at the club"/></picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- J. FINAL CTA ----------------------------------------------------------- -->
+  <section id="play-cta" data-screen-label="J Final CTA" class="pg-sec pg-sec--field">
+    <div class="pg-frame" style="padding:0">
+      <div style="position:relative;min-height:clamp(420px,62vh,640px);display:flex;align-items:center;justify-content:center;text-align:center">
+        <picture><source srcset="assets/how-to-play.webp" type="image/webp"/><img src="assets/how-to-play.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/></picture>
+        <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.55),rgba(16,24,18,.72))"></div>
+        <div class="pg-prose pg-center" style="position:relative;padding:clamp(40px,6vh,72px) clamp(20px,5vw,60px)">
+          <h2 class="h2" data-reveal data-i18n="play.cta.h" style="color:#f1eada">Enough reading. Let's play.</h2>
+          <p class="lede" data-reveal data-reveal-i="1" data-i18n="play.cta.p" style="color:rgba(241,234,218,.9)">First game or hundredth. Your court is ready.</p>
+          <div class="btn-row" data-reveal data-reveal-i="2" style="justify-content:center">
+            <a class="btn btn--fill" href="{{ links.booking }}" target="_blank" rel="noopener noreferrer" data-i18n="common.bookCourt" style="background:#f1eada;border-color:#f1eada;color:#1f3a2b">Book a Court</a>
+          </div>
+          <p class="body body--muted" data-reveal data-reveal-i="3" style="margin-inline:auto;color:rgba(241,234,218,.7);font-size:14px">
+            <span data-i18n="play.cta.small">Don't have a group?</span>
+            <a href="{{ links.openPlay }}" target="_blank" rel="noopener noreferrer" data-i18n="play.cta.smallCta" style="color:#f1eada;border-bottom:1px solid rgba(241,234,218,.5)">Find Open Play</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="play-footer" data-screen-label="Footer" class="pg-sec pg-sec--field" style="padding-top:0">
+    <dc-import name="SiteFooter"/>
+  </section>
+
+</div>
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ onNav }}" ref="{{ dotWrapRef }}" class="dot-rail">
+  <sc-for list="{{ dots }}" as="d">
+    <a href="#{{ d.id }}" data-goto="{{ d.id }}" data-dot="{{ $index }}" class="dot" aria-label="{{ d.label }}"></a>
+  </sc-for>
+</div>
+</sc-if>
+
+<div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
+  <div ref="{{ barRef }}" style="width:100%;height:100%;border-radius:999px;background:#2a2620;transform:scaleX(.16);transform-origin:left center;transition:transform .28s cubic-bezier(.22,1,.36,1)"></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;snapScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends TCH.definePage(DCLogic, {
+  page: 'play',
+  ids: ['play-intro', 'pickleball', 'new-to', 'find-your-game', 'coaching', 'badminton', 'compete', 'equipment', 'play-cta'],
+  snap: false,
+  parallax: false,
+  reveal: true,
+  scrollOffset: 'nav',
+  darkIds: ['new-to', 'play-cta']
+}) {}
+</script>
+</body>
+</html>
