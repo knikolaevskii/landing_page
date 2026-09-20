@@ -37,6 +37,7 @@ window.TCH_SK = {
   'nav.contact': 'Kontakt',
   'nav.reserve': 'Rezervovať',
   'nav.menu': 'Menu',
+  'nav.language': 'Vybrať jazyk',
   'nav.home': 'Domov',
 
   /* --- shared footer ---------------------------------------------------- */

@@ -16,9 +16,13 @@
   </sc-if>
 
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <a href="{{ reserveHref }}" target="_blank" rel="noopener noreferrer" data-i18n="nav.reserve" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+    </sc-if>
+
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-haspopup="true" aria-expanded="{{ langExpanded }}" aria-label="Change language" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
-        <span>{{ langLabel }}</span>
+      <button onClick="{{ toggleLangMenu }}" aria-haspopup="true" aria-expanded="{{ langExpanded }}" aria-label="Select language" data-i18n-attr="aria-label:nav.language" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span aria-hidden="true" style="display:block;height:12px;font-size:12px;line-height:12px;letter-spacing:0">{{ langFlag }}</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
@@ -35,9 +39,6 @@
       </sc-if>
     </div>
 
-    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-      <a href="{{ reserveHref }}" target="_blank" rel="noopener noreferrer" data-i18n="nav.reserve" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
-    </sc-if>
 
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <button onClick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuExpanded }}" data-i18n-attr="aria-label:nav.menu" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:44px;min-height:44px;background:none;border:none;padding:8px;cursor:pointer">
@@ -148,6 +149,8 @@ class Component extends DCLogic {
       isEn: lg === 'en',
       isSk: lg === 'sk',
       langLabel: lg === 'en' ? 'EN' : 'SK',
+      // flag mark from commit 3cf5030; aria-hidden, so the button keeps a text label
+      langFlag: lg === 'en' ? '\u{1F1EC}\u{1F1E7}' : '\u{1F1F8}\u{1F1F0}',
       enColor: lg === 'en' ? '#203c2c' : 'rgba(32,60,44,.45)',
       skColor: lg === 'sk' ? '#203c2c' : 'rgba(32,60,44,.45)',
       reserveHref: TCH.LINKS[this.props.cta || 'booking'] || '#',

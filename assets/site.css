@@ -28,15 +28,16 @@ a:hover{color:#16291f}
 
 @keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @keyframes chFade{from{opacity:0}to{opacity:1}}
-@keyframes heroLogoReveal{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+/* timings from commit 011588d "animation recovered" — slower, larger entrance */
+@keyframes heroLogoReveal{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes heroScrollReveal{from{opacity:0}to{opacity:.88}}
 
 /* the reveal waits for the logo bitmap: on a phone connection the 400kb svg used to
    decode long after a parse-time animation had already finished, so the mark just popped in */
 .hero-reveal{opacity:0}
-.hero-reveal.is-in{animation:heroLogoReveal .9s cubic-bezier(.22,.61,.36,1) .1s both}
+.hero-reveal.is-in{animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both}
 .hero-scroll{opacity:0}
-.hero-scroll.is-in{animation:heroScrollReveal .6s ease .8s both}
+.hero-scroll.is-in{animation:heroScrollReveal .8s ease 1.7s both}
 
 /* every section sits on the green field and holds its content in a rounded frame, like the hero video */
 .sec-shell{position:relative;background:#203c2c}
