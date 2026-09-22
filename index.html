@@ -16,11 +16,14 @@
 <noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-html{--nav-height:70px;scroll-behavior:smooth;scroll-snap-type:y mandatory}
+html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:smooth;scroll-snap-type:y mandatory}
 body{margin:0}
 /* Match the hero's green surround and 14px inner corners on every section. */
 section[data-screen-label]:not(#hero){
   --frame-gap:clamp(8px,1.2vw,12px);
+  /* Frame borders are included in the available viewport height. */
+  min-height:calc(var(--screen-height) - var(--nav-height));
+  scroll-margin-top:var(--nav-height);
   border:var(--frame-gap) solid #203c2c;
   border-radius:calc(14px + var(--frame-gap));
   background-color:#f1eada;
@@ -61,7 +64,7 @@ a:hover{color:#16291f}
 @media(max-width:999px){
   [data-rv]{transform:none!important;will-change:auto!important}
   /* dvh resizes while the URL bar hides/shows, which makes the page grow and shrink mid-scroll */
-  section[data-screen-label]{min-height:100svh!important}
+  html{--screen-height:100svh}
   /* snap is already disabled by applySnap(), but not until JS mounts */
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:.08em!important}
   html{--nav-height:72px;scroll-snap-type:none!important}
@@ -153,7 +156,7 @@ a:hover{color:#16291f}
 
 <div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
 
-<section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:var(--nav-height) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
+<section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:var(--screen-height);padding:var(--nav-height) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
   <div style="position:relative;flex:1;border-radius:14px;overflow:hidden;background:#2d2a24">
     <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
@@ -166,7 +169,7 @@ a:hover{color:#16291f}
   </div>
 </section>
 
-<section id="story" data-screen-label="02 Our Story" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
+<section id="story" data-screen-label="02 Our Story" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
     <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
       <span style="width:26px;height:1px;background:#1f3a2b"></span>
@@ -184,7 +187,7 @@ a:hover{color:#16291f}
   </div>
 </section>
 
-<section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
+<section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
   <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
     <picture>
       <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.png"/>
@@ -204,7 +207,7 @@ a:hover{color:#16291f}
   </div>
 </section>
 
-<section id="membership" data-screen-label="04 Membership" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
+<section id="membership" data-screen-label="04 Membership" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
     <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
       <span style="width:26px;height:1px;background:#1f3a2b"></span>
@@ -225,7 +228,7 @@ a:hover{color:#16291f}
   </div>
 </section>
 
-<section id="contact" data-screen-label="05 Contact" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:flex;flex-direction:column;background:#ece5d3">
+<section id="contact" data-screen-label="05 Contact" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;background:#ece5d3">
   <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(96px,10vh,120px) clamp(20px,5vw,72px) clamp(44px,5vh,64px)">
     <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
       <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
@@ -542,7 +545,11 @@ class Component extends DCLogic {
     if (!a) return;
     e.preventDefault();
     const el = document.getElementById(a.getAttribute('data-goto'));
-    if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+    if (el) {
+      const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
+      const top = el.getBoundingClientRect().top + window.scrollY - (el.id === 'hero' ? 0 : headerHeight);
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
     if (this.mobileMenu) this.mobileMenu.close();
   };
 
