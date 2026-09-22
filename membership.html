@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership · The Court House</title>
+<meta name="description" content="Membership at The Court House — Signature Club, Elite Player and House Member. Lower court rates, longer booking windows and priority access to club events.">
+<script src="./assets/mobile-menu.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preload" href="assets/logo-beige.svg" as="image" fetchpriority="high"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html{--nav-height:70px;scroll-behavior:smooth}
+body{margin:0}
+*{box-sizing:border-box}
+a{text-decoration:none;color:#1f3a2b}
+a:hover{color:#16291f}
+::selection{background:#203c2c;color:#f1eada}
+@keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* Three-line icon and panel timing adapted from hamburger menu/. */
+.mobile-menu-toggle{display:grid;place-items:center;width:44px;height:44px;padding:8px;background:none;border:none;color:#f1eada;cursor:pointer;flex-shrink:0}
+.mobile-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.p39-icon{width:24px;height:18px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.p39-top,.p39-middle,.p39-bottom,.p39-cross{display:block;width:24px;height:2px;background:currentColor;flex-shrink:0}
+.p39-middle{position:relative}.p39-cross{position:absolute;inset:0}
+.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:safe center;gap:8px;padding:24px clamp(24px,7vw,64px) 140px;overflow-y:auto;overscroll-behavior:contain;opacity:0;transition:opacity 300ms ease}
+.mobile-menu-panel[hidden]{display:none!important}
+.mobile-menu-panel[data-open="true"]{opacity:1}
+@media(prefers-reduced-motion:reduce){.mobile-menu-panel{transition:none}}
+.header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
+.language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
+
+/* Sections carry the same paper relief as the landing page, without its full-screen framing. */
+.sheet{position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)}
+.sheet::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("assets/paper-texture.svg");background-repeat:repeat;background-size:300px 300px;opacity:.8;mix-blend-mode:soft-light}
+.sheet > *{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:0 auto;min-width:0}
+/* flex children default to min-width:auto, which lets the 720px table widen the page */
+.wrap > *,.plan-grid > *{min-width:0}
+.eyebrow{display:flex;align-items:center;gap:12px;font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex-shrink:0}
+.h1{margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-.018em;line-height:1.02;font-size:clamp(38px,6vw,76px);text-wrap:pretty}
+.h2{margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-.018em;line-height:1.04;font-size:clamp(30px,4.2vw,54px);text-wrap:pretty}
+.lead{margin:0;font:400 clamp(16px,1.25vw,19px)/1.62 'EB Garamond',serif;max-width:560px}
+/* Button system — one primary per view. Variants solid/ghost/inverted/link, sizes l(48) m(44) s(36),
+   states rest/hover/active/focus-visible/disabled. Shared verbatim with index.html. */
+.btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:48px;padding:0 34px;border-radius:999px;border:1px solid transparent;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:background .35s,color .35s,border-color .35s,transform .12s}
+.btn-m{min-height:44px;padding:0 26px}
+.btn-s{min-height:36px;padding:0 18px;font-size:10px;letter-spacing:.12em}
+.btn-solid{background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9}
+.btn-solid:hover{background:#16291f;border-color:#16291f;color:#f1ead9}
+.btn-ghost{border-color:#1f3a2b;color:#1f3a2b}
+.btn-ghost:hover{background:#1f3a2b;color:#f1ead9}
+.btn-inv-solid{background:#f1eada;border-color:#f1eada;color:#203c2c}
+.btn-inv-solid:hover{background:#fffdf7;border-color:#fffdf7;color:#16291f}
+.btn-inv-ghost{border-color:rgba(241,234,218,.6);color:#f1eada}
+.btn-inv-ghost:hover{background:#f1eada;border-color:#f1eada;color:#203c2c}
+.btn-nav{min-height:40px;padding:0 22px;font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.12em}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid #1f3a2b;outline-offset:3px}
+.btn-inv-solid:focus-visible,.btn-inv-ghost:focus-visible{outline-color:#f1eada}
+.btn[aria-disabled="true"]{opacity:.38;pointer-events:none}
+/* The quiet action: replaces a second pill wherever a view offered two of equal weight. */
+.btn-link{display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;border-bottom:1px solid rgba(31,58,43,.45);transition:color .35s,border-color .35s}
+.btn-link:hover{color:#16291f;border-bottom-color:#16291f}
+.btn-link:focus-visible{outline:2px solid #1f3a2b;outline-offset:3px}
+.btn-link-inv{color:#f1eada;border-bottom-color:rgba(241,234,218,.5)}
+.btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
+
+/* Plans */
+/* Asymmetric tier layout: the featured tier is wide and inverted, the other two stack beside it.
+   Three equal cards in a row read as a template and give the eye nowhere to land. */
+.plan-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(16px,1.8vw,24px);align-items:stretch}
+.plan-stack{display:flex;flex-direction:column;gap:clamp(16px,1.8vw,24px);min-width:0}
+.plan-stack .plan{flex:1}
+@media(max-width:899px){.plan-grid{grid-template-columns:minmax(0,1fr)}}
+.plan{position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(26px,2.4vw,36px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7}
+.plan-featured{background:#203c2c;border-color:#203c2c;gap:22px;padding:clamp(32px,3vw,48px)}
+.plan.plan-featured .plan-name,.plan.plan-featured .plan-price b{color:#f1eada}
+.plan.plan-featured .plan-price span{color:rgba(241,234,218,.7)}
+.plan.plan-featured li{color:rgba(241,234,218,.92);font-size:clamp(16px,1.15vw,18px)}
+/* The featured list spreads over the height the stacked pair sets, so the card has no dead band. */
+.plan.plan-featured ul{gap:clamp(14px,1.5vw,18px)}
+.plan.plan-featured li::before{border-color:rgba(241,234,218,.65)}
+.plan.plan-featured .plan-rule{background:rgba(241,234,218,.22)}
+/* The stacked pair is the quieter half of the split: smaller price, tighter list. */
+.plan-stack .plan-price b{font-size:clamp(25px,2.2vw,30px)}
+.plan-stack .plan{gap:14px}
+.plan-stack li{font-size:15px}
+.plan-rule{height:1px;background:rgba(31,58,43,.14);flex-shrink:0}
+.plan-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.plan-badge{padding:7px 14px;border-radius:999px;border:1px solid rgba(241,234,218,.5);color:rgba(241,234,218,.9);font:600 9.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.plan-name{margin:0;font:500 clamp(22px,2vw,28px)/1.2 'EB Garamond',serif;color:#1f3a2b}
+.plan-price{display:flex;align-items:baseline;gap:8px;font-family:'EB Garamond',serif}
+.plan-price b{font-weight:600;font-size:clamp(38px,4vw,52px);line-height:1;letter-spacing:-.02em}
+.plan-price span{font:400 14px/1 'Jost',sans-serif;letter-spacing:.06em;color:rgba(42,38,32,.6)}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+.plan li{position:relative;padding-left:22px;font:400 16px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.82)}
+.plan li::before{content:"";position:absolute;left:0;top:.75em;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;border:1.5px solid #1f3a2b}
+.plan .btn{margin-top:auto;align-self:flex-start}
+.plan.plan-featured .plan-price b{font-size:clamp(42px,4.6vw,60px)}
+.rates{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding:18px 22px;border:1px dashed rgba(31,58,43,.35);border-radius:14px;font:400 15px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.78)}
+
+/* Comparison table — first column stays put while the rest scrolls on a phone. */
+.tscroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(31,58,43,.18);border-radius:16px;background:#fffdf7}
+table.cmp{border-collapse:collapse;width:100%;min-width:720px;font-family:'EB Garamond',serif}
+table.cmp th,table.cmp td{padding:15px clamp(12px,1.3vw,20px);text-align:center;border-bottom:1px solid rgba(31,58,43,.1);font-size:clamp(14px,1.05vw,16px);color:rgba(42,38,32,.85);white-space:nowrap}
+table.cmp tbody tr:last-child td{border-bottom:none}
+table.cmp thead th{position:sticky;top:0;z-index:3;background:#ece5d3;font:500 10.5px/1.3 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;padding-top:18px;padding-bottom:18px}
+table.cmp th[scope="row"],table.cmp thead th:first-child{position:sticky;left:0;z-index:2;text-align:left;background:#fffdf7;font:500 10.5px/1.3 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1f3a2b;box-shadow:1px 0 0 rgba(31,58,43,.1)}
+table.cmp thead th:first-child{z-index:4;background:#ece5d3}
+table.cmp col.featured,table.cmp td.featured{background:rgba(31,58,43,.05)}
+table.cmp thead th.featured{background:#e2dcc6}
+table.cmp .muted{color:rgba(42,38,32,.4)}
+table.cmp .save{display:block;margin-top:3px;font:500 10px/1 'Jost',sans-serif;letter-spacing:.08em;color:#1f3a2b;opacity:.75}
+table.cmp tbody tr:hover td{background:rgba(31,58,43,.035)}
+table.cmp tbody tr:hover th[scope="row"]{background:#f7f3e6}
+.tnote{margin:14px 0 0;font:400 13px/1.6 'Jost',sans-serif;color:rgba(42,38,32,.55)}
+@media(max-width:999px){
+  .tscroll{border-radius:14px}
+  table.cmp th,table.cmp td{padding:13px 14px;font-size:14px}
+}
+</style>
+</helmet>
+
+<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#f1eada">
+
+<nav ref="{{ navRef }}" onClick="{{ onNav }}" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(16px,3vw,34px);background:#203c2c">
+  <a href="index.html" style="display:flex;align-items:center;flex-shrink:0">
+    <img src="assets/logo-beige-house.svg" alt="The Court House" style="height:42px;width:auto;display:block"/>
+  </a>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
+      <a href="index.html#story" data-i18n="nav.story" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="index.html#game" data-i18n="nav.game" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
+      <a href="membership.html" aria-current="page" data-i18n="nav.membership" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:#f1eada;white-space:nowrap;border-bottom:1px solid rgba(241,234,218,.6);padding-bottom:3px">Membership</a>
+      <a href="index.html#contact" data-i18n="nav.contact" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+    </div>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="btn btn-nav btn-inv-ghost reserve-button">Reserve</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
+        <span style="font-size:9px;opacity:.7">▾</span>
+      </button>
+      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇬🇧</span>
+            <span style="flex:1">ENGLISH</span>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇸🇰</span>
+            <span style="flex:1">SLOVENSKY</span>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button ref="{{ menuButtonRef }}" class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="p39-icon" aria-hidden="true">
+          <span class="p39-top"></span>
+          <span class="p39-middle"><span class="p39-cross"></span></span>
+          <span class="p39-bottom"></span>
+        </span>
+      </button>
+    </sc-if>
+  </div>
+</nav>
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <div id="mobile-menu" ref="{{ menuPanelRef }}" class="mobile-menu-panel" onClick="{{ onNav }}" hidden="{{ true }}" aria-label="Mobile navigation">
+    <a href="index.html#story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
+    <a href="index.html#game" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
+    <a href="membership.html" aria-current="page" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c;opacity:.55">Membership</a>
+    <a href="index.html#contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
+    <div style="position:relative;align-self:flex-start;margin-top:20px">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
+        <span ref="{{ mobileLangLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
+        <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span>ENGLISH</span></sc-if>
+        <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span>SLOVENSKY</span></sc-if>
+        <span style="font-size:9px;opacity:.7">▾</span>
+      </button>
+      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 9px);left:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇬🇧</span>
+            <span style="flex:1">ENGLISH</span>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇸🇰</span>
+            <span style="flex:1">SLOVENSKY</span>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
+
+<!-- 01 · Intro ------------------------------------------------------------ -->
+<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) clamp(20px,5vw,72px) clamp(56px,8vh,96px);background:#203c2c;color:#f1eada">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(20px,2.6vh,30px);max-width:900px">
+    <span class="eyebrow" data-i18n="mem.tag" style="color:rgba(241,234,218,.75)">Membership</span>
+    <h1 class="h1" data-i18n="mem.h1">Your club. Your court.</h1>
+    <p class="lead" data-i18n="mem.lead" style="color:rgba(241,234,218,.78);max-width:640px">Membership is for those who want to make The Court House part of their routine. Play more, pay less, and get priority access, member benefits and exclusive events.</p>
+    <p class="lead" data-i18n="mem.lead2" style="color:rgba(241,234,218,.95);font-style:italic">No unnecessary exclusivity. Just more reasons to play.</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px">
+      <a class="btn btn-inv-solid" href="#plans" data-goto="plans" data-i18n="mem.explore">Explore Membership</a>
+      <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959" data-i18n="mem.join">Join The Club</a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · Plans ------------------------------------------------------------ -->
+<section id="plans" class="sheet" style="background:#f1eada">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px)">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
+      <span class="eyebrow" data-i18n="mem.plansTag" style="color:#1f3a2b">Choose Your Tier</span>
+      <h2 class="h2" data-i18n="mem.plansHeading">Three ways to make it your club.</h2>
+      <p class="lead" data-i18n="mem.plansBody" style="color:rgba(42,38,32,.75)">Every tier lowers what you pay per court, opens the booking calendar earlier and moves you up the queue for club events.</p>
+    </div>
+
+    <!-- Baseline: what a court costs without membership, so the savings below read instantly. -->
+    <div class="rates">
+      <strong data-i18n="mem.baseTag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Without membership</strong>
+      <span data-i18n="mem.baseBody">27 € off-peak · 33 € peak · 5 € racket rental · 20 € tournament entry</span>
+    </div>
+
+    <!-- Prices live in two places on this page: these cards and the table below. Change both. -->
+    <div class="plan-grid">
+
+      <article class="plan plan-featured">
+        <div class="plan-head">
+          <h3 class="plan-name">Elite Player</h3>
+          <span class="plan-badge" data-i18n="mem.popular">Most chosen</span>
+        </div>
+        <div class="plan-price"><b>22.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+        <span class="plan-rule" aria-hidden="true"></span>
+        <ul>
+          <li data-i18n="mem.e1">25% off off-peak courts, 15% off peak</li>
+          <li data-i18n="mem.e2">Book up to 14 days ahead</li>
+          <li data-i18n="mem.e3">Free cancellation up to 24 hours before</li>
+          <li data-i18n="mem.e4">Free racket rental, 10% off Pro Shop and clinics</li>
+          <li data-i18n="mem.e5">Priority access to club events and tournaments</li>
+        </ul>
+        <a class="btn btn-inv-solid" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseElite">Join as Elite Player</a>
+      </article>
+
+      <div class="plan-stack">
+
+        <article class="plan">
+          <div class="plan-head">
+            <h3 class="plan-name">Signature Club</h3>
+            <div class="plan-price"><b>12.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+          </div>
+          <span class="plan-rule" aria-hidden="true"></span>
+          <ul>
+            <li data-i18n="mem.s1">15% off off-peak courts, 10% off peak</li>
+            <li data-i18n="mem.s23">Book up to 10 days ahead · cancel up to 36 h before</li>
+            <li data-i18n="mem.s45">50% off racket rental, members-only sessions</li>
+          </ul>
+          <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseSignature">Choose Signature</a>
+        </article>
+
+        <article class="plan">
+          <div class="plan-head">
+            <h3 class="plan-name">House Member</h3>
+            <div class="plan-price"><b>34.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+          </div>
+          <span class="plan-rule" aria-hidden="true"></span>
+          <ul>
+            <li data-i18n="mem.h1b">35% off off-peak courts, 20% off peak</li>
+            <li data-i18n="mem.h23">Book up to 21 days ahead · cancel up to 12 h before</li>
+            <li data-i18n="mem.h45">Free racket rental, 15% off Pro Shop, first access to events</li>
+          </ul>
+          <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseHouse">Choose House</a>
+        </article>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Comparison ------------------------------------------------------- -->
+<section id="compare" class="sheet" style="background:#ece5d3">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
+      <span class="eyebrow" data-i18n="mem.cmpTag" style="color:#1f3a2b">Compare</span>
+      <h2 class="h2" data-i18n="mem.cmpHeading">Every benefit, side by side.</h2>
+    </div>
+
+    <div class="tscroll">
+      <table class="cmp">
+        <colgroup>
+          <col/><col/><col/><col class="featured"/><col/>
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="mem.rBenefit">Benefit</th>
+            <th scope="col" data-i18n="mem.cNon">Non-member</th>
+            <th scope="col">Signature Club</th>
+            <th scope="col" class="featured">Elite Player</th>
+            <th scope="col">House Member</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-i18n="mem.rPrice">Monthly price</th>
+            <td class="muted">—</td>
+            <td>12.90 €</td>
+            <td class="featured">22.90 €</td>
+            <td>34.90 €</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rOff">Off-peak court</th>
+            <td>27.00 €</td>
+            <td>22.95 €<span class="save">−15%</span></td>
+            <td class="featured">20.25 €<span class="save">−25%</span></td>
+            <td>17.55 €<span class="save">−35%</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rPeak">Peak court</th>
+            <td>33.00 €</td>
+            <td>29.70 €<span class="save">−10%</span></td>
+            <td class="featured">28.05 €<span class="save">−15%</span></td>
+            <td>26.40 €<span class="save">−20%</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rWindow">Booking window</th>
+            <td><span data-i18n="mem.d7">7 days</span></td>
+            <td><span data-i18n="mem.d10">10 days</span></td>
+            <td class="featured"><span data-i18n="mem.d14">14 days</span></td>
+            <td><span data-i18n="mem.d21">21 days</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rCancel">Free cancellation</th>
+            <td class="muted">—</td>
+            <td><span data-i18n="mem.h36">36 hours</span></td>
+            <td class="featured"><span data-i18n="mem.h24">24 hours</span></td>
+            <td><span data-i18n="mem.h12">12 hours</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rTour">Tournament entry</th>
+            <td>20.00 €</td>
+            <td>20.00 €</td>
+            <td class="featured">18.00 €<span class="save">−10%</span></td>
+            <td>16.00 €<span class="save">−20%</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rRental">Racket rental</th>
+            <td>5.00 €</td>
+            <td>2.50 €<span class="save">−50%</span></td>
+            <td class="featured"><span data-i18n="mem.free">Free</span></td>
+            <td><span data-i18n="mem.free">Free</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rShop">Pro Shop</th>
+            <td class="muted">—</td>
+            <td class="muted">—</td>
+            <td class="featured">−10%</td>
+            <td>−15%</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rClinics">Clinics &amp; coaching</th>
+            <td class="muted">—</td>
+            <td class="muted">—</td>
+            <td class="featured">−10%</td>
+            <td>−15%</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rOnly">Members-only sessions</th>
+            <td class="muted">—</td>
+            <td><span data-i18n="mem.yes">Yes</span></td>
+            <td class="featured"><span data-i18n="mem.yes">Yes</span></td>
+            <td><span data-i18n="mem.yes">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="mem.rEvents">Club events</th>
+            <td class="muted">—</td>
+            <td><span data-i18n="mem.early">Early access</span></td>
+            <td class="featured"><span data-i18n="mem.priority">Priority</span></td>
+            <td><span data-i18n="mem.first">First access</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
+  </div>
+</section>
+
+<!-- 04 · Closing ---------------------------------------------------------- -->
+<section id="join" class="sheet" style="background:#f1eada">
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;max-width:760px">
+    <span class="eyebrow" data-i18n="mem.joinTag" style="color:#1f3a2b">Join</span>
+    <h2 class="h2" data-i18n="mem.joinHeading">Open to everyone. Made special for those who keep coming back.</h2>
+    <p class="lead" data-i18n="mem.joinBody" style="color:rgba(42,38,32,.78)">You don't need to be a member to belong at The Court House. Membership is simply our way of giving something more to the people who make the club part of their routine.</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 28px;margin-top:4px">
+      <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="mem.join">Join The Club</a>
+      <a class="btn-link" href="index.html#contact" data-i18n="mem.questions">Ask Us A Question</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#203c2c;color:#f1eada;padding:clamp(40px,5vw,64px) clamp(22px,5vw,72px) 24px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(241,234,218,.18)">
+    <div>
+      <img src="assets/logo-beige.svg" alt="The Court House" style="height:clamp(72px,7vw,96px);width:auto;display:block;margin-bottom:18px"/>
+      <p data-i18n="footer.tagline" style="margin:0;max-width:320px;font:400 15px/1.6 'EB Garamond',serif;color:rgba(241,234,218,.7)">Premium pickleball courts and a community built around the game.</p>
+    </div>
+    <div>
+      <div data-i18n="footer.visit" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,234,218,.55)">Visit Us</div>
+      <div style="margin-top:12px;font:400 15px/1.7 'EB Garamond',serif;color:rgba(241,234,218,.82)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:20px;font:400 11px/1 'Jost',sans-serif;letter-spacing:.06em;color:rgba(241,234,218,.5)">
+    <span style="white-space:nowrap">© 2026 The Court House</span>
+    <div style="display:flex;gap:20px">
+      <a href="#" data-i18n="footer.privacy" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Privacy Policy</a>
+      <a href="#" data-i18n="footer.terms" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
+  <div ref="{{ barRef }}" style="width:100%;height:100%;border-radius:999px;background:#2a2620;transform:scaleX(.16);transform-origin:left center;transition:transform .28s cubic-bezier(.22,1,.36,1)"></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const LANG_KEY = 'ch-lang';
+const SK = {
+  'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
+  'mem.tag':'Členstvo',
+  'mem.h1':'Váš klub. Váš kurt.',
+  'mem.lead':'Členstvo je pre tých, ktorí chcú, aby sa The Court House stal súčasťou ich rutiny. Hrajte viac, plaťte menej a získajte prioritný prístup, členské výhody a exkluzívne podujatia.',
+  'mem.lead2':'Žiadna zbytočná exkluzivita. Len viac dôvodov hrať.',
+  'mem.explore':'Preskúmať Členstvo','mem.join':'Pridať sa ku Klubu',
+  'mem.plansTag':'Vyberte si Úroveň',
+  'mem.plansHeading':'Tri spôsoby, ako si z neho urobiť svoj klub.',
+  'mem.plansBody':'Každá úroveň znižuje cenu za kurt, otvára rezervačný kalendár skôr a posúva vás vyššie v poradí na klubové podujatia.',
+  'mem.baseTag':'Bez členstva',
+  'mem.baseBody':'27 € mimo špičky · 33 € v špičke · 5 € požičanie rakety · 20 € vstup do turnaja',
+  'mem.perMonth':'/ mesiac','mem.popular':'Najčastejšia voľba',
+  'mem.chooseElite':'Pridať sa ako Elite Player','mem.chooseSignature':'Vybrať Signature','mem.chooseHouse':'Vybrať House',
+  'mem.s1':'15 % zľava na kurty mimo špičky, 10 % v špičke',
+  'mem.s2':'Rezervácia až 10 dní vopred',
+  'mem.s3':'Bezplatné zrušenie do 36 hodín pred hrou',
+  'mem.s4':'50 % zľava na požičanie rakety',
+  'mem.s5':'Podujatia len pre členov a skorší prístup k akciám',
+  'mem.s23':'Rezervácia až 10 dní vopred · zrušenie do 36 h pred hrou',
+  'mem.s45':'50 % zľava na požičanie rakety, podujatia len pre členov',
+  'mem.e1':'25 % zľava na kurty mimo špičky, 15 % v špičke',
+  'mem.e2':'Rezervácia až 14 dní vopred',
+  'mem.e3':'Bezplatné zrušenie do 24 hodín pred hrou',
+  'mem.e4':'Požičanie rakety zdarma, 10 % zľava v Pro Shope a na klinikách',
+  'mem.e5':'Prioritný prístup ku klubovým podujatiam a turnajom',
+  'mem.h1b':'35 % zľava na kurty mimo špičky, 20 % v špičke',
+  'mem.h2':'Rezervácia až 21 dní vopred',
+  'mem.h3':'Bezplatné zrušenie do 12 hodín pred hrou',
+  'mem.h4':'Požičanie rakety zdarma, 15 % zľava v Pro Shope a na klinikách',
+  'mem.h5':'Prvý prístup ku každému klubovému podujatiu',
+  'mem.h23':'Rezervácia až 21 dní vopred · zrušenie do 12 h pred hrou',
+  'mem.h45':'Požičanie rakety zdarma, 15 % zľava v Pro Shope, prvý prístup k podujatiam',
+  'mem.cmpTag':'Porovnanie','mem.cmpHeading':'Všetky výhody vedľa seba.',
+  'mem.cmpNote':'Ceny kurtov sú uvedené za hodinu. Členské ceny sa uplatnia automaticky pri rezervácii.',
+  'mem.rBenefit':'Výhoda','mem.cNon':'Bez členstva',
+  'mem.rPrice':'Mesačný poplatok','mem.rOff':'Kurt mimo špičky','mem.rPeak':'Kurt v špičke',
+  'mem.rWindow':'Rezervácia vopred','mem.rCancel':'Bezplatné zrušenie','mem.rTour':'Vstup do turnaja',
+  'mem.rRental':'Požičanie rakety','mem.rShop':'Pro Shop','mem.rClinics':'Kliniky a tréningy',
+  'mem.rOnly':'Podujatia len pre členov','mem.rEvents':'Klubové podujatia',
+  'mem.d7':'7 dní','mem.d10':'10 dní','mem.d14':'14 dní','mem.d21':'21 dní',
+  'mem.h36':'36 hodín','mem.h24':'24 hodín','mem.h12':'12 hodín',
+  'mem.free':'Zdarma','mem.yes':'Áno','mem.early':'Skorší prístup','mem.priority':'Priorita','mem.first':'Prvý prístup',
+  'mem.joinTag':'Pridajte sa',
+  'mem.joinHeading':'Otvorené pre každého. Výnimočné pre tých, ktorí sa vracajú.',
+  'mem.joinBody':'Nemusíte byť členom, aby ste do The Court House patrili. Členstvo je len náš spôsob, ako dať niečo navyše ľuďom, pre ktorých je klub súčasťou ich rutiny.',
+  'mem.questions':'Opýtajte sa Nás',
+  'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
+  'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
+};
+
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, langMenuOpen: false, lang: 'en' };
+
+  componentDidMount() {
+    this.checkSize();
+    this._onResize = () => { this.checkSize(); };
+    window.addEventListener('resize', this._onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.syncMobileMenu();
+    this.restoreLang();
+    this.onScroll();
+  }
+  componentWillUnmount() {
+    if (this.mobileMenu) this.mobileMenu.destroy();
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this.onScroll);
+  }
+  componentDidUpdate() {
+    this.syncMobileMenu();
+    if (this.state.lang === 'sk') this.applyLang('sk');
+    if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
+    if (this.mobileLangLabel) this.mobileLangLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
+  }
+
+  // the landing page writes the same key, so the choice survives the jump between pages
+  restoreLang() {
+    let saved = null;
+    try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+    if (saved === 'sk' || saved === 'en') this.setState({ lang: saved });
+  }
+
+  syncMobileMenu() {
+    if (!this.state.isMobile) {
+      if (this.mobileMenu) this.mobileMenu.destroy();
+      this.mobileMenu = null;
+      this.menuBoundButton = null;
+      this.menuBoundPanel = null;
+      return;
+    }
+    if (!this.menuButton || !this.menuPanel || !this.sc) return;
+    if (this.menuBoundButton === this.menuButton && this.menuBoundPanel === this.menuPanel) return;
+    if (this.mobileMenu) this.mobileMenu.destroy();
+    this.menuBoundButton = this.menuButton;
+    this.menuBoundPanel = this.menuPanel;
+    this.mobileMenu = window.createCourtMenu(this.menuButton, {
+      panel: this.menuPanel,
+      background: [this.sc],
+      header: this.nav,
+      onChange: menuOpen => this.setState({ menuOpen, langMenuOpen: false })
+    });
+  }
+
+  checkSize() {
+    const isMobile = window.innerWidth < 1000;
+    if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false, langMenuOpen: false });
+  }
+
+  onScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    if (this.bar) this.bar.style.transform = 'scaleX(' + (0.16 + p * 0.84) + ')';
+  };
+
+  // only in-page jumps are intercepted; links to index.html must not carry data-goto
+  onNav = (e) => {
+    const a = e.target.closest && e.target.closest('[data-goto]');
+    if (!a) return;
+    const el = document.getElementById(a.getAttribute('data-goto'));
+    if (!el) return;
+    e.preventDefault();
+    const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    if (this.mobileMenu) this.mobileMenu.close();
+  };
+
+  setLang(lang) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+    this.setState({ lang, langMenuOpen: false });
+    requestAnimationFrame(() => {
+      this.applyLang(lang);
+      if (this.langLabel) this.langLabel.textContent = lang === 'en' ? '🇬🇧' : '🇸🇰';
+    });
+  }
+
+  applyLang(lang) {
+    const root = (this.sc && this.sc.parentElement) || document.body;
+    if (!root) return;
+    root.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (!el.dataset.en) el.dataset.en = el.textContent;
+      const next = lang === 'sk' ? (SK[k] || el.dataset.en) : el.dataset.en;
+      if (el.textContent !== next) el.textContent = next;
+    });
+  }
+
+  renderVals() {
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      langMenuOpen: this.state.langMenuOpen,
+      isEn: this.state.lang === 'en',
+      isSk: this.state.lang === 'sk',
+      scRef: el => { if (el) this.sc = el; },
+      navRef: el => { if (el) this.nav = el; },
+      menuButtonRef: el => { this.menuButton = el; },
+      menuPanelRef: el => { this.menuPanel = el; },
+      barRef: el => { if (el) this.bar = el; },
+      langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
+      mobileLangLabelRef: el => { if (el) { this.mobileLangLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
+      onNav: this.onNav,
+      toggleLangMenu: () => this.setState(s => ({ langMenuOpen: !s.langMenuOpen })),
+      selectEn: () => this.setLang('en'),
+      selectSk: () => this.setLang('sk')
+    };
+  }
+}
+</script>
+</body>
+</html>
