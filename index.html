@@ -18,6 +18,14 @@
 <style>
 html{--nav-height:70px;scroll-behavior:smooth;scroll-snap-type:y mandatory}
 body{margin:0}
+/* Match the hero's green surround and 14px inner corners on every section. */
+section[data-screen-label]:not(#hero){
+  --frame-gap:clamp(8px,1.2vw,12px);
+  border:var(--frame-gap) solid #203c2c;
+  border-radius:calc(14px + var(--frame-gap));
+  background-color:#f1eada;
+  background-clip:padding-box;
+}
 /* Three-line icon and panel timing adapted from hamburger menu/. */
 .mobile-menu-toggle{display:grid;place-items:center;width:44px;height:44px;padding:8px;background:none;border:none;color:#f1eada;cursor:pointer;flex-shrink:0}
 .mobile-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px}
@@ -143,7 +151,7 @@ a:hover{color:#16291f}
   </div>
 </sc-if>
 
-<div ref="{{ scRef }}" style="background:#f1eada;overflow-x:hidden">
+<div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
 
 <section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:var(--nav-height) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
   <div style="position:relative;flex:1;border-radius:14px;overflow:hidden;background:#2d2a24">
