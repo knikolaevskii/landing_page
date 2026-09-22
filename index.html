@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preload" href="assets/hero-video-first-frame.jpg" as="image"/>
-<link rel="preload" href="assets/logo-beige-text.svg" as="image" fetchpriority="high"/>
+<link rel="preload" href="assets/logo-beige.svg" as="image" fetchpriority="high"/>
 <noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
@@ -31,6 +31,9 @@ a:hover{color:#16291f}
 /* the reveal waits for the logo bitmap: on a phone connection the 400kb svg used to
    decode long after a parse-time animation had already finished, so the mark just popped in */
 .hero-reveal{opacity:0}
+.hero-logo{position:absolute;top:4%;left:50%;transform:translateX(-50%);width:min(78%,1100px);height:55%;object-fit:contain;object-position:center top}
+.hero-booking{position:absolute;top:73%;left:50%;transform:translate(-50%,-50%)}
+@media(max-width:999px){.hero-logo{top:17%;width:88%;height:43%;object-position:center center}.hero-booking{top:62%}}
 .hero-reveal.is-in{animation:heroLogoReveal 2.2s cubic-bezier(.22,.61,.36,1) .5s both}
 .hero-scroll{opacity:0}
 .hero-scroll.is-in{animation:heroScrollReveal .8s ease 1.7s both}
@@ -133,9 +136,9 @@ a:hover{color:#16291f}
     <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.34),rgba(16,24,18,.16) 45%,rgba(16,24,18,.5))"></div>
-    <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(26px,4.5vh,52px);padding:clamp(24px,5vw,64px);will-change:opacity,transform">
-      <img src="assets/logo-beige-text.svg" alt="The Court House" style="width:min(86vw,912px);height:auto;display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
-      <a ref="{{ heroCtaRef }}" href="#contact" data-goto="contact" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
+    <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;will-change:opacity,transform">
+      <img src="assets/logo-beige.svg" alt="The Court House" class="hero-logo" style="display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
+      <a class="hero-booking" ref="{{ heroCtaRef }}" href="#contact" data-goto="contact" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
     <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
   </div>
