@@ -15,8 +15,11 @@
 <noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+html{--nav-height:70px;scroll-behavior:smooth;scroll-snap-type:y mandatory}
 body{margin:0}
+/* Header controls share a height; change --flag-size to resize the flag emoji. */
+.header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
+.language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
 *{box-sizing:border-box}
 a{text-decoration:none;color:#1f3a2b}
 a:hover{color:#16291f}
@@ -38,7 +41,7 @@ a:hover{color:#16291f}
   /* dvh resizes while the URL bar hides/shows, which makes the page grow and shrink mid-scroll */
   section[data-screen-label]{min-height:100svh!important}
   /* snap is already disabled by applySnap(), but not until JS mounts */
-  html{scroll-snap-type:none!important}
+  html{--nav-height:72px;scroll-snap-type:none!important}
 }
 @media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
 </style>
@@ -52,28 +55,30 @@ a:hover{color:#16291f}
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
-      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
-      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
-      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
-      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:500 12px/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
+      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
+      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
     </div>
   </sc-if>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-      <a href="#membership" data-goto="membership" data-i18n="nav.join" style="padding:11px 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 12px/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+      <a href="#membership" data-goto="membership" data-i18n="nav.join" class="header-control" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
     </sc-if>
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
-        <span ref="{{ langLabelRef }}" aria-hidden="true" style="display:block;height:12px;font-size:12px;line-height:12px;letter-spacing:0">🇬🇧</span>
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
           <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇬🇧</span>
             <span style="flex:1">ENGLISH</span>
             <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
           <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇸🇰</span>
             <span style="flex:1">SLOVENSKY</span>
             <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
@@ -100,7 +105,7 @@ a:hover{color:#16291f}
 
 <div ref="{{ scRef }}" style="background:#f1eada;overflow-x:hidden">
 
-<section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
+<section id="hero" data-screen-label="01 Hero" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;padding:var(--nav-height) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px);display:flex;background:#203c2c">
   <div style="position:relative;flex:1;border-radius:14px;overflow:hidden;background:#2d2a24">
     <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
    <video id="hero-video" ref="{{ heroImgRef }}" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Play at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s ease;background:transparent"></video>    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png');background-size:4px 4px;background-repeat:repeat;background-position:center;mix-blend-mode:normal;opacity:1;pointer-events:none"></div>
