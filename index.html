@@ -16,7 +16,7 @@
 <noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:smooth;scroll-snap-type:y mandatory}
+html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:auto;scroll-snap-type:none}
 body{margin:0}
 /* Match the hero's green surround and 14px inner corners on every section. */
 section[data-screen-label]:not(#hero){
@@ -67,7 +67,7 @@ a:hover{color:#16291f}
   html{--screen-height:100svh}
   /* snap is already disabled by applySnap(), but not until JS mounts */
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:.08em!important}
-  html{--nav-height:72px;scroll-snap-type:none!important}
+  html{--nav-height:72px;scroll-behavior:smooth;scroll-snap-type:none!important}
   /* Keep the frame inside the visible screen; let images use leftover space. */
   section[data-screen-label]:not(#hero){
     height:calc(var(--screen-height) - var(--nav-height));
@@ -356,7 +356,6 @@ class Component extends DCLogic {
       this.checkSize();
       this.applySnap();
       this.collect();
-      if (window.innerWidth >= 1000 && !this.raf) this.startParallax();
     };
     window.addEventListener('resize', this._onResize);
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -365,7 +364,7 @@ class Component extends DCLogic {
     this.startHeroVideo();
     this.revealHero();
     requestAnimationFrame(() => {
-      this.startParallax();
+      this.collect();
       this.paintDots(0);
     });
   }
@@ -373,7 +372,6 @@ class Component extends DCLogic {
     if (this.mobileMenu) this.mobileMenu.destroy();
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
-    if (this.raf) cancelAnimationFrame(this.raf);
   }
   componentDidUpdate() {
     this.syncMobileMenu();
@@ -411,8 +409,7 @@ class Component extends DCLogic {
     if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false, langMenuOpen: false });
   }
   applySnap() {
-    const snap = (this.props.snapScroll ?? true) && window.innerWidth >= 1000 && window.innerHeight >= 620;
-    document.documentElement.style.scrollSnapType = snap ? 'y proximity' : 'none';
+    document.documentElement.style.scrollSnapType = 'none';
   }
 
   revealHero() {
@@ -469,65 +466,11 @@ class Component extends DCLogic {
 
   collect() {
     if (!this.sc) return;
-    const cols = new Map();
-    const mobile = window.innerWidth < 1000;
-    this.items = Array.from(this.sc.querySelectorAll('[data-rv]')).map(el => {
-      el.style.transition = 'none';
-      el.style.willChange = mobile ? 'auto' : 'transform, opacity';
-      el.style.backfaceVisibility = mobile ? '' : 'hidden';
-      if (mobile) el.style.transform = '';
-      const sec = el.closest('section');
-      let grid = null;
-      for (let n = el; n && n !== sec; n = n.parentElement) {
-        const d = getComputedStyle(n.parentElement).display;
-        if (d === 'grid' || d === 'inline-grid') { grid = n.parentElement; break; }
-      }
-      const key = grid || sec;
-      if (key && !cols.has(key)) {
-        const gt = grid ? getComputedStyle(grid).gridTemplateColumns : 'none';
-        cols.set(key, gt && gt !== 'none' ? gt.split(' ').filter(Boolean).length : 1);
-      }
-      return {
-        el: el,
-        sec: sec,
-        stacked: (cols.get(key) || 1) < 2,
-        img: el.getAttribute('data-rv') === 'img',
-        depth: parseFloat(el.getAttribute('data-rv-delay') || '0'),
-        y: 0
-      };
+    this.sc.querySelectorAll('[data-rv]').forEach(el => {
+      el.style.transform = '';
+      el.style.willChange = 'auto';
+      el.style.backfaceVisibility = '';
     });
-  }
-
-  startParallax() {
-    this.collect();
-    const step = () => {
-      if (window.innerWidth < 1000) {
-        // mobile: no parallax — park elements at rest and stop the loop (resize restarts it)
-        for (const it of this.items) { it.y = 0; it.el.style.transform = ''; }
-        this.raf = null;
-        return;
-      }
-      const vh = window.innerHeight;
-      const vc = window.scrollY + vh / 2;
-      for (const it of this.items) {
-        if (!it.sec) continue;
-        const span = Math.max(vh, it.sec.offsetHeight);
-        let t = ((it.sec.offsetTop + it.sec.offsetHeight / 2) - vc) / span;
-        t = Math.max(-1.1, Math.min(1.1, t));
-        const amp = (it.img ? 132 : 104) * (1 + it.depth * 1.15) * (it.stacked ? 0.42 : 1);
-        // wide: text descends from above, image rises from below — they meet at centre
-        // stacked (one column): both travel the same way, so they can never converge into each other
-        const conv = it.stacked ? -1 : (it.img ? 1 : -1);
-        const target = t >= 0 ? t * amp * conv : t * amp * 0.62;
-        const a = Math.abs(t);
-        it.y += (target - it.y) * 0.11;
-        it.el.style.transform = it.img
-          ? 'translate3d(0,' + it.y.toFixed(2) + 'px,0) scale(' + (1 + a * 0.035).toFixed(4) + ')'
-          : 'translate3d(0,' + it.y.toFixed(2) + 'px,0)';
-      }
-      this.raf = requestAnimationFrame(step);
-    };
-    step();
   }
 
   onScroll = () => {
@@ -577,7 +520,7 @@ class Component extends DCLogic {
     if (el) {
       const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
       const top = el.getBoundingClientRect().top + window.scrollY - (el.id === 'hero' ? 0 : headerHeight);
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      window.scrollTo({ top: Math.max(0, top), behavior: this.state.isMobile ? 'smooth' : 'instant' });
     }
     if (this.mobileMenu) this.mobileMenu.close();
   };
