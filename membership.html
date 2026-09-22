@@ -37,9 +37,10 @@ a:hover{color:#16291f}
 .header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
 .language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
 
-/* Sections carry the same paper relief as the landing page, without its full-screen framing. */
-.sheet{position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)}
-.sheet::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("assets/paper-texture.svg");background-repeat:repeat;background-size:300px 300px;opacity:.8;mix-blend-mode:soft-light}
+/* Sections carry the landing page's paper relief and its green frame: a solid border in the
+   surround colour, with the inner corner landing on the same 14px as every panel on the home page. */
+.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background-clip:padding-box}
+.sheet::before{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;z-index:0;background-image:url("assets/paper-texture.svg");background-repeat:repeat;background-size:300px 300px;opacity:.8;mix-blend-mode:soft-light}
 .sheet > *{position:relative;z-index:1}
 .wrap{max-width:1180px;margin:0 auto;min-width:0}
 /* flex children default to min-width:auto, which lets the 720px table widen the page */
@@ -130,7 +131,7 @@ table.cmp tbody tr:hover th[scope="row"]{background:#f7f3e6}
 </style>
 </helmet>
 
-<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#f1eada">
+<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#203c2c">
 
 <nav ref="{{ navRef }}" onClick="{{ onNav }}" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(16px,3vw,34px);background:#203c2c">
   <a href="index.html" style="display:flex;align-items:center;flex-shrink:0">
