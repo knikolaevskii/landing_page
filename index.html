@@ -50,6 +50,7 @@ section[data-screen-label]:not(#hero)::before{
   mix-blend-mode:soft-light;
 }
 section[data-screen-label]:not(#hero) > *{position:relative;z-index:1}
+@media(max-width:999px){section[data-screen-label]:not(#hero)::before{opacity:.70}}
 /* Three-line icon and panel timing adapted from hamburger menu/. */
 .mobile-menu-toggle{display:grid;place-items:center;width:44px;height:44px;padding:8px;background:none;border:none;color:#f1eada;cursor:pointer;flex-shrink:0}
 .mobile-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px}
