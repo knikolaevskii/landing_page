@@ -68,6 +68,35 @@ a:hover{color:#16291f}
   /* snap is already disabled by applySnap(), but not until JS mounts */
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:.08em!important}
   html{--nav-height:72px;scroll-snap-type:none!important}
+  /* Keep the frame inside the visible screen; let images use leftover space. */
+  section[data-screen-label]:not(#hero){
+    height:calc(var(--screen-height) - var(--nav-height));
+    min-height:0;
+    overflow-y:auto!important;
+  }
+  #story,#game,#membership{
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:auto minmax(96px,1fr);
+    align-items:stretch!important;
+    gap:clamp(12px,2svh,20px)!important;
+    padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)!important;
+  }
+  #game{grid-template-rows:minmax(96px,1fr) auto}
+  #story > div:not([data-rv="img"]),#game > div:not([data-rv="img"]),#membership > div:not([data-rv="img"]){
+    width:100%;max-width:none!important;gap:clamp(10px,1.8svh,16px)!important;
+  }
+  #story > [data-rv="img"],#game > [data-rv="img"],#membership > [data-rv="img"]{
+    height:100%!important;min-height:0;
+  }
+  section[data-screen-label]:not(#hero) h2{font-size:clamp(26px,6.5vw,34px)!important;line-height:1.06!important}
+  #story p,#game p,#membership p{font-size:clamp(15px,3.8vw,17px)!important;line-height:1.4!important;max-width:none!important}
+  #membership [data-rv-delay=".24"]{gap:10px!important;margin-top:0!important}
+  #membership [data-rv-delay=".24"] a,#game [data-i18n="game.cta"]{padding:14px 20px!important;min-height:44px}
+  #story [data-i18n="story.cta"]{margin-top:0!important}
+  #contact > div{flex-shrink:0;grid-template-columns:minmax(0,1fr)!important;gap:20px!important;padding:24px 20px!important}
+  #contact > div > div{gap:14px!important}
+  #contact > div > [data-rv="img"]{height:clamp(120px,24svh,220px)!important}
+  #contact > footer{flex-shrink:0;padding:24px 20px!important}
 }
 @media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
 </style>
