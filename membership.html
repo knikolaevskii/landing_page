@@ -37,13 +37,13 @@ a:hover{color:#16291f}
 .header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
 .language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
 
-/* Sections carry the landing page's paper relief and its green frame: a solid border in the
-   surround colour, with the inner corner landing on the same 14px as every panel on the home page. */
+/* Sections carry the landing page's green frame: a solid border in the surround colour, with the
+   inner corner landing on the same 14px as every panel on the home page. The ground stays flat
+   #f1eada, exactly as index.html paints it — no texture overlay, or the two pages read apart. */
 .sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background-clip:padding-box}
-.sheet::before{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;z-index:0;background-image:url("assets/paper-texture.svg");background-repeat:repeat;background-size:300px 300px;opacity:.8;mix-blend-mode:soft-light}
 .sheet > *{position:relative;z-index:1}
 .wrap{max-width:1180px;margin:0 auto;min-width:0}
-/* flex children default to min-width:auto, which lets the 720px table widen the page */
+/* flex and grid children default to min-width:auto, which lets a long benefit line widen the page */
 .wrap > *,.plan-grid > *{min-width:0}
 .eyebrow{display:flex;align-items:center;gap:12px;font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase}
 .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex-shrink:0}
@@ -75,59 +75,82 @@ a:hover{color:#16291f}
 .btn-link-inv{color:#f1eada;border-bottom-color:rgba(241,234,218,.5)}
 .btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
 
+/* Hero ground: flat brand green. The photo layer was removed pending a wider, higher-res source
+   — the box is ~1870x420 at 1920, so it wants roughly 3:1 at 2880x960. */
+#top{background:#203c2c}
+
 /* Plans */
-/* Asymmetric tier layout: the featured tier is wide and inverted, the other two stack beside it.
-   Three equal cards in a row read as a template and give the eye nowhere to land. */
-.plan-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(16px,1.8vw,24px);align-items:stretch}
-.plan-stack{display:flex;flex-direction:column;gap:clamp(16px,1.8vw,24px);min-width:0}
-.plan-stack .plan{flex:1}
-@media(max-width:899px){.plan-grid{grid-template-columns:minmax(0,1fr)}}
+/* Three equal tiers, ordered by price. Hierarchy comes from the featured card's fill, badge
+   and mark — never from size, so a benefit sits on the same line across all three columns. */
+.plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);align-items:stretch}
 .plan{position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(26px,2.4vw,36px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7}
-.plan-featured{background:#203c2c;border-color:#203c2c;gap:22px;padding:clamp(32px,3vw,48px)}
+.plan-featured{background:#203c2c;border-color:#203c2c}
 .plan.plan-featured .plan-name,.plan.plan-featured .plan-price b{color:#f1eada}
-.plan.plan-featured .plan-price span{color:rgba(241,234,218,.7)}
-.plan.plan-featured li{color:rgba(241,234,218,.92);font-size:clamp(16px,1.15vw,18px)}
-/* The featured list spreads over the height the stacked pair sets, so the card has no dead band. */
-.plan.plan-featured ul{gap:clamp(14px,1.5vw,18px)}
-.plan.plan-featured li::before{border-color:rgba(241,234,218,.65)}
+.plan.plan-featured .plan-price span,.plan.plan-featured .plan-rate{color:rgba(241,234,218,.7)}
+.plan.plan-featured li{color:rgba(241,234,218,.92)}
+.plan.plan-featured li::before{background-color:rgba(241,234,218,.8)}
 .plan.plan-featured .plan-rule{background:rgba(241,234,218,.22)}
-/* The stacked pair is the quieter half of the split: smaller price, tighter list. */
-.plan-stack .plan-price b{font-size:clamp(25px,2.2vw,30px)}
-.plan-stack .plan{gap:14px}
-.plan-stack li{font-size:15px}
+/* One club mark on every tier, in a different weight per card: faint, bone, full. Shipped as
+   <img> rather than a CSS mask — Chrome blocks an external SVG mask under file://, so a mask
+   would leave the cards blank whenever the page is opened straight from disk. */
+.plan-mark{display:block;width:clamp(96px,9vw,120px);height:auto}
+.plan-mark-soft{opacity:.5}
+.plan-rate{margin:-6px 0 0;font:400 14px/1.5 'Jost',sans-serif;letter-spacing:.02em;color:rgba(42,38,32,.6)}
 .plan-rule{height:1px;background:rgba(31,58,43,.14);flex-shrink:0}
-.plan-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.plan-badge{padding:7px 14px;border-radius:999px;border:1px solid rgba(241,234,218,.5);color:rgba(241,234,218,.9);font:600 9.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.plan-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.plan-badge{padding:10px 20px;border-radius:999px;border:1px solid rgba(241,234,218,.5);color:#f1eada;font:600 11.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
 .plan-name{margin:0;font:500 clamp(22px,2vw,28px)/1.2 'EB Garamond',serif;color:#1f3a2b}
-.plan-price{display:flex;align-items:baseline;gap:8px;font-family:'EB Garamond',serif}
+.plan-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'EB Garamond',serif}
 .plan-price b{font-weight:600;font-size:clamp(38px,4vw,52px);line-height:1;letter-spacing:-.02em}
 .plan-price span{font:400 14px/1 'Jost',sans-serif;letter-spacing:.06em;color:rgba(42,38,32,.6)}
 .plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
 .plan li{position:relative;padding-left:22px;font:400 16px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.82)}
-.plan li::before{content:"";position:absolute;left:0;top:.75em;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;border:1.5px solid #1f3a2b}
+/* Check glyph as a mask so the bullet tints with one colour and every <li> stays plain text —
+   applyLang() writes textContent, which would wipe an inline <svg> child. */
+.plan li::before{content:"";position:absolute;left:0;top:.78em;transform:translateY(-50%);width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
 .plan .btn{margin-top:auto;align-self:flex-start}
-.plan.plan-featured .plan-price b{font-size:clamp(42px,4.6vw,60px)}
+
+/* Responsive ladder. Three columns need roughly 290px each to carry a price and a five-item
+   list; under that the row stacks — and a stacked card turns sideways so a wide tablet is not
+   spent on one short list, then squares up again once two inner columns stop being readable. */
+@media(max-width:1099px){
+  .plan-grid{grid-template-columns:minmax(0,1fr)}
+  .plan{display:grid;grid-template-columns:minmax(190px,.8fr) 1.2fr;grid-template-areas:"mark list" "head list" "price list" "rate list" "cta list";column-gap:clamp(28px,4vw,56px);row-gap:12px;align-items:start}
+  .plan-mark{grid-area:mark}
+  .plan-head{grid-area:head}
+  .plan-price{grid-area:price}
+  .plan-rate{grid-area:rate}
+  .plan .btn{grid-area:cta;margin-top:12px}
+  /* Stacked, a horizontal rule split price from benefits; side by side it would cut across both
+     columns, so the separation moves to the list's left border. */
+  .plan-rule{display:none}
+  .plan ul{grid-area:list;align-self:center;padding-left:clamp(24px,3vw,44px);border-left:1px solid rgba(31,58,43,.14)}
+  .plan.plan-featured ul{border-left-color:rgba(241,234,218,.22)}
+}
+@media(max-width:719px){
+  .plan{display:flex;flex-direction:column;gap:16px;padding:clamp(22px,5vw,30px)}
+  .plan ul{align-self:auto;padding-left:0;border-left:none}
+  .plan-rule{display:block}
+  .plan-price b{font-size:clamp(34px,9vw,44px)}
+  /* A full-width CTA is the easier target once the card is the width of the screen. */
+  .plan .btn{margin-top:6px;align-self:stretch}
+}
+/* FAQ — native <details>, so it opens without JS and keeps keyboard and screen-reader
+   behaviour for free. The chevron is a rotated corner on ::after, which keeps every <summary>
+   plain text: applyLang() writes textContent and would wipe a real child element. */
+.faq-list{display:flex;flex-direction:column;border-top:1px solid rgba(31,58,43,.18)}
+.faq{border-bottom:1px solid rgba(31,58,43,.18)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:clamp(18px,3vw,40px);padding:22px 2px;cursor:pointer;list-style:none;font:500 clamp(17px,1.45vw,20px)/1.4 'EB Garamond',serif;color:#1f3a2b}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:#16291f}
+.faq summary:focus-visible{outline:2px solid #1f3a2b;outline-offset:3px;border-radius:6px}
+.faq summary::after{content:"";flex-shrink:0;width:9px;height:9px;margin-right:4px;border-right:1.5px solid #1f3a2b;border-bottom:1.5px solid #1f3a2b;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+.faq[open] summary::after{transform:translateY(2px) rotate(225deg)}
+.faq p{margin:0 0 26px;max-width:68ch;font:400 clamp(15px,1.15vw,17px)/1.68 'EB Garamond',serif;color:rgba(42,38,32,.78)}
+@media(prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
 .rates{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding:18px 22px;border:1px dashed rgba(31,58,43,.35);border-radius:14px;font:400 15px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.78)}
 
-/* Comparison table — first column stays put while the rest scrolls on a phone. */
-.tscroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(31,58,43,.18);border-radius:16px;background:#fffdf7}
-table.cmp{border-collapse:collapse;width:100%;min-width:720px;font-family:'EB Garamond',serif}
-table.cmp th,table.cmp td{padding:15px clamp(12px,1.3vw,20px);text-align:center;border-bottom:1px solid rgba(31,58,43,.1);font-size:clamp(14px,1.05vw,16px);color:rgba(42,38,32,.85);white-space:nowrap}
-table.cmp tbody tr:last-child td{border-bottom:none}
-table.cmp thead th{position:sticky;top:0;z-index:3;background:#ece5d3;font:500 10.5px/1.3 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;padding-top:18px;padding-bottom:18px}
-table.cmp th[scope="row"],table.cmp thead th:first-child{position:sticky;left:0;z-index:2;text-align:left;background:#fffdf7;font:500 10.5px/1.3 'Jost',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1f3a2b;box-shadow:1px 0 0 rgba(31,58,43,.1)}
-table.cmp thead th:first-child{z-index:4;background:#ece5d3}
-table.cmp col.featured,table.cmp td.featured{background:rgba(31,58,43,.05)}
-table.cmp thead th.featured{background:#e2dcc6}
-table.cmp .muted{color:rgba(42,38,32,.4)}
-table.cmp .save{display:block;margin-top:3px;font:500 10px/1 'Jost',sans-serif;letter-spacing:.08em;color:#1f3a2b;opacity:.75}
-table.cmp tbody tr:hover td{background:rgba(31,58,43,.035)}
-table.cmp tbody tr:hover th[scope="row"]{background:#f7f3e6}
 .tnote{margin:14px 0 0;font:400 13px/1.6 'Jost',sans-serif;color:rgba(42,38,32,.55)}
-@media(max-width:999px){
-  .tscroll{border-radius:14px}
-  table.cmp th,table.cmp td{padding:13px 14px;font-size:14px}
-}
 </style>
 </helmet>
 
@@ -215,7 +238,7 @@ table.cmp tbody tr:hover th[scope="row"]{background:#f7f3e6}
 <div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
 
 <!-- 01 · Intro ------------------------------------------------------------ -->
-<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) clamp(20px,5vw,72px) clamp(56px,8vh,96px);background:#203c2c;color:#f1eada">
+<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) clamp(20px,5vw,72px) clamp(56px,8vh,96px);color:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(20px,2.6vh,30px);max-width:900px">
     <span class="eyebrow" data-i18n="mem.tag" style="color:rgba(241,234,218,.75)">Membership</span>
     <h1 class="h1" data-i18n="mem.h1">Your club. Your court.</h1>
@@ -243,166 +266,97 @@ table.cmp tbody tr:hover th[scope="row"]{background:#f7f3e6}
       <span data-i18n="mem.baseBody">27 € off-peak · 33 € peak · 5 € racket rental · 20 € tournament entry</span>
     </div>
 
-    <!-- Prices live in two places on this page: these cards and the table below. Change both. -->
+    <!-- Every tier states the same five benefits in the same order, so a row reads across columns.
+         Prices now live here only — the comparison table that used to repeat them is gone. -->
     <div class="plan-grid">
 
+      <article class="plan">
+        <img class="plan-mark plan-mark-soft" src="assets/logo-dark-green-house.svg" alt="" aria-hidden="true"/>
+        <div class="plan-head">
+          <h3 class="plan-name">Signature Club</h3>
+        </div>
+        <div class="plan-price"><b>12.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+        <p class="plan-rate" data-i18n="mem.rateSignature">22.95 € off-peak · 29.70 € peak</p>
+        <span class="plan-rule" aria-hidden="true"></span>
+        <ul>
+          <li data-i18n="mem.s1">Courts −15% off-peak, −10% peak</li>
+          <li data-i18n="mem.s2">Book 10 days ahead</li>
+          <li data-i18n="mem.s3">Free cancellation up to 36 hours before</li>
+          <li data-i18n="mem.s4">Racket rental −50%</li>
+          <li data-i18n="mem.s5">Members-only sessions · early access to club events</li>
+        </ul>
+        <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseSignature">Choose Signature</a>
+      </article>
+
       <article class="plan plan-featured">
+        <img class="plan-mark" src="assets/logo-beige-house.svg" alt="" aria-hidden="true"/>
         <div class="plan-head">
           <h3 class="plan-name">Elite Player</h3>
           <span class="plan-badge" data-i18n="mem.popular">Most chosen</span>
         </div>
         <div class="plan-price"><b>22.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+        <p class="plan-rate" data-i18n="mem.rateElite">20.25 € off-peak · 28.05 € peak</p>
         <span class="plan-rule" aria-hidden="true"></span>
         <ul>
-          <li data-i18n="mem.e1">25% off off-peak courts, 15% off peak</li>
-          <li data-i18n="mem.e2">Book up to 14 days ahead</li>
+          <li data-i18n="mem.e1">Courts −25% off-peak, −15% peak</li>
+          <li data-i18n="mem.e2">Book 14 days ahead</li>
           <li data-i18n="mem.e3">Free cancellation up to 24 hours before</li>
-          <li data-i18n="mem.e4">Free racket rental, 10% off Pro Shop and clinics</li>
-          <li data-i18n="mem.e5">Priority access to club events and tournaments</li>
+          <li data-i18n="mem.e4">Free racket rental</li>
+          <li data-i18n="mem.e5">Pro Shop, clinics &amp; tournaments −10% · priority on club events</li>
         </ul>
         <a class="btn btn-inv-solid" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseElite">Join as Elite Player</a>
       </article>
 
-      <div class="plan-stack">
-
-        <article class="plan">
-          <div class="plan-head">
-            <h3 class="plan-name">Signature Club</h3>
-            <div class="plan-price"><b>12.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
-          </div>
-          <span class="plan-rule" aria-hidden="true"></span>
-          <ul>
-            <li data-i18n="mem.s1">15% off off-peak courts, 10% off peak</li>
-            <li data-i18n="mem.s23">Book up to 10 days ahead · cancel up to 36 h before</li>
-            <li data-i18n="mem.s45">50% off racket rental, members-only sessions</li>
-          </ul>
-          <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseSignature">Choose Signature</a>
-        </article>
-
-        <article class="plan">
-          <div class="plan-head">
-            <h3 class="plan-name">House Member</h3>
-            <div class="plan-price"><b>34.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
-          </div>
-          <span class="plan-rule" aria-hidden="true"></span>
-          <ul>
-            <li data-i18n="mem.h1b">35% off off-peak courts, 20% off peak</li>
-            <li data-i18n="mem.h23">Book up to 21 days ahead · cancel up to 12 h before</li>
-            <li data-i18n="mem.h45">Free racket rental, 15% off Pro Shop, first access to events</li>
-          </ul>
-          <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseHouse">Choose House</a>
-        </article>
-
-      </div>
+      <article class="plan">
+        <img class="plan-mark" src="assets/logo-dark-green-house.svg" alt="" aria-hidden="true"/>
+        <div class="plan-head">
+          <h3 class="plan-name">House Member</h3>
+        </div>
+        <div class="plan-price"><b>34.90 €</b><span data-i18n="mem.perMonth">/ month</span></div>
+        <p class="plan-rate" data-i18n="mem.rateHouse">17.55 € off-peak · 26.40 € peak</p>
+        <span class="plan-rule" aria-hidden="true"></span>
+        <ul>
+          <li data-i18n="mem.h1b">Courts −35% off-peak, −20% peak</li>
+          <li data-i18n="mem.h2">Book 21 days ahead</li>
+          <li data-i18n="mem.h3">Free cancellation up to 12 hours before</li>
+          <li data-i18n="mem.h4">Free racket rental</li>
+          <li data-i18n="mem.h5">Pro Shop &amp; clinics −15%, tournaments −20% · first access to club events</li>
+        </ul>
+        <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.chooseHouse">Choose House</a>
+      </article>
 
     </div>
+
+    <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
   </div>
 </section>
-
-<!-- 03 · Comparison ------------------------------------------------------- -->
-<section id="compare" class="sheet" style="background:#ece5d3">
+<!-- 03 · FAQ -------------------------------------------------------------- -->
+<section id="faq" class="sheet" style="background:#ece5d3">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
     <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
-      <span class="eyebrow" data-i18n="mem.cmpTag" style="color:#1f3a2b">Compare</span>
-      <h2 class="h2" data-i18n="mem.cmpHeading">Every benefit, side by side.</h2>
+      <span class="eyebrow" data-i18n="mem.faqTag" style="color:#1f3a2b">Questions</span>
+      <h2 class="h2" data-i18n="mem.faqHeading">Membership — FAQs</h2>
+      <p class="lead" data-i18n="mem.faqBody" style="color:rgba(42,38,32,.75)">The things people ask before they join. If your question is not here, ask us directly.</p>
     </div>
 
-    <div class="tscroll">
-      <table class="cmp">
-        <colgroup>
-          <col/><col/><col/><col class="featured"/><col/>
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col" data-i18n="mem.rBenefit">Benefit</th>
-            <th scope="col" data-i18n="mem.cNon">Non-member</th>
-            <th scope="col">Signature Club</th>
-            <th scope="col" class="featured">Elite Player</th>
-            <th scope="col">House Member</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row" data-i18n="mem.rPrice">Monthly price</th>
-            <td class="muted">—</td>
-            <td>12.90 €</td>
-            <td class="featured">22.90 €</td>
-            <td>34.90 €</td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rOff">Off-peak court</th>
-            <td>27.00 €</td>
-            <td>22.95 €<span class="save">−15%</span></td>
-            <td class="featured">20.25 €<span class="save">−25%</span></td>
-            <td>17.55 €<span class="save">−35%</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rPeak">Peak court</th>
-            <td>33.00 €</td>
-            <td>29.70 €<span class="save">−10%</span></td>
-            <td class="featured">28.05 €<span class="save">−15%</span></td>
-            <td>26.40 €<span class="save">−20%</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rWindow">Booking window</th>
-            <td><span data-i18n="mem.d7">7 days</span></td>
-            <td><span data-i18n="mem.d10">10 days</span></td>
-            <td class="featured"><span data-i18n="mem.d14">14 days</span></td>
-            <td><span data-i18n="mem.d21">21 days</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rCancel">Free cancellation</th>
-            <td class="muted">—</td>
-            <td><span data-i18n="mem.h36">36 hours</span></td>
-            <td class="featured"><span data-i18n="mem.h24">24 hours</span></td>
-            <td><span data-i18n="mem.h12">12 hours</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rTour">Tournament entry</th>
-            <td>20.00 €</td>
-            <td>20.00 €</td>
-            <td class="featured">18.00 €<span class="save">−10%</span></td>
-            <td>16.00 €<span class="save">−20%</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rRental">Racket rental</th>
-            <td>5.00 €</td>
-            <td>2.50 €<span class="save">−50%</span></td>
-            <td class="featured"><span data-i18n="mem.free">Free</span></td>
-            <td><span data-i18n="mem.free">Free</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rShop">Pro Shop</th>
-            <td class="muted">—</td>
-            <td class="muted">—</td>
-            <td class="featured">−10%</td>
-            <td>−15%</td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rClinics">Clinics &amp; coaching</th>
-            <td class="muted">—</td>
-            <td class="muted">—</td>
-            <td class="featured">−10%</td>
-            <td>−15%</td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rOnly">Members-only sessions</th>
-            <td class="muted">—</td>
-            <td><span data-i18n="mem.yes">Yes</span></td>
-            <td class="featured"><span data-i18n="mem.yes">Yes</span></td>
-            <td><span data-i18n="mem.yes">Yes</span></td>
-          </tr>
-          <tr>
-            <th scope="row" data-i18n="mem.rEvents">Club events</th>
-            <td class="muted">—</td>
-            <td><span data-i18n="mem.early">Early access</span></td>
-            <td class="featured"><span data-i18n="mem.priority">Priority</span></td>
-            <td><span data-i18n="mem.first">First access</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="faq-list">
+      <details class="faq">
+        <summary><span data-i18n="mem.q1">Do I have to be a member to play at The Court House?</span></summary>
+        <p data-i18n="mem.a1">No. Anyone can book a court at the standard rate — 27 € per hour off-peak, 33 € at peak, with racket rental at 5 €. Membership lowers those rates, opens the booking calendar earlier and moves you up the queue for club events.</p>
+      </details>
+      <details class="faq">
+        <summary><span data-i18n="mem.q2">When are peak and off-peak hours?</span></summary>
+        <p data-i18n="mem.a2">Peak covers [weekday evenings 17:00–21:00 and weekend mornings]. Everything outside that is off-peak. The price you see when booking already reflects which one applies.</p>
+      </details>
+      <details class="faq">
+        <summary><span data-i18n="mem.q5">Can I switch plans after signing up?</span></summary>
+        <p data-i18n="mem.a5">[Yes — you can move between tiers at any time, and the new rate applies from your next billing month.]</p>
+      </details>
+      <details class="faq">
+        <summary><span data-i18n="mem.q6">How do I cancel my membership?</span></summary>
+        <p data-i18n="mem.a6">[Membership runs month to month and can be cancelled at any time; it stays active until the end of the month you have already paid for.] Write to us through the contact form and we will take care of it.</p>
+      </details>
     </div>
-    <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
   </div>
 </section>
 
@@ -463,35 +417,36 @@ const SK = {
   'mem.baseBody':'27 € mimo špičky · 33 € v špičke · 5 € požičanie rakety · 20 € vstup do turnaja',
   'mem.perMonth':'/ mesiac','mem.popular':'Najčastejšia voľba',
   'mem.chooseElite':'Pridať sa ako Elite Player','mem.chooseSignature':'Vybrať Signature','mem.chooseHouse':'Vybrať House',
-  'mem.s1':'15 % zľava na kurty mimo špičky, 10 % v špičke',
-  'mem.s2':'Rezervácia až 10 dní vopred',
+  'mem.rateSignature':'22.95 € mimo špičky · 29.70 € v špičke',
+  'mem.rateElite':'20.25 € mimo špičky · 28.05 € v špičke',
+  'mem.rateHouse':'17.55 € mimo špičky · 26.40 € v špičke',
+  'mem.s1':'Kurty −15 % mimo špičky, −10 % v špičke',
+  'mem.s2':'Rezervácia 10 dní vopred',
   'mem.s3':'Bezplatné zrušenie do 36 hodín pred hrou',
-  'mem.s4':'50 % zľava na požičanie rakety',
-  'mem.s5':'Podujatia len pre členov a skorší prístup k akciám',
-  'mem.s23':'Rezervácia až 10 dní vopred · zrušenie do 36 h pred hrou',
-  'mem.s45':'50 % zľava na požičanie rakety, podujatia len pre členov',
-  'mem.e1':'25 % zľava na kurty mimo špičky, 15 % v špičke',
-  'mem.e2':'Rezervácia až 14 dní vopred',
+  'mem.s4':'Požičanie rakety −50 %',
+  'mem.s5':'Tréningy len pre členov · skorší prístup k podujatiam',
+  'mem.e1':'Kurty −25 % mimo špičky, −15 % v špičke',
+  'mem.e2':'Rezervácia 14 dní vopred',
   'mem.e3':'Bezplatné zrušenie do 24 hodín pred hrou',
-  'mem.e4':'Požičanie rakety zdarma, 10 % zľava v Pro Shope a na klinikách',
-  'mem.e5':'Prioritný prístup ku klubovým podujatiam a turnajom',
-  'mem.h1b':'35 % zľava na kurty mimo špičky, 20 % v špičke',
-  'mem.h2':'Rezervácia až 21 dní vopred',
+  'mem.e4':'Požičanie rakety zdarma',
+  'mem.e5':'Pro Shop, kliniky a turnaje −10 % · prednosť na podujatiach',
+  'mem.h1b':'Kurty −35 % mimo špičky, −20 % v špičke',
+  'mem.h2':'Rezervácia 21 dní vopred',
   'mem.h3':'Bezplatné zrušenie do 12 hodín pred hrou',
-  'mem.h4':'Požičanie rakety zdarma, 15 % zľava v Pro Shope a na klinikách',
-  'mem.h5':'Prvý prístup ku každému klubovému podujatiu',
-  'mem.h23':'Rezervácia až 21 dní vopred · zrušenie do 12 h pred hrou',
-  'mem.h45':'Požičanie rakety zdarma, 15 % zľava v Pro Shope, prvý prístup k podujatiam',
-  'mem.cmpTag':'Porovnanie','mem.cmpHeading':'Všetky výhody vedľa seba.',
+  'mem.h4':'Požičanie rakety zdarma',
+  'mem.h5':'Pro Shop a kliniky −15 %, turnaje −20 % · prvý prístup k podujatiam',
   'mem.cmpNote':'Ceny kurtov sú uvedené za hodinu. Členské ceny sa uplatnia automaticky pri rezervácii.',
-  'mem.rBenefit':'Výhoda','mem.cNon':'Bez členstva',
-  'mem.rPrice':'Mesačný poplatok','mem.rOff':'Kurt mimo špičky','mem.rPeak':'Kurt v špičke',
-  'mem.rWindow':'Rezervácia vopred','mem.rCancel':'Bezplatné zrušenie','mem.rTour':'Vstup do turnaja',
-  'mem.rRental':'Požičanie rakety','mem.rShop':'Pro Shop','mem.rClinics':'Kliniky a tréningy',
-  'mem.rOnly':'Podujatia len pre členov','mem.rEvents':'Klubové podujatia',
-  'mem.d7':'7 dní','mem.d10':'10 dní','mem.d14':'14 dní','mem.d21':'21 dní',
-  'mem.h36':'36 hodín','mem.h24':'24 hodín','mem.h12':'12 hodín',
-  'mem.free':'Zdarma','mem.yes':'Áno','mem.early':'Skorší prístup','mem.priority':'Priorita','mem.first':'Prvý prístup',
+  'mem.faqTag':'Otázky',
+  'mem.faqHeading':'Členstvo — časté otázky',
+  'mem.faqBody':'To, na čo sa ľudia pýtajú pred vstupom do klubu. Ak tu svoju odpoveď nenájdete, napíšte nám.',
+  'mem.q1':'Musím byť členom, aby som si mohol zahrať v The Court House?',
+  'mem.a1':'Nie. Kurt si môže rezervovať ktokoľvek za štandardnú cenu — 27 € za hodinu mimo špičky, 33 € v špičke, požičanie rakety 5 €. Členstvo tieto ceny znižuje, otvára rezervačný kalendár skôr a posúva vás vyššie v poradí na klubové podujatia.',
+  'mem.q2':'Kedy je špička a kedy mimo špičky?',
+  'mem.a2':'Špička pokrýva [pracovné dni 17:00 – 21:00 a víkendové doobedia]. Všetko ostatné je mimo špičky. Cena, ktorú vidíte pri rezervácii, už zohľadňuje, ktorá sadzba platí.',
+  'mem.q5':'Môžem po registrácii zmeniť úroveň členstva?',
+  'mem.a5':'[Áno — medzi úrovňami sa dá prejsť kedykoľvek a nová sadzba platí od nasledujúceho zúčtovacieho mesiaca.]',
+  'mem.q6':'Ako zruším členstvo?',
+  'mem.a6':'[Členstvo beží z mesiaca na mesiac a dá sa kedykoľvek zrušiť; zostáva aktívne do konca už zaplateného mesiaca.] Napíšte nám cez kontaktný formulár a my sa oň postaráme.',
   'mem.joinTag':'Pridajte sa',
   'mem.joinHeading':'Otvorené pre každého. Výnimočné pre tých, ktorí sa vracajú.',
   'mem.joinBody':'Nemusíte byť členom, aby ste do The Court House patrili. Členstvo je len náš spôsob, ako dať niečo navyše ľuďom, pre ktorých je klub súčasťou ich rutiny.',
