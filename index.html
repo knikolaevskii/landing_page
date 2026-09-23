@@ -29,25 +29,9 @@ section[data-screen-label]:not(#hero){
   background-color:#f1eada;
   background-clip:padding-box;
 }
-/* Static paper relief stays below all content and inside the green frames. */
 section[data-screen-label]:not(#hero){
   position:relative;
   isolation:isolate;
-}
-section[data-screen-label]:not(#hero)::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:14px;
-  pointer-events:none;
-  z-index:0;
-}
-section[data-screen-label]:not(#hero)::before{
-  background-image:url("assets/paper-texture.svg");
-  background-repeat:repeat;
-  background-size:300px 300px;
-  opacity:.80;
-  mix-blend-mode:soft-light;
 }
 section[data-screen-label]:not(#hero) > *{position:relative;z-index:1}
 /* Three-line icon and panel timing adapted from hamburger menu/. */
@@ -268,11 +252,13 @@ a:hover{color:#16291f}
       <span data-i18n="story.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Our Story</span>
     </div>
     <h2 data-rv data-rv-delay=".08" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">
-      <span data-i18n="story.heading">A New Era for Pickleball</span>
+      <span data-i18n="story.heading">More than a place to play.</span>
     </h2>
-    <p data-rv data-rv-delay=".16" data-i18n="story.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">The Court House was founded on a simple idea: pickleball deserves a home as refined as the people who play it.</p>
-    <p data-rv data-rv-delay=".22" data-i18n="story.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">Premium courts, considered design, and a members-first mindset — this is our take on the game, and it's just the beginning.</p>
-    <a class="btn-link" data-rv data-rv-delay=".28" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;white-space:nowrap">Read Our Story</a>
+    <p data-rv data-rv-delay=".16" data-i18n="story.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Redefining Bratislava scene and becoming a social hub within the vibrant community.</p>
+    <p data-rv data-rv-delay=".22" data-i18n="story.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">The Courthouse started with a simple idea: Sport is better when it brings people together.</p>
+    <p data-rv data-rv-delay=".28" data-i18n="story.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">We created a place where you can compete, learn, meet people, stay for coffee, and become part of a community — whether you’re picking up a racket for the first time or playing every week. Your much needed place in between home and work.</p>
+    <p data-rv data-rv-delay=".34" data-i18n="story.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Come for the game. Stay for everything around it.</p>
+    <a data-rv data-rv-delay=".40" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Our Story →</a>
   </div>
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
@@ -289,32 +275,27 @@ a:hover{color:#16291f}
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px;justify-self:center">
     <div data-rv data-rv-delay=".06" style="display:flex;align-items:center;gap:12px">
       <span style="width:26px;height:1px;background:#1f3a2b"></span>
-      <span data-i18n="game.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">The Game</span>
+      <span data-i18n="game.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Play</span>
     </div>
     <h2 data-rv data-rv-delay=".12" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px)">
-      <span data-i18n="game.heading">New to Pickleball?</span>
+      <span data-i18n="game.heading">Pick up a racket.</span>
     </h2>
     <p data-rv data-rv-delay=".18" data-i18n="game.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Part tennis, part badminton, all fun. Pickleball is fast, social, and easy to pick up — whether you're stepping onto a court for the first time or sharpening a competitive edge.</p>
-    <a class="btn btn-solid" data-rv data-rv-delay=".3" href="#membership" data-goto="membership" data-i18n="game.cta" style="align-self:flex-start;margin-top:10px">See Membership</a>
+    <a data-rv data-rv-delay=".3" href="#membership" data-goto="membership" data-i18n="game.cta" style="align-self:flex-start;margin-top:10px;padding:15px 32px;background:#1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Learn More</a>
   </div>
 </section>
 
 <section id="membership" data-screen-label="04 Membership" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
-  <div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vh,24px);max-width:560px">
+  <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
     <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
       <span style="width:26px;height:1px;background:#1f3a2b"></span>
       <span data-i18n="member.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Membership</span>
     </div>
     <h2 data-rv data-rv-delay=".08" data-i18n="member.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">More Than a Court. Your Place to Belong.</h2>
-    <p data-rv data-rv-delay=".16" data-i18n="member.body" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:470px">Priority access to premium courts, members-only sessions, and a calendar that opens before anyone else can book it.</p>
-    <div data-rv data-rv-delay=".2" class="value-rows">
-      <div class="value-row"><b>12.90&nbsp;€</b><span data-i18n="member.v1">per month to start — three tiers, cancel any time</span></div>
-      <div class="value-row"><b data-i18n="member.v2val">21 days</b><span data-i18n="member.v2">of booking calendar open to House Members</span></div>
-      <div class="value-row"><b data-i18n="member.v3val">35 % off</b><span data-i18n="member.v3">off-peak courts at the top tier, 20 % at peak</span></div>
-    </div>
-    <div data-rv data-rv-delay=".28" class="member-actions" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:4px">
-      <a class="btn btn-solid" href="membership.html#plans" data-i18n="member.cta">See Membership Tiers</a>
-      <a class="btn-link" href="membership.html" data-i18n="member.included">What&#39;s included</a>
+    <p data-rv data-rv-delay=".16" data-i18n="member.body" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Membership at The Court House means priority access to premium courts, exclusive events, and a community built around the game. Join a club designed for the way you live and play.</p>
+    <div data-rv data-rv-delay=".24" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px">
+      <a href="#contact" data-goto="contact" data-i18n="member.learnMore" style="padding:15px 32px;border:1px solid #1f3a2b;border-radius:999px;color:#1f3a2b;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#1f3a2b;color:#f1ead9">Learn More</a>
+      <a href="#contact" data-goto="contact" data-i18n="member.signUp" style="padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Sign Up</a>
     </div>
   </div>
   <div data-rv="img" data-rv-delay=".1" style="display:flex;flex-direction:column;gap:12px;min-height:0">
@@ -328,7 +309,24 @@ a:hover{color:#16291f}
   </div>
 </section>
 
-<section id="contact" data-screen-label="05 Contact" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;background:#ece5d3">
+<section id="whatson" data-screen-label="06 What’s On" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(18px,2.4vh,26px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
+  <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
+    <span style="width:26px;height:1px;background:#1f3a2b"></span>
+    <span data-i18n="whatson.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">What’s On</span>
+    <span style="width:26px;height:1px;background:#1f3a2b"></span>
+  </div>
+  <h2 data-rv data-rv-delay=".08" data-i18n="whatson.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">There’s always another game.</h2>
+  <p data-rv data-rv-delay=".16" data-i18n="whatson.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:640px">Social nights. Beginner sessions. Competitive leagues. Coaching. Tournaments. Club events.</p>
+  <div data-rv data-rv-delay=".22" style="display:flex;flex-direction:column;gap:6px">
+    <p data-i18n="whatson.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to win.</p>
+    <p data-i18n="whatson.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to learn.</p>
+    <p data-i18n="whatson.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to see who’s there.</p>
+  </div>
+  <p data-rv data-rv-delay=".28" data-i18n="whatson.p5" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:640px">This is where the community comes alive.</p>
+  <a data-rv data-rv-delay=".34" href="https://player.padelos.co/club/216959/events" data-i18n="whatson.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">See What’s On →</a>
+</section>
+
+<section id="contact" data-screen-label="07 Contact" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;background:#ece5d3">
   <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(96px,10vh,120px) clamp(20px,5vw,72px) clamp(44px,5vh,64px)">
     <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
       <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
@@ -406,20 +404,15 @@ const SK = {
   'story.cta':'Prečítať Náš Príbeh',
   'game.tag':'Hra','game.heading':'Nový v Pickballi?',
   'game.p1':'Čiastočne tenis, čiastočne bedminton, samá zábava. Pickleball je rýchly, spoločenský a ľahko sa naučí — či už prvýkrát stojíte na kurte, alebo si brúsite súťažnú hranu.',
-  'game.cta':'Pozrieť Členstvo',
+  'game.cta':'Zistiť Viac',
   'member.tag':'Členstvo','member.heading':'Viac než Kurt. Vaše Miesto, Kam Patríte.',
-  'member.body':'Prioritný prístup k prémiovým kurtom, členské tréningy a kalendár, ktorý sa otvára skôr, než môže rezervovať ktokoľvek iný.',
-  'member.v1':'mesačne na začiatok — tri úrovne, kedykoľvek zrušíte',
-  'member.v2val':'21 dní','member.v2':'rezervačného kalendára pre úroveň House Member',
-  'member.v3val':'35 % zľava','member.v3':'na kurty mimo špičky v najvyššej úrovni, 20 % v špičke',
-  'member.cta':'Pozrieť Úrovne Členstva','member.included':'Čo je v cene',
-  'member.baseTag':'Bez členstva','member.baseBody':'27 € mimo špičky · 33 € v špičke · 5 € požičanie rakety',
+  'member.body':'Členstvo v The Court House znamená prioritný prístup k prémiovým kurtom, exkluzívne podujatia a komunitu vybudovanú okolo hry. Pridajte sa ku klubu navrhnutému pre spôsob, akým žijete a hráte.',
+  'member.learnMore':'Zistiť Viac','member.signUp':'Zaregistrovať sa',
   'contact.tag':'Kontaktujte Nás','contact.heading':'Poďte si Zahrať do The Court House.','contact.hours':'Otváracie Hodiny','contact.map':'Na Pántoch 7707/8',
   'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
   'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
 };
 const IDS = ['hero','story','game','membership','contact'];
-const LANG_KEY = 'ch-lang';
 
 class Component extends DCLogic {
   state = { isMobile: false, menuOpen: false, langMenuOpen: false, lang: 'en' };
