@@ -73,7 +73,12 @@ section[data-screen-label]:not(#hero) > *{position:relative;z-index:1}
 .mobile-menu-panel[data-open="true"]{transform:translateY(0)}
 .mobile-menu-links{display:flex;flex-direction:column;gap:8px;width:100%;flex-shrink:0;padding-top:max(24px,calc(100px + 8vh - var(--nav-height)));padding-bottom:50px}
 .mobile-menu-footer{display:flex;justify-content:flex-end;align-items:center;width:100%;padding-bottom:30px;flex-shrink:0}
-.mobile-menu-language{position:relative;margin-right:8px}
+/* Reference segmented switch, using the landing page's green and cream. */
+.mobile-menu-language{appearance:none;background:transparent;cursor:pointer;margin-right:8px;display:flex;align-items:center;flex-shrink:0;border:1px solid #203c2c;border-radius:20px;padding:4px;line-height:1.15}
+.mobile-menu-language span{appearance:none;border:0;background:transparent;color:#203c2c;font:600 16px/1.15 'Satoshi',Arial,sans-serif;padding:5px 10px;border-radius:13px;cursor:pointer;transition:background .2s ease-in-out,color .2s ease-in-out}
+.mobile-menu-language span[data-active="true"]{background:#203c2c;color:#f1eada}
+.mobile-menu-language:focus-visible{outline:2px solid #203c2c;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.mobile-menu-language span{transition:none}}
 @media(prefers-reduced-motion:reduce){.mobile-menu-panel{transition:none}}
 /* Header controls share a height; change --flag-size to resize the flag emoji. */
 .header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
@@ -220,28 +225,10 @@ a:hover{color:#16291f}
     <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
     </div>
     <div class="mobile-menu-footer">
-    <div class="mobile-menu-language">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
-        <span ref="{{ mobileLangLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
-        <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span>ENGLISH</span></sc-if>
-        <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span>SLOVENSKY</span></sc-if>
-        <span style="font-size:9px;opacity:.7">▾</span>
-      </button>
-      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
-        <div style="position:absolute;bottom:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
-          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
-            <span class="language-flag" aria-hidden="true">🇬🇧</span>
-            <span style="flex:1">ENGLISH</span>
-            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
-          </button>
-          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
-            <span class="language-flag" aria-hidden="true">🇸🇰</span>
-            <span style="flex:1">SLOVENSKY</span>
-            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
-          </button>
-        </div>
-      </sc-if>
-    </div>
+    <button class="mobile-menu-language" type="button" onClick="{{ toggleMobileLanguage }}" aria-label="{{ mobileLanguageAction }}">
+      <span lang="sk" data-active="{{ isSk }}" aria-hidden="true">SK</span>
+      <span lang="en" data-active="{{ isEn }}" aria-hidden="true">EN</span>
+    </button>
     </div>
   </div>
 </sc-if>
@@ -483,7 +470,6 @@ class Component extends DCLogic {
     if (this.state.lang === 'sk') this.applyLang('sk');
     this.paintDots(this.active);
     if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
-    if (this.mobileLangLabel) this.mobileLangLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
     requestAnimationFrame(() => this.collect());
   }
 
@@ -656,10 +642,11 @@ class Component extends DCLogic {
       heroCtaRef: el => { if (el) this.heroCta = el; },
       heroFootRef: el => { if (el) this.heroFoot = el; },
       langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
-      mobileLangLabelRef: el => { if (el) { this.mobileLangLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       onScroll: this.onScroll,
       onNav: this.onNav,
       toggleLangMenu: () => this.setState(s => ({ langMenuOpen: !s.langMenuOpen })),
+      mobileLanguageAction: this.state.lang === 'en' ? 'Language: English. Switch to Slovak' : 'Jazyk: slovenčina. Prepnúť na angličtinu',
+      toggleMobileLanguage: () => this.setLang(this.state.lang === 'en' ? 'sk' : 'en'),
       selectEn: () => this.setLang('en'),
       selectSk: () => this.setLang('sk')
     };
