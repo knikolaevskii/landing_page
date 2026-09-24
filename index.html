@@ -67,9 +67,13 @@ section[data-screen-label]:not(#hero) > *{position:relative;z-index:1}
 .p39-icon{width:24px;height:18px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
 .p39-top,.p39-middle,.p39-bottom,.p39-cross{display:block;width:24px;height:2px;background:currentColor;flex-shrink:0}
 .p39-middle{position:relative}.p39-cross{position:absolute;inset:0}
-.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:safe center;gap:8px;padding:24px clamp(24px,7vw,64px) 140px;overflow-y:auto;overscroll-behavior:contain;opacity:0;transition:opacity 300ms ease}
+/* Slide and footer placement adapted from mobile_menu; icon animation stays separate. */
+.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:0 16px;overflow-y:auto;overscroll-behavior:contain;transform:translateY(calc(-100% - var(--nav-height)));transition:transform 150ms ease-in-out}
 .mobile-menu-panel[hidden]{display:none!important}
-.mobile-menu-panel[data-open="true"]{opacity:1}
+.mobile-menu-panel[data-open="true"]{transform:translateY(0)}
+.mobile-menu-links{display:flex;flex-direction:column;gap:8px;width:100%;flex-shrink:0;padding-top:max(24px,calc(100px + 8vh - var(--nav-height)));padding-bottom:50px}
+.mobile-menu-footer{display:flex;justify-content:flex-end;align-items:center;width:100%;padding-bottom:30px;flex-shrink:0}
+.mobile-menu-language{position:relative;margin-right:8px}
 @media(prefers-reduced-motion:reduce){.mobile-menu-panel{transition:none}}
 /* Header controls share a height; change --flag-size to resize the flag emoji. */
 .header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
@@ -209,11 +213,14 @@ a:hover{color:#16291f}
 
 <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
   <div id="mobile-menu" ref="{{ menuPanelRef }}" class="mobile-menu-panel" onClick="{{ onNav }}" hidden="{{ true }}" aria-label="Mobile navigation">
+    <div class="mobile-menu-links">
     <a href="#story" data-goto="story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
     <a href="#game" data-goto="game" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
     <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Membership</a>
     <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
-    <div style="position:relative;align-self:flex-start;margin-top:20px">
+    </div>
+    <div class="mobile-menu-footer">
+    <div class="mobile-menu-language">
       <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
         <span ref="{{ mobileLangLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span>ENGLISH</span></sc-if>
@@ -221,7 +228,7 @@ a:hover{color:#16291f}
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
-        <div style="position:absolute;top:calc(100% + 9px);left:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+        <div style="position:absolute;bottom:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
           <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇬🇧</span>
             <span style="flex:1">ENGLISH</span>
@@ -234,6 +241,7 @@ a:hover{color:#16291f}
           </button>
         </div>
       </sc-if>
+    </div>
     </div>
   </div>
 </sc-if>

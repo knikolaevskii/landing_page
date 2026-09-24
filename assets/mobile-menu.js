@@ -50,7 +50,7 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
         panel.hidden = false;
         panel.inert = false;
         panel.setAttribute('aria-hidden', 'false');
-        void panel.offsetWidth; // Establish opacity:0 before beginning the fade.
+        void panel.offsetWidth; // Establish the offscreen transform before sliding down.
         panel.dataset.open = 'true';
         lock();
       } else {
@@ -58,8 +58,8 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
         panel.inert = true;
         panel.setAttribute('aria-hidden', 'true');
         panel.dataset.open = 'false';
-        // Match the source's 600ms close sequence before display:none.
-        timer = setTimeout(() => { panel.hidden = true; unlock(); }, motion.matches ? 0 : 600);
+        // Match the panel slide; the icon keeps its independent 600ms close sequence.
+        timer = setTimeout(() => { panel.hidden = true; unlock(); }, motion.matches ? 0 : 150);
       }
     }
     const from = { ...state };
