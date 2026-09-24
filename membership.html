@@ -135,6 +135,26 @@ a:hover{color:#16291f}
   /* A full-width CTA is the easier target once the card is the width of the screen. */
   .plan .btn{margin-top:6px;align-self:stretch}
 }
+/* Non-member card. One sheet, a green cap, then the guest rates in two labelled groups —
+   the same check glyph as the tier cards, so the two sections read as one system. */
+.nm-card{width:100%;max-width:820px;border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7;overflow:hidden}
+.nm-card-top{display:block;height:8px;background:#203c2c}
+.nm-body{display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3vw,38px);padding:clamp(28px,3.4vw,44px) clamp(26px,5vw,68px)}
+.nm-title{margin:0;font:400 clamp(30px,3.4vw,42px)/1.1 'EB Garamond',serif;color:#1f3a2b}
+.nm-intro{margin:0;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.72)}
+.nm-group{width:100%;display:flex;flex-direction:column;gap:18px}
+.nm-group h4{display:flex;align-items:center;gap:14px;margin:0;font:500 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(42,38,32,.55)}
+.nm-group h4::after{content:"";flex:1;height:1px;background:rgba(31,58,43,.16)}
+/* Left column sizes to its text, right column is pinned to a fixed width and pushed to the
+   far edge, so both groups start and end on the same two verticals as the heading rule. */
+.nm-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:max-content 205px;justify-content:space-between;gap:14px clamp(18px,3vw,28px)}
+.nm-list li{position:relative;padding-left:23px;font:400 16px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.82)}
+.nm-list li b{display:block;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,38,32,.5)}
+.nm-list li span{display:block;margin-top:4px;color:#1f3a2b}
+.nm-list li::before{content:"";position:absolute;left:0;top:21px;width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+/* Two columns need roughly 240px each before the label and its figure start to wrap apart. */
+@media(max-width:639px){.nm-list{grid-template-columns:minmax(0,1fr)}}
+
 /* FAQ — native <details>, so it opens without JS and keeps keyboard and screen-reader
    behaviour for free. The chevron is a rotated corner on ::after, which keeps every <summary>
    plain text: applyLang() writes textContent and would wipe a real child element. */
@@ -148,7 +168,6 @@ a:hover{color:#16291f}
 .faq[open] summary::after{transform:translateY(2px) rotate(225deg)}
 .faq p{margin:0 0 26px;max-width:68ch;font:400 clamp(15px,1.15vw,17px)/1.68 'EB Garamond',serif;color:rgba(42,38,32,.78)}
 @media(prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
-.rates{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding:18px 22px;border:1px dashed rgba(31,58,43,.35);border-radius:14px;font:400 15px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.78)}
 
 .tnote{margin:14px 0 0;font:400 13px/1.6 'Jost',sans-serif;color:rgba(42,38,32,.55)}
 </style>
@@ -242,7 +261,8 @@ a:hover{color:#16291f}
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(20px,2.6vh,30px);max-width:900px">
     <span class="eyebrow" data-i18n="mem.tag" style="color:rgba(241,234,218,.75)">Membership</span>
     <h1 class="h1" data-i18n="mem.h1">Your club. Your court.</h1>
-    <p class="lead" data-i18n="mem.lead" style="color:rgba(241,234,218,.78);max-width:640px">Membership is for those who want to make The Court House part of their routine. Play more, pay less, and get priority access, member benefits and exclusive events.</p>
+    <p class="lead" data-i18n="mem.lead" style="color:rgba(241,234,218,.78);max-width:640px">Membership is for those who want to make The Courthouse part of their routine.</p>
+    <p class="lead" data-i18n="mem.lead1b" style="color:rgba(241,234,218,.78);max-width:640px">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
     <p class="lead" data-i18n="mem.lead2" style="color:rgba(241,234,218,.95);font-style:italic">No unnecessary exclusivity. Just more reasons to play.</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px">
       <a class="btn btn-inv-solid" href="#plans" data-goto="plans" data-i18n="mem.explore">Explore Membership</a>
@@ -258,12 +278,6 @@ a:hover{color:#16291f}
       <span class="eyebrow" data-i18n="mem.plansTag" style="color:#1f3a2b">Choose Your Tier</span>
       <h2 class="h2" data-i18n="mem.plansHeading">Three ways to make it your club.</h2>
       <p class="lead" data-i18n="mem.plansBody" style="color:rgba(42,38,32,.75)">Every tier lowers what you pay per court, opens the booking calendar earlier and moves you up the queue for club events.</p>
-    </div>
-
-    <!-- Baseline: what a court costs without membership, so the savings below read instantly. -->
-    <div class="rates">
-      <strong data-i18n="mem.baseTag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Without membership</strong>
-      <span data-i18n="mem.baseBody">27 € off-peak · 33 € peak · 5 € racket rental · 20 € tournament entry</span>
     </div>
 
     <!-- Every tier states the same five benefits in the same order, so a row reads across columns.
@@ -330,8 +344,53 @@ a:hover{color:#16291f}
     <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
   </div>
 </section>
-<!-- 03 · FAQ -------------------------------------------------------------- -->
-<section id="faq" class="sheet" style="background:#ece5d3">
+<!-- 03 · Non-member ------------------------------------------------------ -->
+<section id="nonmember" class="sheet" style="background:#ece5d3">
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,38px)">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;max-width:660px">
+      <span class="eyebrow" data-i18n="mem.nmTag" style="color:#1f3a2b">Without a membership</span>
+      <h2 class="h2" data-i18n="mem.nmHeading">Non-member options</h2>
+      <p class="lead" data-i18n="mem.nmBody" style="color:rgba(42,38,32,.75)">You never need a membership to play here. These are the standard rates every guest pays.</p>
+    </div>
+
+    <!-- One card, two groups. The figures are the non-member column of the comparison table that
+         used to sit on this page, so they live in exactly one place now. -->
+    <div class="nm-card">
+      <span class="nm-card-top" aria-hidden="true"></span>
+      <div class="nm-body">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;max-width:520px">
+          <h3 class="nm-title" data-i18n="mem.nmCardHeading">Pay-to-play</h3>
+          <p data-i18n="mem.nmCardBody" class="nm-intro">Not ready for membership? Book a court and join in whenever it suits you — no commitment, no monthly fee.</p>
+        </div>
+
+        <div class="nm-group">
+          <h4 data-i18n="mem.nmBooking">Booking</h4>
+          <ul class="nm-list">
+            <li><b data-i18n="mem.nmB1k">Off-peak court</b> <span data-i18n="mem.nmB1v">27.00 € per hour</span></li>
+            <li><b data-i18n="mem.nmB2k">Peak court</b> <span data-i18n="mem.nmB2v">33.00 € per hour</span></li>
+            <li><b data-i18n="mem.nmB3k">Booking window</b> <span data-i18n="mem.nmB3v">7 days ahead</span></li>
+            <li><b data-i18n="mem.nmB4k">Free cancellation</b> <span data-i18n="mem.nmB4v">Members only</span></li>
+          </ul>
+        </div>
+
+        <div class="nm-group">
+          <h4 data-i18n="mem.nmActivities">Activities</h4>
+          <ul class="nm-list">
+            <li><b data-i18n="mem.nmA1k">Racket rental</b> <span data-i18n="mem.nmA1v">5.00 € per session</span></li>
+            <li><b data-i18n="mem.nmA2k">Tournament entry</b> <span data-i18n="mem.nmA2v">20.00 € per player</span></li>
+            <li><b data-i18n="mem.nmA3k">Club events</b> <span data-i18n="mem.nmA3v">Open, no priority</span></li>
+            <li><b data-i18n="mem.nmA4k">Members-only sessions</b> <span data-i18n="mem.nmA4v">Members only</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="tnote" data-i18n="mem.nmNote" style="text-align:center">Court prices per hour. Every membership tier lowers all of the above.</p>
+  </div>
+</section>
+
+<!-- 04 · FAQ -------------------------------------------------------------- -->
+<section id="faq" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
     <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
       <span class="eyebrow" data-i18n="mem.faqTag" style="color:#1f3a2b">Questions</span>
@@ -350,25 +409,12 @@ a:hover{color:#16291f}
       </details>
       <details class="faq">
         <summary><span data-i18n="mem.q5">Can I switch plans after signing up?</span></summary>
-        <p data-i18n="mem.a5">[Yes — you can move between tiers at any time, and the new rate applies from your next billing month.]</p>
+        <p data-i18n="mem.a5">Yes — you can move between tiers at any time, and the new rate applies from your next billing month.</p>
       </details>
       <details class="faq">
         <summary><span data-i18n="mem.q6">How do I cancel my membership?</span></summary>
-        <p data-i18n="mem.a6">[Membership runs month to month and can be cancelled at any time; it stays active until the end of the month you have already paid for.] Write to us through the contact form and we will take care of it.</p>
+        <p data-i18n="mem.a6">Membership runs month to month and can be cancelled at any time; it stays active until the end of the month you have already paid for.] Write to us through the contact form and we will take care of it.</p>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- 04 · Closing ---------------------------------------------------------- -->
-<section id="join" class="sheet" style="background:#f1eada">
-  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;max-width:760px">
-    <span class="eyebrow" data-i18n="mem.joinTag" style="color:#1f3a2b">Join</span>
-    <h2 class="h2" data-i18n="mem.joinHeading">Open to everyone. Made special for those who keep coming back.</h2>
-    <p class="lead" data-i18n="mem.joinBody" style="color:rgba(42,38,32,.78)">You don't need to be a member to belong at The Court House. Membership is simply our way of giving something more to the people who make the club part of their routine.</p>
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 28px;margin-top:4px">
-      <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="mem.join">Join The Club</a>
-      <a class="btn-link" href="index.html#contact" data-i18n="mem.questions">Ask Us A Question</a>
     </div>
   </div>
 </section>
@@ -407,14 +453,13 @@ const SK = {
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
   'mem.tag':'Členstvo',
   'mem.h1':'Váš klub. Váš kurt.',
-  'mem.lead':'Členstvo je pre tých, ktorí chcú, aby sa The Court House stal súčasťou ich rutiny. Hrajte viac, plaťte menej a získajte prioritný prístup, členské výhody a exkluzívne podujatia.',
+  'mem.lead':'Členstvo je pre tých, ktorí chcú, aby sa The Courthouse stal súčasťou ich rutiny.',
+  'mem.lead1b':'Hrajte viac. Plaťte menej. Získajte prednostný prístup, členské výhody, exkluzívne podujatia a bližšie prepojenie s komunitou okolo klubu.',
   'mem.lead2':'Žiadna zbytočná exkluzivita. Len viac dôvodov hrať.',
   'mem.explore':'Preskúmať Členstvo','mem.join':'Pridať sa ku Klubu',
   'mem.plansTag':'Vyberte si Úroveň',
   'mem.plansHeading':'Tri spôsoby, ako si z neho urobiť svoj klub.',
   'mem.plansBody':'Každá úroveň znižuje cenu za kurt, otvára rezervačný kalendár skôr a posúva vás vyššie v poradí na klubové podujatia.',
-  'mem.baseTag':'Bez členstva',
-  'mem.baseBody':'27 € mimo špičky · 33 € v špičke · 5 € požičanie rakety · 20 € vstup do turnaja',
   'mem.perMonth':'/ mesiac','mem.popular':'Najčastejšia voľba',
   'mem.chooseElite':'Pridať sa ako Elite Player','mem.chooseSignature':'Vybrať Signature','mem.chooseHouse':'Vybrať House',
   'mem.rateSignature':'22.95 € mimo špičky · 29.70 € v špičke',
@@ -436,6 +481,30 @@ const SK = {
   'mem.h4':'Požičanie rakety zdarma',
   'mem.h5':'Pro Shop a kliniky −15 %, turnaje −20 % · prvý prístup k podujatiam',
   'mem.cmpNote':'Ceny kurtov sú uvedené za hodinu. Členské ceny sa uplatnia automaticky pri rezervácii.',
+  'mem.nmTag':'Bez členstva',
+  'mem.nmHeading':'Možnosti bez členstva',
+  'mem.nmBody':'Na hru u nás nikdy nepotrebujete členstvo. Toto sú štandardné ceny, ktoré platí každý hosť.',
+  'mem.nmCardHeading':'Plaťte za hru',
+  'mem.nmCardBody':'Ešte nie ste pripravení na členstvo? Rezervujte si kurt a pridajte sa kedykoľvek vám to vyhovuje — bez záväzkov a bez mesačného poplatku.',
+  'mem.nmBooking':'Rezervácia',
+  'mem.nmB1k':'Kurt mimo špičky',
+  'mem.nmB1v':'27.00 € za hodinu',
+  'mem.nmB2k':'Kurt v špičke',
+  'mem.nmB2v':'33.00 € za hodinu',
+  'mem.nmB3k':'Rezervačné okno',
+  'mem.nmB3v':'7 dní dopredu',
+  'mem.nmB4k':'Bezplatné zrušenie',
+  'mem.nmB4v':'Len pre členov',
+  'mem.nmActivities':'Aktivity',
+  'mem.nmA1k':'Požičanie rakety',
+  'mem.nmA1v':'5.00 € za termín',
+  'mem.nmA2k':'Vstup do turnaja',
+  'mem.nmA2v':'20.00 € za hráča',
+  'mem.nmA3k':'Klubové podujatia',
+  'mem.nmA3v':'Otvorené, bez prednosti',
+  'mem.nmA4k':'Tréningy len pre členov',
+  'mem.nmA4v':'Len pre členov',
+  'mem.nmNote':'Ceny kurtov sú za hodinu. Každá úroveň členstva znižuje všetko vyššie uvedené.',
   'mem.faqTag':'Otázky',
   'mem.faqHeading':'Členstvo — časté otázky',
   'mem.faqBody':'To, na čo sa ľudia pýtajú pred vstupom do klubu. Ak tu svoju odpoveď nenájdete, napíšte nám.',
@@ -447,10 +516,6 @@ const SK = {
   'mem.a5':'[Áno — medzi úrovňami sa dá prejsť kedykoľvek a nová sadzba platí od nasledujúceho zúčtovacieho mesiaca.]',
   'mem.q6':'Ako zruším členstvo?',
   'mem.a6':'[Členstvo beží z mesiaca na mesiac a dá sa kedykoľvek zrušiť; zostáva aktívne do konca už zaplateného mesiaca.] Napíšte nám cez kontaktný formulár a my sa oň postaráme.',
-  'mem.joinTag':'Pridajte sa',
-  'mem.joinHeading':'Otvorené pre každého. Výnimočné pre tých, ktorí sa vracajú.',
-  'mem.joinBody':'Nemusíte byť členom, aby ste do The Court House patrili. Členstvo je len náš spôsob, ako dať niečo navyše ľuďom, pre ktorých je klub súčasťou ich rutiny.',
-  'mem.questions':'Opýtajte sa Nás',
   'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
   'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
 };
