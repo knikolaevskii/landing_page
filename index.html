@@ -10,14 +10,39 @@
 <x-dc>
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous"/>
 <link rel="preload" href="assets/hero-video-first-frame.jpg" as="image"/>
 <link rel="preload" href="assets/logo-beige.svg" as="image" fetchpriority="high"/>
 <noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="assets/fonts.css" rel="stylesheet"/>
 <style>
 html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:auto;scroll-snap-type:none}
 body{margin:0}
+/* Section names use script; slogans and body copy use Satoshi. */
+.section-title{
+  margin:0;
+  font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;
+  font-weight:400;
+  font-style:normal;
+  font-synthesis:none;
+  font-size:clamp(48px,5.2vw,76px);
+  line-height:1.16;
+  letter-spacing:0;
+  color:#21633f;
+  text-wrap:pretty;
+  overflow-wrap:break-word;
+}
+
+ .section-slogan{
+  font-family:'Satoshi',Arial,sans-serif;
+  font-size:clamp(28px,3vw,44px);
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  color:#1f3a2b;
+  text-wrap:pretty;
+}
+
 /* Match the hero's green surround and 14px inner corners on every section. */
 section[data-screen-label]:not(#hero){
   --frame-gap:clamp(8px,1.2vw,12px);
@@ -93,8 +118,9 @@ a:hover{color:#16291f}
   #story > [data-rv="img"],#game > [data-rv="img"],#membership > [data-rv="img"]{
     height:100%!important;min-height:0;
   }
-  section[data-screen-label]:not(#hero) h2{font-size:clamp(26px,6.5vw,34px)!important;line-height:1.06!important}
-  #story p,#game p,#membership p{font-size:clamp(15px,3.8vw,17px)!important;line-height:1.4!important;max-width:none!important}
+  section[data-screen-label]:not(#hero) .section-title{font-size:clamp(36px,8.5vw,48px);line-height:1.16}
+  section[data-screen-label]:not(#hero) .section-slogan{font-size:clamp(24px,6vw,32px);line-height:1.2}
+  #story p:not(.section-slogan),#game p:not(.section-slogan),#membership p:not(.section-slogan){font-size:clamp(15px,3.8vw,17px)!important;line-height:1.4!important;max-width:none!important}
   #membership [data-rv-delay=".24"]{gap:10px!important;margin-top:0!important}
   #membership [data-rv-delay=".24"] a,#game [data-i18n="game.cta"]{padding:14px 20px!important;min-height:44px}
   #story [data-i18n="story.cta"]{margin-top:0!important}
@@ -107,7 +133,7 @@ a:hover{color:#16291f}
 </style>
 </helmet>
 
-<div style="font-family:'EB Garamond',serif;color:#2a2620;background:#f1eada">
+<div style="font-family:'Satoshi',Arial,sans-serif;color:#2a2620;background:#f1eada">
 
 <nav ref="{{ navRef }}" onClick="{{ onNav }}" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(16px,3vw,34px);background:#203c2c">
   <a href="#hero" data-goto="hero" style="display:flex;align-items:center;flex-shrink:0">
@@ -115,28 +141,28 @@ a:hover{color:#16291f}
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
-      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
-      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
-      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
-      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:500 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:500 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
+      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:500 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
+      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:500 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
     </div>
   </sc-if>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
-      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 clamp(14px,1.2vw,16px)/1 'EB Garamond',serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:500 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
         <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
-          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇬🇧</span>
             <span style="flex:1">ENGLISH</span>
             <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
-          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇸🇰</span>
             <span style="flex:1">SLOVENSKY</span>
             <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
@@ -159,12 +185,12 @@ a:hover{color:#16291f}
 
 <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
   <div id="mobile-menu" ref="{{ menuPanelRef }}" class="mobile-menu-panel" onClick="{{ onNav }}" hidden="{{ true }}" aria-label="Mobile navigation">
-    <a href="#story" data-goto="story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
-    <a href="#game" data-goto="game" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
-    <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Membership</a>
-    <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'EB Garamond',serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
+    <a href="#story" data-goto="story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
+    <a href="#game" data-goto="game" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
+    <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Membership</a>
+    <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
     <div style="position:relative;align-self:flex-start;margin-top:20px">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
         <span ref="{{ mobileLangLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span>ENGLISH</span></sc-if>
         <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span>SLOVENSKY</span></sc-if>
@@ -172,12 +198,12 @@ a:hover{color:#16291f}
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 9px);left:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
-          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇬🇧</span>
             <span style="flex:1">ENGLISH</span>
             <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
-          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'EB Garamond',serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇸🇰</span>
             <span style="flex:1">SLOVENSKY</span>
             <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
@@ -197,7 +223,7 @@ a:hover{color:#16291f}
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.34),rgba(16,24,18,.16) 45%,rgba(16,24,18,.5))"></div>
     <div ref="{{ heroMarkRef }}" class="hero-reveal" style="position:absolute;inset:0;will-change:opacity,transform">
       <img src="assets/logo-beige.svg" alt="The Court House" class="hero-logo" style="display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
-      <a class="hero-booking" ref="{{ heroCtaRef }}" href="https://player.padelos.co/club/216959" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'EB Garamond',serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
+      <a class="hero-booking" ref="{{ heroCtaRef }}" href="https://player.padelos.co/club/216959" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
     <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
   </div>
@@ -205,18 +231,15 @@ a:hover{color:#16291f}
 
 <section id="story" data-screen-label="02 Our Story" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
-    <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
-      <span style="width:26px;height:1px;background:#1f3a2b"></span>
-      <span data-i18n="story.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Our Story</span>
-    </div>
-    <h2 data-rv data-rv-delay=".08" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">
+    <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="story.tag">Our Story</h2>
+    <p class="section-slogan" data-rv data-rv-delay=".08" style="margin:0;text-wrap:pretty">
       <span data-i18n="story.heading">More than a place to play.</span>
-    </h2>
-    <p data-rv data-rv-delay=".16" data-i18n="story.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Redefining Bratislava scene and becoming a social hub within the vibrant community.</p>
-    <p data-rv data-rv-delay=".22" data-i18n="story.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">The Courthouse started with a simple idea: Sport is better when it brings people together.</p>
-    <p data-rv data-rv-delay=".28" data-i18n="story.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">We created a place where you can compete, learn, meet people, stay for coffee, and become part of a community — whether you’re picking up a racket for the first time or playing every week. Your much needed place in between home and work.</p>
-    <p data-rv data-rv-delay=".34" data-i18n="story.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Come for the game. Stay for everything around it.</p>
-    <a data-rv data-rv-delay=".40" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Our Story →</a>
+    </p>
+    <p data-rv data-rv-delay=".16" data-i18n="story.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:480px">Redefining Bratislava scene and becoming a social hub within the vibrant community.</p>
+    <p data-rv data-rv-delay=".22" data-i18n="story.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7);max-width:480px">The Courthouse started with a simple idea: Sport is better when it brings people together.</p>
+    <p data-rv data-rv-delay=".28" data-i18n="story.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7);max-width:480px">We created a place where you can compete, learn, meet people, stay for coffee, and become part of a community — whether you’re picking up a racket for the first time or playing every week. Your much needed place in between home and work.</p>
+    <p data-rv data-rv-delay=".34" data-i18n="story.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:480px">Come for the game. Stay for everything around it.</p>
+    <a data-rv data-rv-delay=".40" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Our Story →</a>
   </div>
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
@@ -231,52 +254,42 @@ a:hover{color:#16291f}
     </picture>
   </div>
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px;justify-self:center">
-    <div data-rv data-rv-delay=".06" style="display:flex;align-items:center;gap:12px">
-      <span style="width:26px;height:1px;background:#1f3a2b"></span>
-      <span data-i18n="game.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Play</span>
-    </div>
-    <h2 data-rv data-rv-delay=".12" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px)">
+    <h2 class="section-title" data-rv data-rv-delay=".06" data-i18n="game.tag">Play</h2>
+    <p class="section-slogan" data-rv data-rv-delay=".12" style="margin:0">
       <span data-i18n="game.heading">Pick up a racket.</span>
-    </h2>
-    <p data-rv data-rv-delay=".18" data-i18n="game.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Seven premium indoor courts. Pickleball and badminton. Social games, competitive matches, clinics, coaching and tournaments — all under one roof.</p>
+    </p>
+    <p data-rv data-rv-delay=".18" data-i18n="game.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:480px">Seven premium indoor courts. Pickleball and badminton. Social games, competitive matches, clinics, coaching and tournaments — all under one roof.</p>
     <div data-rv data-rv-delay=".24" style="display:flex;flex-direction:column;gap:6px;max-width:480px">
-      <p data-i18n="game.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Never played before? We’ll get you started.</p>
-      <p data-i18n="game.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Already obsessed? You’re in the right place.</p>
-      <p data-i18n="game.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Want to progress? Join clinics or we will find you the right coach.</p>
+      <p data-i18n="game.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Never played before? We’ll get you started.</p>
+      <p data-i18n="game.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Already obsessed? You’re in the right place.</p>
+      <p data-i18n="game.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Want to progress? Join clinics or we will find you the right coach.</p>
     </div>
     <div data-rv data-rv-delay=".3" style="align-self:flex-start;margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
-      <a href="#membership" data-goto="membership" data-i18n="game.cta" style="padding:15px 32px;border-radius:999px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;background:#1f3a2b;border:1px solid #1f3a2b;color:#f1ead9;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Explore Play →</a>
-      <a href="https://player.padelos.co/club/216959" data-i18n="game.cta2" style="padding:15px 32px;border-radius:999px;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;background:transparent;border:1px solid rgba(31,58,43,.5);color:#1f3a2b;transition:background .35s,color .35s,border-color .35s" style-hover="background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9">Book a Court →</a>
+      <a href="#membership" data-goto="membership" data-i18n="game.cta" style="padding:15px 32px;border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;background:#1f3a2b;border:1px solid #1f3a2b;color:#f1ead9;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Explore Play →</a>
+      <a href="https://player.padelos.co/club/216959" data-i18n="game.cta2" style="padding:15px 32px;border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;background:transparent;border:1px solid rgba(31,58,43,.5);color:#1f3a2b;transition:background .35s,color .35s,border-color .35s" style-hover="background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9">Book a Court →</a>
     </div>
   </div>
 </section>
 
 <section id="beyond" data-screen-label="04 Beyond the Court" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(18px,2.4vh,26px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
-  <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
-    <span style="width:26px;height:1px;background:#1f3a2b"></span>
-    <span data-i18n="beyond.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Beyond the Court</span>
-    <span style="width:26px;height:1px;background:#1f3a2b"></span>
-  </div>
-  <h2 data-rv data-rv-delay=".08" data-i18n="beyond.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">The game is only the catalyst.</h2>
-  <p data-rv data-rv-delay=".16" data-i18n="beyond.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:640px">Grab a coffee before your match. Stay for one afterwards. Discover new gear in the Pro Shop, watch a game while catching up with friends or join one of our signature club events created for The Courthouse community throughout the season.</p>
-  <p data-rv data-rv-delay=".22" data-i18n="beyond.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:640px">The Courthouse was designed not just as somewhere you play, but somewhere you actually want to spend your time.</p>
-  <p data-rv data-rv-delay=".28" data-i18n="beyond.list" style="margin:0;font:500 11px/1.8 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Coffee Bar · Pro Shop · Social Spaces</p>
-  <a data-rv data-rv-delay=".34" href="#membership" data-goto="membership" data-i18n="beyond.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Explore the Club →</a>
+  <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="beyond.tag">Beyond the Court</h2>
+  <p class="section-slogan" data-rv data-rv-delay=".08" data-i18n="beyond.heading" style="margin:0;text-wrap:pretty">The game is only the catalyst.</p>
+  <p data-rv data-rv-delay=".16" data-i18n="beyond.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:640px">Grab a coffee before your match. Stay for one afterwards. Discover new gear in the Pro Shop, watch a game while catching up with friends or join one of our signature club events created for The Courthouse community throughout the season.</p>
+  <p data-rv data-rv-delay=".22" data-i18n="beyond.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7);max-width:640px">The Courthouse was designed not just as somewhere you play, but somewhere you actually want to spend your time.</p>
+  <p data-rv data-rv-delay=".28" data-i18n="beyond.list" style="margin:0;font:500 11px/1.8 'Satoshi',Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Coffee Bar · Pro Shop · Social Spaces</p>
+  <a data-rv data-rv-delay=".34" href="#membership" data-goto="membership" data-i18n="beyond.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Explore the Club →</a>
 </section>
 
 <section id="membership" data-screen-label="05 Membership" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px">
-    <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
-      <span style="width:26px;height:1px;background:#1f3a2b"></span>
-      <span data-i18n="member.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Membership</span>
-    </div>
-    <h2 data-rv data-rv-delay=".08" data-i18n="member.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">Your club. Your court.</h2>
-    <p data-rv data-rv-delay=".16" data-i18n="member.body" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:480px">Membership is for those who want to make The Courthouse part of their routine.</p>
-    <p data-rv data-rv-delay=".22" data-i18n="member.body2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
-    <p data-rv data-rv-delay=".28" data-i18n="member.body3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7);max-width:480px">No unnecessary exclusivity. Just more reasons to play.</p>
+    <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="member.tag">Membership</h2>
+    <p class="section-slogan" data-rv data-rv-delay=".08" data-i18n="member.heading" style="margin:0;text-wrap:pretty">Your club. Your court.</p>
+    <p data-rv data-rv-delay=".16" data-i18n="member.body" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:480px">Membership is for those who want to make The Courthouse part of their routine.</p>
+    <p data-rv data-rv-delay=".22" data-i18n="member.body2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7);max-width:480px">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
+    <p data-rv data-rv-delay=".28" data-i18n="member.body3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7);max-width:480px">No unnecessary exclusivity. Just more reasons to play.</p>
     <div data-rv data-rv-delay=".34" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px">
-      <a href="#contact" data-goto="contact" data-i18n="member.learnMore" style="padding:15px 32px;border:1px solid #1f3a2b;border-radius:999px;color:#1f3a2b;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#1f3a2b;color:#f1ead9">Explore Membership →</a>
-      <a href="#contact" data-goto="contact" data-i18n="member.signUp" style="padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Join the Club →</a>
+      <a href="#contact" data-goto="contact" data-i18n="member.learnMore" style="padding:15px 32px;border:1px solid #1f3a2b;border-radius:999px;color:#1f3a2b;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#1f3a2b;color:#f1ead9">Explore Membership →</a>
+      <a href="#contact" data-goto="contact" data-i18n="member.signUp" style="padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Join the Club →</a>
     </div>
   </div>
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
@@ -288,38 +301,31 @@ a:hover{color:#16291f}
 </section>
 
 <section id="whatson" data-screen-label="06 What’s On" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(18px,2.4vh,26px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px)">
-  <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
-    <span style="width:26px;height:1px;background:#1f3a2b"></span>
-    <span data-i18n="whatson.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">What’s On</span>
-    <span style="width:26px;height:1px;background:#1f3a2b"></span>
-  </div>
-  <h2 data-rv data-rv-delay=".08" data-i18n="whatson.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(32px,4.4vw,58px);text-wrap:pretty">There’s always another game.</h2>
-  <p data-rv data-rv-delay=".16" data-i18n="whatson.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:640px">Social nights. Beginner sessions. Competitive leagues. Coaching. Tournaments. Club events.</p>
+  <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="whatson.tag">What’s On</h2>
+  <p class="section-slogan" data-rv data-rv-delay=".08" data-i18n="whatson.heading" style="margin:0;text-wrap:pretty">There’s always another game.</p>
+  <p data-rv data-rv-delay=".16" data-i18n="whatson.p1" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:640px">Social nights. Beginner sessions. Competitive leagues. Coaching. Tournaments. Club events.</p>
   <div data-rv data-rv-delay=".22" style="display:flex;flex-direction:column;gap:6px">
-    <p data-i18n="whatson.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to win.</p>
-    <p data-i18n="whatson.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to learn.</p>
-    <p data-i18n="whatson.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.7)">Some days you’ll come to see who’s there.</p>
+    <p data-i18n="whatson.p2" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Some days you’ll come to win.</p>
+    <p data-i18n="whatson.p3" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Some days you’ll come to learn.</p>
+    <p data-i18n="whatson.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.7)">Some days you’ll come to see who’s there.</p>
   </div>
-  <p data-rv data-rv-delay=".28" data-i18n="whatson.p5" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'EB Garamond',serif;color:rgba(42,38,32,.82);max-width:640px">This is where the community comes alive.</p>
-  <a data-rv data-rv-delay=".34" href="https://player.padelos.co/club/216959/events" data-i18n="whatson.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">See What’s On →</a>
+  <p data-rv data-rv-delay=".28" data-i18n="whatson.p5" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:640px">This is where the community comes alive.</p>
+  <a data-rv data-rv-delay=".34" href="https://player.padelos.co/club/216959/events" data-i18n="whatson.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">See What’s On →</a>
 </section>
 
 <section id="contact" data-screen-label="07 Contact" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;background:#ece5d3">
   <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(96px,10vh,120px) clamp(20px,5vw,72px) clamp(44px,5vh,64px)">
     <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
-      <div data-rv data-rv-delay="0" style="display:flex;align-items:center;gap:12px">
-        <span style="width:26px;height:1px;background:#1f3a2b"></span>
-        <span data-i18n="contact.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Contact Us</span>
-      </div>
-      <h2 data-rv data-rv-delay=".07" data-i18n="contact.heading" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(30px,4.2vw,54px)">Come play at The Court House.</h2>
+      <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="contact.tag">Contact Us</h2>
+      <p class="section-slogan" data-rv data-rv-delay=".07" data-i18n="contact.heading" style="margin:0">Come play at The Court House.</p>
       <div data-rv data-rv-delay=".14" style="display:flex;flex-direction:column;gap:20px">
         <div>
-          <div style="font:400 clamp(20px,1.7vw,26px)/1.3 'EB Garamond',serif;color:#1f3a2b">+421 900 000 000</div>
-          <div style="margin-top:6px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia</div>
+          <div style="font:400 clamp(20px,1.7vw,26px)/1.3 'Satoshi',Arial,sans-serif;color:#1f3a2b">+421 900 000 000</div>
+          <div style="margin-top:6px;font:400 16px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.75)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia</div>
         </div>
         <div>
-          <span data-i18n="contact.hours" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Hours</span>
-          <div style="margin-top:7px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">Mon – Sun · 7:00 – 22:00</div>
+          <span data-i18n="contact.hours" style="font:500 10.5px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Hours</span>
+          <div style="margin-top:7px;font:400 16px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.75)">Mon – Sun · 7:00 – 22:00</div>
         </div>
       </div>
       <div data-rv data-rv-delay=".2" style="display:flex;gap:10px">
@@ -330,21 +336,21 @@ a:hover{color:#16291f}
     <a data-rv="img" data-rv-delay=".1" href="https://www.google.com/maps/search/?api=1&amp;query=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
       <iframe title="Google Map showing Na Pántoch 7707/8, Bratislava" src="https://www.google.com/maps?q=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;pointer-events:none;filter:grayscale(.2) sepia(.15) saturate(.9) contrast(1)"></iframe>
       <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(236,229,211,0.0);pointer-events:none"></div>
-      <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:999px;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:600 10px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
+      <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:999px;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:600 10px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
     </a>
   </div>
   <footer style="background:#203c2c;color:#f1eada;padding:clamp(40px,5vw,64px) clamp(22px,5vw,72px) 24px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(241,234,218,.18)">
       <div>
         <img src="assets/logo-beige.svg" alt="The Court House" style="height:clamp(72px,7vw,96px);width:auto;display:block;margin-bottom:18px"/>
-        <p data-i18n="footer.tagline" style="margin:0;max-width:320px;font:400 15px/1.6 'EB Garamond',serif;color:rgba(241,234,218,.7)">Premium pickleball courts and a community built around the game.</p>
+        <p data-i18n="footer.tagline" style="margin:0;max-width:320px;font:400 15px/1.6 'Satoshi',Arial,sans-serif;color:rgba(241,234,218,.7)">Premium pickleball courts and a community built around the game.</p>
       </div>
       <div>
-        <div data-i18n="footer.visit" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,234,218,.55)">Visit Us</div>
-        <div style="margin-top:12px;font:400 15px/1.7 'EB Garamond',serif;color:rgba(241,234,218,.82)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
+        <div data-i18n="footer.visit" style="font:500 10.5px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,234,218,.55)">Visit Us</div>
+        <div style="margin-top:12px;font:400 15px/1.7 'Satoshi',Arial,sans-serif;color:rgba(241,234,218,.82)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
       </div>
     </div>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:20px;font:400 11px/1 'Jost',sans-serif;letter-spacing:.06em;color:rgba(241,234,218,.5)">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:20px;font:400 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.06em;color:rgba(241,234,218,.5)">
       <span style="white-space:nowrap">© 2026 The Court House</span>
       <div style="display:flex;gap:20px">
         <a href="#" data-i18n="footer.privacy" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Privacy Policy</a>
