@@ -135,41 +135,8 @@ a:hover{color:#16291f}
   /* A full-width CTA is the easier target once the card is the width of the screen. */
   .plan .btn{margin-top:6px;align-self:stretch}
 }
-/* Pay-to-play sits in the same section as the tiers, under a labelled rule. Wide, it keeps the
-   tier card's left column and sets the guest rates in two labelled groups on the right; under
-   1100px it stacks, because the two-up rate grid needs the card's full width. */
-.plan-divider{display:flex;align-items:center;gap:14px;margin:clamp(8px,1.4vw,18px) 0 0;font:500 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(42,38,32,.55)}
-.plan-divider::after{content:"";flex:1;height:1px;background:rgba(31,58,43,.16)}
-.plan-intro{margin:0;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.72)}
-.nm-groups{display:flex;flex-direction:column;gap:clamp(26px,3vw,38px)}
-.nm-group{display:flex;flex-direction:column;gap:18px}
-.nm-group h4{display:flex;align-items:center;gap:14px;margin:0;font:500 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(42,38,32,.55)}
-.nm-group h4::after{content:"";flex:1;height:1px;background:rgba(31,58,43,.16)}
-/* Scoped under .plan-basic so it outranks the tier list rules (.plan ul, .plan li). Left column
-   sizes to its text, right column is pinned and pushed to the far edge, so both groups start and
-   end on the same two verticals as the heading rule. */
-.plan-basic .nm-list{display:grid;align-self:stretch;grid-template-columns:max-content 205px;justify-content:space-between;gap:14px clamp(18px,3vw,28px);padding:0;border:none}
-.plan-basic .nm-list li{padding-left:23px;font:400 16px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.82)}
-.nm-list li b{display:block;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,38,32,.5)}
-.nm-list li span{display:block;margin-top:4px;color:#1f3a2b}
-.plan-basic .nm-list li::before{top:21px;transform:none}
-@media(min-width:1100px){
-  .plan-basic{display:grid;grid-template-columns:minmax(240px,.75fr) 1.25fr;grid-template-areas:"mark groups" "head groups" "price groups" "rate groups" "intro groups" "cta groups";column-gap:56px;row-gap:12px;align-items:start}
-  .plan-basic .plan-mark{grid-area:mark}
-  .plan-basic .plan-head{grid-area:head}
-  .plan-basic .plan-price{grid-area:price}
-  .plan-basic .plan-rate{grid-area:rate}
-  .plan-basic .plan-intro{grid-area:intro}
-  .plan-basic .btn{grid-area:cta;justify-self:start;margin-top:12px}
-  .plan-basic .nm-groups{grid-area:groups;align-self:center;padding-left:44px;border-left:1px solid rgba(31,58,43,.14)}
-}
-@media(max-width:1099px){
-  .plan.plan-basic{display:flex;flex-direction:column;align-items:stretch;gap:18px}
-  .plan-basic .nm-groups{margin:10px 0 6px}
-}
-/* Two columns need roughly 240px each before the label and its figure start to wrap apart. */
-@media(max-width:639px){.plan-basic .nm-list{grid-template-columns:minmax(0,1fr)}}
-/* Standalone non-member card variant (parked; markup commented out in #plans). Uncomment to restore.
+/* Non-member card. One sheet, a green cap, then the guest rates in two labelled groups —
+   the same check glyph as the tier cards, so the two sections read as one system. */
 .nm-card{width:100%;max-width:820px;border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7;overflow:hidden}
 .nm-card-top{display:block;height:8px;background:#203c2c}
 .nm-body{display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3vw,38px);padding:clamp(28px,3.4vw,44px) clamp(26px,5vw,68px)}
@@ -178,13 +145,15 @@ a:hover{color:#16291f}
 .nm-group{width:100%;display:flex;flex-direction:column;gap:18px}
 .nm-group h4{display:flex;align-items:center;gap:14px;margin:0;font:500 11px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(42,38,32,.55)}
 .nm-group h4::after{content:"";flex:1;height:1px;background:rgba(31,58,43,.16)}
+/* Left column sizes to its text, right column is pinned to a fixed width and pushed to the
+   far edge, so both groups start and end on the same two verticals as the heading rule. */
 .nm-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:max-content 205px;justify-content:space-between;gap:14px clamp(18px,3vw,28px)}
 .nm-list li{position:relative;padding-left:23px;font:400 16px/1.5 'EB Garamond',serif;color:rgba(42,38,32,.82)}
 .nm-list li b{display:block;font:500 11px/1 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,38,32,.5)}
 .nm-list li span{display:block;margin-top:4px;color:#1f3a2b}
 .nm-list li::before{content:"";position:absolute;left:0;top:21px;width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+/* Two columns need roughly 240px each before the label and its figure start to wrap apart. */
 @media(max-width:639px){.nm-list{grid-template-columns:minmax(0,1fr)}}
-*/
 
 /* FAQ — native <details>, so it opens without JS and keeps keyboard and screen-reader
    behaviour for free. The chevron is a rotated corner on ::after, which keeps every <summary>
@@ -372,17 +341,28 @@ a:hover{color:#16291f}
 
     </div>
 
-    <p class="plan-divider" data-i18n="mem.nmHeading">Non-member options</p>
+    <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
+  </div>
+</section>
+<!-- 03 · Non-member ------------------------------------------------------ -->
+<section id="nonmember" class="sheet" style="background:#ece5d3">
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,38px)">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;max-width:660px">
+      <span class="eyebrow" data-i18n="mem.nmTag" style="color:#1f3a2b">Without a membership</span>
+      <h2 class="h2" data-i18n="mem.nmHeading">Non-member options</h2>
+      <p class="lead" data-i18n="mem.nmBody" style="color:rgba(42,38,32,.75)">You never need a membership to play here. These are the standard rates every guest pays.</p>
+    </div>
 
-    <article class="plan plan-basic">
-      <img class="plan-mark plan-mark-soft" src="assets/logo-dark-green-house.svg" alt="" aria-hidden="true"/>
-      <div class="plan-head">
-        <h3 class="plan-name" data-i18n="mem.nmCardHeading">Pay-to-play</h3>
-      </div>
-      <div class="plan-price"><b>0 €</b><span data-i18n="mem.perMonth">/ month</span></div>
-      <p class="plan-rate" data-i18n="mem.nmRate">27.00 € off-peak · 33.00 € peak</p>
-      <p class="plan-intro" data-i18n="mem.nmCardBody">Not ready for membership? Book a court and join in whenever it suits you — no commitment, no monthly fee.</p>
-      <div class="nm-groups">
+    <!-- One card, two groups. The figures are the non-member column of the comparison table that
+         used to sit on this page, so they live in exactly one place now. -->
+    <div class="nm-card">
+      <span class="nm-card-top" aria-hidden="true"></span>
+      <div class="nm-body">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;max-width:520px">
+          <h3 class="nm-title" data-i18n="mem.nmCardHeading">Pay-to-play</h3>
+          <p data-i18n="mem.nmCardBody" class="nm-intro">Not ready for membership? Book a court and join in whenever it suits you — no commitment, no monthly fee.</p>
+        </div>
+
         <div class="nm-group">
           <h4 data-i18n="mem.nmBooking">Booking</h4>
           <ul class="nm-list">
@@ -392,6 +372,7 @@ a:hover{color:#16291f}
             <li><b data-i18n="mem.nmB4k">Free cancellation</b> <span data-i18n="mem.nmB4v">Members only</span></li>
           </ul>
         </div>
+
         <div class="nm-group">
           <h4 data-i18n="mem.nmActivities">Activities</h4>
           <ul class="nm-list">
@@ -402,54 +383,13 @@ a:hover{color:#16291f}
           </ul>
         </div>
       </div>
-      <a class="btn btn-ghost btn-m" href="https://player.padelos.co/club/216959" data-i18n="mem.nmCta">Book a Court</a>
-    </article>
-
-    <p class="tnote" data-i18n="mem.cmpNote">Court prices shown per hour. Member rates are applied automatically at booking.</p>
-    <!-- Standalone non-member card variant (parked)
-    <div id="nonmember" style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,38px);margin-top:clamp(24px,4vw,56px)">
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;max-width:660px">
-        <span class="eyebrow" data-i18n="mem.nmTag" style="color:#1f3a2b">Without a membership</span>
-        <h2 class="h2" data-i18n="mem.nmHeading">Non-member options</h2>
-        <p class="lead" data-i18n="mem.nmBody" style="color:rgba(42,38,32,.75)">You never need a membership to play here. These are the standard rates every guest pays.</p>
-      </div>
-
-      <div class="nm-card">
-        <span class="nm-card-top" aria-hidden="true"></span>
-        <div class="nm-body">
-          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;max-width:520px">
-            <h3 class="nm-title" data-i18n="mem.nmCardHeading">Pay-to-play</h3>
-            <p data-i18n="mem.nmCardBody" class="nm-intro">Not ready for membership? Book a court and join in whenever it suits you — no commitment, no monthly fee.</p>
-          </div>
-
-          <div class="nm-group">
-            <h4 data-i18n="mem.nmBooking">Booking</h4>
-            <ul class="nm-list">
-              <li><b data-i18n="mem.nmB1k">Off-peak court</b> <span data-i18n="mem.nmB1v">27.00 € per hour</span></li>
-              <li><b data-i18n="mem.nmB2k">Peak court</b> <span data-i18n="mem.nmB2v">33.00 € per hour</span></li>
-              <li><b data-i18n="mem.nmB3k">Booking window</b> <span data-i18n="mem.nmB3v">7 days ahead</span></li>
-              <li><b data-i18n="mem.nmB4k">Free cancellation</b> <span data-i18n="mem.nmB4v">Members only</span></li>
-            </ul>
-          </div>
-
-          <div class="nm-group">
-            <h4 data-i18n="mem.nmActivities">Activities</h4>
-            <ul class="nm-list">
-              <li><b data-i18n="mem.nmA1k">Racket rental</b> <span data-i18n="mem.nmA1v">5.00 € per session</span></li>
-              <li><b data-i18n="mem.nmA2k">Tournament entry</b> <span data-i18n="mem.nmA2v">20.00 € per player</span></li>
-              <li><b data-i18n="mem.nmA3k">Club events</b> <span data-i18n="mem.nmA3v">Open, no priority</span></li>
-              <li><b data-i18n="mem.nmA4k">Members-only sessions</b> <span data-i18n="mem.nmA4v">Members only</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <p class="tnote" data-i18n="mem.nmNote" style="text-align:center">Court prices per hour. Every membership tier lowers all of the above.</p>
     </div>
-    -->
+
+    <p class="tnote" data-i18n="mem.nmNote" style="text-align:center">Court prices per hour. Every membership tier lowers all of the above.</p>
   </div>
 </section>
-<!-- 03 · FAQ -------------------------------------------------------------- -->
+
+<!-- 04 · FAQ -------------------------------------------------------------- -->
 <section id="faq" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
     <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
@@ -542,12 +482,10 @@ const SK = {
   'mem.h5':'Pro Shop a kliniky −15 %, turnaje −20 % · prvý prístup k podujatiam',
   'mem.cmpNote':'Ceny kurtov sú uvedené za hodinu. Členské ceny sa uplatnia automaticky pri rezervácii.',
   'mem.nmTag':'Bez členstva',
-  'mem.nmBody':'Na hru u nás nikdy nepotrebujete členstvo. Toto sú štandardné ceny, ktoré platí každý hosť.',
-  'mem.nmNote':'Ceny kurtov sú za hodinu. Každá úroveň členstva znižuje všetko vyššie uvedené.',
   'mem.nmHeading':'Možnosti bez členstva',
+  'mem.nmBody':'Na hru u nás nikdy nepotrebujete členstvo. Toto sú štandardné ceny, ktoré platí každý hosť.',
   'mem.nmCardHeading':'Plaťte za hru',
   'mem.nmCardBody':'Ešte nie ste pripravení na členstvo? Rezervujte si kurt a pridajte sa kedykoľvek vám to vyhovuje — bez záväzkov a bez mesačného poplatku.',
-  'mem.nmRate':'27.00 € mimo špičky · 33.00 € v špičke',
   'mem.nmBooking':'Rezervácia',
   'mem.nmB1k':'Kurt mimo špičky',
   'mem.nmB1v':'27.00 € za hodinu',
@@ -566,7 +504,7 @@ const SK = {
   'mem.nmA3v':'Otvorené, bez prednosti',
   'mem.nmA4k':'Tréningy len pre členov',
   'mem.nmA4v':'Len pre členov',
-  'mem.nmCta':'Rezervovať Kurt',
+  'mem.nmNote':'Ceny kurtov sú za hodinu. Každá úroveň členstva znižuje všetko vyššie uvedené.',
   'mem.faqTag':'Otázky',
   'mem.faqHeading':'Členstvo — časté otázky',
   'mem.faqBody':'To, na čo sa ľudia pýtajú pred vstupom do klubu. Ak tu svoju odpoveď nenájdete, napíšte nám.',
