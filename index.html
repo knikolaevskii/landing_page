@@ -13,7 +13,12 @@
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous"/>
 <link rel="preload" href="assets/hero-video-first-frame.jpg" as="image"/>
 <link rel="preload" href="assets/logo-beige.svg" as="image" fetchpriority="high"/>
-<noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}</style></noscript>
+<noscript><style>.hero-reveal{opacity:1!important}.hero-scroll{opacity:.88!important}@media(min-width:1000px){
+  #story > [data-rv="img"],#membership > [data-rv="img"]{
+    width:100%;height:auto!important;aspect-ratio:3 / 2;align-self:center;
+  }
+}
+</style></noscript>
 <link href="assets/fonts.css" rel="stylesheet"/>
 <style>
 html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:auto;scroll-snap-type:none}
@@ -28,17 +33,19 @@ body{margin:0}
   font-size:clamp(48px,5.2vw,76px);
   line-height:1.16;
   letter-spacing:0;
-  color:#21633f;
+  color:#203c2c;
   text-wrap:pretty;
   overflow-wrap:break-word;
 }
 
- .section-slogan{
+.section-slogan{
   font-family:'Satoshi',Arial,sans-serif;
   font-size:clamp(28px,3vw,44px);
-  font-weight:500;
+  font-weight:400;
+  font-style:normal;
+  font-synthesis:none;
   line-height:1.2;
-  letter-spacing:-.02em;
+  letter-spacing:0;
   color:#1f3a2b;
   text-wrap:pretty;
 }
@@ -129,7 +136,7 @@ a:hover{color:#16291f}
   #contact > div > [data-rv="img"]{height:clamp(120px,24svh,220px)!important}
   #contact > footer{flex-shrink:0;padding:24px 20px!important}
 }
-@media(min-width:1000px){.membership-image{left:50%!important;right:auto!important;width:auto!important;height:100%!important;transform:translateX(-50%);object-fit:contain!important}}
+
 </style>
 </helmet>
 
@@ -241,13 +248,13 @@ a:hover{color:#16291f}
     <p data-rv data-rv-delay=".34" data-i18n="story.p4" style="margin:0;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82);max-width:480px">Come for the game. Stay for everything around it.</p>
     <a data-rv data-rv-delay=".40" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Our Story →</a>
   </div>
-  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
+  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
   </div>
 </section>
 
 <section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
-  <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
+  <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
     <picture>
       <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.png"/>
       <img class="game-image" src="assets/how-to-play.png" alt="Aerial view of a doubles pickleball rally" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
@@ -292,7 +299,7 @@ a:hover{color:#16291f}
       <a href="#contact" data-goto="contact" data-i18n="member.signUp" style="padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:999px;color:#f1ead9;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">Join the Club →</a>
     </div>
   </div>
-  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
+  <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <picture>
       <source media="(min-width:1000px)" srcset="assets/membership_desktop.png"/>
       <img class="membership-image" src="assets/membership.png" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
