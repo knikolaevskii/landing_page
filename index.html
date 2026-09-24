@@ -98,7 +98,7 @@ a:hover{color:#16291f}
   /* dvh resizes while the URL bar hides/shows, which makes the page grow and shrink mid-scroll */
   html{--screen-height:100svh}
   /* snap is already disabled by applySnap(), but not until JS mounts */
-  .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:.08em!important}
+  .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}
   html{--nav-height:72px;scroll-behavior:smooth;scroll-snap-type:none!important}
   /* Keep the frame inside the visible screen; let images use leftover space. */
   section[data-screen-label]:not(#hero){
@@ -165,28 +165,28 @@ a:hover{color:#16291f}
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
-      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
-      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
-      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
-      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+      <a href="#story" data-goto="story" data-i18n="nav.story" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="#game" data-goto="game" data-i18n="nav.game" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">How to Play</a>
+      <a href="#membership" data-goto="membership" data-i18n="nav.membership" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
+      <a href="#contact" data-goto="contact" data-i18n="nav.contact" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
     </div>
   </sc-if>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
-      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.12em;text-transform:none;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
         <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
       <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
-          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇬🇧</span>
             <span style="flex:1">ENGLISH</span>
             <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
           </button>
-          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
             <span class="language-flag" aria-hidden="true">🇸🇰</span>
             <span style="flex:1">SLOVENSKY</span>
             <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
