@@ -164,9 +164,9 @@ a:hover{color:#16291f}
     left:0!important;transform:none!important;object-fit:cover!important;
   }
 }
-/* Our Story and Membership: PADEL39 Texas & Beyond's centered two-column composition. */
+/* Editorial sections: PADEL39 Texas & Beyond's two-column composition. */
 @media(min-width:1000px){
-  :is(#story,#membership){
+  :is(#story,#membership,#game){
     grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)!important;
     column-gap:8.1%!important;
     align-content:start;
@@ -174,24 +174,29 @@ a:hover{color:#16291f}
     padding-block:40px!important;
     padding-inline:clamp(24px,5vw,120px)!important;
   }
-  :is(#story,#membership) > div:not([data-rv="img"]){
+  :is(#story,#membership,#game) > div:not([data-rv="img"]){
     grid-column:1;grid-row:1;
     width:100%;max-width:none!important;
     align-self:center;text-align:left;
   }
-  :is(#story,#membership) > [data-rv="img"]{
+  :is(#story,#membership,#game) > [data-rv="img"]{
     grid-column:2;grid-row:1;
     width:100%;height:auto!important;min-height:0;
     aspect-ratio:1 / 1;align-self:center;
   }
-  :is(#story,#membership) p:not(.section-slogan){max-width:none!important;font-size:clamp(16px,1.25vw,24px)!important}
-  :is(#story,#membership) .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
-  :is(#story,#membership) .section-slogan{font-family:'Satoshi',Arial,sans-serif;font-size:40px;font-weight:100;color:#2a2620}
+  :is(#story,#membership,#game) p:not(.section-slogan){max-width:none!important;font-size:clamp(16px,1.25vw,24px)!important}
+  :is(#story,#membership,#game) .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
+  :is(#story,#membership,#game) .section-slogan{font-family:'Satoshi',Arial,sans-serif;font-size:40px;font-weight:100;color:#2a2620}
+  #game{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)!important}
+  #game > [data-rv="img"]{grid-column:1}
+  #game .game-image{object-fit:contain!important;object-position:center}
+  #game > div:not([data-rv="img"]){grid-column:2;min-width:0}
+  #game > div:not([data-rv="img"]) > div{max-width:none!important}
 }
 @media(min-width:1000px) and (prefers-reduced-motion:no-preference){
-  :is(#story,#membership).story-reveal-ready > div:not([data-rv="img"]){opacity:0;transform:translateY(10%);transition:opacity .5s ease .2s,transform .5s ease .2s}
-  :is(#story,#membership).story-reveal-ready > [data-rv="img"]{opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
-  :is(#story,#membership).story-revealed > div:not([data-rv="img"]),:is(#story,#membership).story-revealed > [data-rv="img"]{opacity:1;transform:none}
+  :is(#story,#membership,#game).story-reveal-ready > div:not([data-rv="img"]){opacity:0;transform:translateY(10%);transition:opacity .5s ease .2s,transform .5s ease .2s}
+  :is(#story,#membership,#game).story-reveal-ready > [data-rv="img"]{opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
+  :is(#story,#membership,#game).story-revealed > div:not([data-rv="img"]),:is(#story,#membership,#game).story-revealed > [data-rv="img"]{opacity:1;transform:none}
 }
 </style>
 </helmet>
@@ -589,7 +594,7 @@ class Component extends DCLogic {
   setupSectionReveals() {
     if (!this.sectionObservers) this.sectionObservers = new Map();
     const enabled = window.innerWidth >= 1000 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    ['story', 'membership'].forEach(id => {
+    ['story', 'membership', 'game'].forEach(id => {
       const section = document.getElementById(id);
       if (!section) return;
       if (!enabled) {
