@@ -164,9 +164,9 @@ a:hover{color:#16291f}
     left:0!important;transform:none!important;object-fit:cover!important;
   }
 }
-/* Our Story: PADEL39 Texas & Beyond's centered two-column composition. */
+/* Our Story and Membership: PADEL39 Texas & Beyond's centered two-column composition. */
 @media(min-width:1000px){
-  #story{
+  :is(#story,#membership){
     grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)!important;
     column-gap:8.1%!important;
     align-content:start;
@@ -174,24 +174,24 @@ a:hover{color:#16291f}
     padding-block:40px!important;
     padding-inline:clamp(24px,5vw,120px)!important;
   }
-  #story > div:not([data-rv="img"]){
+  :is(#story,#membership) > div:not([data-rv="img"]){
     grid-column:1;grid-row:1;
     width:100%;max-width:none!important;
     align-self:center;text-align:left;
   }
-  #story > [data-rv="img"]{
+  :is(#story,#membership) > [data-rv="img"]{
     grid-column:2;grid-row:1;
     width:100%;height:auto!important;min-height:0;
     aspect-ratio:1 / 1;align-self:center;
   }
-  #story p:not(.section-slogan){max-width:none!important;font-size:clamp(16px,1.25vw,24px)!important}
-  #story .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
-  #story .section-slogan{font-family:'Satoshi',Arial,sans-serif;font-size:40px;font-weight:100}
+  :is(#story,#membership) p:not(.section-slogan){max-width:none!important;font-size:clamp(16px,1.25vw,24px)!important}
+  :is(#story,#membership) .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
+  :is(#story,#membership) .section-slogan{font-family:'Satoshi',Arial,sans-serif;font-size:40px;font-weight:100;color:#2a2620}
 }
 @media(min-width:1000px) and (prefers-reduced-motion:no-preference){
-  #story.story-reveal-ready > div:not([data-rv="img"]){opacity:0;transform:translateY(10%);transition:opacity .5s ease .2s,transform .5s ease .2s}
-  #story.story-reveal-ready > [data-rv="img"]{opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
-  #story.story-revealed > div:not([data-rv="img"]),#story.story-revealed > [data-rv="img"]{opacity:1;transform:none}
+  :is(#story,#membership).story-reveal-ready > div:not([data-rv="img"]){opacity:0;transform:translateY(10%);transition:opacity .5s ease .2s,transform .5s ease .2s}
+  :is(#story,#membership).story-reveal-ready > [data-rv="img"]{opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
+  :is(#story,#membership).story-revealed > div:not([data-rv="img"]),:is(#story,#membership).story-revealed > [data-rv="img"]{opacity:1;transform:none}
 }
 </style>
 </helmet>
@@ -491,7 +491,7 @@ class Component extends DCLogic {
     });
   }
   componentWillUnmount() {
-    if (this.storyObserver) this.storyObserver.disconnect();
+    if (this.sectionObservers) this.sectionObservers.forEach(observer => observer.disconnect());
     if (this.mobileMenu) this.mobileMenu.destroy();
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
@@ -586,30 +586,34 @@ class Component extends DCLogic {
     document.addEventListener('scroll', kick, { passive: true });
   }
 
-  setupStoryReveal() {
-    const story = document.getElementById('story');
-    if (!story) return;
+  setupSectionReveals() {
+    if (!this.sectionObservers) this.sectionObservers = new Map();
     const enabled = window.innerWidth >= 1000 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!enabled) {
-      if (this.storyObserver) this.storyObserver.disconnect();
-      this.storyObserver = null;
-      story.classList.remove('story-reveal-ready');
-      return;
-    }
-    if (story.classList.contains('story-revealed') || this.storyObserver || !('IntersectionObserver' in window)) return;
-    story.classList.add('story-reveal-ready');
-    this.storyObserver = new IntersectionObserver(entries => {
-      if (!entries.some(entry => entry.isIntersecting)) return;
-      story.classList.add('story-revealed');
-      this.storyObserver.disconnect();
-      this.storyObserver = null;
+    ['story', 'membership'].forEach(id => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      if (!enabled) {
+        this.sectionObservers.get(id)?.disconnect();
+        this.sectionObservers.delete(id);
+        section.classList.remove('story-reveal-ready');
+        return;
+      }
+      if (section.classList.contains('story-revealed') || this.sectionObservers.has(id) || !('IntersectionObserver' in window)) return;
+      section.classList.add('story-reveal-ready');
+      const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        section.classList.add('story-revealed');
+        observer.disconnect();
+        this.sectionObservers.delete(id);
+      });
+      this.sectionObservers.set(id, observer);
+      observer.observe(section.firstElementChild);
     });
-    this.storyObserver.observe(story.firstElementChild);
   }
 
   collect() {
     if (!this.sc) return;
-    this.setupStoryReveal();
+    this.setupSectionReveals();
     this.sc.querySelectorAll('[data-rv]').forEach(el => {
       el.style.transform = '';
       el.style.willChange = 'auto';
