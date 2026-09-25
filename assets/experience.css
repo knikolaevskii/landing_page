@@ -4,7 +4,7 @@
 .experience-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:60px}
 .experience-intro{display:flex;flex-direction:column;gap:24px;max-width:600px}
 #beyond .section-slogan{font-family:'Experience Prata',serif;font-weight:400}
-#beyond .experience-intro > p:not(.section-slogan){font-family:'Experience Poppins',sans-serif!important;font-weight:400}
+#beyond .experience-body > p:not(.section-slogan){font-family:'Experience Poppins',sans-serif!important;font-weight:400}
 .experience-heading > a{flex-shrink:0}
 #beyond .experience-heading > a{border-radius:0!important}
 .experience-carousel{min-width:0}
@@ -24,7 +24,7 @@
 @media(min-width:1000px){
   #beyond .section-title{font-size:38px;font-weight:400}
   #beyond .section-slogan{font:400 40px/1.2 'Experience Prata',serif;color:#2a2620}
-  #beyond .experience-intro > p:not(.section-slogan):not([data-i18n="beyond.list"]){font-size:clamp(16px,1.25vw,24px)!important}
+  #beyond .experience-body > p:not(.section-slogan):not([data-i18n="beyond.list"]){font-size:clamp(16px,1.25vw,24px)!important}
 }
 @media(max-width:999px){
   #beyond{padding:24px 20px}
@@ -34,3 +34,14 @@
   .experience-card > img{height:auto;aspect-ratio:788 / 700}
   .experience-card-copy{padding:24px;border-left:1px solid #d8cfbd;border-top:0}
 }
+
+.experience-body{display:flex;flex-direction:column;gap:24px}
+@media(prefers-reduced-motion:no-preference){
+  #beyond .experience-reveal-ready{opacity:0;transition:opacity .5s ease .4s}
+  #beyond [data-experience-reveal="button"].experience-reveal-ready{transition:opacity .5s ease .4s,background .35s,color .35s!important}
+  #beyond [data-experience-reveal="title"].experience-reveal-ready{transform:translateY(4px);transition:opacity .6s ease,transform .6s ease}
+  #beyond [data-experience-reveal="body"].experience-reveal-ready{transform:translateY(10%);transition:opacity .5s ease .4s,transform .5s ease .4s}
+  #beyond [data-experience-reveal="carousel"].experience-reveal-ready{transform:translateY(10%);transition:opacity .5s ease .6s,transform .5s ease .6s}
+  #beyond [data-experience-reveal].experience-visible{opacity:1;transform:none}
+}
+@media(max-width:999px){.experience-body{gap:16px}}
