@@ -45,7 +45,7 @@
   :is(#beyond,#whatson) [data-experience-reveal].experience-visible{opacity:1;transform:none}
 }
 @media(max-width:999px){.experience-body{gap:16px}}
-.whats-on-articles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 40px}
+.whats-on-articles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
 .whats-on-article{display:flex;flex-direction:column;min-width:0;background:#fff;color:#53535b}
 .whats-on-article figure{position:relative;margin:0;overflow:hidden}
 .whats-on-article img{display:block;width:100%;height:auto;aspect-ratio:460 / 400;object-fit:cover;transition:transform .3s ease}
