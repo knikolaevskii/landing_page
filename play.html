@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play · The Court House</title>
+<script src="./assets/mobile-menu.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous"/>
+<link rel="preload" href="assets/logo-beige-house.svg" as="image" fetchpriority="high"/>
+<link href="assets/fonts.css" rel="stylesheet"/>
+<style>
+html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:auto;scroll-snap-type:none}
+body{margin:0}
+/* Type roles copied from index.html: script for section names, Satoshi for everything else. */
+.section-title{
+  margin:0;
+  font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;
+  font-weight:400;
+  font-style:normal;
+  font-synthesis:none;
+  font-size:clamp(48px,5.2vw,76px);
+  line-height:1.16;
+  letter-spacing:0;
+  color:#203c2c;
+  text-wrap:pretty;
+  overflow-wrap:break-word;
+}
+.section-slogan{
+  margin:0;
+  font-family:'Satoshi',Arial,sans-serif;
+  font-size:clamp(28px,3vw,44px);
+  font-weight:400;
+  font-style:normal;
+  font-synthesis:none;
+  line-height:1.2;
+  letter-spacing:0;
+  color:#1f3a2b;
+  text-wrap:pretty;
+}
+.mobile-menu-toggle{display:grid;place-items:center;width:44px;height:44px;padding:8px;background:none;border:none;color:#f1eada;cursor:pointer;flex-shrink:0}
+.mobile-menu-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.p39-icon{width:24px;height:18px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.p39-top,.p39-middle,.p39-bottom,.p39-cross{display:block;width:24px;height:2px;background:currentColor;flex-shrink:0}
+.p39-middle{position:relative}.p39-cross{position:absolute;inset:0}
+.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:safe center;gap:8px;padding:24px clamp(24px,7vw,64px) 140px;overflow-y:auto;overscroll-behavior:contain;opacity:0;transition:opacity 300ms ease}
+.mobile-menu-panel[hidden]{display:none!important}
+.mobile-menu-panel[data-open="true"]{opacity:1}
+@media(prefers-reduced-motion:reduce){.mobile-menu-panel{transition:none}}
+.header-control{display:inline-flex;align-items:center;justify-content:center;height:40px}
+.language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
+*{box-sizing:border-box}
+a{text-decoration:none;color:#1f3a2b}
+a:hover{color:#16291f}
+::selection{background:#203c2c;color:#f1eada}
+@keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* Sections carry the home page's green frame and 14px inner corners, but size to their content:
+   the home page's full-screen section rule would clip a long page on mobile. */
+.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background:#f1eada;background-clip:padding-box;scroll-margin-top:var(--nav-height)}
+.sheet-alt{background-color:#ece5d3}
+.wrap{max-width:1180px;margin:0 auto;min-width:0}
+.wrap > *{min-width:0}
+.stack{display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px)}
+.body{margin:0;max-width:560px;font:400 clamp(16px,1.15vw,18px)/1.62 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.82)}
+.body-soft{color:rgba(42,38,32,.7)}
+.lines{display:flex;flex-direction:column;gap:6px}
+.kicker{margin:0;font:500 10.5px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b}
+.note{margin:0;font:400 14px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.62)}
+
+/* Buttons. Values are the inline pills from index.html #game, named once here. */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:15px 32px;border:1px solid transparent;border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s,border-color .35s}
+.btn-solid{background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9}
+.btn-solid:hover{background:#16291f;border-color:#16291f;color:#f1ead9}
+.btn-ghost{border-color:rgba(31,58,43,.5);color:#1f3a2b}
+.btn-ghost:hover{background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9}
+.btn-inv-solid{background:#f1eada;border-color:#f1eada;color:#203c2c}
+.btn-inv-solid:hover{background:#fffdf7;border-color:#fffdf7;color:#16291f}
+.btn:focus-visible,.btn-link:focus-visible{outline:2px solid #1f3a2b;outline-offset:3px}
+.btn-inv-solid:focus-visible,.btn-link-inv:focus-visible{outline-color:#f1eada}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none;cursor:default}
+.btn-link{display:inline-flex;align-items:center;min-height:44px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;border-bottom:1px solid rgba(31,58,43,.45);transition:color .35s,border-color .35s}
+.btn-link:hover{color:#16291f;border-bottom-color:#16291f}
+.btn-link-inv{color:#f1eada;border-bottom-color:rgba(241,234,218,.5)}
+.btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:6px}
+
+/* Intro: flat brand green under the nav, like the membership intro. */
+.intro{padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) clamp(20px,5vw,72px) clamp(56px,8vh,96px);background:#203c2c;color:#f1eada}
+.intro .section-title,.intro .section-slogan{color:#f1eada}
+.intro .body{color:rgba(241,234,218,.8)}
+.intro .body-soft{color:rgba(241,234,218,.66)}
+.intro .kicker{color:rgba(241,234,218,.9)}
+
+/* Split: the home page's editorial grid, five columns of copy and seven of photography. */
+.split{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:clamp(28px,4vw,48px);align-items:center}
+.split > .copy{grid-column:1 / span 5}
+.split > .media{grid-column:6 / -1}
+.split-flip > .media{grid-column:1 / span 7;grid-row:1}
+.split-flip > .copy{grid-column:8 / -1;grid-row:1}
+.split-even > .copy{grid-column:1 / span 6}
+.split-even > .aside{grid-column:8 / -1}
+.media{position:relative;min-height:440px;align-self:stretch;border-radius:14px;overflow:hidden;background:#203c2c}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* Find your game */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px)}
+.card{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.4vw,36px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7}
+.card-num{font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;color:rgba(42,38,32,.5)}
+.card h3,.learn h3{margin:0;font:500 clamp(20px,1.7vw,24px)/1.25 'Satoshi',Arial,sans-serif;color:#1f3a2b}
+.card p{margin:0;font:400 16px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.78)}
+
+/* Coaching: name / description rows on hairlines, the FAQ list rhythm. */
+.learn{margin:0;padding:0;list-style:none;border-top:1px solid rgba(31,58,43,.18)}
+.learn li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:8px 20px;padding:22px 2px;border-bottom:1px solid rgba(31,58,43,.18);align-items:baseline}
+.learn p{margin:0;font:400 16px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.78)}
+
+/* Compete: formats as quiet pills. */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+.chips li{padding:11px 18px;border:1px solid rgba(31,58,43,.3);border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;background:#fffdf7}
+
+/* Court diagram. Court lines stay light so the rally path reads first; the path draws once when
+   the card scrolls into view (JS sets its dash length), markers fade in after it. */
+.court-card{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(28px,4vw,56px);align-items:center;padding:clamp(24px,3vw,44px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7;scroll-margin-top:calc(var(--nav-height) + 24px)}
+.court-card svg{display:block;width:100%;height:auto}
+.c-surface{fill:#f1eada}
+.c-kitchen{fill:rgba(31,58,43,.13)}
+.c-line{fill:none;stroke:rgba(31,58,43,.5);stroke-width:1.5}
+.c-net{fill:none;stroke:#1f3a2b;stroke-width:4;stroke-linecap:round}
+.c-label{font-family:'Satoshi',Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.14em;fill:rgba(42,38,32,.6)}
+.c-label-soft{fill:rgba(42,38,32,.4)}
+.c-path{fill:none;stroke:#1f3a2b;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.c-bounce{fill:none;stroke:#1f3a2b;stroke-width:1.5}
+.c-ball{fill:#f1eada;stroke:#1f3a2b;stroke-width:2}
+.c-mark circle{fill:#1f3a2b}
+.c-mark text{font-family:'Satoshi',Arial,sans-serif;font-size:12px;font-weight:500;fill:#f1eada}
+.c-anim{opacity:0;transition:opacity .5s ease}
+.court-card.is-in .c-anim{opacity:1}
+.court-card.is-in .c-path{animation:courtDraw 2.6s cubic-bezier(.45,.05,.3,1) .2s forwards}
+@keyframes courtDraw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){
+  .c-path{stroke-dashoffset:0!important;animation:none!important}
+  .c-anim{opacity:1!important;transition:none!important}
+}
+.legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px}
+.legend li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:14px;align-items:start}
+.legend-num{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#1f3a2b;color:#f1eada;font:500 12px/1 'Satoshi',Arial,sans-serif}
+.legend b{display:block;font:500 16px/1.4 'Satoshi',Arial,sans-serif;color:#1f3a2b}
+.legend div span{display:block;margin-top:2px;font:400 15px/1.55 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.72)}
+
+/* Final CTA: the hero's framed video, with almost nothing on top of it. */
+.finale{padding:clamp(8px,1.2vw,12px);background:#203c2c}
+.finale-frame{position:relative;min-height:min(86svh,820px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2vh,22px);padding:clamp(56px,8vh,96px) clamp(20px,5vw,72px);border-radius:14px;overflow:hidden;background:#2d2a24;text-align:center;color:#f1eada}
+.finale-frame > img,.finale-frame > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.finale-frame > video{opacity:0;transition:opacity .45s ease}
+.finale-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.5),rgba(16,24,18,.38) 45%,rgba(16,24,18,.66))}
+.finale-frame > :not(img):not(video):not(.finale-shade){position:relative}
+.finale .section-slogan{color:#f1eada;font-size:clamp(34px,4.4vw,64px)}
+.finale .body{max-width:none;color:rgba(241,234,218,.86)}
+.finale-small{margin:clamp(10px,2vh,18px) 0 0;display:flex;flex-direction:column;align-items:center;gap:2px;font:400 14px/1.5 'Satoshi',Arial,sans-serif;color:rgba(241,234,218,.72)}
+
+@media(max-width:999px){
+  html{--screen-height:100svh;--nav-height:72px;scroll-behavior:smooth}
+  .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}
+  .section-title{font-size:clamp(36px,8.5vw,48px)}
+  .section-slogan{font-size:clamp(24px,6vw,32px)}
+  .body{max-width:none;font-size:clamp(15px,3.8vw,17px)}
+  .split{grid-template-columns:minmax(0,1fr)}
+  .split > .copy,.split > .media,.split > .aside,.split-flip > .copy,.split-flip > .media,.split-even > .copy,.split-even > .aside{grid-column:1 / -1;grid-row:auto}
+  .split > .media{order:-1;min-height:clamp(220px,56vw,420px)}
+  .cards{grid-template-columns:minmax(0,1fr)}
+  .court-card{grid-template-columns:minmax(0,1fr)}
+  .finale-frame{min-height:72svh}
+}
+@media(max-width:639px){
+  .learn li{grid-template-columns:minmax(0,1fr)}
+  .actions .btn{flex:1 1 auto}
+}
+</style>
+</helmet>
+
+<div style="font-family:'Satoshi',Arial,sans-serif;color:#2a2620;background:#203c2c">
+
+<nav ref="{{ navRef }}" onClick="{{ onNav }}" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(16px,3vw,34px);background:#203c2c">
+  <a href="index.html" style="display:flex;align-items:center;flex-shrink:0">
+    <img src="assets/logo-beige-house.svg" alt="The Court House" style="height:42px;width:auto;display:block"/>
+  </a>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:clamp(16px,2.2vw,34px);margin-left:auto">
+      <a href="index.html#story" data-i18n="nav.story" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Our Story</a>
+      <a href="play.html" aria-current="page" data-i18n="nav.game" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:#f1eada;white-space:nowrap;border-bottom:1px solid rgba(241,234,218,.6);padding-bottom:3px">How to Play</a>
+      <a href="index.html#membership" data-i18n="nav.membership" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Membership</a>
+      <a href="index.html#contact" data-i18n="nav.contact" style="font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;color:rgba(241,234,218,.85);white-space:nowrap" style-hover="color:#f1eada">Contact</a>
+    </div>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+        <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
+        <span style="font-size:9px;opacity:.7">▾</span>
+      </button>
+      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 9px);right:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇬🇧</span>
+            <span style="flex:1">ENGLISH</span>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇸🇰</span>
+            <span style="flex:1">SLOVENSKY</span>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button ref="{{ menuButtonRef }}" class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="p39-icon" aria-hidden="true">
+          <span class="p39-top"></span>
+          <span class="p39-middle"><span class="p39-cross"></span></span>
+          <span class="p39-bottom"></span>
+        </span>
+      </button>
+    </sc-if>
+  </div>
+</nav>
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <div id="mobile-menu" ref="{{ menuPanelRef }}" class="mobile-menu-panel" onClick="{{ onNav }}" hidden="{{ true }}" aria-label="Mobile navigation">
+    <a href="index.html#story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
+    <a href="play.html" aria-current="page" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c;opacity:.55">How to Play</a>
+    <a href="index.html#membership" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Membership</a>
+    <a href="index.html#contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
+    <div style="position:relative;align-self:flex-start;margin-top:20px">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(32,60,44,.4);border-radius:999px;padding:11px 22px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.08em;color:#203c2c;cursor:pointer" style-hover="border-color:#203c2c">
+        <span ref="{{ mobileLangLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
+        <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span>ENGLISH</span></sc-if>
+        <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span>SLOVENSKY</span></sc-if>
+        <span style="font-size:9px;opacity:.7">▾</span>
+      </button>
+      <sc-if value="{{ langMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 9px);left:0;background:#fffdf7;border:1px solid rgba(32,60,44,.12);border-radius:12px;box-shadow:0 16px 40px rgba(23,20,15,.16);padding:6px;display:flex;flex-direction:column;min-width:150px;z-index:120;animation:chIn .28s cubic-bezier(.22,1,.36,1) both">
+          <button onClick="{{ selectEn }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇬🇧</span>
+            <span style="flex:1">ENGLISH</span>
+            <sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+          <button onClick="{{ selectSk }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:10px 12px;border-radius:8px;font:500 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:.1em;color:#2a2620;cursor:pointer;text-align:left" style-hover="background:#f1eada">
+            <span class="language-flag" aria-hidden="true">🇸🇰</span>
+            <span style="flex:1">SLOVENSKY</span>
+            <sc-if value="{{ isSk }}" hint-placeholder-val="{{ false }}"><span style="color:#203c2c">✓</span></sc-if>
+          </button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
+
+<!-- A · Play ---------------------------------------------------------------- -->
+<section id="top" class="intro">
+  <div class="wrap stack" style="max-width:1180px">
+    <h1 class="section-title" data-i18n="play.tag">Play</h1>
+    <p class="section-slogan" data-i18n="play.heading">Everyone starts somewhere.</p>
+    <p class="body" data-i18n="play.p1">Some come to compete. Some come to switch off. Some just want an excuse to get their friends together.</p>
+    <p class="body" data-i18n="play.p2">At The Courthouse, there’s room for all of it.</p>
+    <p class="body" data-i18n="play.p3">Seven premium indoor courts. Pickleball and badminton. Coaching, social play, competitive matches and tournaments — whether it’s your first time holding a paddle or you’ve already stopped counting the games.</p>
+    <p class="body" data-i18n="play.p4" style="color:#f1eada;font-style:italic">Find your game. We’ll provide the court.</p>
+    <div class="actions">
+      <a class="btn btn-inv-solid" href="https://player.padelos.co/club/216959" data-i18n="play.book">Book a Court</a>
+      <a class="btn-link btn-link-inv" href="#basics" data-goto="basics" data-i18n="play.howTo">New to pickleball? ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- B · Pickleball ---------------------------------------------------------- -->
+<section id="pickleball" class="sheet">
+  <div class="wrap split split-flip">
+    <div class="media">
+      <img src="assets/arena-nets.png" alt="Indoor pickleball courts at The Court House" loading="lazy"/>
+    </div>
+    <div class="copy stack">
+      <h2 class="section-title" data-i18n="pb.tag">Pickleball</h2>
+      <p class="section-slogan" data-i18n="pb.heading">Easy to start. Hard to put down.</p>
+      <p class="body" data-i18n="pb.p1">There’s a reason pickleball is one of the fastest-growing sports in the world.</p>
+      <p class="body" data-i18n="pb.p2">It’s quick to learn, immediately social and competitive enough to keep you coming back. You don’t need years of experience to have a great game but there’s always another level to reach.</p>
+      <p class="body" data-i18n="pb.p3">The Courthouse is built around it. Seven dedicated indoor courts give you a place to play year-round, whether you’re here for a casual game between friends, training for competition or somewhere in between.</p>
+      <div class="lines">
+        <p class="body body-soft" data-i18n="pb.p4">Come with your own group or come looking for one.</p>
+        <p class="body" data-i18n="pb.p5" style="color:#1f3a2b">This is your court.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="pb.book">Book Pickleball</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- C · New to pickleball --------------------------------------------------- -->
+<section id="new" class="sheet sheet-alt">
+  <div class="wrap stack" style="gap:clamp(36px,5vw,64px)">
+    <div class="split split-even" style="align-items:start">
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="new.tag">New to Pickleball?</h2>
+        <p class="section-slogan" data-i18n="new.heading">You’ll get it in minutes.</p>
+        <p class="body" data-i18n="new.p1">Never played? Perfect.</p>
+        <p class="body" data-i18n="new.p2">Pickleball combines elements of tennis, badminton and table tennis into a game that’s remarkably easy to pick up.</p>
+        <div class="lines">
+          <p class="body" data-i18n="new.p3">You need a paddle, a ball, a court and someone on the other side of the net.</p>
+          <p class="body body-soft" data-i18n="new.p4">We’ll help with the rest.</p>
+        </div>
+      </div>
+      <div class="aside stack">
+        <p class="kicker" data-i18n="new.basicsTag">The basics</p>
+        <p class="body" data-i18n="new.b1">Pickleball can be played as singles or doubles, although doubles is the most popular format.</p>
+        <p class="body" data-i18n="new.b2">Serve diagonally. Let the ball bounce once on each side at the beginning of the rally. Keep away from volleying inside the area closest to the net, known as the kitchen, and play your way to 11.</p>
+        <div class="lines">
+          <p class="body" data-i18n="new.b3">That’s enough to get your first game started.</p>
+          <p class="body body-soft" data-i18n="new.b4">And yes, we’ll explain the rest when you arrive.</p>
+        </div>
+        <div class="lines">
+          <p class="body" data-i18n="new.b5" style="color:#1f3a2b">No equipment? No problem.</p>
+          <p class="body body-soft" data-i18n="new.b6">Paddles and balls are available at the club.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-ghost" href="#basics" data-goto="basics" data-i18n="new.howTo">How to Play →</a>
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="new.book">Book Your First Game →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- The four basics above, drawn on a court. The legend carries the meaning; the drawing only
+         shows where each rule happens. -->
+    <figure id="basics" ref="{{ courtRef }}" class="court-card" style="margin:0">
+      <svg viewBox="0 0 520 290" role="img" aria-labelledby="court-title court-desc">
+        <title id="court-title">Pickleball court, seen from above</title>
+        <desc id="court-desc">A serve travels diagonally into the opposite service box and bounces. The return bounces on the server’s side. The next shot lands short, near the kitchen: the zone on each side of the net where volleys are not allowed.</desc>
+        <rect class="c-surface" x="40" y="50" width="440" height="200"/>
+        <rect class="c-kitchen" x="190" y="50" width="140" height="200"/>
+        <rect class="c-line" x="40" y="50" width="440" height="200"/>
+        <line class="c-line" x1="190" y1="50" x2="190" y2="250"/>
+        <line class="c-line" x1="330" y1="50" x2="330" y2="250"/>
+        <line class="c-line" x1="40" y1="150" x2="190" y2="150"/>
+        <line class="c-line" x1="330" y1="150" x2="480" y2="150"/>
+        <line class="c-net" x1="260" y1="42" x2="260" y2="258"/>
+        <text class="c-label" x="260" y="30" text-anchor="middle">KITCHEN · NO VOLLEYS</text>
+        <text class="c-label" x="260" y="278" text-anchor="middle">NET</text>
+        <text class="c-label" x="40" y="278">BASELINE</text>
+        <text class="c-label" x="480" y="278" text-anchor="end">BASELINE</text>
+        <text class="c-label c-label-soft" x="115" y="104" text-anchor="middle">SERVICE BOX</text>
+        <text class="c-label c-label-soft" x="405" y="204" text-anchor="middle">SERVICE BOX</text>
+
+        <path class="c-path" d="M28 205 L410 100 L105 195 L300 172"/>
+        <circle class="c-bounce c-anim" cx="410" cy="100" r="8" style="transition-delay:1.2s"/>
+        <circle class="c-bounce c-anim" cx="105" cy="195" r="8" style="transition-delay:2s"/>
+        <circle class="c-ball c-anim" cx="300" cy="172" r="6" style="transition-delay:2.7s"/>
+
+        <g class="c-mark c-anim" style="transition-delay:.2s"><circle cx="20" cy="228" r="11"/><text x="20" y="232" text-anchor="middle">1</text></g>
+        <g class="c-mark c-anim" style="transition-delay:1.3s"><circle cx="432" cy="84" r="11"/><text x="432" y="88" text-anchor="middle">2</text></g>
+        <g class="c-mark c-anim" style="transition-delay:2.1s"><circle cx="84" cy="212" r="11"/><text x="84" y="216" text-anchor="middle">2</text></g>
+        <g class="c-mark c-anim" style="transition-delay:2.8s"><circle cx="296" cy="84" r="11"/><text x="296" y="88" text-anchor="middle">3</text></g>
+      </svg>
+      <figcaption>
+        <ol class="legend">
+          <li><span class="legend-num" aria-hidden="true">1</span><div><b data-i18n="new.l1">Serve diagonally</b><span data-i18n="new.l1d">Into the service box across from you.</span></div></li>
+          <li><span class="legend-num" aria-hidden="true">2</span><div><b data-i18n="new.l2">Let it bounce</b><span data-i18n="new.l2d">Once on each side at the start of the rally.</span></div></li>
+          <li><span class="legend-num" aria-hidden="true">3</span><div><b data-i18n="new.l3">Mind the kitchen</b><span data-i18n="new.l3d">No volleys inside the zone closest to the net.</span></div></li>
+          <li><span class="legend-num" aria-hidden="true">4</span><div><b data-i18n="new.l4">Play to 11</b><span data-i18n="new.l4d">Singles or doubles. Doubles is the most popular.</span></div></li>
+        </ol>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- D · Find your game ------------------------------------------------------ -->
+<section id="find" class="sheet">
+  <div class="wrap stack" style="gap:clamp(28px,3.4vw,44px)">
+    <div class="stack" style="max-width:640px">
+      <h2 class="section-title" data-i18n="find.tag">Find Your Game</h2>
+      <p class="section-slogan" data-i18n="find.heading">Play your way.</p>
+      <p class="body" data-i18n="find.p1">Not every game needs to mean the same thing.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="card-num">01</span>
+        <h3 data-i18n="find.c1">Private Play</h3>
+        <p data-i18n="find.c1d">Book a court, bring your people and make the hour yours.</p>
+      </article>
+      <article class="card">
+        <span class="card-num">02</span>
+        <h3 data-i18n="find.c2">Open Play</h3>
+        <p data-i18n="find.c2d">Come on your own and meet players at a similar level. The easiest way to get more games — and meet more of the club.</p>
+      </article>
+      <article class="card">
+        <span class="card-num">03</span>
+        <h3 data-i18n="find.c3">Club Events</h3>
+        <p data-i18n="find.c3d">Sometimes we’ll change the rules entirely. Expect themed sessions, special formats and signature Courthouse events throughout the season.</p>
+      </article>
+    </div>
+    <p class="body" data-i18n="find.p2" style="color:#1f3a2b">However you want to play, there should be a game waiting for you.</p>
+    <div class="actions" style="margin-top:-6px">
+      <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="find.cta">Find a Session →</a>
+    </div>
+  </div>
+</section>
+
+<!-- E · Coaching ------------------------------------------------------------ -->
+<section id="coaching" class="sheet sheet-alt">
+  <div class="wrap split split-even" style="align-items:start">
+    <div class="copy stack">
+      <h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
+      <p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
+      <div class="lines">
+        <p class="body" data-i18n="coach.p1">Your first game gets you interested.</p>
+        <p class="body" data-i18n="coach.p2">Getting better keeps you coming back.</p>
+      </div>
+      <p class="body" data-i18n="coach.p3">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play.</p>
+      <p class="body" data-i18n="coach.p4">Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
+      <p class="body body-soft" data-i18n="coach.p5">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
+    </div>
+    <div class="aside stack">
+      <p class="kicker" data-i18n="coach.listTag">Choose how you learn</p>
+      <ul class="learn">
+        <li><h3 data-i18n="coach.l1">Private Coaching</h3><p data-i18n="coach.l1d">One-to-one attention built around your game.</p></li>
+        <li><h3 data-i18n="coach.l2">Group Coaching</h3><p data-i18n="coach.l2d">Learn together, improve together.</p></li>
+        <li><h3 data-i18n="coach.l3">Beginner Sessions</h3><p data-i18n="coach.l3d">Everything you need to go from “What is pickleball?” to playing independently.</p></li>
+        <li><h3 data-i18n="coach.l4">Clinics &amp; Masterclasses</h3><p data-i18n="coach.l4d">Focused sessions for players looking to sharpen particular parts of their game.</p></li>
+      </ul>
+      <!-- TODO: point both at the coaching pages once they exist. -->
+      <div class="actions">
+        <a class="btn btn-solid" href="index.html#contact" data-i18n="coach.find">Find a Coach →</a>
+        <a class="btn btn-ghost" href="index.html#contact" data-i18n="coach.view">View Coaching →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- F · Badminton ----------------------------------------------------------- -->
+<section id="badminton" class="sheet">
+  <div class="wrap split">
+    <div class="copy stack">
+      <h2 class="section-title" data-i18n="bad.tag">Badminton</h2>
+      <p class="section-slogan" data-i18n="bad.heading">Pickleball isn’t the only game in the house.</p>
+      <p class="body" data-i18n="bad.p1">The Courthouse is also home to badminton.</p>
+      <p class="body" data-i18n="bad.p2">Our indoor courts can be configured for badminton, giving players a high-quality place to train, compete or simply get a game together throughout the year.</p>
+      <p class="body body-soft" data-i18n="bad.p3">Bring your own equipment or ask us about equipment at reception.</p>
+      <p class="body" data-i18n="bad.p4" style="color:#1f3a2b">Same club. Different racket.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="bad.book">Book Badminton →</a>
+      </div>
+    </div>
+    <div class="media">
+      <img src="assets/arena-wide.png" alt="The Court House hall, courts set under the timber roof" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- G · Compete & connect --------------------------------------------------- -->
+<section id="compete" class="sheet sheet-alt">
+  <div class="wrap stack" style="max-width:1180px">
+    <div class="stack" style="max-width:720px">
+      <h2 class="section-title" data-i18n="comp.tag">Compete &amp; Connect</h2>
+      <p class="section-slogan" data-i18n="comp.heading">There’s always something to play for.</p>
+      <p class="body" data-i18n="comp.p1">Every month throughout the season, The Courthouse comes alive with competition — from club ladders and leagues to monthly tournaments and international championships.</p>
+    </div>
+    <ul class="chips" aria-label="Formats">
+      <li data-i18n="comp.f1">Singles</li>
+      <li data-i18n="comp.f2">Doubles</li>
+      <li data-i18n="comp.f3">Mixed Doubles</li>
+      <li data-i18n="comp.f4">Team Formats</li>
+      <li data-i18n="comp.f5">Special Events</li>
+    </ul>
+    <div class="stack" style="max-width:720px">
+      <p class="body" data-i18n="comp.p2">Find your level. Find your rivals. Climb the ladder. Represent your team. Or step onto the court when the stakes get bigger.</p>
+      <p class="body" data-i18n="comp.p3" style="color:#1f3a2b">From your first club tournament to the international stage — competition has a home here.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="comp.whatson">See What’s On →</a>
+      <a class="btn btn-ghost" href="https://player.padelos.co/club/216959/events" data-i18n="comp.enter">Enter a Tournament →</a>
+    </div>
+  </div>
+</section>
+
+<!-- H · Equipment ----------------------------------------------------------- -->
+<section id="equipment" class="sheet">
+  <div class="wrap split split-flip">
+    <div class="media">
+      <img src="assets/paddles.png" alt="Two Court House paddles and balls on court" loading="lazy"/>
+    </div>
+    <div class="copy stack">
+      <h2 class="section-title" data-i18n="eq.tag">Equipment</h2>
+      <p class="section-slogan" data-i18n="eq.heading">Just show up.</p>
+      <p class="body" data-i18n="eq.p1">You don’t need to own anything to start playing.</p>
+      <p class="body" data-i18n="eq.p2">Rental paddles and balls are available at The Courthouse, while the Pro Shop carries equipment, footwear, apparel and accessories for players ready to find something of their own.</p>
+      <div class="lines">
+        <p class="body" data-i18n="eq.p3" style="color:#1f3a2b">Start with ours.</p>
+        <p class="body body-soft" data-i18n="eq.p4">Eventually, you’ll want yours. Online store coming soon.</p>
+      </div>
+      <div class="actions">
+        <span class="btn btn-ghost" role="link" aria-disabled="true" data-i18n="eq.shop">Pro Shop Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- J · Final CTA ----------------------------------------------------------- -->
+<section id="letsplay" class="finale">
+  <div class="finale-frame">
+    <img src="assets/hero-video-first-frame.jpg" alt="" aria-hidden="true" loading="lazy"/>
+    <video id="play-video" src="assets/hero-video.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" aria-hidden="true"></video>
+    <div class="finale-shade" aria-hidden="true"></div>
+    <p class="section-slogan" data-i18n="final.heading">Enough reading. Let’s play.</p>
+    <div class="lines">
+      <p class="body" data-i18n="final.p1">First game or hundredth.</p>
+      <p class="body" data-i18n="final.p2">Your court is ready.</p>
+    </div>
+    <div class="actions" style="justify-content:center;margin-top:10px">
+      <a class="btn btn-inv-solid" href="https://player.padelos.co/club/216959" data-i18n="final.book">Book a Court</a>
+    </div>
+    <p class="finale-small">
+      <span data-i18n="final.group">Don’t have a group?</span>
+      <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959/events" data-i18n="final.open">Find Open Play →</a>
+    </p>
+  </div>
+</section>
+
+  <footer style="background:#203c2c;color:#f1eada;padding:clamp(40px,5vw,64px) clamp(22px,5vw,72px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(241,234,218,.18)">
+      <div>
+        <img src="assets/logo-beige.svg" alt="The Court House" style="height:clamp(72px,7vw,96px);width:auto;display:block;margin-bottom:18px"/>
+        <p data-i18n="footer.tagline" style="margin:0;max-width:320px;font:400 15px/1.6 'Satoshi',Arial,sans-serif;color:rgba(241,234,218,.7)">Premium pickleball courts and a community built around the game.</p>
+      </div>
+      <div>
+        <div data-i18n="footer.visit" style="font:500 10.5px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,234,218,.55)">Visit Us</div>
+        <div style="margin-top:12px;font:400 15px/1.7 'Satoshi',Arial,sans-serif;color:rgba(241,234,218,.82)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia<br/>+421 900 000 000</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:20px;font:400 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.06em;color:rgba(241,234,218,.5)">
+      <span style="white-space:nowrap">© 2026 The Court House</span>
+      <div style="display:flex;gap:20px">
+        <a href="#" data-i18n="footer.privacy" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(241,234,218,.5)" style-hover="color:#f1eada">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Page copy is English-only for now; applyLang falls back to it for every missing key, so only
+// the shared header and footer switch language.
+const SK = {
+  'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
+  'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
+  'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
+};
+
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, langMenuOpen: false, lang: 'en' };
+
+  componentDidMount() {
+    this.checkSize();
+    this._onResize = () => this.checkSize();
+    window.addEventListener('resize', this._onResize);
+    this.applySnap();
+    this.syncMobileMenu();
+    this.startFinaleVideo();
+    this.watchCourt();
+  }
+  componentWillUnmount() {
+    if (this.mobileMenu) this.mobileMenu.destroy();
+    if (this.courtObserver) this.courtObserver.disconnect();
+    window.removeEventListener('resize', this._onResize);
+  }
+  componentDidUpdate() {
+    this.syncMobileMenu();
+    this.applySnap();
+    if (this.state.lang === 'sk') this.applyLang('sk');
+    if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
+    if (this.mobileLangLabel) this.mobileLangLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
+  }
+
+  syncMobileMenu() {
+    if (!this.state.isMobile) {
+      if (this.mobileMenu) this.mobileMenu.destroy();
+      this.mobileMenu = null;
+      this.menuBoundButton = null;
+      this.menuBoundPanel = null;
+      return;
+    }
+    if (!this.menuButton || !this.menuPanel || !this.sc) return;
+    if (this.menuBoundButton === this.menuButton && this.menuBoundPanel === this.menuPanel) return;
+    if (this.mobileMenu) this.mobileMenu.destroy();
+    this.menuBoundButton = this.menuButton;
+    this.menuBoundPanel = this.menuPanel;
+    this.mobileMenu = window.createCourtMenu(this.menuButton, {
+      panel: this.menuPanel,
+      background: [this.sc],
+      header: this.nav,
+      onChange: menuOpen => this.setState({ menuOpen, langMenuOpen: false })
+    });
+  }
+
+  checkSize() {
+    const isMobile = window.innerWidth < 1000;
+    if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false, langMenuOpen: false });
+  }
+  applySnap() {
+    document.documentElement.style.scrollSnapType = 'none';
+  }
+
+  // Draw the rally path once, the first time the diagram is mostly on screen. The dash length is
+  // measured rather than hard-coded so the path can be redrawn without touching the CSS.
+  watchCourt() {
+    requestAnimationFrame(() => {
+      const card = this.court;
+      if (!card) return;
+      const path = card.querySelector('.c-path');
+      if (path && path.getTotalLength) {
+        const len = Math.ceil(path.getTotalLength());
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+      }
+      const show = () => card.classList.add('is-in');
+      if (!('IntersectionObserver' in window)) { show(); return; }
+      this.courtObserver = new IntersectionObserver(entries => {
+        if (!entries.some(e => e.isIntersecting)) return;
+        show();
+        this.courtObserver.disconnect();
+      }, { threshold: 0.45 });
+      this.courtObserver.observe(card);
+    });
+  }
+
+  // Same approach as the home hero: the poster stays until the video is actually playing.
+  startFinaleVideo() {
+    requestAnimationFrame(() => {
+      const video = document.getElementById('play-video');
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      const reveal = () => {
+        if (video.paused || video.readyState < 2) return;
+        video.style.opacity = '1';
+      };
+      video.addEventListener('playing', reveal, { once: true });
+      video.addEventListener('error', () => { video.style.opacity = '0'; }, { once: true });
+      const playback = video.play();
+      if (playback && playback.catch) playback.catch(() => this.retryFinaleVideo(video));
+    });
+  }
+
+  retryFinaleVideo(video) {
+    if (this._videoRetryBound) return;
+    this._videoRetryBound = true;
+    const kick = () => {
+      video.muted = true;
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+      document.removeEventListener('touchstart', kick);
+      document.removeEventListener('click', kick);
+      document.removeEventListener('scroll', kick);
+    };
+    document.addEventListener('touchstart', kick, { passive: true });
+    document.addEventListener('click', kick);
+    document.addEventListener('scroll', kick, { passive: true });
+  }
+
+  applyLang(lang) {
+    const root = (this.sc && this.sc.parentElement) || document.body;
+    if (!root) return;
+    root.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (!el.dataset.en) el.dataset.en = el.textContent;
+      const next = lang === 'sk' ? (SK[k] || el.dataset.en) : el.dataset.en;
+      if (el.textContent !== next) el.textContent = next;
+    });
+  }
+
+  onNav = (e) => {
+    const a = e.target.closest && e.target.closest('[data-goto]');
+    if (!a) return;
+    e.preventDefault();
+    const el = document.getElementById(a.getAttribute('data-goto'));
+    if (el) {
+      const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
+      const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 24;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+    if (this.mobileMenu) this.mobileMenu.close();
+  };
+
+  setLang(lang) {
+    this.setState({ lang, langMenuOpen: false });
+    requestAnimationFrame(() => {
+      this.applyLang(lang);
+      if (this.langLabel) this.langLabel.textContent = lang === 'en' ? '🇬🇧' : '🇸🇰';
+    });
+  }
+
+  renderVals() {
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      langMenuOpen: this.state.langMenuOpen,
+      isEn: this.state.lang === 'en',
+      isSk: this.state.lang === 'sk',
+      scRef: el => { if (el) this.sc = el; },
+      navRef: el => { if (el) this.nav = el; },
+      menuButtonRef: el => { this.menuButton = el; },
+      menuPanelRef: el => { this.menuPanel = el; },
+      courtRef: el => { if (el) this.court = el; },
+      langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
+      mobileLangLabelRef: el => { if (el) { this.mobileLangLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
+      onNav: this.onNav,
+      toggleLangMenu: () => this.setState(s => ({ langMenuOpen: !s.langMenuOpen })),
+      selectEn: () => this.setLang('en'),
+      selectSk: () => this.setLang('sk')
+    };
+  }
+}
+</script>
+</body>
+</html>
