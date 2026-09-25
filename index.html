@@ -291,7 +291,7 @@ a:hover{color:#16291f}
       <img src="assets/logo-beige.svg" alt="The Court House" class="hero-logo" style="display:block;filter:drop-shadow(0 2px 22px rgba(0,0,0,.35))"/>
       <a class="hero-booking" ref="{{ heroCtaRef }}" href="https://player.padelos.co/club/216959" data-i18n="hero.book" style="padding:18px clamp(34px,9vw,54px);max-width:88vw;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 clamp(13px,1.15vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
-    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" data-i18n-attr="aria-label:home.hero.scroll" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
+    <a ref="{{ heroFootRef }}" href="#story" data-goto="story" aria-label="Scroll to Our Story" class="hero-scroll" style="position:absolute;left:50%;bottom:clamp(8px,1.8vh,18px);transform:translateX(-50%);display:block;height:clamp(84px,13vh,120px);width:auto;z-index:2;transition:opacity .3s" style-hover="opacity:1"><img src="assets/Scroll Down Animation.svg" alt="" aria-hidden="true" style="display:block;height:100%;width:auto"/></a>
   </div>
 </section>
 
@@ -310,15 +310,12 @@ a:hover{color:#16291f}
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
   </div>
- </div>
 </section>
 
 <section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
   <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
     <picture>
-      <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.webp" type="image/webp"/>
       <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.png"/>
-      <source srcset="assets/how-to-play.webp" type="image/webp"/>
       <img class="game-image" src="assets/how-to-play.png" alt="Aerial view of a doubles pickleball rally" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
     </picture>
   </div>
@@ -338,7 +335,6 @@ a:hover{color:#16291f}
       <a href="https://player.padelos.co/club/216959" data-i18n="game.cta2" style="padding:15px 32px;border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;background:transparent;border:1px solid rgba(31,58,43,.5);color:#1f3a2b;transition:background .35s,color .35s,border-color .35s" style-hover="background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9">Book a Court →</a>
     </div>
   </div>
- </div>
 </section>
 
 <section id="beyond" data-screen-label="04 Beyond the Court">
@@ -383,7 +379,6 @@ a:hover{color:#16291f}
       <img class="membership-image" src="assets/membership.png" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
     </picture>
   </div>
- </div>
 </section>
 
 <section id="whatson" data-screen-label="06 What’s On">
@@ -448,157 +443,8 @@ a:hover{color:#16291f}
         <a href="#" aria-label="WhatsApp" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/whatsapp-svgrepo-com.svg" alt="" aria-hidden="true" style="width:32px;height:32px;display:block"/></a>
       </div>
     </div>
-    <div data-rv="img" data-rv-depth=".1" style="position:relative;border-radius:14px;overflow:hidden;height:clamp(230px,46vh,560px);background:#dcd6c4">
-      <picture>
-        <source media="(min-width:1000px)" srcset="assets/membership_desktop.webp" type="image/webp"/>
-      <source media="(min-width:1000px)" srcset="assets/membership_desktop.png"/>
-        <img class="membership-image" src="assets/membership.png" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
-      </picture>
-    </div>
-  </div>
-
-  <!-- teaser rows only; membership.html carries the full grid -->
-  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-  <div style="margin-top:clamp(36px,5vh,64px);overflow-x:auto">
-    <table class="tiers">
-      <thead>
-        <tr>
-          <th class="tiers-lab"><span class="sr-only" data-i18n="member.tiers.feature">Benefit</span></th>
-          <sc-for list="{{ tiers }}" as="t">
-            <th class="tiers-head" scope="col" data-featured="{{ t.featuredAttr }}">
-              <span class="tiers-name">{{ t.name }}</span>
-              <span class="tiers-price">{{ t.price }}</span>
-              <span class="tiers-per">{{ t.per }}</span>
-            </th>
-          </sc-for>
-        </tr>
-      </thead>
-      <tbody>
-        <sc-for list="{{ teaserRows }}" as="r">
-          <tr>
-            <th class="tiers-lab" scope="row">{{ r.label }}</th>
-            <sc-for list="{{ r.cells }}" as="c">
-              <td class="tiers-cell" data-featured="{{ c.featured }}">{{ c.t }}<sc-if value="{{ c.inferred }}"><sup class="infer">*</sup></sc-if></td>
-            </sc-for>
-          </tr>
-        </sc-for>
-      </tbody>
-    </table>
-    <p class="infer-note"><a href="membership.html" data-i18n="home.member.fullTable" style="border-bottom:1px solid rgba(31,58,43,.4)">See the full comparison</a></p>
-  </div>
-  </sc-if>
- </div>
-</section>
-
-<section id="whats-on" data-screen-label="06 What's On" class="sec-shell" style="scroll-snap-align:start;overflow:clip;min-height:auto;display:flex;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px)">
- <div class="sec-frame" style="background:#f1eada;padding:clamp(48px,7vh,96px) clamp(20px,4.5vw,64px)">
-  <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:620px">
-    <div class="eyebrow" data-rv data-rv-depth="0"><span class="rule"></span><span data-i18n="home.events.tag">What's On</span></div>
-    <h2 class="h2" data-rv data-rv-depth=".08" data-i18n="home.events.h">There's always another game.</h2>
-    <p class="body" data-rv data-rv-depth=".14" data-i18n="home.events.p1">Social nights. Beginner sessions. Competitive leagues. Coaching. Tournaments. Club events.</p>
-    <ul class="pg-stack" data-rv data-rv-depth=".18" style="gap:4px">
-      <li class="body" style="max-width:none" data-i18n="home.events.l1">Some days you'll come to win.</li>
-      <li class="body" style="max-width:none" data-i18n="home.events.l2">Some days you'll come to learn.</li>
-      <li class="body" style="max-width:none" data-i18n="home.events.l3">Some days you'll come to see who's there.</li>
-    </ul>
-    <div class="btn-row" data-rv data-rv-depth=".22">
-      <a class="btn btn--fill" href="{{ links.events }}" target="_blank" rel="noopener noreferrer" data-i18n="home.events.cta">See What's On</a>
-    </div>
-  </div>
-
-  <div class="ev-grid" data-rv data-rv-depth=".26" style="margin-top:clamp(32px,4.5vh,56px)">
-    <sc-for list="{{ events }}" as="ev">
-      <a class="ev-card" href="{{ ev.href }}" target="_blank" rel="noopener noreferrer" style-hover="background:#fffdf7;border-color:rgba(31,58,43,.35)">
-        <span class="ev-cat">{{ ev.category }}</span>
-        <span class="ev-name">{{ ev.name }}</span>
-        <span class="ev-date">{{ ev.dateLabel }}</span>
-        <span class="btn btn--link" data-i18n="home.events.cardCta">Register</span>
-      </a>
-    </sc-for>
-  </div>
-  <sc-if value="{{ noEvents }}" hint-placeholder-val="{{ false }}">
-    <div class="ev-empty" data-rv data-rv-depth=".26" style="margin-top:clamp(32px,4.5vh,56px)" data-i18n="home.events.empty">The next season's calendar lands soon.</div>
-  </sc-if>
- </div>
-</section>
-
-<section id="loop" data-screen-label="07 Stay in the Loop" class="sec-shell" style="scroll-snap-align:start;overflow:clip;min-height:auto;display:flex;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px)">
- <div class="sec-frame" style="background:#ece5d3;padding:clamp(48px,7vh,96px) clamp(20px,4.5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,72px)">
-  <div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vh,24px);max-width:520px">
-    <div class="eyebrow" data-rv data-rv-depth="0"><span class="rule"></span><span data-i18n="home.loop.tag">Stay in the Loop</span></div>
-    <h2 class="h2" data-rv data-rv-depth=".08" data-i18n="home.loop.h">Don't miss what's next.</h2>
-    <p class="body" data-rv data-rv-depth=".14" data-i18n="home.loop.p1">New tournaments. Club nights. Special events. New drops. And the occasional surprise.</p>
-    <p class="body body--muted" data-rv data-rv-depth=".18" data-i18n="home.loop.p2">Follow The Courthouse or join our newsletter to be first to know what's happening on and off the court.</p>
-    <div class="btn-row" data-rv data-rv-depth=".22">
-      <a class="btn btn--outline" href="{{ links.instagram }}" target="_blank" rel="noopener noreferrer" data-i18n="home.loop.cta1">Instagram</a>
-      <a class="btn btn--fill" href="{{ links.newsletter }}" target="_blank" rel="noopener noreferrer" data-i18n="home.loop.cta2">Sign Up</a>
-    </div>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vh,24px);max-width:520px">
-    <div class="eyebrow" data-rv data-rv-depth=".06"><span class="rule"></span><span data-i18n="home.host.tag">Bring Your Event to The Courthouse</span></div>
-    <p class="body" data-rv data-rv-depth=".12" data-i18n="home.host.p1">From company tournaments and team-building to private celebrations, brand activations and full club takeovers — make The Courthouse yours for the occasion.</p>
-    <ul class="pg-tags" data-rv data-rv-depth=".16">
-      <li data-i18n="home.host.t1">Corporate Events</li>
-      <li data-i18n="home.host.t2">Private Events</li>
-      <li data-i18n="home.host.t3">Brand Activations</li>
-      <li data-i18n="home.host.t4">Tournaments</li>
-      <li data-i18n="home.host.t5">Club Takeovers</li>
-    </ul>
-    <div class="btn-row" data-rv data-rv-depth=".2">
-      <a class="btn btn--outline" href="{{ links.hostEvent }}" target="_blank" rel="noopener noreferrer" data-i18n="home.host.cta">Host an Event</a>
-    </div>
-  </div>
- </div>
-</section>
-
-<section id="partners" data-screen-label="08 Partners" class="sec-shell" style="scroll-snap-align:start;overflow:clip;min-height:auto;display:flex;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) clamp(8px,1.2vw,12px)">
- <div class="sec-frame" style="background:#f1eada;padding:clamp(48px,7vh,96px) clamp(20px,4.5vw,64px)">
-  <div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vh,24px);max-width:620px;margin-inline:auto;text-align:center;align-items:center">
-    <div class="eyebrow" data-rv data-rv-depth="0"><span class="rule"></span><span data-i18n="home.partners.tag">Partners</span></div>
-    <h2 class="h2" data-rv data-rv-depth=".08" data-i18n="home.partners.h">Better together.</h2>
-    <p class="body" data-rv data-rv-depth=".14" style="max-width:560px" data-i18n="home.partners.p1">The Courthouse is built alongside brands and organisations that share our belief in sport, community and great experiences. From the equipment on our courts to the events we create, our partners are part of the club.</p>
-  </div>
-  <div class="pt-strip" data-mode="{{ partnersMode }}" data-rv data-rv-depth=".2" style="margin-top:clamp(32px,4.5vh,52px)">
-    <div class="pt-track">
-      <sc-for list="{{ partners }}" as="p">
-        <div class="pt-item">
-          <sc-if value="{{ p.logo }}"><img src="{{ p.logo }}" alt="{{ p.name }}"/></sc-if>
-          <sc-if value="{{ p.noLogo }}"><span class="pt-word">{{ p.name }}</span></sc-if>
-        </div>
-      </sc-for>
-    </div>
-  </div>
-  <div class="btn-row" data-rv data-rv-depth=".24" style="justify-content:center;margin-top:clamp(28px,4vh,44px)">
-    <a class="btn btn--outline" href="{{ links.partnerWith }}" target="_blank" rel="noopener noreferrer" data-i18n="home.partners.cta">Partner With Us</a>
-  </div>
- </div>
-</section>
-
-<section id="contact" data-screen-label="09 Contact" class="sec-shell" style="scroll-snap-align:start;overflow:clip;min-height:100dvh;display:flex;flex-direction:column;padding:clamp(80px,9vh,88px) clamp(8px,1.2vw,12px) 0">
-  <div class="sec-frame" style="background:#ece5d3;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(40px,6vh,88px) clamp(20px,4.5vw,64px)">
-    <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
-      <div data-rv data-rv-depth="0" style="display:flex;align-items:center;gap:12px">
-        <span style="width:26px;height:1px;background:#1f3a2b"></span>
-        <span data-i18n="home.contact.tag" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1f3a2b">Contact Us</span>
-      </div>
-      <h2 data-rv data-rv-depth=".07" data-i18n="home.contact.h" style="margin:0;font-family:'EB Garamond',serif;font-weight:600;letter-spacing:-0.018em;line-height:1.04;font-size:clamp(30px,4.2vw,54px)">Come play at The Court House.</h2>
-      <div data-rv data-rv-depth=".14" style="display:flex;flex-direction:column;gap:20px">
-        <div>
-          <a href="{{ contact.phoneHref }}" style="font:400 clamp(20px,1.7vw,26px)/1.3 'EB Garamond',serif;color:#1f3a2b" style-hover="color:#16291f">{{ contact.phoneDisplay }}</a>
-          <div style="margin-top:6px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">{{ contact.addressLine1 }}<br/>{{ contact.addressLine2 }}</div>
-        </div>
-        <div>
-          <span data-i18n="home.contact.hours" style="font:500 10.5px/1 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Hours</span>
-          <div style="margin-top:7px;font:400 16px/1.6 'EB Garamond',serif;color:rgba(42,38,32,.75)">{{ hours }}</div>
-        </div>
-      </div>
-      <div data-rv data-rv-depth=".2" style="display:flex;gap:10px">
-        <a href="{{ links.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-i18n-attr="aria-label:home.contact.instagram" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/instagram-logo.svg" alt="" aria-hidden="true" style="width:30px;height:30px;display:block"/></a>
-        <a href="{{ links.whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-i18n-attr="aria-label:home.contact.whatsapp" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/whatsapp-svgrepo-com.svg" alt="" aria-hidden="true" style="width:32px;height:32px;display:block"/></a>
-      </div>
-    </div>
-    <a data-rv="img" data-rv-depth=".1" href="{{ contact.maps }}" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" data-i18n-attr="aria-label:home.contact.mapAria" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
-      <iframe title="Google Map showing Na Pántoch 7707/8, Bratislava" src="{{ contact.mapsEmbed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;pointer-events:none;filter:grayscale(.2) sepia(.15) saturate(.9) contrast(1)"></iframe>
+    <a data-rv="img" data-rv-delay=".1" href="https://www.google.com/maps/search/?api=1&amp;query=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
+      <iframe title="Google Map showing Na Pántoch 7707/8, Bratislava" src="https://www.google.com/maps?q=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;pointer-events:none;filter:grayscale(.2) sepia(.15) saturate(.9) contrast(1)"></iframe>
       <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(236,229,211,0.0);pointer-events:none"></div>
       <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:999px;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:400 10px/1 'Experience Poppins',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
     </a>
@@ -627,12 +473,12 @@ a:hover{color:#16291f}
 </div>
 
 <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-<!-- generated from IDS: hand-maintaining a second list would drift the moment a
-     section is added or reordered -->
-<div onClick="{{ onNav }}" ref="{{ dotWrapRef }}" class="dot-rail">
-  <sc-for list="{{ dots }}" as="d">
-    <a href="#{{ d.id }}" data-goto="{{ d.id }}" data-dot="{{ $index }}" class="dot" aria-label="{{ d.label }}"></a>
-  </sc-for>
+<div onClick="{{ onNav }}" style="position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;padding:10px 6px">
+  <a href="#hero" data-goto="hero" data-dot="0" ref="{{ dotRef }}" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#story" data-goto="story" data-dot="1" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#game" data-goto="game" data-dot="2" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#membership" data-goto="membership" data-dot="3" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#contact" data-goto="contact" data-dot="4" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
 </div>
 </sc-if>
 
@@ -695,19 +541,9 @@ const SK = {
 };
 const IDS = ['hero','story','game','beyond','membership','whatson','stay-in-loop','contact'];
 
-   Do NOT add `state = {...}` as a class field: field initialisers run after
-   super(), so it would wipe the state the base class sets. Use cfg.state. */
-const IDS = ['hero', 'story', 'play', 'beyond', 'membership', 'whats-on', 'loop', 'partners', 'contact'];
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, langMenuOpen: false, lang: 'en' };
 
-class Component extends TCH.definePage(DCLogic, {
-  page: 'home',
-  ids: IDS,
-  snap: true,
-  parallax: true,
-  reveal: false,
-  scrollOffset: 0,
-  darkIds: ['hero']
-}) {
   componentDidMount() {
     this.items = [];
     this.active = 0;
@@ -949,8 +785,6 @@ class Component extends TCH.definePage(DCLogic, {
   }
 
   renderVals() {
-    const lg = this.state.lang;
-    const events = TCH.upcoming(3, lg);
     return {
       isMobile: this.state.isMobile,
       isDesktop: !this.state.isMobile,
