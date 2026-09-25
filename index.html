@@ -191,8 +191,8 @@ a:hover{color:#16291f}
     aspect-ratio:1 / 1;align-self:center;
   }
   :is(#story,#membership,#game) p:not(.section-slogan){max-width:none!important;font-size:clamp(16px,1.25vw,24px)!important}
-  :is(#story,#membership,#game) .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
-  :is(#story,#membership,#game) .section-slogan{font-family:'Experience Prata',serif;font-size:40px;font-weight:400;color:#2a2620}
+  :is(#story,#membership,#game,#contact) .section-title{font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-size:38px;font-weight:400}
+  :is(#story,#membership,#game,#contact) .section-slogan{font-family:'Experience Prata',serif;font-size:40px;font-weight:400;color:#2a2620}
   #game{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)!important}
   #game > [data-rv="img"]{grid-column:1}
   #game .game-image{object-fit:contain!important;object-position:center}
@@ -309,15 +309,15 @@ a:hover{color:#16291f}
     <a data-rv data-rv-delay=".40" href="#game" data-goto="game" data-i18n="story.cta" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;min-height:44px;font:400 11px/1 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;white-space:nowrap;border-bottom:1px solid rgba(31,58,43,.5)" style-hover="border-color:#1f3a2b">Our Story →</a>
   </div>
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
-    <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+    <img src="assets/classic/paddles-v2.webp" alt="Pickleball paddles and balls beside the net" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
   </div>
 </section>
 
 <section id="game" data-screen-label="03 The Game" style="scroll-snap-align:start;overflow:clip;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(96px,11vh,132px) clamp(20px,5vw,72px) clamp(56px,7vh,88px);background:#ece5d3">
   <div data-rv="img" data-rv-delay="0" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:transparent">
     <picture>
-      <source media="(max-width:999px)" srcset="assets/how-to-play-mobile.png"/>
-      <img class="game-image" src="assets/how-to-play.png" alt="Aerial view of a doubles pickleball rally" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+      <source media="(max-width:999px)" srcset="assets/classic/play-mobile-v2.webp"/>
+      <img class="game-image" src="assets/classic/play-v2.webp" alt="Aerial view of a doubles pickleball rally" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
     </picture>
   </div>
   <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px);max-width:560px;justify-self:center">
@@ -351,10 +351,10 @@ a:hover{color:#16291f}
 <div data-experience-reveal="carousel" class="experience-carousel" role="region" aria-roledescription="carousel" aria-label="Club amenities">
 <div class="experience-track" ref="{{ experienceTrackRef }}" tabindex="0" aria-label="Amenities cards; scroll horizontally to browse">
 
-<article class="experience-card" role="group" aria-roledescription="slide" aria-label="1 of 3"><img src="assets/experience/20850829e3-69168b56db1da644c149eea0_Bentley-Cup-62_788_700.avif" alt="outdoor terrace padel39 club atx" loading="lazy" width="788" height="700"/><div class="experience-card-copy"><h3 data-i18n="beyond.social.title">Social Spaces</h3><p data-i18n="beyond.social.body">Stay after your game, catch up with friends, and enjoy the community around the club.</p></div></article>
-<article class="experience-card" role="group" aria-roledescription="slide" aria-label="2 of 3"><img src="assets/experience/a5c6dd0a01-67c634bfd362ef09d03e98e8_APRES39_NEW_788_700.jpg" alt="bar and food padel39 atx club" loading="lazy" width="788" height="700"/><div class="experience-card-copy"><h3 data-i18n="beyond.coffee.title">Coffee Bar</h3><p data-i18n="beyond.coffee.body">Grab a coffee before your match or settle in for a relaxed catch-up afterwards.</p></div></article>
+<article class="experience-card" role="group" aria-roledescription="slide" aria-label="1 of 3"><img src="assets/classic/social-v2.webp" alt="Friends sharing coffee in the clubhouse lounge after a game" loading="lazy" width="788" height="700"/><div class="experience-card-copy"><h3 data-i18n="beyond.social.title">Social Spaces</h3><p data-i18n="beyond.social.body">Stay after your game, catch up with friends, and enjoy the community around the club.</p></div></article>
+<article class="experience-card" role="group" aria-roledescription="slide" aria-label="2 of 3"><img src="assets/classic/coffee-v2.webp" alt="Warm wood and forest-green coffee bar with an espresso machine" loading="lazy" width="788" height="700"/><div class="experience-card-copy"><h3 data-i18n="beyond.coffee.title">Coffee Bar</h3><p data-i18n="beyond.coffee.body">Grab a coffee before your match or settle in for a relaxed catch-up afterwards.</p></div></article>
 
-<article class="experience-card" role="group" aria-roledescription="slide" aria-label="3 of 3"><img src="assets/experience/store.jpg" alt="Pickleball paddles, apparel, and accessories displayed in the Pro Shop" loading="lazy" width="736" height="981"/><div class="experience-card-copy"><h3 data-i18n="beyond.shop.title">Pro Shop</h3><p data-i18n="beyond.shop.body">Discover gear for your next game, from rackets and balls to apparel and accessories.</p></div></article>
+<article class="experience-card" role="group" aria-roledescription="slide" aria-label="3 of 3"><img src="assets/classic/shop-v2.webp" alt="Pickleball paddles, apparel, and accessories displayed in the Pro Shop" loading="lazy" width="736" height="981"/><div class="experience-card-copy"><h3 data-i18n="beyond.shop.title">Pro Shop</h3><p data-i18n="beyond.shop.body">Discover gear for your next game, from rackets and balls to apparel and accessories.</p></div></article>
 
 
 </div>
@@ -376,8 +376,8 @@ a:hover{color:#16291f}
   </div>
   <div data-rv="img" data-rv-delay=".1" style="position:relative;border-radius:0;overflow:hidden;height:clamp(230px,46vh,620px);background:#dcd6c4">
     <picture>
-      <source media="(min-width:1000px)" srcset="assets/membership_desktop.png"/>
-      <img class="membership-image" src="assets/membership.png" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
+      <source media="(min-width:1000px)" srcset="assets/classic/membership-v2.webp"/>
+      <img class="membership-image" src="assets/classic/membership-mobile-v2.webp" alt="Members together on court at The Court House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"/>
     </picture>
   </div>
 </section>
@@ -398,9 +398,9 @@ a:hover{color:#16291f}
   <a data-experience-reveal="button" data-rv data-rv-delay=".34" href="https://player.padelos.co/club/216959/events" data-i18n="whatson.cta" style="margin-top:6px;padding:15px 32px;background:#1f3a2b;border:1px solid #1f3a2b;border-radius:0;color:#f1ead9;font:400 11px/1 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s" style-hover="background:#16291f;color:#f1ead9">See What’s On →</a>
 </div>
 <div data-experience-reveal="carousel" class="whats-on-articles">
-<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/whats-on/social.jpg" alt="Players sharing drinks beside pickleball paddles and balls on court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Social</span></figure><div class="whats-on-article-copy"><h3>Opening Party</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
-<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/whats-on/event1.jpg" alt="Pickleball paddle, balls, and a green sports bag on court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Tournament</span></figure><div class="whats-on-article-copy"><h3>The Court House Open</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
-<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/whats-on/event2.jpg" alt="Two striped pickleball paddles and a yellow ball on court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Tournament</span></figure><div class="whats-on-article-copy"><h3>Doubles Challenge</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
+<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/classic/opening-party-v2.webp" alt="Players sharing drinks beside pickleball paddles and balls on court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Social</span></figure><div class="whats-on-article-copy"><h3>Opening Party</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
+<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/classic/tournament-v2.webp" alt="A forest-green pickleball paddle and two balls on court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Tournament</span></figure><div class="whats-on-article-copy"><h3>The Court House Open</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
+<a class="whats-on-article" href="https://player.padelos.co/club/216959/events"><figure><img src="assets/classic/doubles-v2.webp" alt="Two dark pickleball paddles and yellow balls on a green court" loading="lazy" width="460" height="400"/><span class="whats-on-category">Tournament</span></figure><div class="whats-on-article-copy"><h3>Doubles Challenge</h3><div class="whats-on-article-meta"><span>10.10.2026</span><span aria-hidden="true">→</span></div></div></a>
 </div>
 </section>
 
@@ -418,12 +418,12 @@ a:hover{color:#16291f}
   </div>
   <div class="loop-gallery" role="region" aria-label="Life at The Courthouse">
     <div class="loop-gallery-track" ref="{{ loopGalleryRef }}" tabindex="0" aria-label="Club photos; scroll horizontally to browse">
-      <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" loading="lazy" width="400" height="400"/>
-      <img src="assets/whats-on/social.jpg" alt="Players sharing drinks on court" loading="lazy" width="400" height="400"/>
-      <img src="assets/membership_desktop.png" alt="Members spending time together at the club" loading="lazy" width="400" height="400"/>
-      <img src="assets/whats-on/event1.jpg" alt="Pickleball equipment ready for a game" loading="lazy" width="400" height="400"/>
-      <img src="assets/whats-on/event2.jpg" alt="Striped paddles and a ball on court" loading="lazy" width="400" height="400"/>
-      <img src="assets/how-to-play.png" alt="A doubles pickleball match" loading="lazy" width="400" height="400"/>
+      <img alt="Two friends celebrating a point with a high-five beside the pickleball net" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-high-five.webp" width="900"/>
+      <img alt="Four club members playing an energetic doubles rally on an indoor pickleball court" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-rally.webp" width="900"/>
+      <img alt="Friends laughing over coffee at the clubhouse bar after a game" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-coffee.webp" width="900"/>
+      <img alt="A coach showing a new player how to hold a pickleball paddle" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-coaching.webp" width="900"/>
+      <img alt="Club friends cheering on a doubles match from the courtside bench" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-cheering.webp" width="900"/>
+      <img alt="Players relaxing together in the clubhouse lounge after pickleball" decoding="async" height="900" loading="lazy" src="assets/classic/social-feed/social-clubhouse.webp" width="900"/>
     </div>
     <button class="loop-gallery-arrow loop-gallery-prev" type="button" onClick="{{ previousLoopPhoto }}" aria-label="Previous photos"><svg viewBox="0 0 10 18" aria-hidden="true"><path d="M7 3 2 9l5 6"/></svg></button>
     <button class="loop-gallery-arrow loop-gallery-next" type="button" onClick="{{ nextLoopPhoto }}" aria-label="Next photos"><svg viewBox="0 0 10 18" aria-hidden="true"><path d="m3 3 5 6-5 6"/></svg></button>

@@ -11,13 +11,13 @@
 #stay-in-loop .loop-event-types{font-size:14px;line-height:1.8}
 .loop-actions{display:flex;flex-wrap:wrap;gap:14px}
 .loop-gallery{position:relative;flex-shrink:0;margin-inline:calc(-1 * clamp(24px,5vw,120px))}
-.loop-gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.loop-gallery-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .loop-gallery-track::-webkit-scrollbar{display:none}
 .loop-gallery-track.is-looping{scroll-snap-type:none;scroll-behavior:auto}
 .loop-gallery-track img{transition:filter .25s ease}
 @media(hover:hover){.loop-gallery-track img:hover{filter:brightness(.8)}}
 @media(prefers-reduced-motion:reduce){.loop-gallery-track img{transition:none}}
-.loop-gallery-track img{display:block;flex:0 0 20%;width:20%;height:auto;aspect-ratio:1;object-fit:cover;scroll-snap-align:start}
+.loop-gallery-track img{display:block;flex:0 0 20%;min-width:0;width:20%;height:auto;aspect-ratio:1;object-fit:cover;scroll-snap-align:start}
 .loop-gallery{overflow:hidden}
 .loop-gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);display:flex;align-items:center;width:60px;height:60px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#203c2c;cursor:pointer}
 .loop-gallery-arrow svg{width:10px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
