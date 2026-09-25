@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Play · The Court House</title>
+<title>Play (alt) · The Court House</title>
 <script src="./assets/mobile-menu.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -62,7 +62,7 @@ a:hover{color:#16291f}
 
 /* Sections carry the home page's green frame and 14px inner corners, but size to their content:
    the home page's full-screen section rule would clip a long page on mobile. */
-.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background:#f1eada;background-clip:padding-box;scroll-margin-top:var(--nav-height)}
+.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;background:#f1eada;background-clip:padding-box;scroll-margin-top:var(--nav-height)}
 .sheet-alt{background-color:#ece5d3}
 .wrap{max-width:1180px;margin:0 auto;min-width:0}
 .wrap > *{min-width:0}
@@ -74,7 +74,7 @@ a:hover{color:#16291f}
 .note{margin:0;font:400 14px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.62)}
 
 /* Buttons. Values are the inline pills from index.html #game, named once here. */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:15px 32px;border:1px solid transparent;border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s,border-color .35s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:15px 32px;border:1px solid transparent;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .35s,color .35s,border-color .35s}
 .btn-solid{background:#1f3a2b;border-color:#1f3a2b;color:#f1ead9}
 .btn-solid:hover{background:#16291f;border-color:#16291f;color:#f1ead9}
 .btn-ghost{border-color:rgba(31,58,43,.5);color:#1f3a2b}
@@ -105,12 +105,12 @@ a:hover{color:#16291f}
 .split-flip > .copy{grid-column:8 / -1;grid-row:1}
 .split-even > .copy{grid-column:1 / span 6}
 .split-even > .aside{grid-column:8 / -1}
-.media{position:relative;min-height:440px;align-self:stretch;border-radius:14px;overflow:hidden;background:#203c2c}
+.media{position:relative;min-height:440px;align-self:stretch;overflow:hidden;background:#203c2c}
 .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
 /* Find your game */
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px)}
-.card{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.4vw,36px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7}
+.card{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.4vw,36px);border:1px solid rgba(31,58,43,.14);background:#fffdf7}
 .card-num{font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.16em;color:rgba(42,38,32,.5)}
 .card h3,.learn h3{margin:0;font:500 clamp(20px,1.7vw,24px)/1.25 'Satoshi',Arial,sans-serif;color:#1f3a2b}
 .card p{margin:0;font:400 16px/1.6 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.78)}
@@ -122,11 +122,11 @@ a:hover{color:#16291f}
 
 /* Compete: formats as quiet pills. */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
-.chips li{padding:11px 18px;border:1px solid rgba(31,58,43,.3);border-radius:999px;font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;background:#fffdf7}
+.chips li{padding:11px 18px;border:1px solid rgba(31,58,43,.3);font:500 11px/1 'Satoshi',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#1f3a2b;background:#fffdf7}
 
 /* Court diagram. Court lines stay light so the rally path reads first; the path draws once when
    the card scrolls into view (JS sets its dash length), markers fade in after it. */
-.court-card{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(28px,4vw,56px);align-items:center;padding:clamp(24px,3vw,44px);border:1px solid rgba(31,58,43,.14);border-radius:18px;background:#fffdf7;scroll-margin-top:calc(var(--nav-height) + 24px)}
+.court-card{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(28px,4vw,56px);align-items:center;padding:clamp(24px,3vw,44px);border:1px solid rgba(31,58,43,.14);background:#fffdf7;scroll-margin-top:calc(var(--nav-height) + 24px)}
 .court-card svg{display:block;width:100%;height:auto}
 .c-surface{fill:#f1eada}
 .c-kitchen{fill:rgba(31,58,43,.13)}
@@ -155,7 +155,7 @@ a:hover{color:#16291f}
 
 /* Final CTA: the hero's framed video, with almost nothing on top of it. */
 .finale{padding:clamp(8px,1.2vw,12px);background:#203c2c}
-.finale-frame{position:relative;min-height:min(86svh,820px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2vh,22px);padding:clamp(56px,8vh,96px) clamp(20px,5vw,72px);border-radius:14px;overflow:hidden;background:#2d2a24;text-align:center;color:#f1eada}
+.finale-frame{position:relative;min-height:min(86svh,820px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2vh,22px);padding:clamp(56px,8vh,96px) clamp(20px,5vw,72px);overflow:hidden;background:#2d2a24;text-align:center;color:#f1eada}
 .finale-frame > img,.finale-frame > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .finale-frame > video{opacity:0;transition:opacity .45s ease}
 .finale-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.5),rgba(16,24,18,.38) 45%,rgba(16,24,18,.66))}
@@ -180,6 +180,49 @@ a:hover{color:#16291f}
 @media(max-width:639px){
   .learn li{grid-template-columns:minmax(0,1fr)}
   .actions .btn{flex:1 1 auto}
+}
+/* ---- Alternate layout (after padel39.com/play/how-to-play-padel) --------------------------
+   A centred intro, a strip of three photos that straddles the intro's bottom edge (the middle one
+   sits higher), then one framed sheet per section, photo and copy alternating sides. */
+.intro-center{text-align:center;padding-bottom:clamp(150px,17vw,250px)}
+.intro-center .wrap{align-items:center;max-width:760px}
+.intro-center .body{max-width:640px}
+.intro-center .actions{justify-content:center}
+
+/* The first sheet carries the strip: no top padding, the strip lifts itself into the intro. */
+.sheet-strip{--strip-lift:clamp(110px,13vw,200px);padding-top:0}
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1vw,14px);align-items:start;margin:calc(-1 * var(--strip-lift) - var(--frame-gap)) auto clamp(56px,7vw,104px)}
+.strip figure{margin:0;position:relative;aspect-ratio:1 / 1;overflow:hidden;background:#203c2c}
+/* Cutouts (transparent PNGs) sit on light tiles so they read against the green intro. */
+.strip figure:nth-child(2),.strip figure:nth-child(3){background:#fffdf7;box-shadow:inset 0 0 0 1px rgba(31,58,43,.14)}
+.strip figure:nth-child(2){margin-top:calc(-1 * clamp(14px,2vw,28px))}
+.strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+.zz-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(28px,4vw,64px);align-items:center}
+.zz-row > .zz-media{position:relative;align-self:stretch;min-height:clamp(340px,38vw,560px);overflow:hidden;background:#203c2c}
+.zz-flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.zz-flip > .zz-media,.zz-flip > .zz-diagram{grid-column:1;grid-row:1}
+.zz-flip > .copy{grid-column:2;grid-row:1}
+.zz-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* The diagram row keeps its card in the media column. */
+.zz-row > .zz-diagram{align-self:center}
+.zz-diagram .court-card{grid-template-columns:minmax(0,1fr);align-items:stretch;gap:clamp(22px,2.4vw,32px)}
+.zz-diagram .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
+.zz-diagram .legend div span{margin-top:2px;font-size:15.5px;color:rgba(42,38,32,.82)}
+
+/* Short name / line pairs inside a row (game types, coaching formats). */
+.pairs{margin:0;padding:0;list-style:none;border-top:1px solid rgba(31,58,43,.18)}
+.pairs li{padding:14px 2px;border-bottom:1px solid rgba(31,58,43,.18)}
+.pairs b{display:block;font:500 17px/1.35 'Satoshi',Arial,sans-serif;color:#1f3a2b}
+.pairs span{display:block;margin-top:3px;font:400 15px/1.55 'Satoshi',Arial,sans-serif;color:rgba(42,38,32,.72)}
+
+@media(max-width:999px){
+  .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);row-gap:clamp(24px,5vw,36px)}
+  .zz-row > .zz-media,.zz-flip > .zz-media{grid-column:1;grid-row:1;min-height:clamp(240px,62vw,460px)}
+  .zz-row > .copy,.zz-flip > .copy{grid-column:1;grid-row:2}
+  .zz-row > .zz-diagram,.zz-flip > .zz-diagram{grid-column:1;grid-row:2}
+  .zz-row.zz-diagram-row > .copy{grid-row:1}
+  .zz-diagram .legend{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 </helmet>
@@ -268,8 +311,8 @@ a:hover{color:#16291f}
 <div ref="{{ scRef }}" style="background:#203c2c;overflow-x:hidden">
 
 <!-- A · Play ---------------------------------------------------------------- -->
-<section id="top" class="intro">
-  <div class="wrap stack" style="max-width:1180px">
+<section id="top" class="intro intro-center">
+  <div class="wrap stack">
     <h1 class="section-title" data-i18n="play.tag">Play</h1>
     <p class="section-slogan" data-i18n="play.heading">Everyone starts somewhere.</p>
     <p class="body" data-i18n="play.p1">Some come to compete. Some come to switch off. Some just want an excuse to get their friends together.</p>
@@ -278,38 +321,85 @@ a:hover{color:#16291f}
     <p class="body" data-i18n="play.p4" style="color:#f1eada;font-style:italic">Find your game. We’ll provide the court.</p>
     <div class="actions">
       <a class="btn btn-inv-solid" href="https://player.padelos.co/club/216959" data-i18n="play.book">Book a Court</a>
-      <a class="btn-link btn-link-inv" href="#basics" data-goto="basics" data-i18n="play.howTo">New to pickleball? ↓</a>
     </div>
   </div>
 </section>
 
-<!-- B · Pickleball ---------------------------------------------------------- -->
-<section id="pickleball" class="sheet">
-  <div class="wrap split split-flip">
-    <div class="media">
-      <img src="assets/arena-nets.png" alt="Indoor pickleball courts at The Court House" loading="lazy"/>
-    </div>
-    <div class="copy stack">
-      <h2 class="section-title" data-i18n="pb.tag">Pickleball</h2>
-      <p class="section-slogan" data-i18n="pb.heading">Easy to start. Hard to put down.</p>
-      <p class="body" data-i18n="pb.p1">There’s a reason pickleball is one of the fastest-growing sports in the world.</p>
-      <p class="body" data-i18n="pb.p2">It’s quick to learn, immediately social and competitive enough to keep you coming back. You don’t need years of experience to have a great game but there’s always another level to reach.</p>
-      <p class="body" data-i18n="pb.p3">The Courthouse is built around it. Seven dedicated indoor courts give you a place to play year-round, whether you’re here for a casual game between friends, training for competition or somewhere in between.</p>
-      <div class="lines">
-        <p class="body body-soft" data-i18n="pb.p4">Come with your own group or come looking for one.</p>
-        <p class="body" data-i18n="pb.p5" style="color:#1f3a2b">This is your court.</p>
+<!-- B · Pickleball -->
+<section id="pickleball" class="sheet sheet-strip">
+  <div class="wrap strip" aria-hidden="true">
+    <figure><img src="assets/arena-nets.png" alt=""/></figure>
+    <figure><img src="assets/how-to-play-mobile.png" alt=""/></figure>
+    <figure><img src="assets/paddles_new.png" alt="" style="object-fit:contain;padding:8%"/></figure>
+  </div>
+  <div class="wrap zz-row">
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="pb.tag">Pickleball</h2>
+        <p class="section-slogan" data-i18n="pb.heading">Easy to start. Hard to put down.</p>
+        <p class="body" data-i18n="pb.p1">There’s a reason pickleball is one of the fastest-growing sports in the world.</p>
+        <p class="body" data-i18n="pb.p2">It’s quick to learn, immediately social and competitive enough to keep you coming back. You don’t need years of experience to have a great game but there’s always another level to reach.</p>
+        <p class="body" data-i18n="pb.p3">The Courthouse is built around it.</p>
+        <p class="body" data-i18n="pb.p3b">Seven dedicated indoor courts give you a place to play year-round, whether you’re here for a casual game between friends, training for competition or somewhere in between.</p>
+        <div class="lines">
+          <p class="body body-soft" data-i18n="pb.p4">Come with your own group or come looking for one.</p>
+          <p class="body" data-i18n="pb.p5" style="color:#1f3a2b">This is your court.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="pb.book">Book Pickleball</a>
+        </div>
       </div>
-      <div class="actions">
-        <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="pb.book">Book Pickleball</a>
-      </div>
-    </div>
+      <div class="zz-media"><img src="assets/hero-arena.png" alt="Indoor pickleball courts at The Court House" loading="lazy"/></div>
   </div>
 </section>
 
-<!-- C · New to pickleball --------------------------------------------------- -->
+<!-- C · New to pickleball: the court diagram stands in for the photo -->
 <section id="new" class="sheet sheet-alt">
-  <div class="wrap stack" style="gap:clamp(36px,5vw,64px)">
-    <div class="split split-even" style="align-items:start">
+  <div class="wrap zz-row zz-flip zz-diagram-row">
+      <div class="zz-diagram">
+        <figure id="basics" ref="{{ courtRef }}" class="court-card" style="margin:0">
+          <div class="stack" style="gap:12px">
+            <p class="kicker" data-i18n="new.basicsTag">The basics</p>
+            <p class="body" data-i18n="new.b1">Pickleball can be played as singles or doubles, although doubles is the most popular format.</p>
+          </div>
+          <svg viewBox="0 0 520 290" role="img" aria-labelledby="court-title court-desc">
+            <title id="court-title">Pickleball court, seen from above</title>
+            <desc id="court-desc">Serve diagonally. Let the ball bounce once on each side at the beginning of the rally. Keep away from volleying inside the area closest to the net, known as the kitchen, and play your way to 11.</desc>
+            <rect class="c-surface" x="40" y="50" width="440" height="200"/>
+            <rect class="c-kitchen" x="190" y="50" width="140" height="200"/>
+            <rect class="c-line" x="40" y="50" width="440" height="200"/>
+            <line class="c-line" x1="190" y1="50" x2="190" y2="250"/>
+            <line class="c-line" x1="330" y1="50" x2="330" y2="250"/>
+            <line class="c-line" x1="40" y1="150" x2="190" y2="150"/>
+            <line class="c-line" x1="330" y1="150" x2="480" y2="150"/>
+            <line class="c-net" x1="260" y1="42" x2="260" y2="258"/>
+            <text class="c-label" x="260" y="30" text-anchor="middle">KITCHEN</text>
+            <text class="c-label" x="260" y="278" text-anchor="middle">NET</text>
+
+            <path class="c-path" d="M28 205 L410 100 L105 195 L300 172"/>
+            <circle class="c-bounce c-anim" cx="410" cy="100" r="8" style="transition-delay:1.2s"/>
+            <circle class="c-bounce c-anim" cx="105" cy="195" r="8" style="transition-delay:2s"/>
+            <circle class="c-ball c-anim" cx="300" cy="172" r="6" style="transition-delay:2.7s"/>
+
+            <g class="c-mark c-anim" style="transition-delay:.2s"><circle cx="20" cy="228" r="11"/><text x="20" y="232" text-anchor="middle">1</text></g>
+            <g class="c-mark c-anim" style="transition-delay:1.3s"><circle cx="432" cy="84" r="11"/><text x="432" y="88" text-anchor="middle">2</text></g>
+            <g class="c-mark c-anim" style="transition-delay:2.1s"><circle cx="84" cy="212" r="11"/><text x="84" y="216" text-anchor="middle">2</text></g>
+            <g class="c-mark c-anim" style="transition-delay:2.8s"><circle cx="296" cy="84" r="11"/><text x="296" y="88" text-anchor="middle">3</text></g>
+          </svg>
+          <figcaption class="stack" style="gap:clamp(20px,2.2vw,28px)">
+            <ol class="legend">
+              <li><span class="legend-num" aria-hidden="true">1</span><div><span data-i18n="new.s1">Serve diagonally.</span></div></li>
+              <li><span class="legend-num" aria-hidden="true">2</span><div><span data-i18n="new.s2">Let the ball bounce once on each side at the beginning of the rally.</span></div></li>
+              <li><span class="legend-num" aria-hidden="true">3</span><div><span data-i18n="new.s3">Keep away from volleying inside the area closest to the net, known as the kitchen,</span></div></li>
+              <li><span class="legend-num" aria-hidden="true">4</span><div><span data-i18n="new.s4">and play your way to 11.</span></div></li>
+            </ol>
+            <div class="lines">
+              <p class="body" data-i18n="new.b3" style="color:#1f3a2b">That’s enough to get your first game started.</p>
+              <p class="body body-soft" data-i18n="new.b4">And yes, we’ll explain the rest when you arrive.</p>
+            </div>
+          </figcaption>
+      
+        </figure>
+      </div>
       <div class="copy stack">
         <h2 class="section-title" data-i18n="new.tag">New to Pickleball?</h2>
         <p class="section-slogan" data-i18n="new.heading">You’ll get it in minutes.</p>
@@ -318,15 +408,6 @@ a:hover{color:#16291f}
         <div class="lines">
           <p class="body" data-i18n="new.p3">You need a paddle, a ball, a court and someone on the other side of the net.</p>
           <p class="body body-soft" data-i18n="new.p4">We’ll help with the rest.</p>
-        </div>
-      </div>
-      <div class="aside stack">
-        <p class="kicker" data-i18n="new.basicsTag">The basics</p>
-        <p class="body" data-i18n="new.b1">Pickleball can be played as singles or doubles, although doubles is the most popular format.</p>
-        <p class="body" data-i18n="new.b2">Serve diagonally. Let the ball bounce once on each side at the beginning of the rally. Keep away from volleying inside the area closest to the net, known as the kitchen, and play your way to 11.</p>
-        <div class="lines">
-          <p class="body" data-i18n="new.b3">That’s enough to get your first game started.</p>
-          <p class="body body-soft" data-i18n="new.b4">And yes, we’ll explain the rest when you arrive.</p>
         </div>
         <div class="lines">
           <p class="body" data-i18n="new.b5" style="color:#1f3a2b">No equipment? No problem.</p>
@@ -337,179 +418,120 @@ a:hover{color:#16291f}
           <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="new.book">Book Your First Game →</a>
         </div>
       </div>
-    </div>
-
-    <!-- The four basics above, drawn on a court. The legend carries the meaning; the drawing only
-         shows where each rule happens. -->
-    <figure id="basics" ref="{{ courtRef }}" class="court-card" style="margin:0">
-      <svg viewBox="0 0 520 290" role="img" aria-labelledby="court-title court-desc">
-        <title id="court-title">Pickleball court, seen from above</title>
-        <desc id="court-desc">A serve travels diagonally into the opposite service box and bounces. The return bounces on the server’s side. The next shot lands short, near the kitchen: the zone on each side of the net where volleys are not allowed.</desc>
-        <rect class="c-surface" x="40" y="50" width="440" height="200"/>
-        <rect class="c-kitchen" x="190" y="50" width="140" height="200"/>
-        <rect class="c-line" x="40" y="50" width="440" height="200"/>
-        <line class="c-line" x1="190" y1="50" x2="190" y2="250"/>
-        <line class="c-line" x1="330" y1="50" x2="330" y2="250"/>
-        <line class="c-line" x1="40" y1="150" x2="190" y2="150"/>
-        <line class="c-line" x1="330" y1="150" x2="480" y2="150"/>
-        <line class="c-net" x1="260" y1="42" x2="260" y2="258"/>
-        <text class="c-label" x="260" y="30" text-anchor="middle">KITCHEN · NO VOLLEYS</text>
-        <text class="c-label" x="260" y="278" text-anchor="middle">NET</text>
-        <text class="c-label" x="40" y="278">BASELINE</text>
-        <text class="c-label" x="480" y="278" text-anchor="end">BASELINE</text>
-        <text class="c-label c-label-soft" x="115" y="104" text-anchor="middle">SERVICE BOX</text>
-        <text class="c-label c-label-soft" x="405" y="204" text-anchor="middle">SERVICE BOX</text>
-
-        <path class="c-path" d="M28 205 L410 100 L105 195 L300 172"/>
-        <circle class="c-bounce c-anim" cx="410" cy="100" r="8" style="transition-delay:1.2s"/>
-        <circle class="c-bounce c-anim" cx="105" cy="195" r="8" style="transition-delay:2s"/>
-        <circle class="c-ball c-anim" cx="300" cy="172" r="6" style="transition-delay:2.7s"/>
-
-        <g class="c-mark c-anim" style="transition-delay:.2s"><circle cx="20" cy="228" r="11"/><text x="20" y="232" text-anchor="middle">1</text></g>
-        <g class="c-mark c-anim" style="transition-delay:1.3s"><circle cx="432" cy="84" r="11"/><text x="432" y="88" text-anchor="middle">2</text></g>
-        <g class="c-mark c-anim" style="transition-delay:2.1s"><circle cx="84" cy="212" r="11"/><text x="84" y="216" text-anchor="middle">2</text></g>
-        <g class="c-mark c-anim" style="transition-delay:2.8s"><circle cx="296" cy="84" r="11"/><text x="296" y="88" text-anchor="middle">3</text></g>
-      </svg>
-      <figcaption>
-        <ol class="legend">
-          <li><span class="legend-num" aria-hidden="true">1</span><div><b data-i18n="new.l1">Serve diagonally</b><span data-i18n="new.l1d">Into the service box across from you.</span></div></li>
-          <li><span class="legend-num" aria-hidden="true">2</span><div><b data-i18n="new.l2">Let it bounce</b><span data-i18n="new.l2d">Once on each side at the start of the rally.</span></div></li>
-          <li><span class="legend-num" aria-hidden="true">3</span><div><b data-i18n="new.l3">Mind the kitchen</b><span data-i18n="new.l3d">No volleys inside the zone closest to the net.</span></div></li>
-          <li><span class="legend-num" aria-hidden="true">4</span><div><b data-i18n="new.l4">Play to 11</b><span data-i18n="new.l4d">Singles or doubles. Doubles is the most popular.</span></div></li>
-        </ol>
-      </figcaption>
-    </figure>
   </div>
 </section>
 
-<!-- D · Find your game ------------------------------------------------------ -->
+<!-- D · Find your game -->
 <section id="find" class="sheet">
-  <div class="wrap stack" style="gap:clamp(28px,3.4vw,44px)">
-    <div class="stack" style="max-width:640px">
-      <h2 class="section-title" data-i18n="find.tag">Find Your Game</h2>
-      <p class="section-slogan" data-i18n="find.heading">Play your way.</p>
-      <p class="body" data-i18n="find.p1">Not every game needs to mean the same thing.</p>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <span class="card-num">01</span>
-        <h3 data-i18n="find.c1">Private Play</h3>
-        <p data-i18n="find.c1d">Book a court, bring your people and make the hour yours.</p>
-      </article>
-      <article class="card">
-        <span class="card-num">02</span>
-        <h3 data-i18n="find.c2">Open Play</h3>
-        <p data-i18n="find.c2d">Come on your own and meet players at a similar level. The easiest way to get more games — and meet more of the club.</p>
-      </article>
-      <article class="card">
-        <span class="card-num">03</span>
-        <h3 data-i18n="find.c3">Club Events</h3>
-        <p data-i18n="find.c3d">Sometimes we’ll change the rules entirely. Expect themed sessions, special formats and signature Courthouse events throughout the season.</p>
-      </article>
-    </div>
-    <p class="body" data-i18n="find.p2" style="color:#1f3a2b">However you want to play, there should be a game waiting for you.</p>
-    <div class="actions" style="margin-top:-6px">
-      <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="find.cta">Find a Session →</a>
-    </div>
+  <div class="wrap zz-row">
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="find.tag">Find Your Game</h2>
+        <p class="section-slogan" data-i18n="find.heading">Play your way.</p>
+        <p class="body" data-i18n="find.p1">Not every game needs to mean the same thing.</p>
+        <ul class="pairs">
+          <li><b data-i18n="find.c1">Private Play</b><span data-i18n="find.c1d">Book a court, bring your people and make the hour yours.</span></li>
+          <li><b data-i18n="find.c2">Open Play</b><span data-i18n="find.c2d">Come on your own and meet players at a similar level. The easiest way to get more games — and meet more of the club.</span></li>
+          <li><b data-i18n="find.c3">Club Events</b><span data-i18n="find.c3d">Sometimes we’ll change the rules entirely. Expect themed sessions, special formats and signature Courthouse events throughout the season.</span></li>
+        </ul>
+        <p class="body" data-i18n="find.p2" style="color:#1f3a2b">However you want to play, there should be a game waiting for you.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="find.cta">Find a Session →</a>
+        </div>
+      </div>
+      <div class="zz-media"><img src="assets/membership.png" alt="Players resting courtside between games" loading="lazy"/></div>
   </div>
 </section>
 
-<!-- E · Coaching ------------------------------------------------------------ -->
+<!-- E · Coaching -->
 <section id="coaching" class="sheet sheet-alt">
-  <div class="wrap split split-even" style="align-items:start">
-    <div class="copy stack">
-      <h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
-      <p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
-      <div class="lines">
-        <p class="body" data-i18n="coach.p1">Your first game gets you interested.</p>
-        <p class="body" data-i18n="coach.p2">Getting better keeps you coming back.</p>
+  <div class="wrap zz-row zz-flip">
+      <div class="zz-media"><img src="assets/how-to-play1.png" alt="Aerial view of a doubles game" loading="lazy" style="object-fit:contain;padding:6%"/></div>
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
+        <p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
+        <div class="lines">
+          <p class="body" data-i18n="coach.p1">Your first game gets you interested.</p>
+          <p class="body" data-i18n="coach.p2">Getting better keeps you coming back.</p>
+        </div>
+        <p class="body" data-i18n="coach.p3">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play.</p>
+        <p class="body" data-i18n="coach.p4">Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
+        <p class="body body-soft" data-i18n="coach.p5">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
+        <p class="kicker" data-i18n="coach.listTag" style="margin-top:8px">Choose how you learn</p>
+        <ul class="pairs">
+          <li><b data-i18n="coach.l1">Private Coaching</b><span data-i18n="coach.l1d">One-to-one attention built around your game.</span></li>
+          <li><b data-i18n="coach.l2">Group Coaching</b><span data-i18n="coach.l2d">Learn together, improve together.</span></li>
+          <li><b data-i18n="coach.l3">Beginner Sessions</b><span data-i18n="coach.l3d">Everything you need to go from “What is pickleball?” to playing independently.</span></li>
+          <li><b data-i18n="coach.l4">Clinics &amp; Masterclasses</b><span data-i18n="coach.l4d">Focused sessions for players looking to sharpen particular parts of their game.</span></li>
+        </ul>
+        <!-- TODO: point both at the coaching pages once they exist. -->
+        <div class="actions">
+          <a class="btn btn-solid" href="index.html#contact" data-i18n="coach.find">Find a Coach →</a>
+          <a class="btn btn-ghost" href="index.html#contact" data-i18n="coach.view">View Coaching →</a>
+        </div>
       </div>
-      <p class="body" data-i18n="coach.p3">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play.</p>
-      <p class="body" data-i18n="coach.p4">Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
-      <p class="body body-soft" data-i18n="coach.p5">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
-    </div>
-    <div class="aside stack">
-      <p class="kicker" data-i18n="coach.listTag">Choose how you learn</p>
-      <ul class="learn">
-        <li><h3 data-i18n="coach.l1">Private Coaching</h3><p data-i18n="coach.l1d">One-to-one attention built around your game.</p></li>
-        <li><h3 data-i18n="coach.l2">Group Coaching</h3><p data-i18n="coach.l2d">Learn together, improve together.</p></li>
-        <li><h3 data-i18n="coach.l3">Beginner Sessions</h3><p data-i18n="coach.l3d">Everything you need to go from “What is pickleball?” to playing independently.</p></li>
-        <li><h3 data-i18n="coach.l4">Clinics &amp; Masterclasses</h3><p data-i18n="coach.l4d">Focused sessions for players looking to sharpen particular parts of their game.</p></li>
-      </ul>
-      <!-- TODO: point both at the coaching pages once they exist. -->
-      <div class="actions">
-        <a class="btn btn-solid" href="index.html#contact" data-i18n="coach.find">Find a Coach →</a>
-        <a class="btn btn-ghost" href="index.html#contact" data-i18n="coach.view">View Coaching →</a>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- F · Badminton ----------------------------------------------------------- -->
+<!-- F · Badminton -->
 <section id="badminton" class="sheet">
-  <div class="wrap split">
-    <div class="copy stack">
-      <h2 class="section-title" data-i18n="bad.tag">Badminton</h2>
-      <p class="section-slogan" data-i18n="bad.heading">Pickleball isn’t the only game in the house.</p>
-      <p class="body" data-i18n="bad.p1">The Courthouse is also home to badminton.</p>
-      <p class="body" data-i18n="bad.p2">Our indoor courts can be configured for badminton, giving players a high-quality place to train, compete or simply get a game together throughout the year.</p>
-      <p class="body body-soft" data-i18n="bad.p3">Bring your own equipment or ask us about equipment at reception.</p>
-      <p class="body" data-i18n="bad.p4" style="color:#1f3a2b">Same club. Different racket.</p>
-      <div class="actions">
-        <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="bad.book">Book Badminton →</a>
+  <div class="wrap zz-row">
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="bad.tag">Badminton</h2>
+        <p class="section-slogan" data-i18n="bad.heading">Pickleball isn’t the only game in the house.</p>
+        <p class="body" data-i18n="bad.p1">The Courthouse is also home to badminton.</p>
+        <p class="body" data-i18n="bad.p2">Our indoor courts can be configured for badminton, giving players a high-quality place to train, compete or simply get a game together throughout the year.</p>
+        <p class="body body-soft" data-i18n="bad.p3">Bring your own equipment or ask us about equipment at reception.</p>
+        <p class="body" data-i18n="bad.p4" style="color:#1f3a2b">Same club. Different racket.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="bad.book">Book Badminton →</a>
+        </div>
       </div>
-    </div>
-    <div class="media">
-      <img src="assets/arena-wide.png" alt="The Court House hall, courts set under the timber roof" loading="lazy"/>
-    </div>
+      <div class="zz-media"><img src="assets/arena-wide.png" alt="The Court House hall, courts set under the timber roof" loading="lazy"/></div>
   </div>
 </section>
 
-<!-- G · Compete & connect --------------------------------------------------- -->
+<!-- G · Compete & connect -->
 <section id="compete" class="sheet sheet-alt">
-  <div class="wrap stack" style="max-width:1180px">
-    <div class="stack" style="max-width:720px">
-      <h2 class="section-title" data-i18n="comp.tag">Compete &amp; Connect</h2>
-      <p class="section-slogan" data-i18n="comp.heading">There’s always something to play for.</p>
-      <p class="body" data-i18n="comp.p1">Every month throughout the season, The Courthouse comes alive with competition — from club ladders and leagues to monthly tournaments and international championships.</p>
-    </div>
-    <ul class="chips" aria-label="Formats">
-      <li data-i18n="comp.f1">Singles</li>
-      <li data-i18n="comp.f2">Doubles</li>
-      <li data-i18n="comp.f3">Mixed Doubles</li>
-      <li data-i18n="comp.f4">Team Formats</li>
-      <li data-i18n="comp.f5">Special Events</li>
-    </ul>
-    <div class="stack" style="max-width:720px">
-      <p class="body" data-i18n="comp.p2">Find your level. Find your rivals. Climb the ladder. Represent your team. Or step onto the court when the stakes get bigger.</p>
-      <p class="body" data-i18n="comp.p3" style="color:#1f3a2b">From your first club tournament to the international stage — competition has a home here.</p>
-    </div>
-    <div class="actions">
-      <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="comp.whatson">See What’s On →</a>
-      <a class="btn btn-ghost" href="https://player.padelos.co/club/216959/events" data-i18n="comp.enter">Enter a Tournament →</a>
-    </div>
+  <div class="wrap zz-row zz-flip">
+      <div class="zz-media"><img src="assets/arena-sponsors.png" alt="Courts lined with partner banners" loading="lazy"/></div>
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="comp.tag">Compete &amp; Connect</h2>
+        <p class="section-slogan" data-i18n="comp.heading">There’s always something to play for.</p>
+        <p class="body" data-i18n="comp.p1">Every month throughout the season, The Courthouse comes alive with competition — from club ladders and leagues to monthly tournaments and international championships.</p>
+        <ul class="chips" aria-label="Formats">
+          <li data-i18n="comp.f1">Singles</li>
+          <li data-i18n="comp.f2">Doubles</li>
+          <li data-i18n="comp.f3">Mixed Doubles</li>
+          <li data-i18n="comp.f4">Team Formats</li>
+          <li data-i18n="comp.f5">Special Events</li>
+        </ul>
+        <p class="body" data-i18n="comp.p2">Find your level. Find your rivals. Climb the ladder. Represent your team. Or step onto the court when the stakes get bigger.</p>
+        <p class="body" data-i18n="comp.p3" style="color:#1f3a2b">From your first club tournament to the international stage — competition has a home here.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="comp.whatson">See What’s On →</a>
+          <a class="btn btn-ghost" href="https://player.padelos.co/club/216959/events" data-i18n="comp.enter">Enter a Tournament →</a>
+        </div>
+      </div>
   </div>
 </section>
 
-<!-- H · Equipment ----------------------------------------------------------- -->
+<!-- H · Equipment -->
 <section id="equipment" class="sheet">
-  <div class="wrap split split-flip">
-    <div class="media">
-      <img src="assets/paddles.png" alt="Two Court House paddles and balls on court" loading="lazy"/>
-    </div>
-    <div class="copy stack">
-      <h2 class="section-title" data-i18n="eq.tag">Equipment</h2>
-      <p class="section-slogan" data-i18n="eq.heading">Just show up.</p>
-      <p class="body" data-i18n="eq.p1">You don’t need to own anything to start playing.</p>
-      <p class="body" data-i18n="eq.p2">Rental paddles and balls are available at The Courthouse, while the Pro Shop carries equipment, footwear, apparel and accessories for players ready to find something of their own.</p>
-      <div class="lines">
-        <p class="body" data-i18n="eq.p3" style="color:#1f3a2b">Start with ours.</p>
-        <p class="body body-soft" data-i18n="eq.p4">Eventually, you’ll want yours. Online store coming soon.</p>
+  <div class="wrap zz-row">
+      <div class="copy stack">
+        <h2 class="section-title" data-i18n="eq.tag">Equipment</h2>
+        <p class="section-slogan" data-i18n="eq.heading">Just show up.</p>
+        <p class="body" data-i18n="eq.p1">You don’t need to own anything to start playing.</p>
+        <p class="body" data-i18n="eq.p2">Rental paddles and balls are available at The Courthouse, while the Pro Shop carries equipment, footwear, apparel and accessories for players ready to find something of their own.</p>
+        <div class="lines">
+          <p class="body" data-i18n="eq.p3" style="color:#1f3a2b">Start with ours.</p>
+          <p class="body body-soft" data-i18n="eq.p4">Eventually, you’ll want yours. Online store coming soon.</p>
+        </div>
+        <div class="actions">
+          <span class="btn btn-ghost" role="link" aria-disabled="true" data-i18n="eq.shop">Pro Shop Coming Soon →</span>
+        </div>
       </div>
-      <div class="actions">
-        <span class="btn btn-ghost" role="link" aria-disabled="true" data-i18n="eq.shop">Pro Shop Coming Soon</span>
-      </div>
-    </div>
+      <div class="zz-media"><img src="assets/paddles.png" alt="Two Court House paddles and balls on court" loading="lazy"/></div>
   </div>
 </section>
 

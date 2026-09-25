@@ -1,0 +1,86 @@
+@font-face{font-family:Experience Prata;src:url('experience/124d7b2209-6xKhdSpbNNCT-sWPCms.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Experience Poppins;src:url('experience/9956463e70-pxiEyp8kv8JHgFVrJJfedw.ttf') format('truetype');font-weight:400;font-display:swap}
+#stay-in-loop{display:flex;flex-direction:column;justify-content:center;gap:48px;padding:40px clamp(24px,5vw,120px)}
+.loop-intro,.loop-events{display:flex;flex-direction:column;gap:24px;max-width:1000px;width:100%}
+#stay-in-loop p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
+#stay-in-loop .section-slogan{font:400 40px/1.2 'Experience Prata',serif;color:#2a2620}
+#stay-in-loop .section-title{font-size:38px}
+.loop-events{max-width:none;border-top:1px solid rgba(32,60,44,.25);padding-top:40px}
+.loop-events h3{margin:0;font:400 clamp(24px,2.5vw,34px)/1.3 'Experience Prata',serif;color:#203c2c}
+.loop-events > p{max-width:1000px}
+#stay-in-loop .loop-event-types{font-size:14px;line-height:1.8}
+.loop-actions{display:flex;flex-wrap:wrap;gap:14px}
+.loop-button{display:inline-flex;align-items:center;justify-content:center;padding:20px 32px;min-height:44px;border:1px solid #1f3a2b;border-radius:0;background:#1f3a2b;color:#f1ead9;font:400 14px/1.2 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.loop-button-outline{background:transparent;color:#1f3a2b}
+.loop-button:disabled{cursor:default;opacity:.65}
+.loop-button:not(:disabled):hover{background:#16291f;color:#f1ead9}
+.loop-button:focus-visible{outline:2px solid #203c2c;outline-offset:4px}
+@media(max-width:999px){#stay-in-loop{padding:24px 20px;justify-content:flex-start;gap:32px}.loop-intro,.loop-events{gap:18px;flex-shrink:0}.loop-events{padding-top:28px}#stay-in-loop .section-slogan{font-size:clamp(24px,6vw,32px)}.loop-button{padding:16px 20px;font-size:12px}}
+:is(#beyond,#whatson){display:block;padding:40px clamp(24px,5vw,120px);overflow:hidden}
+.experience-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:60px}
+.experience-intro{display:flex;flex-direction:column;gap:24px;max-width:600px}
+:is(#beyond,#whatson) .section-slogan{font-family:'Experience Prata',serif;font-weight:400}
+:is(#beyond,#whatson) .experience-body p:not(.section-slogan){font-family:'Experience Poppins',sans-serif!important;font-weight:400}
+.experience-heading > a{flex-shrink:0}
+:is(#beyond,#whatson) .experience-heading > a{border-radius:0!important;font-size:14px!important;line-height:1.2!important;padding:20px 40px!important}
+.experience-carousel{min-width:0}
+.experience-track{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+.experience-track::-webkit-scrollbar{display:none}
+.experience-card{flex:0 0 780px;display:grid;grid-template-columns:minmax(200px,394px) 1fr;scroll-snap-align:start;background:#e8dfcd;color:#14142b}
+.experience-card > img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:788 / 700}
+.experience-card-copy{display:flex;flex-direction:column;justify-content:center;padding:40px 32px;border:1px solid #d8cfbd;border-left:0}
+.experience-card h3{margin:0 0 12px;font:400 28px/1.429 'Experience Prata',serif;color:#111}
+.experience-card p{margin:0;font:400 18px/1.667 'Experience Poppins',sans-serif;color:#53535b}
+.experience-controls{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;column-gap:16px;margin-top:50px;margin-bottom:40px}
+.experience-controls::before{content:"";grid-column:2;grid-row:1;height:1px;background:rgba(32,60,44,.4)}
+.experience-controls button{grid-row:1;border:0;padding:0;background:none;color:#203c2c;font:400 30px/1 Arial,sans-serif;min-width:44px;min-height:44px;cursor:pointer}
+.experience-controls button:first-child{grid-column:1;text-align:left}
+.experience-controls button:last-child{grid-column:3;text-align:right}
+.experience-controls button:focus-visible,.experience-track:focus-visible{outline:2px solid #203c2c;outline-offset:3px}
+@media(min-width:1000px){
+  :is(#beyond,#whatson) .section-title{font-size:38px;font-weight:400}
+  :is(#beyond,#whatson) .section-slogan{font:400 40px/1.2 'Experience Prata',serif;color:#2a2620}
+  :is(#beyond,#whatson) .experience-body p:not(.section-slogan):not([data-i18n="beyond.list"]){font-size:clamp(16px,1.25vw,24px)!important}
+}
+@media(max-width:999px){
+  :is(#beyond,#whatson){padding:24px 20px}
+  .experience-heading{flex-direction:column;align-items:flex-start;gap:24px;margin-bottom:32px}
+  .experience-intro{gap:16px;max-width:none}
+  .experience-card{flex-basis:100%;grid-template-columns:1fr}
+  .experience-card > img{height:auto;aspect-ratio:788 / 700}
+  .experience-card-copy{padding:24px;border-left:1px solid #d8cfbd;border-top:0}
+}
+
+.experience-body{display:flex;flex-direction:column;gap:24px}
+@media(prefers-reduced-motion:no-preference){
+  :is(#beyond,#whatson) .experience-reveal-ready{opacity:0;transition:opacity .5s ease .4s}
+  :is(#beyond,#whatson) [data-experience-reveal="button"].experience-reveal-ready{transition:opacity .5s ease .4s,background .35s,color .35s!important}
+  :is(#beyond,#whatson) [data-experience-reveal="title"].experience-reveal-ready{transform:translateY(4px);transition:opacity .6s ease,transform .6s ease}
+  :is(#beyond,#whatson) [data-experience-reveal="body"].experience-reveal-ready{transform:translateY(10%);transition:opacity .5s ease .4s,transform .5s ease .4s}
+  :is(#beyond,#whatson) [data-experience-reveal="carousel"].experience-reveal-ready{transform:translateY(10%);transition:opacity .5s ease .6s,transform .5s ease .6s}
+  :is(#beyond,#whatson) [data-experience-reveal].experience-visible{opacity:1;transform:none}
+}
+@media(max-width:999px){.experience-body{gap:16px}}
+.whats-on-articles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
+.whats-on-article{display:flex;flex-direction:column;min-width:0;background:#fff;color:#53535b}
+.whats-on-article figure{position:relative;margin:0;overflow:hidden}
+.whats-on-article img{display:block;width:100%;height:auto;aspect-ratio:460 / 400;object-fit:cover;transition:transform .3s ease}
+.whats-on-category{position:absolute;top:30px;left:30px;padding:12px;background:#fff;border:1px solid #e5e5ea;color:#14142b;font:400 16px/1.125 'Experience Poppins',sans-serif}
+.whats-on-article-copy{display:flex;flex:1;flex-direction:column;padding:32px 30px;border:1px solid #e5e5ea}
+.whats-on-article h3{margin:0 0 16px;font:400 22px/1.45 'Experience Prata',serif;color:#14142b}
+.whats-on-article-meta{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:auto;padding-top:12px;font:400 16px/1.5 'Experience Poppins',sans-serif}
+.whats-on-article-meta > span:last-child{font:400 30px/1 Arial,sans-serif;color:#203c2c}
+.whats-on-article:hover img{transform:scale(1.03)}
+.whats-on-article:focus-visible{outline:2px solid #203c2c;outline-offset:4px}
+@media(min-width:600px) and (max-width:999px){
+  .whats-on-articles{grid-template-columns:1fr}
+  .whats-on-article{flex-direction:row}
+  .whats-on-article figure{width:45%;flex-shrink:0}
+  .whats-on-article img{height:100%}
+}
+@media(max-width:599px){
+  .whats-on-articles{grid-template-columns:1fr;gap:32px}
+  .whats-on-category{top:10px;left:10px;font-size:14px}
+  .whats-on-article-copy{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){.whats-on-article img{transition:none}.whats-on-article:hover img{transform:none}}
