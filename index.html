@@ -476,21 +476,16 @@ a:hover{color:#16291f}
 <section id="contact" data-screen-label="09 Contact" style="scroll-snap-align:start;overflow:clip;display:flex;flex-direction:column;background:#ece5d3">
   <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,4vw,64px);align-items:center;padding:clamp(96px,10vh,120px) clamp(20px,5vw,72px) clamp(44px,5vh,64px)">
     <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vh,28px);max-width:520px">
-      <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="contact.tag">Contact Us</h2>
-      <p class="section-slogan" data-rv data-rv-delay=".07" data-i18n="contact.heading" style="margin:0">Come play at The Court House.</p>
-      <div data-rv data-rv-delay=".14" style="display:flex;flex-direction:column;gap:20px">
-        <div>
-          <div style="font:400 clamp(20px,1.7vw,26px)/1.3 'Experience Poppins',sans-serif;color:#1f3a2b">+421 900 000 000</div>
-          <div style="margin-top:6px;font:400 16px/1.6 'Experience Poppins',sans-serif;color:rgba(42,38,32,.75)">Na Pántoch 7707/8<br/>831 06 Bratislava, Slovakia</div>
-        </div>
-        <div>
-          <span data-i18n="contact.hours" style="font:400 10.5px/1 'Experience Poppins',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b">Hours</span>
-          <div style="margin-top:7px;font:400 16px/1.6 'Experience Poppins',sans-serif;color:rgba(42,38,32,.75)">Mon – Sun · 7:00 – 22:00</div>
-        </div>
+      <h2 class="section-title" data-rv data-rv-delay="0" data-i18n="contact.tag">Contact / Location</h2>
+      <p class="section-slogan" data-rv data-rv-delay=".07" data-i18n="contact.heading" style="margin:0">We’ll see you on court.</p>
+      <div class="contact-copy" data-rv data-rv-delay=".14">
+        <p><span data-i18n="contact.name">The Courthouse</span><br/><span data-i18n="contact.city">Bratislava</span></p>
+        <p><span data-i18n="contact.courts">Seven indoor courts.</span><br/><span data-i18n="contact.activities">Pickleball. Badminton. Coffee. Community.</span></p>
+        <p data-i18n="contact.body">Everything you need for your next game — and plenty of reasons to stay afterwards.</p>
       </div>
-      <div data-rv data-rv-delay=".2" style="display:flex;gap:10px">
-        <a href="#" aria-label="Instagram" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/instagram-logo.svg" alt="" aria-hidden="true" style="width:30px;height:30px;display:block"/></a>
-        <a href="#" aria-label="WhatsApp" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .35s" style-hover="opacity:1"><img src="assets/whatsapp-svgrepo-com.svg" alt="" aria-hidden="true" style="width:32px;height:32px;display:block"/></a>
+      <div class="loop-actions" data-rv data-rv-delay=".2">
+        <a class="loop-button loop-button-outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" data-i18n="contact.directions">Get Directions</a>
+        <button class="loop-button" type="button" disabled data-i18n="contact.cta">Contact Us</button>
       </div>
     </div>
     <a data-rv="img" data-rv-delay=".1" href="https://www.google.com/maps/search/?api=1&amp;query=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
@@ -589,7 +584,11 @@ const SK = {
   'partners.p1':'The Courthouse budujeme spolu so značkami a organizáciami, ktoré zdieľajú našu vieru v šport, komunitu a skvelé zážitky.',
   'partners.p2':'Od vybavenia na našich kurtoch až po podujatia, ktoré organizujeme, sú naši partneri súčasťou klubu. Mali sme tú česť spolupracovať s úžasnými značkami.',
   'partners.cta':'Staňte sa naším partnerom',
-  'contact.tag':'Kontaktujte Nás','contact.heading':'Poďte si Zahrať do The Court House.','contact.hours':'Otváracie Hodiny','contact.map':'Na Pántoch 7707/8',
+  'contact.tag':'Kontakt / Poloha','contact.heading':'Vidíme sa na kurte.',
+  'contact.name':'The Courthouse','contact.city':'Bratislava',
+  'contact.courts':'Sedem krytých kurtov.','contact.activities':'Pickleball. Bedminton. Káva. Komunita.',
+  'contact.body':'Všetko, čo potrebujete pre svoju ďalšiu hru — a množstvo dôvodov zostať aj po nej.',
+  'contact.directions':'Ako sa k nám dostať','contact.cta':'Kontaktujte nás','contact.hours':'Otváracie Hodiny','contact.map':'Na Pántoch 7707/8',
   'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
   'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
 };
