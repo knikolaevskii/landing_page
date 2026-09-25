@@ -6,7 +6,7 @@
 :is(#beyond,#whatson) .section-slogan{font-family:'Experience Prata',serif;font-weight:400}
 :is(#beyond,#whatson) .experience-body p:not(.section-slogan){font-family:'Experience Poppins',sans-serif!important;font-weight:400}
 .experience-heading > a{flex-shrink:0}
-:is(#beyond,#whatson) .experience-heading > a{border-radius:0!important}
+:is(#beyond,#whatson) .experience-heading > a{border-radius:0!important;font-size:14px!important;line-height:1.2!important;padding:20px 40px!important}
 .experience-carousel{min-width:0}
 .experience-track{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
 .experience-track::-webkit-scrollbar{display:none}

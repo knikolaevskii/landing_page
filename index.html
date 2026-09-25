@@ -199,6 +199,12 @@ a:hover{color:#16291f}
   :is(#story,#membership,#game).story-reveal-ready > [data-rv="img"]{opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
   :is(#story,#membership,#game).story-revealed > div:not([data-rv="img"]),:is(#story,#membership,#game).story-revealed > [data-rv="img"]{opacity:1;transform:none}
 }
+/* Consistent larger calls to action across the content sections. */
+#game a[data-i18n^="game.cta"],#membership a[data-i18n="member.learnMore"],#membership a[data-i18n="member.signUp"]{
+  font-size:14px!important;line-height:1.2!important;padding:20px 40px!important;
+  max-width:100%;white-space:normal!important;text-align:center;
+}
+#story a[data-i18n="story.cta"]{font-size:14px!important;line-height:1.2!important;min-height:56px!important}
 </style>
 </helmet>
 
@@ -416,7 +422,7 @@ a:hover{color:#16291f}
     <a data-rv="img" data-rv-delay=".1" href="https://www.google.com/maps/search/?api=1&amp;query=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia" target="_blank" rel="noopener noreferrer" aria-label="Open Na Pántoch 7707/8 in Google Maps" style="position:relative;display:block;border-radius:14px;overflow:hidden;height:clamp(210px,42vh,520px);background:#203c2c;cursor:pointer">
       <iframe title="Google Map showing Na Pántoch 7707/8, Bratislava" src="https://www.google.com/maps?q=Na%20P%C3%A1ntoch%207707%2F8%2C%20831%2006%20Bratislava%2C%20Slovakia&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;pointer-events:none;filter:grayscale(.2) sepia(.15) saturate(.9) contrast(1)"></iframe>
       <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(236,229,211,0.0);pointer-events:none"></div>
-      <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:0;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:400 10px/1 'Experience Poppins',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
+      <div style="position:absolute;left:50%;bottom:clamp(18px,3vw,28px);transform:translateX(-50%);padding:11px 18px;border:1px solid #f1eada;border-radius:999px;background:#203c2c;color:#f1eada;box-shadow:0 8px 24px rgba(16,24,18,.38);font:400 10px/1 'Experience Poppins',sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;pointer-events:none">Open in Google Maps</div>
     </a>
   </div>
   <footer style="background:#203c2c;color:#f1eada;padding:clamp(40px,5vw,64px) clamp(22px,5vw,72px) 24px">
