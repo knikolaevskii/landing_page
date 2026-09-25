@@ -116,25 +116,22 @@ a:hover{color:#16291f}
   /* snap is already disabled by applySnap(), but not until JS mounts */
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}
   html{--nav-height:72px;scroll-behavior:smooth;scroll-snap-type:none!important}
-  /* Keep the frame inside the visible screen; let images use leftover space. */
+  /* Sections grow with their content, so the page scrolls as one piece with no inner scrollbars. */
   section[data-screen-label]:not(#hero){
-    height:calc(var(--screen-height) - var(--nav-height));
     min-height:0;
-    overflow-y:auto!important;
   }
   #story,#game,#membership{
     grid-template-columns:minmax(0,1fr)!important;
-    grid-template-rows:auto minmax(96px,1fr);
+    grid-template-rows:auto auto;
     align-items:stretch!important;
     gap:clamp(12px,2svh,20px)!important;
     padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)!important;
   }
-  #game{grid-template-rows:minmax(96px,1fr) auto}
   #story > div:not([data-rv="img"]),#game > div:not([data-rv="img"]),#membership > div:not([data-rv="img"]){
     width:100%;max-width:none!important;gap:clamp(10px,1.8svh,16px)!important;
   }
   #story > [data-rv="img"],#game > [data-rv="img"],#membership > [data-rv="img"]{
-    height:100%!important;min-height:0;
+    height:auto!important;min-height:0;aspect-ratio:1 / 1;
   }
   section[data-screen-label]:not(#hero) .section-title{font-size:clamp(36px,8.5vw,48px);line-height:1.16}
   section[data-screen-label]:not(#hero) .section-slogan{font-size:clamp(24px,6vw,32px);line-height:1.2}
@@ -228,10 +225,10 @@ a:hover{color:#16291f}
     </div>
   </sc-if>
   <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
-      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid rgba(241,234,218,.6);border-radius:999px;color:#f1eada;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,color .35s" style-hover="background:#f1eada;color:#203c2c">Reserve</a>
+      <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid #f1eada;border-radius:999px;background:#f1eada;color:#203c2c;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,border-color .35s,color .35s" style-hover="background:#fffdf7;border-color:#fffdf7;color:#16291f">Reserve</a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.4);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.6);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
         <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
@@ -534,6 +531,7 @@ a:hover{color:#16291f}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;snapScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const LANG_KEY = 'ch-lang';
 const SK = {
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
   'hero.book':'Rezervovať Kurt',
@@ -612,6 +610,7 @@ class Component extends DCLogic {
     this.syncMobileMenu();
     this.startHeroVideo();
     this.revealHero();
+    this.restoreLang();
     requestAnimationFrame(() => {
       this.collect();
       this.paintDots(0);
@@ -863,7 +862,15 @@ class Component extends DCLogic {
     if (this.mobileMenu) this.mobileMenu.close();
   };
 
+  // play.html and membership.html read the same key, so the choice survives the jump between pages
+  restoreLang() {
+    let saved = null;
+    try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+    if (saved === 'sk' || saved === 'en') this.setState({ lang: saved });
+  }
+
   setLang(lang) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
     this.setState({ lang, langMenuOpen: false });
     requestAnimationFrame(() => {
       this.applyLang(lang);
