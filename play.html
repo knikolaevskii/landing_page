@@ -187,22 +187,11 @@ a:hover{color:#16291f}
   .btn{padding:16px 20px;font-size:12px;white-space:normal;text-align:center}
 }
 /* ---- Alternate layout (after padel39.com/play/how-to-play-padel) --------------------------
-   A centred intro, a strip of three photos that straddles the intro's bottom edge (the middle one
-   sits higher), then one framed sheet per section, photo and copy alternating sides. */
-.intro-center{text-align:center;padding-bottom:clamp(150px,17vw,250px)}
+   A centred intro, then one framed sheet per section, photo and copy alternating sides. */
+.intro-center{text-align:center}
 .intro-center .wrap{align-items:center;max-width:760px}
 .intro-center .body{max-width:640px}
 .intro-center .actions{justify-content:center}
-
-/* The first sheet carries the strip: no top padding, the strip lifts itself into the intro. */
-.sheet-strip{--strip-lift:clamp(110px,13vw,200px);padding-top:0;justify-content:flex-start}
-.sheet .strip{max-width:1180px}
-.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1vw,14px);align-items:start;margin:calc(-1 * var(--strip-lift) - var(--frame-gap)) auto clamp(56px,7vw,104px)}
-.strip figure{margin:0;position:relative;aspect-ratio:1 / 1;overflow:hidden;background:#203c2c}
-/* Cutouts (transparent PNGs) sit on light tiles so they read against the green intro. */
-.strip figure:nth-child(2),.strip figure:nth-child(3){background:#fffdf7;box-shadow:inset 0 0 0 1px rgba(31,58,43,.14)}
-.strip figure:nth-child(2){margin-top:calc(-1 * clamp(14px,2vw,28px))}
-.strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
 /* index.html's two-column split: copy 1fr, square photo 1.45fr, 8.1% apart; flipped rows mirror it. */
 .zz-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);column-gap:8.1%;align-items:center}
@@ -241,7 +230,6 @@ a:hover{color:#16291f}
    keep index.html's square proportion. */
 @media(max-width:999px){
   .sheet{min-height:0;justify-content:flex-start;padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)}
-  .sheet-strip{padding-top:0}
   .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:clamp(10px,1.8svh,16px)}
   /* Section name and slogan first, then the photo (or court diagram), then the rest of the copy.
      The copy column dissolves into the row's grid so the photo can sit between its lines.
@@ -355,12 +343,7 @@ a:hover{color:#16291f}
 </section>
 
 <!-- B · Pickleball -->
-<section id="pickleball" class="sheet sheet-strip">
-  <div class="wrap strip" aria-hidden="true">
-    <figure><img src="assets/arena-nets.png" alt=""/></figure>
-    <figure><img src="assets/how-to-play-mobile.png" alt=""/></figure>
-    <figure><img src="assets/paddles_new.png" alt="" style="object-fit:contain;padding:8%"/></figure>
-  </div>
+<section id="pickleball" class="sheet">
   <div class="wrap zz-row">
       <div class="copy stack">
         <h2 class="section-title" data-i18n="pb.tag">Pickleball</h2>
