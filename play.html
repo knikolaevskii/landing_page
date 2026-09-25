@@ -242,12 +242,15 @@ a:hover{color:#16291f}
 @media(max-width:999px){
   .sheet{min-height:0;justify-content:flex-start;padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)}
   .sheet-strip{padding-top:0}
-  .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:clamp(12px,2svh,20px)}
-  /* Class-level selectors so they outrank the desktop .zz-flip placements above. */
-  .zz-row > .copy,.zz-row > .zz-media,.zz-row > .zz-diagram{grid-column:1;grid-row:auto}
-  /* The diagram row reads heading first, then the court. */
-  .zz-row.zz-diagram-row > .copy{grid-row:1}
-  .zz-row.zz-diagram-row > .zz-diagram{grid-row:2}
+  .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:clamp(10px,1.8svh,16px)}
+  /* Section name and slogan first, then the photo (or court diagram), then the rest of the copy.
+     The copy column dissolves into the row's grid so the photo can sit between its lines.
+     Class-level selectors so they outrank the desktop .zz-flip placements above. */
+  .zz-row > .copy{display:contents}
+  .zz-row > .zz-media,.zz-row > .zz-diagram,.zz-row > .copy > *{grid-column:1;grid-row:auto;order:4}
+  .zz-row > .copy > .section-title{order:1}
+  .zz-row > .copy > .section-slogan{order:2}
+  .zz-row > .zz-media,.zz-row > .zz-diagram{order:3;margin:clamp(4px,1svh,8px) 0}
   .zz-diagram .legend{grid-template-columns:minmax(0,1fr)}
 }
 </style>
