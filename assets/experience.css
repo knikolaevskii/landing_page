@@ -13,11 +13,17 @@
 .loop-gallery{position:relative;flex-shrink:0;margin-inline:calc(-1 * clamp(24px,5vw,120px))}
 .loop-gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .loop-gallery-track::-webkit-scrollbar{display:none}
+.loop-gallery-track.is-looping{scroll-snap-type:none;scroll-behavior:auto}
+.loop-gallery-track img{transition:filter .25s ease}
+@media(hover:hover){.loop-gallery-track img:hover{filter:brightness(.8)}}
+@media(prefers-reduced-motion:reduce){.loop-gallery-track img{transition:none}}
 .loop-gallery-track img{display:block;flex:0 0 20%;width:20%;height:auto;aspect-ratio:1;object-fit:cover;scroll-snap-align:start}
-.loop-gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:48px;height:60px;border:0;border-radius:999px;background:#f1eada;color:#203c2c;font:400 36px/1 Arial,sans-serif;cursor:pointer}
-.loop-gallery-prev{left:8px}.loop-gallery-next{right:8px}
+.loop-gallery{overflow:hidden}
+.loop-gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);display:flex;align-items:center;width:60px;height:60px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#203c2c;cursor:pointer}
+.loop-gallery-arrow svg{width:10px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.loop-gallery-prev{left:-30px;justify-content:flex-end;padding-right:8px}.loop-gallery-next{right:-30px;justify-content:flex-start;padding-left:8px}
 .loop-gallery-arrow:focus-visible,.loop-gallery-track:focus-visible{outline:2px solid #203c2c;outline-offset:-3px}
-@media(max-width:999px){.loop-gallery{margin-inline:-20px}.loop-gallery-track img{flex-basis:40%;width:40%}.loop-gallery-arrow{width:36px;height:48px}}
+@media(max-width:999px){.loop-gallery{margin-inline:-20px}.loop-gallery-track img{flex-basis:40%;width:40%}}
 @media(max-width:575px){.loop-gallery-track img{flex-basis:66.666%;width:66.666%}}
 .loop-button{display:inline-flex;align-items:center;justify-content:center;padding:20px 32px;min-height:44px;border:1px solid #1f3a2b;border-radius:0;background:#1f3a2b;color:#f1ead9;font:400 14px/1.2 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
 .loop-button-outline{background:transparent;color:#1f3a2b}

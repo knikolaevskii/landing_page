@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./assets/mobile-menu.js"></script>
+<script src="./assets/loop-gallery.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -424,8 +425,8 @@ a:hover{color:#16291f}
       <img src="assets/whats-on/event2.jpg" alt="Striped paddles and a ball on court" loading="lazy" width="400" height="400"/>
       <img src="assets/how-to-play.png" alt="A doubles pickleball match" loading="lazy" width="400" height="400"/>
     </div>
-    <button class="loop-gallery-arrow loop-gallery-prev" type="button" onClick="{{ previousLoopPhoto }}" aria-label="Previous photos">‹</button>
-    <button class="loop-gallery-arrow loop-gallery-next" type="button" onClick="{{ nextLoopPhoto }}" aria-label="Next photos">›</button>
+    <button class="loop-gallery-arrow loop-gallery-prev" type="button" onClick="{{ previousLoopPhoto }}" aria-label="Previous photos"><svg viewBox="0 0 10 18" aria-hidden="true"><path d="M7 3 2 9l5 6"/></svg></button>
+    <button class="loop-gallery-arrow loop-gallery-next" type="button" onClick="{{ nextLoopPhoto }}" aria-label="Next photos"><svg viewBox="0 0 10 18" aria-hidden="true"><path d="m3 3 5 6-5 6"/></svg></button>
   </div>
   <div class="loop-events">
     <h3 data-i18n="loop.eventTitle">Bring Your Event to The Courthouse</h3>
@@ -566,7 +567,7 @@ class Component extends DCLogic {
       this.collect();
     };
     window.addEventListener('resize', this._onResize);
-    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
     this.applySnap();
     this.syncMobileMenu();
     this.startHeroVideo();
@@ -577,11 +578,12 @@ class Component extends DCLogic {
     });
   }
   componentWillUnmount() {
+    if (this.loopController) this.loopController.destroy();
     if (this.experienceObserver) this.experienceObserver.disconnect();
     if (this.sectionObservers) this.sectionObservers.forEach(observer => observer.disconnect());
     if (this.mobileMenu) this.mobileMenu.destroy();
     window.removeEventListener('resize', this._onResize);
-    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('scroll', this.onScroll, true);
   }
   componentDidUpdate() {
     this.syncMobileMenu();
@@ -674,6 +676,7 @@ class Component extends DCLogic {
   }
 
   moveLoopPhoto(direction) {
+    if (this.loopController) { this.loopController.move(direction); return; }
     const track = this.loopGallery;
     if (!track || !track.firstElementChild) return;
     const step = track.firstElementChild.getBoundingClientRect().width;
@@ -737,6 +740,12 @@ class Component extends DCLogic {
   }
 
   collect() {
+    if (this.loopGallery && this.loopBoundTrack !== this.loopGallery) {
+      if (this.loopController) this.loopController.destroy();
+      this.loopBoundTrack = this.loopGallery;
+      this.loopController = window.createLoopGallery(this.loopGallery);
+    }
+    this.updateDotVisibility();
     if (!this.sc) return;
     this.setupSectionReveals();
     this.setupExperienceReveal();
@@ -747,7 +756,22 @@ class Component extends DCLogic {
     });
   }
 
+  updateDotVisibility() {
+    if (!this.dotWrap) return;
+    const gallery = this.loopGallery;
+    let overlaps = false;
+    if (gallery) {
+      const dots = this.dotWrap.getBoundingClientRect();
+      const images = gallery.getBoundingClientRect();
+      overlaps = dots.bottom > images.top && dots.top < images.bottom &&
+        dots.right > images.left && dots.left < images.right;
+    }
+    this.dotWrap.style.visibility = overlaps ? 'hidden' : '';
+    this.dotWrap.style.pointerEvents = overlaps ? 'none' : '';
+  }
+
   onScroll = () => {
+    this.updateDotVisibility();
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const p = max > 0 ? window.scrollY / max : 0;
     if (this.bar) this.bar.style.transform = 'scaleX(' + (0.16 + p * 0.84) + ')';
