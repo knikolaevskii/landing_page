@@ -1,5 +1,17 @@
 @font-face{font-family:Experience Prata;src:url('experience/124d7b2209-6xKhdSpbNNCT-sWPCms.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:Experience Poppins;src:url('experience/9956463e70-pxiEyp8kv8JHgFVrJJfedw.ttf') format('truetype');font-weight:400;font-display:swap}
+#partners{display:flex;flex-direction:column;justify-content:center;gap:48px;padding:40px clamp(24px,5vw,120px)}
+.partners-copy{display:flex;flex-direction:column;gap:24px;max-width:1000px;flex-shrink:0}
+#partners p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
+#partners .section-title{font-size:38px}
+#partners .section-slogan{font:400 40px/1.2 'Experience Prata',serif;color:#2a2620}
+.partners-logos{overflow:hidden;flex-shrink:0;padding-block:40px;border-block:1px solid rgba(32,60,44,.2)}
+.partners-track{display:flex;width:100%;animation:partnersScroll 24s linear infinite}
+.partners-group{display:flex;align-items:center;justify-content:space-around;flex:0 0 100%;min-width:1040px}
+.partners-group img{display:block;width:180px;height:auto;object-fit:contain}
+@keyframes partnersScroll{to{transform:translateX(calc(-1 * max(100%,1040px)))}}
+@media(max-width:999px){#partners{padding:24px 20px;justify-content:flex-start;gap:32px}.partners-copy{gap:18px}#partners .section-slogan{font-size:clamp(24px,6vw,32px)}.partners-logos{padding-block:32px}}
+@media(prefers-reduced-motion:reduce){.partners-track{animation:none}.partners-group{min-width:0;justify-content:center;flex-wrap:wrap;gap:32px}.partners-group:nth-child(2),.partners-group img:nth-child(n+3){display:none}}
 #stay-in-loop{display:flex;flex-direction:column;justify-content:center;gap:48px;padding:40px clamp(24px,5vw,120px)}
 .loop-intro,.loop-events{display:flex;flex-direction:column;gap:24px;max-width:1000px;width:100%}
 #stay-in-loop p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
