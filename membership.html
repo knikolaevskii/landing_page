@@ -17,7 +17,8 @@
 <link href="assets/fonts.css" rel="stylesheet"/>
 <link href="assets/experience.css" rel="stylesheet"/>
 <style>
-html{--nav-height:70px;scroll-behavior:smooth}
+html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:smooth}
+@media(max-width:999px){html{--screen-height:100svh;--nav-height:72px}}
 body{margin:0}
 *{box-sizing:border-box}
 a{text-decoration:none;color:#1f3a2b}
@@ -39,19 +40,26 @@ a:hover{color:#16291f}
 @media(max-width:999px){.reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}}
 .language-flag{--flag-size:20px;display:block;height:var(--flag-size);font-size:var(--flag-size);line-height:var(--flag-size);letter-spacing:0}
 
-/* Sections carry the landing page's green frame: a solid border in the surround colour, square
-   inside like play.html. The ground stays flat #f1eada, exactly as index.html paints it — no
-   texture overlay, or the pages read apart. */
-.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;background-clip:padding-box}
+/* Sections carry index.html's frame, gutter and screen height. Unlike play.html they stay
+   content-sized on mobile: the plan cards are taller than a phone screen. */
+.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;min-height:calc(var(--screen-height) - var(--nav-height));padding:40px clamp(24px,5vw,120px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background-clip:padding-box;scroll-margin-top:var(--nav-height)}
+@media(max-width:999px){.sheet{padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)}}
 .sheet > *{position:relative;z-index:1}
-.wrap{max-width:1180px;margin:0 auto;min-width:0}
+.wrap{margin:0 auto;min-width:0}
 /* flex and grid children default to min-width:auto, which lets a long benefit line widen the page */
 .wrap > *,.plan-grid > *{min-width:0}
-.eyebrow{display:flex;align-items:center;gap:12px;font:400 10.5px/1 'Experience Poppins',sans-serif;letter-spacing:.2em;text-transform:uppercase}
-.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex-shrink:0}
-.h1{margin:0;font-family:'Experience Prata',serif;font-weight:400;letter-spacing:0;line-height:1.12;font-size:clamp(38px,6vw,76px);text-wrap:pretty}
-.h2{margin:0;font-family:'Experience Prata',serif;font-weight:400;letter-spacing:0;line-height:1.16;font-size:clamp(30px,4.2vw,54px);text-wrap:pretty}
-.lead{margin:0;font:400 clamp(16px,1.25vw,19px)/1.62 'Experience Poppins',sans-serif;max-width:560px}
+/* Type roles and sizes copied from index.html: script section name, Prata slogan, Poppins copy. */
+.section-title{margin:0;font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-weight:400;font-style:normal;font-synthesis:none;font-size:38px;line-height:1.16;letter-spacing:0;color:#203c2c;text-wrap:pretty;overflow-wrap:break-word}
+.section-slogan{margin:0;font-family:'Experience Prata',serif;font-size:40px;font-weight:400;font-style:normal;font-synthesis:none;line-height:1.2;letter-spacing:0;color:#2a2620;text-wrap:pretty}
+.section-head{display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px)}
+#top .section-title,#top .section-slogan{color:#f1eada}
+.lead{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif}
+@media(max-width:999px){
+  .section-title{font-size:clamp(36px,8.5vw,48px)}
+  .section-slogan{font-size:clamp(24px,6vw,32px)}
+  .section-head{gap:clamp(10px,1.8svh,16px)}
+  .lead{font-size:clamp(15px,3.8vw,17px);line-height:1.4}
+}
 /* Button system — one primary per view. Variants solid/ghost/inverted/link, sizes l m s,
    states rest/hover/active/focus-visible/disabled. Square, like the index.html section CTAs. */
 .btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:56px;padding:20px 40px;border-radius:0;border:1px solid transparent;font:400 14px/1.2 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:background .35s,color .35s,border-color .35s,transform .12s}
@@ -107,9 +115,10 @@ a:hover{color:#16291f}
 .plan-price span{font:400 14px/1 'Experience Poppins',sans-serif;letter-spacing:.06em;color:rgba(42,38,32,.6)}
 .plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
 .plan li{position:relative;padding-left:22px;font:400 16px/1.5 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
-/* Check glyph as a mask so the bullet tints with one colour and every <li> stays plain text —
+/* Check glyph as a mask (sized with an explicit width/height and 100% mask, so the stroke caps are never
+   cropped) so the bullet tints with one colour and every <li> stays plain text —
    applyLang() writes textContent, which would wipe an inline <svg> child. */
-.plan li::before{content:"";position:absolute;left:0;top:.78em;transform:translateY(-50%);width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+.plan li::before{content:"";position:absolute;left:0;top:.78em;transform:translateY(-50%);width:15px;height:15px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'><path d='M3 9.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'><path d='M3 9.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/100% 100% no-repeat}
 .plan .btn{margin-top:auto;align-self:flex-start}
 
 /* Responsive ladder. Three columns need roughly 290px each to carry a price and a five-item
@@ -184,7 +193,7 @@ a:hover{color:#16291f}
 .nm-list li{position:relative;padding-left:23px;font:400 16px/1.5 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
 .nm-list li b{display:block;font:400 11px/1 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,38,32,.5)}
 .nm-list li span{display:block;margin-top:4px;color:#1f3a2b}
-.nm-list li::before{content:"";position:absolute;left:0;top:21px;width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+.nm-list li::before{content:"";position:absolute;left:0;top:21px;width:13px;height:13px;background-color:#1f3a2b;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'><path d='M3 9.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'><path d='M3 9.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/100% 100% no-repeat}
 @media(max-width:639px){.nm-list{grid-template-columns:minmax(0,1fr)}}
 */
 
@@ -224,7 +233,7 @@ a:hover{color:#16291f}
       <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid #f1eada;border-radius:999px;background:#f1eada;color:#203c2c;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,border-color .35s,color .35s" style-hover="background:#fffdf7;border-color:#fffdf7;color:#16291f">Reserve</a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:#f1eada;border:1px solid #f1eada;border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#203c2c;cursor:pointer;transition:background .35s,border-color .35s" style-hover="background:#fffdf7;border-color:#fffdf7">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.6);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
         <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
@@ -290,10 +299,10 @@ a:hover{color:#16291f}
 <div ref="{{ scRef }}" style="font-family:\'Experience Poppins\',sans-serif;background:#203c2c;overflow-x:hidden">
 
 <!-- 01 · Intro ------------------------------------------------------------ -->
-<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) clamp(20px,5vw,72px) clamp(56px,8vh,96px);color:#f1eada">
-  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(20px,2.6vh,30px);max-width:900px">
-    <span class="eyebrow" data-i18n="mem.tag" style="color:rgba(241,234,218,.75)">Membership</span>
-    <h1 class="h1" data-i18n="mem.h1">Your club. Your court.</h1>
+<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) calc(clamp(24px,5vw,120px) + clamp(8px,1.2vw,12px)) clamp(56px,8vh,96px);color:#f1eada">
+  <div class="wrap section-head" style="max-width:900px;margin:0">
+    <h1 class="section-title" data-i18n="mem.tag">Membership</h1>
+    <p class="section-slogan" data-i18n="mem.h1">Your club. Your court.</p>
     <p class="lead" data-i18n="mem.lead" style="color:rgba(241,234,218,.78);max-width:640px">Membership is for those who want to make The Courthouse part of their routine.</p>
     <p class="lead" data-i18n="mem.lead1b" style="color:rgba(241,234,218,.78);max-width:640px">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
     <p class="lead" data-i18n="mem.lead2" style="color:rgba(241,234,218,.95);font-style:italic">No unnecessary exclusivity. Just more reasons to play.</p>
@@ -307,9 +316,9 @@ a:hover{color:#16291f}
 <!-- 02 · Plans ------------------------------------------------------------ -->
 <section id="plans" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px)">
-    <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
-      <span class="eyebrow" data-i18n="mem.plansTag" style="color:#1f3a2b">Choose Your Tier</span>
-      <h2 class="h2" data-i18n="mem.plansHeading">Three ways to make it your club.</h2>
+    <div class="section-head" style="max-width:640px">
+      <h2 class="section-title" data-i18n="mem.plansTag">Choose Your Tier</h2>
+      <p class="section-slogan" data-i18n="mem.plansHeading">Three ways to make it your club.</p>
       <p class="lead" data-i18n="mem.plansBody" style="color:rgba(42,38,32,.75)">Every tier lowers what you pay per court, opens the booking calendar earlier and moves you up the queue for club events.</p>
     </div>
 
@@ -454,9 +463,9 @@ a:hover{color:#16291f}
 <!-- 03 · FAQ -------------------------------------------------------------- -->
 <section id="faq" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
-    <div style="display:flex;flex-direction:column;gap:16px;max-width:620px">
-      <span class="eyebrow" data-i18n="mem.faqTag" style="color:#1f3a2b">Questions</span>
-      <h2 class="h2" data-i18n="mem.faqHeading">Membership — FAQs</h2>
+    <div class="section-head" style="max-width:640px">
+      <h2 class="section-title" data-i18n="mem.faqTag">Questions</h2>
+      <p class="section-slogan" data-i18n="mem.faqHeading">Membership — FAQs</p>
       <p class="lead" data-i18n="mem.faqBody" style="color:rgba(42,38,32,.75)">The things people ask before they join. If your question is not here, ask us directly.</p>
     </div>
 
@@ -503,6 +512,13 @@ a:hover{color:#16291f}
 
 </div>
 
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ onNav }}" style="position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;padding:10px 6px">
+  <a href="#top" data-goto="top" data-dot="0" ref="{{ dotRef }}" aria-label="top" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#plans" data-goto="plans" data-dot="1" aria-label="plans" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#faq" data-goto="faq" data-dot="2" aria-label="faq" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+</div>
+</sc-if>
 <div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
   <div ref="{{ barRef }}" style="width:100%;height:100%;border-radius:999px;background:#2a2620;transform:scaleX(.16);transform-origin:left center;transition:transform .28s cubic-bezier(.22,1,.36,1)"></div>
 </div>
@@ -511,6 +527,8 @@ a:hover{color:#16291f}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const LANG_KEY = 'ch-lang';
+const DOT_IDS = ['top','plans','faq'];
+const DARK_IDS = ['top'];
 const SK = {
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
   'mem.tag':'Členstvo',
@@ -594,6 +612,7 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.syncMobileMenu();
     this.restoreLang();
+    this.active = -1;
     this.onScroll();
   }
   componentWillUnmount() {
@@ -603,6 +622,7 @@ class Component extends DCLogic {
   }
   componentDidUpdate() {
     this.syncMobileMenu();
+    this.paintDots(this.active);
     if (this.state.lang === 'sk') this.applyLang('sk');
     if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
     if (this.mobileLangLabel) this.mobileLangLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
@@ -641,11 +661,36 @@ class Component extends DCLogic {
     if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false, langMenuOpen: false });
   }
 
+  // Progress bar plus section dots, index.html's pattern: the section under the middle of the
+  // screen is active, and dots and bar turn cream over the green intro.
   onScroll = () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const p = max > 0 ? window.scrollY / max : 0;
     if (this.bar) this.bar.style.transform = 'scaleX(' + (0.16 + p * 0.84) + ')';
+    const vc = window.scrollY + window.innerHeight / 2;
+    let idx = 0;
+    for (let i = 0; i < DOT_IDS.length; i++) {
+      const s = document.getElementById(DOT_IDS[i]);
+      if (s && s.offsetTop <= vc) idx = i;
+    }
+    if (idx !== this.active) { this.active = idx; this.paintDots(idx); }
   };
+
+  paintDots(idx) {
+    const dark = DARK_IDS.includes(DOT_IDS[idx]);
+    if (this.dotWrap) {
+      const base = dark ? 'rgba(241,234,218,.32)' : 'rgba(42,38,32,.28)';
+      const on = dark ? '#f1eada' : '#2a2620';
+      this.dotWrap.querySelectorAll('[data-dot]').forEach((d, i) => {
+        d.style.background = i === idx ? on : base;
+        d.style.transform = i === idx ? 'scale(1.55)' : 'scale(1)';
+      });
+    }
+    if (this.bar) {
+      this.bar.style.background = dark ? '#f1eada' : '#2a2620';
+      this.bar.parentElement.style.background = dark ? 'rgba(241,234,218,.22)' : 'rgba(42,38,32,.18)';
+    }
+  }
 
   // only in-page jumps are intercepted; links to index.html must not carry data-goto
   onNav = (e) => {
@@ -693,6 +738,7 @@ class Component extends DCLogic {
       menuButtonRef: el => { this.menuButton = el; },
       menuPanelRef: el => { this.menuPanel = el; },
       barRef: el => { if (el) this.bar = el; },
+      dotRef: el => { if (el) this.dotWrap = el.parentElement; },
       langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       mobileLangLabelRef: el => { if (el) { this.mobileLangLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       onNav: this.onNav,

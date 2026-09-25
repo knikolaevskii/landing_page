@@ -62,14 +62,15 @@ a:hover{color:#16291f}
 ::selection{background:#203c2c;color:#f1eada}
 @keyframes chIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 
-/* Sections carry the home page's green frame and 14px inner corners, but size to their content:
-   the home page's full-screen section rule would clip a long page on mobile. */
-.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);border:var(--frame-gap) solid #203c2c;background:#f1eada;background-clip:padding-box;scroll-margin-top:var(--nav-height)}
+/* Sections copy index.html's editorial sections: green frame with 14px inner corners, a screen tall,
+   40px block padding and the same inline gutter, content spanning the frame. */
+.sheet{--frame-gap:clamp(8px,1.2vw,12px);position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:center;min-height:calc(var(--screen-height) - var(--nav-height));padding:40px clamp(24px,5vw,120px);border:var(--frame-gap) solid #203c2c;border-radius:calc(14px + var(--frame-gap));background:#f1eada;background-clip:padding-box;scroll-margin-top:var(--nav-height)}
+.sheet .wrap{max-width:none;width:100%}
 .sheet-alt{background-color:#ece5d3}
 .wrap{max-width:1180px;margin:0 auto;min-width:0}
 .wrap > *{min-width:0}
 .stack{display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px)}
-.body{margin:0;max-width:560px;font:400 clamp(16px,1.15vw,18px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
+.body{margin:0;max-width:560px;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
 .body-soft{color:rgba(42,38,32,.7)}
 .lines{display:flex;flex-direction:column;gap:6px}
 .kicker{margin:0;font:400 10.5px/1 'Experience Poppins',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1f3a2b}
@@ -171,7 +172,8 @@ a:hover{color:#16291f}
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}
   .section-title{font-size:clamp(36px,8.5vw,48px)}
   .section-slogan{font-size:clamp(24px,6vw,32px)}
-  .body{max-width:none;font-size:clamp(15px,3.8vw,17px)}
+  .body{max-width:none;font-size:clamp(15px,3.8vw,17px);line-height:1.4}
+  .stack{gap:clamp(10px,1.8svh,16px)}
   .split{grid-template-columns:minmax(0,1fr)}
   .split > .copy,.split > .media,.split > .aside,.split-flip > .copy,.split-flip > .media,.split-even > .copy,.split-even > .aside{grid-column:1 / -1;grid-row:auto}
   .split > .media{order:-1;min-height:clamp(220px,56vw,420px)}
@@ -193,7 +195,8 @@ a:hover{color:#16291f}
 .intro-center .actions{justify-content:center}
 
 /* The first sheet carries the strip: no top padding, the strip lifts itself into the intro. */
-.sheet-strip{--strip-lift:clamp(110px,13vw,200px);padding-top:0}
+.sheet-strip{--strip-lift:clamp(110px,13vw,200px);padding-top:0;justify-content:flex-start}
+.sheet .strip{max-width:1180px}
 .strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1vw,14px);align-items:start;margin:calc(-1 * var(--strip-lift) - var(--frame-gap)) auto clamp(56px,7vw,104px)}
 .strip figure{margin:0;position:relative;aspect-ratio:1 / 1;overflow:hidden;background:#203c2c}
 /* Cutouts (transparent PNGs) sit on light tiles so they read against the green intro. */
@@ -201,9 +204,12 @@ a:hover{color:#16291f}
 .strip figure:nth-child(2){margin-top:calc(-1 * clamp(14px,2vw,28px))}
 .strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
-.zz-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(28px,4vw,64px);align-items:center}
-.zz-row > .zz-media{position:relative;align-self:stretch;min-height:clamp(340px,38vw,560px);overflow:hidden;background:#203c2c}
-.zz-flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+/* index.html's two-column split: copy 1fr, square photo 1.45fr, 8.1% apart; flipped rows mirror it. */
+.zz-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);column-gap:8.1%;align-items:center}
+.zz-row > .zz-media{position:relative;aspect-ratio:1 / 1;align-self:center;overflow:hidden;background:#203c2c}
+.zz-row > .zz-media-contain{background:transparent}
+.zz-row .body{max-width:none}
+.zz-flip{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
 .zz-flip > .zz-media,.zz-flip > .zz-diagram{grid-column:1;grid-row:1}
 .zz-flip > .copy{grid-column:2;grid-row:1}
 .zz-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -219,12 +225,29 @@ a:hover{color:#16291f}
 .pairs b{display:block;font:400 19px/1.4 'Experience Prata',serif;color:#1f3a2b}
 .pairs span{display:block;margin-top:3px;font:400 15px/1.55 'Experience Poppins',sans-serif;color:rgba(42,38,32,.72)}
 
+.sheet .section-slogan{color:#2a2620}
+@media(min-width:1000px){
+  .sheet .section-title{font-size:38px}
+  .sheet .section-slogan{font-size:40px}
+}
+/* Desktop entrance, index.html's values: copy rises, photo settles from 92%. setupReveals() adds the classes. */
+@media(min-width:1000px) and (prefers-reduced-motion:no-preference){
+  .sheet.reveal-ready .zz-row > .copy{opacity:0;transform:translateY(10%);transition:opacity .5s ease .2s,transform .5s ease .2s}
+  .sheet.reveal-ready .zz-row > :is(.zz-media,.zz-diagram){opacity:0;transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
+  .sheet.revealed .zz-row > .copy,.sheet.revealed .zz-row > :is(.zz-media,.zz-diagram){opacity:1;transform:none}
+}
+
+/* Mobile: one column, sections grow with their content so the page scrolls as one piece; photos
+   keep index.html's square proportion. */
 @media(max-width:999px){
-  .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);row-gap:clamp(24px,5vw,36px)}
-  .zz-row > .zz-media,.zz-flip > .zz-media{grid-column:1;grid-row:1;min-height:clamp(240px,62vw,460px)}
-  .zz-row > .copy,.zz-flip > .copy{grid-column:1;grid-row:2}
-  .zz-row > .zz-diagram,.zz-flip > .zz-diagram{grid-column:1;grid-row:2}
+  .sheet{min-height:0;justify-content:flex-start;padding:clamp(16px,2.5svh,24px) clamp(16px,4vw,28px)}
+  .sheet-strip{padding-top:0}
+  .zz-row,.zz-flip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:clamp(12px,2svh,20px)}
+  /* Class-level selectors so they outrank the desktop .zz-flip placements above. */
+  .zz-row > .copy,.zz-row > .zz-media,.zz-row > .zz-diagram{grid-column:1;grid-row:auto}
+  /* The diagram row reads heading first, then the court. */
   .zz-row.zz-diagram-row > .copy{grid-row:1}
+  .zz-row.zz-diagram-row > .zz-diagram{grid-row:2}
   .zz-diagram .legend{grid-template-columns:minmax(0,1fr)}
 }
 </style>
@@ -248,7 +271,7 @@ a:hover{color:#16291f}
       <a href="https://player.padelos.co/club/216959" data-i18n="nav.join" class="header-control reserve-button" style="padding:0 22px;border:1px solid #f1eada;border-radius:999px;background:#f1eada;color:#203c2c;font:400 clamp(14px,1.2vw,16px)/1 'Satoshi',Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;transition:background .35s,border-color .35s,color .35s" style-hover="background:#fffdf7;border-color:#fffdf7;color:#16291f">Reserve</a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative">
-      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:#f1eada;border:1px solid #f1eada;border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#203c2c;cursor:pointer;transition:background .35s,border-color .35s" style-hover="background:#fffdf7;border-color:#fffdf7">
+      <button onClick="{{ toggleLangMenu }}" aria-label="Select language" class="header-control" style="display:flex;align-items:center;justify-content:center;gap:7px;background:none;border:1px solid rgba(241,234,218,.6);border-radius:999px;padding:11px 22px;font:400 12px/1 'Satoshi',Arial,sans-serif;letter-spacing:0;color:#f1eada;cursor:pointer" style-hover="border-color:#f1eada">
         <span ref="{{ langLabelRef }}" aria-hidden="true" class="language-flag">🇬🇧</span>
         <span style="font-size:9px;opacity:.7">▾</span>
       </button>
@@ -448,7 +471,7 @@ a:hover{color:#16291f}
 <!-- E · Coaching -->
 <section id="coaching" class="sheet sheet-alt">
   <div class="wrap zz-row zz-flip">
-      <div class="zz-media"><img src="assets/how-to-play1.png" alt="Aerial view of a doubles game" loading="lazy" style="object-fit:contain;padding:6%"/></div>
+      <div class="zz-media zz-media-contain"><img src="assets/how-to-play1.png" alt="Aerial view of a doubles game" loading="lazy" style="object-fit:contain;padding:6%"/></div>
       <div class="copy stack">
         <h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
         <p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
@@ -581,10 +604,25 @@ a:hover{color:#16291f}
 
 </div>
 
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ onNav }}" style="position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;padding:10px 6px">
+  <a href="#top" data-goto="top" data-dot="0" ref="{{ dotRef }}" aria-label="top" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#pickleball" data-goto="pickleball" data-dot="1" aria-label="pickleball" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#new" data-goto="new" data-dot="2" aria-label="new" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#find" data-goto="find" data-dot="3" aria-label="find" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#coaching" data-goto="coaching" data-dot="4" aria-label="coaching" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#badminton" data-goto="badminton" data-dot="5" aria-label="badminton" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#compete" data-goto="compete" data-dot="6" aria-label="compete" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#equipment" data-goto="equipment" data-dot="7" aria-label="equipment" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#letsplay" data-goto="letsplay" data-dot="8" aria-label="letsplay" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+</div>
+</sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const LANG_KEY = 'ch-lang';
+const DOT_IDS = ['top', 'pickleball', 'new', 'find', 'coaching', 'badminton', 'compete', 'equipment', 'letsplay'];
+const DARK_IDS = ['top','letsplay'];
 const SK = {
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
   'play.tag':'Hrajte',
@@ -688,21 +726,28 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.checkSize();
-    this._onResize = () => this.checkSize();
+    this._onResize = () => { this.checkSize(); this.setupReveals(); };
     window.addEventListener('resize', this._onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.active = -1;
+    requestAnimationFrame(() => this.onScroll());
     this.applySnap();
     this.syncMobileMenu();
     this.startFinaleVideo();
     this.watchCourt();
     this.restoreLang();
+    requestAnimationFrame(() => this.setupReveals());
   }
   componentWillUnmount() {
     if (this.mobileMenu) this.mobileMenu.destroy();
     if (this.courtObserver) this.courtObserver.disconnect();
+    if (this.revealObservers) this.revealObservers.forEach(o => o.disconnect());
     window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this.onScroll);
   }
   componentDidUpdate() {
     this.syncMobileMenu();
+    this.paintDots(this.active);
     this.applySnap();
     if (this.state.lang === 'sk') this.applyLang('sk');
     if (this.langLabel) this.langLabel.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰';
@@ -743,6 +788,56 @@ class Component extends DCLogic {
   }
   applySnap() {
     document.documentElement.style.scrollSnapType = 'none';
+  }
+
+  // Section dots, index.html's pattern: the section under the middle of the screen is active,
+  // and the dots turn cream over the green sections.
+  onScroll = () => {
+    const vc = window.scrollY + window.innerHeight / 2;
+    let idx = 0;
+    for (let i = 0; i < DOT_IDS.length; i++) {
+      const s = document.getElementById(DOT_IDS[i]);
+      if (s && s.offsetTop <= vc) idx = i;
+    }
+    if (idx !== this.active) { this.active = idx; this.paintDots(idx); }
+  };
+
+  paintDots(idx) {
+    if (!this.dotWrap) return;
+    const dark = DARK_IDS.includes(DOT_IDS[idx]);
+    const base = dark ? 'rgba(241,234,218,.32)' : 'rgba(42,38,32,.28)';
+    const on = dark ? '#f1eada' : '#2a2620';
+    this.dotWrap.querySelectorAll('[data-dot]').forEach((d, i) => {
+      d.style.background = i === idx ? on : base;
+      d.style.transform = i === idx ? 'scale(1.55)' : 'scale(1)';
+    });
+  }
+
+  // index.html's setupSectionReveals(), for every photo row: desktop only, once per section.
+  setupReveals() {
+    if (!this.sc) return;
+    if (!this.revealObservers) this.revealObservers = new Map();
+    const enabled = window.innerWidth >= 1000 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.sc.querySelectorAll('.sheet').forEach(section => {
+      const row = section.querySelector('.zz-row');
+      if (!row) return;
+      if (!enabled) {
+        this.revealObservers.get(section)?.disconnect();
+        this.revealObservers.delete(section);
+        section.classList.remove('reveal-ready');
+        return;
+      }
+      if (section.classList.contains('revealed') || this.revealObservers.has(section) || !('IntersectionObserver' in window)) return;
+      section.classList.add('reveal-ready');
+      const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        section.classList.add('revealed');
+        observer.disconnect();
+        this.revealObservers.delete(section);
+      });
+      this.revealObservers.set(section, observer);
+      observer.observe(row);
+    });
   }
 
   // Draw the rally path once, the first time the diagram is mostly on screen. The dash length is
@@ -850,6 +945,7 @@ class Component extends DCLogic {
       menuButtonRef: el => { this.menuButton = el; },
       menuPanelRef: el => { this.menuPanel = el; },
       courtRef: el => { if (el) this.court = el; },
+      dotRef: el => { if (el) this.dotWrap = el.parentElement; },
       langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       mobileLangLabelRef: el => { if (el) { this.mobileLangLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       onNav: this.onNav,
