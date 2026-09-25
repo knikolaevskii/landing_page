@@ -415,6 +415,18 @@ a:hover{color:#16291f}
       <button class="loop-button" type="button" disabled data-i18n="loop.signup">Sign Up →</button>
     </div>
   </div>
+  <div class="loop-gallery" role="region" aria-label="Life at The Courthouse">
+    <div class="loop-gallery-track" ref="{{ loopGalleryRef }}" tabindex="0" aria-label="Club photos; scroll horizontally to browse">
+      <img src="assets/paddles.png" alt="Pickleball paddles and balls beside the net" loading="lazy" width="400" height="400"/>
+      <img src="assets/whats-on/social.jpg" alt="Players sharing drinks on court" loading="lazy" width="400" height="400"/>
+      <img src="assets/membership_desktop.png" alt="Members spending time together at the club" loading="lazy" width="400" height="400"/>
+      <img src="assets/whats-on/event1.jpg" alt="Pickleball equipment ready for a game" loading="lazy" width="400" height="400"/>
+      <img src="assets/whats-on/event2.jpg" alt="Striped paddles and a ball on court" loading="lazy" width="400" height="400"/>
+      <img src="assets/how-to-play.png" alt="A doubles pickleball match" loading="lazy" width="400" height="400"/>
+    </div>
+    <button class="loop-gallery-arrow loop-gallery-prev" type="button" onClick="{{ previousLoopPhoto }}" aria-label="Previous photos">‹</button>
+    <button class="loop-gallery-arrow loop-gallery-next" type="button" onClick="{{ nextLoopPhoto }}" aria-label="Next photos">›</button>
+  </div>
   <div class="loop-events">
     <h3 data-i18n="loop.eventTitle">Bring Your Event to The Courthouse</h3>
     <p data-i18n="loop.eventBody">From company tournaments and team-building to private celebrations, brand activations and full club takeovers — make The Courthouse yours for the occasion.</p>
@@ -661,6 +673,17 @@ class Component extends DCLogic {
     document.addEventListener('scroll', kick, { passive: true });
   }
 
+  moveLoopPhoto(direction) {
+    const track = this.loopGallery;
+    if (!track || !track.firstElementChild) return;
+    const step = track.firstElementChild.getBoundingClientRect().width;
+    const max = track.scrollWidth - track.clientWidth;
+    let left = track.scrollLeft + direction * step;
+    if (direction > 0 && track.scrollLeft >= max - 2) left = 0;
+    if (direction < 0 && track.scrollLeft <= 2) left = max;
+    track.scrollTo({left:Math.max(0,Math.min(max,left)),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  }
+
   moveExperience(direction, track = this.experienceTrack) {
     if (!track || !track.firstElementChild) return;
     const step = track.firstElementChild.getBoundingClientRect().width + 32;
@@ -804,6 +827,9 @@ class Component extends DCLogic {
       heroFootRef: el => { if (el) this.heroFoot = el; },
       langLabelRef: el => { if (el) { this.langLabel = el; el.textContent = this.state.lang === 'en' ? '🇬🇧' : '🇸🇰'; } },
       experienceTrackRef: el => { this.experienceTrack = el; },
+      loopGalleryRef: el => { this.loopGallery = el; },
+      previousLoopPhoto: () => this.moveLoopPhoto(-1),
+      nextLoopPhoto: () => this.moveLoopPhoto(1),
       previousExperience: () => this.moveExperience(-1),
       nextExperience: () => this.moveExperience(1),
       onScroll: this.onScroll,
