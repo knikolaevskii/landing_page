@@ -1,5 +1,9 @@
 @font-face{font-family:Experience Prata;src:url('experience/124d7b2209-6xKhdSpbNNCT-sWPCms.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:Experience Poppins;src:url('experience/9956463e70-pxiEyp8kv8JHgFVrJJfedw.ttf') format('truetype');font-weight:400;font-display:swap}
+/* The shipped faces are Latin-only, so Slovak č š ž ť ľ ň ď ĺ ŕ load from these Latin Extended files.
+   Prata has no extended cut at all; Playfair Display is the nearest high-contrast serif. */
+@font-face{font-family:Experience Poppins;src:url('experience/poppins-400-latin-ext.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Experience Prata;src:url('experience/playfair-400-latin-ext.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2C60-2C7F,U+A720-A7FF}
 #stay-in-loop{display:flex;flex-direction:column;justify-content:center;gap:48px;padding:40px clamp(24px,5vw,120px)}
 .loop-intro,.loop-events{display:flex;flex-direction:column;gap:24px;max-width:1000px;width:100%}
 #stay-in-loop p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
