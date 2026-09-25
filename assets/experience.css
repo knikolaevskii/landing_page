@@ -8,9 +8,9 @@
 .experience-carousel{min-width:0}
 .experience-track{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
 .experience-track::-webkit-scrollbar{display:none}
-.experience-card{flex:0 0 780px;display:grid;grid-template-columns:minmax(200px,394px) 1fr;scroll-snap-align:start;background:#fff;color:#14142b}
+.experience-card{flex:0 0 780px;display:grid;grid-template-columns:minmax(200px,394px) 1fr;scroll-snap-align:start;background:#e8dfcd;color:#14142b}
 .experience-card > img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:788 / 700}
-.experience-card-copy{display:flex;flex-direction:column;justify-content:center;padding:40px 32px;border:1px solid #e5e5ea;border-left:0}
+.experience-card-copy{display:flex;flex-direction:column;justify-content:center;padding:40px 32px;border:1px solid #d8cfbd;border-left:0}
 .experience-card h3{margin:0 0 12px;font:400 28px/1.429 'Experience Prata',serif;color:#111}
 .experience-card p{margin:0;font:400 18px/1.667 'Experience Poppins',sans-serif;color:#53535b}
 .experience-controls{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;column-gap:16px;margin-top:50px;margin-bottom:40px}
@@ -30,5 +30,5 @@
   .experience-intro{gap:16px;max-width:none}
   .experience-card{flex-basis:100%;grid-template-columns:1fr}
   .experience-card > img{height:auto;aspect-ratio:788 / 700}
-  .experience-card-copy{padding:24px;border-left:1px solid #e5e5ea;border-top:0}
+  .experience-card-copy{padding:24px;border-left:1px solid #d8cfbd;border-top:0}
 }
