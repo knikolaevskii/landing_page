@@ -1,5 +1,21 @@
 @font-face{font-family:Experience Prata;src:url('experience/124d7b2209-6xKhdSpbNNCT-sWPCms.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:Experience Poppins;src:url('experience/9956463e70-pxiEyp8kv8JHgFVrJJfedw.ttf') format('truetype');font-weight:400;font-display:swap}
+#stay-in-loop{display:flex;flex-direction:column;justify-content:center;gap:48px;padding:40px clamp(24px,5vw,120px)}
+.loop-intro,.loop-events{display:flex;flex-direction:column;gap:24px;max-width:1000px;width:100%}
+#stay-in-loop p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}
+#stay-in-loop .section-slogan{font:400 40px/1.2 'Experience Prata',serif;color:#2a2620}
+#stay-in-loop .section-title{font-size:38px}
+.loop-events{max-width:none;border-top:1px solid rgba(32,60,44,.25);padding-top:40px}
+.loop-events h3{margin:0;font:400 clamp(24px,2.5vw,34px)/1.3 'Experience Prata',serif;color:#203c2c}
+.loop-events > p{max-width:1000px}
+#stay-in-loop .loop-event-types{font-size:14px;line-height:1.8}
+.loop-actions{display:flex;flex-wrap:wrap;gap:14px}
+.loop-button{display:inline-flex;align-items:center;justify-content:center;padding:20px 32px;min-height:44px;border:1px solid #1f3a2b;border-radius:0;background:#1f3a2b;color:#f1ead9;font:400 14px/1.2 'Experience Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.loop-button-outline{background:transparent;color:#1f3a2b}
+.loop-button:disabled{cursor:default;opacity:.65}
+.loop-button:not(:disabled):hover{background:#16291f;color:#f1ead9}
+.loop-button:focus-visible{outline:2px solid #203c2c;outline-offset:4px}
+@media(max-width:999px){#stay-in-loop{padding:24px 20px;justify-content:flex-start;gap:32px}.loop-intro,.loop-events{gap:18px;flex-shrink:0}.loop-events{padding-top:28px}#stay-in-loop .section-slogan{font-size:clamp(24px,6vw,32px)}.loop-button{padding:16px 20px;font-size:12px}}
 :is(#beyond,#whatson){display:block;padding:40px clamp(24px,5vw,120px);overflow:hidden}
 .experience-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:60px}
 .experience-intro{display:flex;flex-direction:column;gap:24px;max-width:600px}
