@@ -1,0 +1,28 @@
+/* Social Club event carousel: shared landing-page cards and controls. */
+#social-club.social-events{display:block;min-height:0;padding:60px 64px;overflow:hidden}
+#social-club .social-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:76px;margin-bottom:56px}
+#social-club .social-top .photo{aspect-ratio:1.25;height:460px}
+#social-club .social-top .slogan{font-size:38px}
+#social-club .event-intro{font-size:22px;margin-bottom:26px;color:#57544c}
+#social-club .experience-track{gap:28px;margin-right:-64px;padding-right:64px}
+#social-club .whats-on-article{flex:0 0 370px;scroll-snap-align:start;text-decoration:none;flex-direction:column}
+#social-club .whats-on-article figure{width:100%;height:auto;aspect-ratio:460/400;order:initial}
+#social-club .whats-on-article img{height:100%;width:100%;object-fit:cover}
+#social-club .whats-on-category{top:20px;left:20px;font-size:14px;padding:10px 12px}
+#social-club .whats-on-article-copy{padding:25px 24px 24px}
+#social-club .whats-on-article h3{font-size:24px}
+#social-club .whats-on-article-meta{font-size:14px}
+#social-club .experience-controls{margin-top:25px;margin-bottom:35px}
+#social-club .after-events{max-width:950px}
+#social-club .after-events p{margin-bottom:20px}
+#social-club .after-events p:last-child{margin-bottom:0}
+@media(max-width:999px){
+  #social-club.social-events{padding:32px 24px}
+  #social-club .social-top{grid-template-columns:minmax(0,1fr);gap:0;margin-bottom:36px}
+  #social-club .social-top > .photo{display:none}
+  #social-club .social-top .slogan{font-size:30px}
+  #social-club .experience-track{margin-right:-24px;padding-right:24px;gap:18px}
+  #social-club .whats-on-article{flex-basis:86%}
+  #social-club .whats-on-article h3{font-size:22px}
+  #social-club .event-intro{font-size:18px}
+}
