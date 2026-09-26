@@ -305,17 +305,21 @@ a:hover{color:#16291f}
 <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
   <div id="mobile-menu" ref="{{ menuPanelRef }}" class="mobile-menu-panel" onClick="{{ onNav }}" hidden="{{ true }}" aria-label="Mobile navigation">
     <div class="mobile-menu-links">
+      <p class="mobile-menu-label" data-i18n="nav.menu">Menu</p>
     <a href="index.html#story" data-i18n="nav.story" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Our Story</a>
     <a href="play.html" data-i18n="nav.game" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">How to Play</a>
     <a href="membership.html" aria-current="page" data-i18n="nav.membership" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c;opacity:.55">Membership</a>
     <a href="index.html#contact" data-i18n="nav.contact" style="display:flex;align-items:center;min-height:48px;font-family:'Satoshi',Arial,sans-serif;font-size:clamp(34px,9vw,56px);line-height:1.15;color:#203c2c">Contact</a>
     </div>
     <div class="mobile-menu-footer">
-      <a href="https://player.padelos.co/club/216959" data-i18n="mem.nmCta" class="mobile-menu-booking" style="display:inline-flex;align-items:center;justify-content:center;padding:15px clamp(14px,4vw,26px);min-height:44px;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 12px/1.2 'Satoshi',Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
-    <button class="mobile-menu-language" type="button" onClick="{{ toggleMobileLanguage }}" aria-label="{{ mobileLanguageAction }}">
+      <div class="mobile-menu-language-row">
+        <span class="mobile-menu-language-label" data-i18n="nav.language">Language</span>
+        <button class="mobile-menu-language" type="button" onClick="{{ toggleMobileLanguage }}" aria-label="{{ mobileLanguageAction }}">
       <span lang="sk" data-active="{{ isSk }}" aria-hidden="true">SK</span>
       <span lang="en" data-active="{{ isEn }}" aria-hidden="true">EN</span>
     </button>
+      </div>
+      <a href="https://player.padelos.co/club/216959" data-i18n="mem.nmCta" class="mobile-menu-booking" style="display:inline-flex;align-items:center;justify-content:center;padding:15px clamp(14px,4vw,26px);min-height:44px;text-align:center;background:#1f3a2b;border:1px solid rgba(241,234,218,.8);border-radius:999px;color:#f1eada;font:500 12px/1.2 'Satoshi',Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;transition:background .4s,color .4s" style-hover="background:#f1eada;color:#1f3a2b">Book a Court</a>
     </div>
   </div>
 </sc-if>
@@ -544,6 +548,7 @@ a:hover{color:#16291f}
 const LANG_KEY = 'ch-lang';
 const DOT_IDS = ['plans','faq'];
 const SK = {
+  'nav.menu':'Menu','nav.language':'Jazyk',
   'mem.heroRates':'Nižšie ceny kurtov. Skoršia rezervácia.',
   'mem.heroEvents':'Prednostný prístup ku klubovým podujatiam.',
   'mem.explore':'Pozrieť členstvá',

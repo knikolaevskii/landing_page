@@ -1,14 +1,19 @@
 /* Shared mobile navigation layout and motion for all pages. */
-.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:0 16px;overflow-y:auto;overscroll-behavior:contain;transform:translateY(calc(-100% - var(--nav-height)));transition:transform 500ms cubic-bezier(.22,1,.36,1)}
+.mobile-menu-panel{position:fixed;inset:var(--nav-height) 0 0;z-index:99;background:#f1eada;display:flex;flex-direction:column;align-items:stretch;padding:36px 24px max(24px,env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;transform:translateY(calc(-100% - var(--nav-height)));transition:transform 500ms cubic-bezier(.22,1,.36,1)}
 .mobile-menu-panel[hidden]{display:none!important}
 .mobile-menu-panel[data-open="true"]{transform:translateY(0)}
-.mobile-menu-links{display:flex;flex-direction:column;gap:8px;width:100%;flex-shrink:0;padding-top:max(24px,calc(100px + 8vh - var(--nav-height)));padding-bottom:50px}
-.mobile-menu-links a{justify-content:center;text-align:center}
-.mobile-menu-footer{display:flex;justify-content:space-between;gap:8px;align-items:stretch;width:100%;padding-bottom:30px;flex-shrink:0}
-/* Reference segmented switch, using the landing page's green and cream. */
-.mobile-menu-language{appearance:none;background:transparent;cursor:pointer;margin-right:8px;display:flex;align-items:stretch;flex-shrink:0;border:1px solid #203c2c;border-radius:999px;padding:4px;line-height:1.15}
-.mobile-menu-language span{display:flex;align-items:center;justify-content:center;appearance:none;border:0;background:transparent;color:#203c2c;font:600 16px/1.15 'Satoshi',Arial,sans-serif;padding:5px 10px;border-radius:999px;cursor:pointer;transition:background .2s ease-in-out,color .2s ease-in-out}
+.mobile-menu-links{display:flex;flex-direction:column;gap:0;width:100%;flex-shrink:0}
+.mobile-menu-label{margin:0 0 18px;color:#203c2c;opacity:.64;font:400 10px/1.4 'Satoshi',Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.mobile-menu-links a{justify-content:flex-start;text-align:left;min-height:68px!important;font-size:32px!important;line-height:1.2!important;letter-spacing:-.015em;border-bottom:1px solid rgba(32,60,44,.14);text-decoration:none!important;opacity:1!important}
+.mobile-menu-footer{display:flex;flex-direction:column;gap:20px;align-items:stretch;width:100%;margin-top:auto;padding-top:56px;flex-shrink:0}
+.mobile-menu-language-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;border-top:1px solid rgba(32,60,44,.2)}
+.mobile-menu-language-label{color:#203c2c;font:400 14px/1.4 'Satoshi',Arial,sans-serif}
+.mobile-menu-panel .mobile-menu-booking{width:100%;min-height:56px!important;padding:17px 24px!important;background:#203c2c!important;border-color:#203c2c!important;color:#f1eada!important}
+.mobile-menu-panel .mobile-menu-booking:hover{background:#162b20!important;border-color:#162b20!important}
+.mobile-menu-language{appearance:none;background:transparent;cursor:pointer;display:flex;align-items:center;gap:2px;flex-shrink:0;border:1px solid rgba(32,60,44,.5);border-radius:999px;padding:3px;line-height:1.15}
+.mobile-menu-language span{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;color:#203c2c;font:500 13px/1.15 'Satoshi',Arial,sans-serif;border-radius:50%;transition:background .2s ease-in-out,color .2s ease-in-out}
 .mobile-menu-language span[data-active="true"]{background:#203c2c;color:#f1eada}
-.mobile-menu-language:focus-visible{outline:2px solid #203c2c;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){.mobile-menu-language span{transition:none}}
-@media(prefers-reduced-motion:reduce){.mobile-menu-panel{transition:none}}
+.mobile-menu-language:focus-visible,.mobile-menu-booking:focus-visible,.mobile-menu-links a:focus-visible{outline:2px solid #203c2c;outline-offset:3px}
+@media(max-width:999px){nav:has(.mobile-menu-toggle[aria-expanded="true"]) .reserve-button{display:none!important}}
+@media(max-height:650px){.mobile-menu-panel{padding-top:24px}.mobile-menu-links a{min-height:56px!important;font-size:28px!important}.mobile-menu-footer{padding-top:32px}}
+@media(prefers-reduced-motion:reduce){.mobile-menu-language span,.mobile-menu-panel{transition:none}}
