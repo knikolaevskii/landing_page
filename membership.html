@@ -52,7 +52,6 @@ a:hover{color:#16291f}
 .section-title{margin:0;font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-weight:400;font-style:normal;font-synthesis:none;font-size:38px;line-height:1.16;letter-spacing:0;color:#203c2c;text-wrap:pretty;overflow-wrap:break-word}
 .section-slogan{margin:0;font-family:'Experience Playfair',serif;font-size:36px;font-weight:400;font-style:normal;font-synthesis:none;line-height:1.2;letter-spacing:0;color:#2a2620;text-wrap:pretty;-webkit-font-smoothing:antialiased}
 .section-head{display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px)}
-#top .section-title,#top .section-slogan{color:#f1eada}
 .lead{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif}
 @media(max-width:999px){
   .section-title{font-size:clamp(36px,8.5vw,48px)}
@@ -85,21 +84,8 @@ a:hover{color:#16291f}
 .btn-link-inv{color:#f1eada;border-bottom-color:rgba(241,234,218,.5)}
 .btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
 
-/* Membership intro: cream copy and a framed club photograph on brand green. */
-nav{border-bottom:1px solid rgba(241,234,218,.45)}
-#top{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(28px,3vw,56px);align-items:stretch;padding:calc(var(--nav-height) + 24px) clamp(20px,1.7vw,32px) 24px clamp(28px,4vw,80px);background:#203c2c;color:#f1eada}
-.membership-intro{align-self:center;gap:clamp(20px,1.7vw,32px);margin:0;padding-block:clamp(28px,2.4vw,44px)}
-#top .lead{max-width:640px;color:rgba(241,234,218,.82);font-size:clamp(16px,1.25vw,24px);line-height:1.55}
-#top .membership-note{color:rgba(241,234,218,.95);font-style:italic}
-.membership-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px}
-.membership-photo{position:relative;width:100%;min-width:0;min-height:100%;aspect-ratio:5/4;margin:0;border:2px solid rgba(241,234,218,.65);overflow:hidden}
-.membership-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-@media(max-width:999px){
-  #top{grid-template-columns:minmax(0,1fr);gap:28px;padding:calc(var(--nav-height) + 32px) clamp(20px,4vw,40px) 28px}
-  .membership-intro{gap:20px;padding:0}
-  #top .lead{font-size:clamp(15px,3.8vw,18px)}
-  .membership-photo{min-height:0;aspect-ratio:3/2}
-}
+/* Match the landing page: the first panel meets the header without an extra frame gap. */
+.membership-content{padding-top:calc(var(--nav-height) - clamp(8px,1.2vw,12px))}
 
 /* Plans */
 /* Three equal tiers, ordered by price. Hierarchy comes from the featured card's fill, badge
@@ -229,7 +215,6 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 /* Content stays visible until the observer is ready; each entrance plays once. */
 @media(prefers-reduced-motion:no-preference){
   .membership-reveal-ready{opacity:0;transform:translateY(24px);transition:opacity .5s ease var(--reveal-delay,.12s),transform .5s ease var(--reveal-delay,.12s)}
-  .membership-photo.membership-reveal-ready{transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
   .membership-reveal-ready:not(.membership-revealed){transition:none}
   .membership-reveal-ready.membership-revealed{opacity:1;transform:none}
   .membership-reveal-ready:focus-within{opacity:1;transform:none;transition:none}
@@ -239,7 +224,7 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
   .plan-grid > .plan:nth-child(3){--reveal-delay:.32s}
 }
 @media(max-width:999px) and (prefers-reduced-motion:no-preference){
-  .membership-reveal-ready,.membership-photo.membership-reveal-ready{transform:none;transition:opacity .4s ease .08s}
+  .membership-reveal-ready{transform:none;transition:opacity .4s ease .08s}
 }
 </style>
 </helmet>
@@ -325,33 +310,14 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
   </div>
 </sc-if>
 
-<div ref="{{ scRef }}" style="font-family:\'Experience Poppins\',sans-serif;background:#203c2c;overflow-x:hidden">
+<div id="top" class="membership-content" ref="{{ scRef }}" style="font-family:\'Experience Poppins\',sans-serif;background:#203c2c;overflow-x:hidden">
 
-<!-- 01 · Intro ------------------------------------------------------------ -->
-<section id="top">
-  <div class="wrap section-head membership-intro">
-    <h1 class="section-title" data-i18n="mem.tag">Membership</h1>
-    <p class="section-slogan" data-i18n="mem.h1">Your club. Your court.</p>
-    <p class="lead" data-i18n="mem.lead">Membership is for those who want to make The Courthouse part of their routine.</p>
-    <p class="lead" data-i18n="mem.lead1b">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
-    <p class="lead membership-note" data-i18n="mem.lead2">No unnecessary exclusivity. Just more reasons to play.</p>
-    <div class="membership-actions">
-      <a class="btn btn-inv-solid" href="#plans" data-goto="plans" data-i18n="mem.explore">Explore Membership</a>
-      <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959" data-i18n="mem.join">Join The Club</a>
-    </div>
-  </div>
-  <figure class="membership-photo">
-    <img src="assets/membership-community.webp" width="1536" height="1024" alt="Four club members relaxing together beside an indoor pickleball court" fetchpriority="high"/>
-  </figure>
-</section>
-
-<!-- 02 · Plans ------------------------------------------------------------ -->
+<!-- 01 · Plans ------------------------------------------------------------ -->
 <section id="plans" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px)">
     <div class="section-head" style="max-width:640px">
-      <h2 class="section-title" data-i18n="mem.plansTag">Choose Your Tier</h2>
+      <h1 class="section-title" data-i18n="mem.plansTag">Membership Options</h1>
       <p class="section-slogan" data-i18n="mem.plansHeading">Three ways to make it your club.</p>
-      <p class="lead" data-i18n="mem.plansBody" style="color:rgba(42,38,32,.75)">Every tier lowers what you pay per court, opens the booking calendar earlier and moves you up the queue for club events.</p>
     </div>
 
     <!-- Every tier states the same five benefits in the same order, so a row reads across columns.
@@ -492,7 +458,7 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
     -->
   </div>
 </section>
-<!-- 03 · FAQ -------------------------------------------------------------- -->
+<!-- 02 · FAQ -------------------------------------------------------------- -->
 <section id="faq" class="sheet" style="background:#f1eada">
   <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,38px)">
     <div class="section-head" style="max-width:640px">
@@ -546,9 +512,8 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 
 <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
 <div onClick="{{ onNav }}" style="position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;padding:10px 6px">
-  <a href="#top" data-goto="top" data-dot="0" ref="{{ dotRef }}" aria-label="top" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
-  <a href="#plans" data-goto="plans" data-dot="1" aria-label="plans" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
-  <a href="#faq" data-goto="faq" data-dot="2" aria-label="faq" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#plans" data-goto="plans" data-dot="0" ref="{{ dotRef }}" aria-label="plans" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
+  <a href="#faq" data-goto="faq" data-dot="1" aria-label="faq" style="width:7px;height:7px;border-radius:50%;background:rgba(42,38,32,.28);transition:background .4s,transform .4s;display:block"></a>
 </div>
 </sc-if>
 <div style="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;width:74px;height:3px;border-radius:999px;background:rgba(42,38,32,.18);overflow:hidden">
@@ -559,16 +524,9 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const LANG_KEY = 'ch-lang';
-const DOT_IDS = ['top','plans','faq'];
-const DARK_IDS = ['top'];
+const DOT_IDS = ['plans','faq'];
 const SK = {
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
-  'mem.tag':'Členstvo',
-  'mem.h1':'Váš klub. Váš kurt.',
-  'mem.lead':'Členstvo je pre tých, ktorí chcú, aby sa The Courthouse stal súčasťou ich rutiny.',
-  'mem.lead1b':'Hrajte viac. Plaťte menej. Získajte prednostný prístup, členské výhody, exkluzívne podujatia a bližšie prepojenie s komunitou okolo klubu.',
-  'mem.lead2':'Žiadna zbytočná exkluzivita. Len viac dôvodov hrať.',
-  'mem.explore':'Preskúmať Členstvo','mem.join':'Pridať sa ku Klubu',
   'mem.plansTag':'Vyberte si Úroveň',
   'mem.plansHeading':'Tri spôsoby, ako si z neho urobiť svoj klub.',
   'mem.plansBody':'Každá úroveň znižuje cenu za kurt, otvára rezervačný kalendár skôr a posúva vás vyššie v poradí na klubové podujatia.',
@@ -705,7 +663,7 @@ class Component extends DCLogic {
     this.revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
     }, { threshold: .08, rootMargin: '0px 0px -24px 0px' });
-    this.sc.querySelectorAll('.membership-intro, .membership-photo, #plans .section-head, #plans .plan, #plans .plan-divider, #plans .tnote').forEach(target => {
+    this.sc.querySelectorAll('#plans .section-head, #plans .plan, #plans .plan-divider, #plans .tnote').forEach(target => {
       target.classList.add('membership-reveal-ready');
       this.revealObserver.observe(target);
     });
@@ -717,8 +675,7 @@ class Component extends DCLogic {
     this.sc.addEventListener('focusin', this._onRevealFocus);
   }
 
-  // Progress bar plus section dots, index.html's pattern: the section under the middle of the
-  // screen is active, and dots and bar turn cream over the green intro.
+  // The section under the middle of the screen is active.
   onScroll = () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const p = max > 0 ? window.scrollY / max : 0;
@@ -733,18 +690,17 @@ class Component extends DCLogic {
   };
 
   paintDots(idx) {
-    const dark = DARK_IDS.includes(DOT_IDS[idx]);
     if (this.dotWrap) {
-      const base = dark ? 'rgba(241,234,218,.32)' : 'rgba(42,38,32,.28)';
-      const on = dark ? '#f1eada' : '#2a2620';
+      const base = 'rgba(42,38,32,.28)';
+      const on = '#2a2620';
       this.dotWrap.querySelectorAll('[data-dot]').forEach((d, i) => {
         d.style.background = i === idx ? on : base;
         d.style.transform = i === idx ? 'scale(1.55)' : 'scale(1)';
       });
     }
     if (this.bar) {
-      this.bar.style.background = dark ? '#f1eada' : '#2a2620';
-      this.bar.parentElement.style.background = dark ? 'rgba(241,234,218,.22)' : 'rgba(42,38,32,.18)';
+      this.bar.style.background = '#2a2620';
+      this.bar.parentElement.style.background = 'rgba(42,38,32,.18)';
     }
   }
 
