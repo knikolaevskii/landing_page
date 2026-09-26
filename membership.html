@@ -226,6 +226,16 @@ a:hover{color:#16291f}
 @media(max-width:999px) and (prefers-reduced-motion:no-preference){
   .membership-reveal-ready{transform:none;transition:opacity .4s ease .08s}
 }
+/* Membership hero, matching the Play page's photography and type families. */
+.membership-content{padding-top:var(--nav-height)}
+#membership-hero{position:relative;display:grid;place-items:center;min-height:650px;padding:100px 24px;background:linear-gradient(180deg,rgba(16,35,25,.44),rgba(16,35,25,.64)),url('assets/club-photography/members-lounge.png') center 48%/cover;color:#f1eada;text-align:center}
+.membership-hero-copy{display:flex;flex-direction:column;align-items:center;gap:30px;max-width:800px}
+#membership-hero .section-head{max-width:800px!important;align-items:center;gap:24px}
+#membership-hero .section-title{font-size:clamp(48px,5.2vw,76px);color:#f1eada}
+#membership-hero .section-slogan{color:#f1eada}
+#membership-hero .lead{color:rgba(241,234,218,.88)}
+#membership-hero .btn{margin-top:6px}
+@media(max-width:999px){#membership-hero{min-height:580px;padding:72px 24px;background-position:50% center}.membership-hero-copy{gap:24px}#membership-hero .section-title{font-size:48px}#membership-hero .section-slogan{font-size:30px}}
 </style>
 </helmet>
 
@@ -312,13 +322,21 @@ a:hover{color:#16291f}
 
 <div id="top" class="membership-content" ref="{{ scRef }}" style="font-family:\'Experience Poppins\',sans-serif;background:#203c2c;overflow-x:hidden">
 
-<!-- 01 · Plans ------------------------------------------------------------ -->
-<section id="plans" class="sheet" style="background:#f1eada">
-  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px)">
+<section id="membership-hero" aria-label="Membership introduction">
+  <div class="membership-hero-copy">
     <div class="section-head" style="max-width:640px">
       <h1 class="section-title" data-i18n="mem.plansTag">Membership Options</h1>
       <p class="section-slogan" data-i18n="mem.plansHeading">Three ways to make it your club.</p>
     </div>
+    <p class="lead membership-hero-benefits"><span data-i18n="mem.heroRates">Lower court rates. Earlier booking.</span><br><span data-i18n="mem.heroEvents">Priority access to club events.</span></p>
+    <a class="btn btn-inv-solid" href="#plans" data-goto="plans" data-i18n="mem.explore">Explore Memberships</a>
+  </div>
+</section>
+
+<!-- 01 · Plans ------------------------------------------------------------ -->
+<section id="plans" class="sheet" style="background:#f1eada">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:clamp(28px,3.4vw,44px)">
+
 
     <!-- Every tier states the same five benefits in the same order, so a row reads across columns.
          Prices now live here only — the comparison table that used to repeat them is gone. -->
@@ -526,6 +544,9 @@ a:hover{color:#16291f}
 const LANG_KEY = 'ch-lang';
 const DOT_IDS = ['plans','faq'];
 const SK = {
+  'mem.heroRates':'Nižšie ceny kurtov. Skoršia rezervácia.',
+  'mem.heroEvents':'Prednostný prístup ku klubovým podujatiam.',
+  'mem.explore':'Pozrieť členstvá',
   'nav.story':'Náš Príbeh','nav.game':'Ako Hrať','nav.membership':'Členstvo','nav.contact':'Kontakt','nav.join':'Rezervovať',
   'mem.plansTag':'Vyberte si Úroveň',
   'mem.plansHeading':'Tri spôsoby, ako si z neho urobiť svoj klub.',
