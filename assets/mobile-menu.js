@@ -37,6 +37,12 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
     inertStates.forEach(([el, value]) => { el.inert = value; });
     locked = false;
   }
+  function finishClose() {
+    if (open || destroyed || !panel) return;
+    clearTimeout(timer);
+    panel.hidden = true;
+    unlock();
+  }
   function setOpen(value) {
     if (destroyed || open === Boolean(value)) return;
     open = Boolean(value);
@@ -58,8 +64,14 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
         panel.inert = true;
         panel.setAttribute('aria-hidden', 'true');
         panel.dataset.open = 'false';
-        // Match the panel slide; the icon keeps its independent 600ms close sequence.
-        timer = setTimeout(() => { panel.hidden = true; unlock(); }, motion.matches ? 0 : 150);
+        // Keep the panel mounted until its slide finishes, including on rapid toggles.
+        const style = getComputedStyle(panel);
+        const toMs = value => parseFloat(value) * (value.trim().endsWith('ms') ? 1 : 1000);
+        const durations = style.transitionDuration.split(',').map(toMs);
+        const delays = style.transitionDelay.split(',').map(toMs);
+        const duration = Math.max(...durations.map((value, i) => value + delays[i % delays.length]));
+        if (motion.matches || duration === 0) finishClose();
+        else timer = setTimeout(finishClose, duration + 50);
       }
     }
     const from = { ...state };
@@ -88,6 +100,9 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
   }
   button.addEventListener('click', () => setOpen(!open), {signal:events.signal});
   panel?.addEventListener('click', e => { if (e.target.closest('a[href]')) setOpen(false); }, {signal:events.signal});
+  panel?.addEventListener('transitionend', e => {
+    if (e.target === panel && e.propertyName === 'transform') finishClose();
+  }, {signal:events.signal});
   document.addEventListener('keydown', e => {
     if (!open) return;
     if (e.key === 'Escape') { e.preventDefault(); setOpen(false); button.focus(); }
