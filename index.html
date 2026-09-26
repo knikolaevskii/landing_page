@@ -611,9 +611,16 @@ class Component extends DCLogic {
     this.startHeroVideo();
     this.revealHero();
     this.restoreLang();
+    this._onHashChange = () => this.scrollToSection(window.location.hash.slice(1), 'instant');
+    window.addEventListener('hashchange', this._onHashChange);
     requestAnimationFrame(() => {
       this.collect();
       this.paintDots(0);
+      // Cross-page anchors arrive before this component renders its sections.
+      // Wait for the translated copy and fonts to settle before measuring the target.
+      document.fonts.ready.then(() => {
+        requestAnimationFrame(this._onHashChange);
+      });
     });
   }
   componentWillUnmount() {
@@ -623,6 +630,7 @@ class Component extends DCLogic {
     if (this.mobileMenu) this.mobileMenu.destroy();
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('hashchange', this._onHashChange);
   }
   componentDidUpdate() {
     this.syncMobileMenu();
@@ -849,16 +857,20 @@ class Component extends DCLogic {
     });
   }
 
+  scrollToSection(id, behavior) {
+    const el = document.getElementById(id);
+    if (el) {
+      const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
+      const top = el.getBoundingClientRect().top + window.scrollY - (el.id === 'hero' ? 0 : headerHeight);
+      window.scrollTo({ top: Math.max(0, top), behavior });
+    }
+  }
+
   onNav = (e) => {
     const a = e.target.closest && e.target.closest('[data-goto]');
     if (!a) return;
     e.preventDefault();
-    const el = document.getElementById(a.getAttribute('data-goto'));
-    if (el) {
-      const headerHeight = this.nav ? this.nav.getBoundingClientRect().height : 0;
-      const top = el.getBoundingClientRect().top + window.scrollY - (el.id === 'hero' ? 0 : headerHeight);
-      window.scrollTo({ top: Math.max(0, top), behavior: this.state.isMobile ? 'smooth' : 'instant' });
-    }
+    this.scrollToSection(a.getAttribute('data-goto'), this.state.isMobile ? 'smooth' : 'instant');
     if (this.mobileMenu) this.mobileMenu.close();
   };
 
