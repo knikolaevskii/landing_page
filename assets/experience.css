@@ -1,4 +1,5 @@
 @font-face{font-family:Experience Prata;src:url('experience/124d7b2209-6xKhdSpbNNCT-sWPCms.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Experience Playfair';src:url('experience/playfair-display-regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:Experience Poppins;src:url('experience/9956463e70-pxiEyp8kv8JHgFVrJJfedw.ttf') format('truetype');font-weight:400;font-display:swap}
 .contact-copy{display:flex;flex-direction:column;gap:24px}
 .contact-copy p{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif;color:rgba(42,38,32,.82)}

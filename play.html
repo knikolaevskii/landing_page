@@ -18,8 +18,7 @@
 <style>
 html{--screen-height:100dvh;--nav-height:70px;scroll-behavior:auto;scroll-snap-type:none}
 body{margin:0}
-/* Type roles copied from index.html: script for section names, Prata for slogans and headings,
-   Poppins for copy and buttons. Both Experience faces ship one weight, so everything stays at 400. */
+/* Script section names, Playfair slogans, Prata card headings, and Poppins copy. */
 .section-title{
   margin:0;
   font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;
@@ -35,8 +34,9 @@ body{margin:0}
 }
 .section-slogan{
   margin:0;
-  font-family:'Experience Prata',serif;
-  font-size:clamp(28px,3vw,44px);
+  font-family:'Experience Playfair',serif;
+  font-size:36px;
+  -webkit-font-smoothing:antialiased;
   font-weight:400;
   font-style:normal;
   font-synthesis:none;
@@ -163,7 +163,7 @@ a:hover{color:#16291f}
 .finale-frame > video{opacity:0;transition:opacity .45s ease}
 .finale-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,18,.5),rgba(16,24,18,.38) 45%,rgba(16,24,18,.66))}
 .finale-frame > :not(img):not(video):not(.finale-shade){position:relative}
-.finale .section-slogan{color:#f1eada;font-size:clamp(34px,4.4vw,64px)}
+.finale .section-slogan{color:#f1eada}
 .finale .body{max-width:none;color:rgba(241,234,218,.86)}
 .finale-small{margin:clamp(10px,2vh,18px) 0 0;display:flex;flex-direction:column;align-items:center;gap:2px;font:400 14px/1.5 'Experience Poppins',sans-serif;color:rgba(241,234,218,.72)}
 
@@ -171,7 +171,7 @@ a:hover{color:#16291f}
   html{--screen-height:100svh;--nav-height:72px;scroll-behavior:smooth}
   .reserve-button{padding:0 12px!important;font-size:12px!important;letter-spacing:0!important}
   .section-title{font-size:clamp(36px,8.5vw,48px)}
-  .section-slogan{font-size:clamp(24px,6vw,32px)}
+  .section-slogan{font-size:clamp(22px,5.5vw,30px)}
   .body{max-width:none;font-size:clamp(15px,3.8vw,17px);line-height:1.4}
   .stack{gap:clamp(10px,1.8svh,16px)}
   .split{grid-template-columns:minmax(0,1fr)}
@@ -217,7 +217,6 @@ a:hover{color:#16291f}
 .sheet .section-slogan{color:#2a2620}
 @media(min-width:1000px){
   .sheet .section-title{font-size:38px}
-  .sheet .section-slogan{font-size:40px}
 }
 /* Desktop entrance, index.html's values: copy rises, photo settles from 92%. setupReveals() adds the classes. */
 @media(min-width:1000px) and (prefers-reduced-motion:no-preference){

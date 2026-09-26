@@ -48,15 +48,15 @@ a:hover{color:#16291f}
 .wrap{margin:0 auto;min-width:0}
 /* flex and grid children default to min-width:auto, which lets a long benefit line widen the page */
 .wrap > *,.plan-grid > *{min-width:0}
-/* Type roles and sizes copied from index.html: script section name, Prata slogan, Poppins copy. */
+/* Type roles and sizes copied from index.html: script section name, Playfair slogan, Poppins copy. */
 .section-title{margin:0;font-family:'Court Snell Roundhand','Snell Roundhand','Apple Chancery','URW Chancery L',cursive;font-weight:400;font-style:normal;font-synthesis:none;font-size:38px;line-height:1.16;letter-spacing:0;color:#203c2c;text-wrap:pretty;overflow-wrap:break-word}
-.section-slogan{margin:0;font-family:'Experience Prata',serif;font-size:40px;font-weight:400;font-style:normal;font-synthesis:none;line-height:1.2;letter-spacing:0;color:#2a2620;text-wrap:pretty}
+.section-slogan{margin:0;font-family:'Experience Playfair',serif;font-size:36px;font-weight:400;font-style:normal;font-synthesis:none;line-height:1.2;letter-spacing:0;color:#2a2620;text-wrap:pretty;-webkit-font-smoothing:antialiased}
 .section-head{display:flex;flex-direction:column;gap:clamp(18px,2.4vh,26px)}
 #top .section-title,#top .section-slogan{color:#f1eada}
 .lead{margin:0;font:400 clamp(16px,1.25vw,24px)/1.62 'Experience Poppins',sans-serif}
 @media(max-width:999px){
   .section-title{font-size:clamp(36px,8.5vw,48px)}
-  .section-slogan{font-size:clamp(24px,6vw,32px)}
+  .section-slogan{font-size:clamp(22px,5.5vw,30px)}
   .section-head{gap:clamp(10px,1.8svh,16px)}
   .lead{font-size:clamp(15px,3.8vw,17px);line-height:1.4}
 }
@@ -86,11 +86,9 @@ a:hover{color:#16291f}
 .btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
 
 /* Membership intro: cream copy and a framed club photograph on brand green. */
-@font-face{font-family:'Membership Playfair';src:url('assets/experience/playfair-400-latin-ext.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 nav{border-bottom:1px solid rgba(241,234,218,.45)}
 #top{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(28px,3vw,56px);align-items:stretch;padding:calc(var(--nav-height) + 24px) clamp(20px,1.7vw,32px) 24px clamp(28px,4vw,80px);background:#203c2c;color:#f1eada}
 .membership-intro{align-self:center;gap:clamp(20px,1.7vw,32px);margin:0;padding-block:clamp(28px,2.4vw,44px)}
-#top .section-slogan{font-family:'Membership Playfair','Experience Prata',serif;font-size:clamp(30px,3.2vw,58px);font-weight:400;-webkit-font-smoothing:antialiased}
 #top .lead{max-width:640px;color:rgba(241,234,218,.82);font-size:clamp(16px,1.25vw,24px);line-height:1.55}
 #top .membership-note{color:rgba(241,234,218,.95);font-style:italic}
 .membership-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px}
@@ -99,7 +97,6 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 @media(max-width:999px){
   #top{grid-template-columns:minmax(0,1fr);gap:28px;padding:calc(var(--nav-height) + 32px) clamp(20px,4vw,40px) 28px}
   .membership-intro{gap:20px;padding:0}
-  #top .section-slogan{font-size:clamp(26px,5.5vw,40px)}
   #top .lead{font-size:clamp(15px,3.8vw,18px)}
   .membership-photo{min-height:0;aspect-ratio:3/2}
 }
@@ -215,6 +212,7 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 /* FAQ — native <details>, so it opens without JS and keeps keyboard and screen-reader
    behaviour for free. The chevron is a rotated corner on ::after, which keeps every <summary>
    plain text: applyLang() writes textContent and would wipe a real child element. */
+#faq{min-height:0}
 .faq-list{display:flex;flex-direction:column;border-top:1px solid rgba(31,58,43,.18)}
 .faq{border-bottom:1px solid rgba(31,58,43,.18)}
 .faq summary{display:flex;align-items:center;justify-content:space-between;gap:clamp(18px,3vw,40px);padding:22px 2px;cursor:pointer;list-style:none;font:400 clamp(17px,1.45vw,20px)/1.5 'Experience Prata',serif;color:#1f3a2b}
