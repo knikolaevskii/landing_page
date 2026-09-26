@@ -243,6 +243,11 @@ a:hover{color:#16291f}
 
 /* Approved club photography; existing type and section geometry are retained. */
 #top{background-image:linear-gradient(rgba(16,35,25,.66),rgba(16,35,25,.72)),url('assets/club-photography/hero.png');background-size:cover;background-position:center}
+
+/* Coaching introduction, then learning formats in a mirrored second row. */
+#coaching{display:flex;flex-direction:column;gap:80px;padding-block:64px}
+#coaching .coaching-formats .kicker{margin-top:0!important}
+@media(max-width:999px){#coaching{padding-block:32px;gap:48px}}
 </style>
 </helmet>
 
@@ -428,8 +433,8 @@ a:hover{color:#16291f}
           <p class="body body-soft" data-i18n="new.b6">Paddles and balls are available at the club.</p>
         </div>
         <div class="actions">
-          <a class="btn btn-ghost" href="#basics" data-goto="basics" data-i18n="new.howTo">How to Play →</a>
-          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="new.book">Book Your First Game →</a>
+          <a class="btn btn-ghost" href="#basics" data-goto="basics" data-i18n="new.howTo">How to Play</a>
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="new.book">Book Your First Game</a>
         </div>
       </div>
   </div>
@@ -449,7 +454,7 @@ a:hover{color:#16291f}
         </ul>
         <p class="body" data-i18n="find.p2" style="color:#1f3a2b">However you want to play, there should be a game waiting for you.</p>
         <div class="actions">
-          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="find.cta">Find a Session →</a>
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="find.cta">Find a Session</a>
         </div>
       </div>
       <div class="zz-media"><img src="assets/club-photography/social.png" alt="Friends relaxing with coffee and paddles on a courtside bench" loading="lazy"/></div>
@@ -457,34 +462,34 @@ a:hover{color:#16291f}
 </section>
 
 <!-- E · Coaching -->
-<section id="coaching" class="sheet sheet-alt">
-  <div class="wrap zz-row zz-flip">
-      <div class="zz-media zz-media-contain"><img src="assets/club-photography/coaching.png" alt="A coach demonstrating paddle technique to a pickleball beginner" loading="lazy" style="object-fit:contain;padding:6%"/></div>
-      <div class="copy stack">
-        <h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
-        <p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
-        <div class="lines">
-          <p class="body" data-i18n="coach.p1">Your first game gets you interested.</p>
-          <p class="body" data-i18n="coach.p2">Getting better keeps you coming back.</p>
-        </div>
-        <p class="body" data-i18n="coach.p3">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play.</p>
-        <p class="body" data-i18n="coach.p4">Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
-        <p class="body body-soft" data-i18n="coach.p5">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
-        <p class="kicker" data-i18n="coach.listTag" style="margin-top:8px">Choose how you learn</p>
-        <ul class="pairs">
-          <li><b data-i18n="coach.l1">Private Coaching</b><span data-i18n="coach.l1d">One-to-one attention built around your game.</span></li>
-          <li><b data-i18n="coach.l2">Group Coaching</b><span data-i18n="coach.l2d">Learn together, improve together.</span></li>
-          <li><b data-i18n="coach.l3">Beginner Sessions</b><span data-i18n="coach.l3d">Everything you need to go from “What is pickleball?” to playing independently.</span></li>
-          <li><b data-i18n="coach.l4">Clinics &amp; Masterclasses</b><span data-i18n="coach.l4d">Focused sessions for players looking to sharpen particular parts of their game.</span></li>
-        </ul>
-        <!-- TODO: point both at the coaching pages once they exist. -->
-        <div class="actions">
-          <a class="btn btn-solid" href="index.html#contact" data-i18n="coach.find">Find a Coach →</a>
-          <a class="btn btn-ghost" href="index.html#contact" data-i18n="coach.view">View Coaching →</a>
-        </div>
-      </div>
-  </div>
-</section>
+<section class="sheet sheet-alt" id="coaching">
+<div class="wrap zz-row zz-flip">
+<div class="zz-media"><img alt="A coach demonstrating paddle technique to a pickleball beginner" loading="lazy" src="assets/club-photography/coaching.png"/></div>
+<div class="copy stack">
+<h2 class="section-title" data-i18n="coach.tag">Coaching</h2>
+<p class="section-slogan" data-i18n="coach.heading">Get better at the game.</p>
+<div class="lines">
+<p class="body" data-i18n="coach.p1">Your first game gets you interested.</p>
+<p class="body" data-i18n="coach.p2">Getting better keeps you coming back.</p>
+</div>
+<p class="body" data-i18n="coach.p3">Work with experienced coaches through individual lessons, group training and clinics designed for different levels of play.</p>
+<p class="body" data-i18n="coach.p4">Start with the fundamentals. Improve your movement. Understand positioning. Develop your shots. Learn the strategy behind the game.</p>
+<p class="body body-soft" data-i18n="coach.p5">Or simply figure out why everyone keeps telling you to stop standing in the kitchen.</p>
+
+
+<!-- TODO: point both at the coaching pages once they exist. -->
+
+</div>
+</div>
+<div class="wrap zz-row coaching-formats"><div class="copy stack"><p class="kicker" data-i18n="coach.listTag" style="margin-top:8px">Choose how you learn</p><ul class="pairs">
+<li><b data-i18n="coach.l1">Private Coaching</b><span data-i18n="coach.l1d">One-to-one attention built around your game.</span></li>
+<li><b data-i18n="coach.l2">Group Coaching</b><span data-i18n="coach.l2d">Learn together, improve together.</span></li>
+<li><b data-i18n="coach.l3">Beginner Sessions</b><span data-i18n="coach.l3d">Everything you need to go from “What is pickleball?” to playing independently.</span></li>
+<li><b data-i18n="coach.l4">Clinics &amp; Masterclasses</b><span data-i18n="coach.l4d">Focused sessions for players looking to sharpen particular parts of their game.</span></li>
+</ul><div class="actions">
+<a class="btn btn-solid" data-i18n="coach.find" href="index.html#contact">Find a Coach</a>
+<a class="btn btn-ghost" data-i18n="coach.view" href="index.html#contact">View Coaching</a>
+</div></div><div class="zz-media"><img alt="A small group learning pickleball together with a coach" loading="lazy" src="assets/club-photography/coaching-group.png"/></div></div></section>
 
 <!-- F · Badminton -->
 <section id="badminton" class="sheet">
@@ -497,7 +502,7 @@ a:hover{color:#16291f}
         <p class="body body-soft" data-i18n="bad.p3">Bring your own equipment or ask us about equipment at reception.</p>
         <p class="body" data-i18n="bad.p4" style="color:#1f3a2b">Same club. Different racket.</p>
         <div class="actions">
-          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="bad.book">Book Badminton →</a>
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959" data-i18n="bad.book">Book Badminton</a>
         </div>
       </div>
       <div class="zz-media"><img src="assets/club-photography/badminton.png" alt="Two players enjoying badminton in the indoor club" loading="lazy"/></div>
@@ -522,8 +527,8 @@ a:hover{color:#16291f}
         <p class="body" data-i18n="comp.p2">Find your level. Find your rivals. Climb the ladder. Represent your team. Or step onto the court when the stakes get bigger.</p>
         <p class="body" data-i18n="comp.p3" style="color:#1f3a2b">From your first club tournament to the international stage — competition has a home here.</p>
         <div class="actions">
-          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="comp.whatson">See What’s On →</a>
-          <a class="btn btn-ghost" href="https://player.padelos.co/club/216959/events" data-i18n="comp.enter">Enter a Tournament →</a>
+          <a class="btn btn-solid" href="https://player.padelos.co/club/216959/events" data-i18n="comp.whatson">See What’s On</a>
+          <a class="btn btn-ghost" href="https://player.padelos.co/club/216959/events" data-i18n="comp.enter">Enter a Tournament</a>
         </div>
       </div>
   </div>
@@ -542,7 +547,7 @@ a:hover{color:#16291f}
           <p class="body body-soft" data-i18n="eq.p4">Eventually, you’ll want yours. Online store coming soon.</p>
         </div>
         <div class="actions">
-          <span class="btn btn-ghost" role="link" aria-disabled="true" data-i18n="eq.shop">Pro Shop Coming Soon →</span>
+          <span class="btn btn-ghost" role="link" aria-disabled="true" data-i18n="eq.shop">Pro Shop Coming Soon</span>
         </div>
       </div>
       <div class="zz-media"><img src="assets/club-photography/equipment.png" alt="Green pickleball paddles, balls and a towel on an oak bench" loading="lazy"/></div>
@@ -564,7 +569,7 @@ a:hover{color:#16291f}
     </div>
     <p class="finale-small">
       <span data-i18n="final.group">Don’t have a group?</span>
-      <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959/events" data-i18n="final.open">Find Open Play →</a>
+      <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959/events" data-i18n="final.open">Find Open Play</a>
     </p>
   </div>
 </section>
@@ -644,8 +649,8 @@ const SK = {
   'new.p4':'So zvyškom vám pomôžeme.',
   'new.b5':'Nemáte vybavenie? Žiadny problém.',
   'new.b6':'Pálky a loptičky sú k dispozícii priamo v klube.',
-  'new.howTo':'Ako Hrať →',
-  'new.book':'Rezervovať Prvú Hru →',
+  'new.howTo':'Ako Hrať',
+  'new.book':'Rezervovať Prvú Hru',
   'court.kitchen':'KUCHYŇA','court.net':'SIEŤ',
   'find.tag':'Nájdite Svoju Hru',
   'find.heading':'Hrajte po svojom.',
@@ -657,7 +662,7 @@ const SK = {
   'find.c3':'Klubové Podujatia',
   'find.c3d':'Niekedy úplne zmeníme pravidlá. Počas sezóny sa môžete tešiť na tematické tréningy, špeciálne formáty a charakteristické podujatia The Courthouse.',
   'find.p2':'Nech chcete hrať akokoľvek, mala by na vás čakať hra.',
-  'find.cta':'Nájsť Termín →',
+  'find.cta':'Nájsť Termín',
   'coach.tag':'Koučing',
   'coach.heading':'Zlepšite sa v hre.',
   'coach.p1':'Prvá hra vás zaujme.',
@@ -674,36 +679,36 @@ const SK = {
   'coach.l3d':'Všetko, čo potrebujete, aby ste sa od otázky „Čo je pickleball?“ dostali k samostatnej hre.',
   'coach.l4':'Kliniky a Masterclassy',
   'coach.l4d':'Cielené tréningy pre hráčov, ktorí chcú vypilovať konkrétne časti svojej hry.',
-  'coach.find':'Nájsť Trénera →',
-  'coach.view':'Pozrieť Koučing →',
+  'coach.find':'Nájsť Trénera',
+  'coach.view':'Pozrieť Koučing',
   'bad.tag':'Bedminton',
   'bad.heading':'Pickleball nie je jediná hra v dome.',
   'bad.p1':'The Courthouse je domovom aj pre bedminton.',
   'bad.p2':'Naše kryté kurty sa dajú upraviť na bedminton, takže hráči majú kvalitné miesto na tréning, súťaž alebo jednoducho na hru s priateľmi počas celého roka.',
   'bad.p3':'Prineste si vlastné vybavenie alebo sa naň opýtajte na recepcii.',
   'bad.p4':'Rovnaký klub. Iná raketa.',
-  'bad.book':'Rezervovať Bedminton →',
+  'bad.book':'Rezervovať Bedminton',
   'comp.tag':'Súťažte a Spoznávajte',
   'comp.heading':'Vždy je o čo hrať.',
   'comp.p1':'Každý mesiac počas sezóny The Courthouse ožíva súťažou — od klubových rebríčkov a líg až po mesačné turnaje a medzinárodné šampionáty.',
   'comp.f1':'Dvojhra','comp.f2':'Štvorhra','comp.f3':'Zmiešaná Štvorhra','comp.f4':'Tímové Formáty','comp.f5':'Špeciálne Podujatia',
   'comp.p2':'Nájdite svoju úroveň. Nájdite svojich súperov. Stúpajte v rebríčku. Reprezentujte svoj tím. Alebo vstúpte na kurt, keď je v hre viac.',
   'comp.p3':'Od vášho prvého klubového turnaja až po medzinárodnú scénu — súťaž tu má svoj domov.',
-  'comp.whatson':'Pozrieť Program →',
-  'comp.enter':'Prihlásiť sa na Turnaj →',
+  'comp.whatson':'Pozrieť Program',
+  'comp.enter':'Prihlásiť sa na Turnaj',
   'eq.tag':'Vybavenie',
   'eq.heading':'Stačí prísť.',
   'eq.p1':'Aby ste mohli začať hrať, nemusíte nič vlastniť.',
   'eq.p2':'V The Courthouse si môžete požičať pálky a loptičky a v Pro Shope nájdete vybavenie, obuv, oblečenie a doplnky pre hráčov, ktorí sú pripravení na vlastné.',
   'eq.p3':'Začnite s našimi.',
   'eq.p4':'Časom budete chcieť vlastné. Online obchod už čoskoro.',
-  'eq.shop':'Pro Shop Už Čoskoro →',
+  'eq.shop':'Pro Shop Už Čoskoro',
   'final.heading':'Dosť bolo čítania. Poďme hrať.',
   'final.p1':'Prvá hra alebo stá.',
   'final.p2':'Váš kurt je pripravený.',
   'final.book':'Rezervovať Kurt',
   'final.group':'Nemáte partiu?',
-  'final.open':'Nájsť Otvorenú Hru →',
+  'final.open':'Nájsť Otvorenú Hru',
   'footer.tagline':'Prémiové pickleballové kurty a komunita vybudovaná okolo hry.','footer.visit':'Navštívte Nás',
   'footer.privacy':'Zásady Ochrany Osobných Údajov','footer.terms':'Podmienky'
 };
