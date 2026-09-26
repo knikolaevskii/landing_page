@@ -122,8 +122,8 @@ a:hover{color:#16291f}
   #story > [data-rv="img"],#game > [data-rv="img"],#membership > [data-rv="img"]{
     height:auto!important;min-height:0;aspect-ratio:1 / 1;
   }
-  section[data-screen-label]:not(#hero) .section-title{font-size:clamp(36px,8.5vw,48px);line-height:1.16}
-  section[data-screen-label]:not(#hero) .section-slogan{font-size:clamp(24px,6vw,32px);line-height:1.2}
+  section[data-screen-label]:not(#hero) .section-title{line-height:1.16}
+  section[data-screen-label]:not(#hero) .section-slogan{line-height:1.2}
   #story p:not(.section-slogan),#game p:not(.section-slogan),#membership p:not(.section-slogan){font-size:clamp(15px,3.8vw,17px)!important;line-height:1.4!important;max-width:none!important}
   #membership [data-rv-delay=".24"]{gap:10px!important;margin-top:0!important}
   #membership [data-rv-delay=".24"] a,#game [data-i18n="game.cta"]{padding:14px 20px!important;min-height:44px}
@@ -201,8 +201,9 @@ section[data-screen-label]:not(#hero) .section-slogan{
   font-family:'Landing Playfair',serif;font-size:36px;font-weight:400;-webkit-font-smoothing:antialiased;
 }
 @media(max-width:999px){
-  section[data-screen-label]:not(#hero) .section-title{color:#203c2c}
-  section[data-screen-label]:not(#hero) .section-slogan{font-size:clamp(22px,5.5vw,30px);color:#2a2620}
+  section[data-screen-label]:not(#hero){--mobile-slogan-size:clamp(22px,5.5vw,30px)}
+  section[data-screen-label]:not(#hero) .section-title{font-size:calc(var(--mobile-slogan-size) * 38 / 36);color:#203c2c}
+  section[data-screen-label]:not(#hero) .section-slogan{font-size:var(--mobile-slogan-size);color:#2a2620}
 }
 </style>
 </helmet>
