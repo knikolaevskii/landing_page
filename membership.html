@@ -226,6 +226,22 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 @media(prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
 
 .tnote{margin:14px 0 0;font:400 13px/1.6 'Experience Poppins',sans-serif;color:rgba(42,38,32,.55)}
+
+/* Content stays visible until the observer is ready; each entrance plays once. */
+@media(prefers-reduced-motion:no-preference){
+  .membership-reveal-ready{opacity:0;transform:translateY(24px);transition:opacity .5s ease var(--reveal-delay,.12s),transform .5s ease var(--reveal-delay,.12s)}
+  .membership-photo.membership-reveal-ready{transform:scale(.92);transition:opacity .3s cubic-bezier(.23,1,.32,1) .2s,transform .3s cubic-bezier(.075,.82,.165,1) .2s}
+  .membership-reveal-ready:not(.membership-revealed){transition:none}
+  .membership-reveal-ready.membership-revealed{opacity:1;transform:none}
+  .membership-reveal-ready:focus-within{opacity:1;transform:none;transition:none}
+}
+@media(min-width:1100px) and (prefers-reduced-motion:no-preference){
+  .plan-grid > .plan:nth-child(2){--reveal-delay:.22s}
+  .plan-grid > .plan:nth-child(3){--reveal-delay:.32s}
+}
+@media(max-width:999px) and (prefers-reduced-motion:no-preference){
+  .membership-reveal-ready,.membership-photo.membership-reveal-ready{transform:none;transition:opacity .4s ease .08s}
+}
 </style>
 </helmet>
 
@@ -631,8 +647,11 @@ class Component extends DCLogic {
     this.restoreLang();
     this.active = -1;
     this.onScroll();
+    this.setupReveals();
   }
   componentWillUnmount() {
+    if (this.revealObserver) this.revealObserver.disconnect();
+    if (this.sc && this._onRevealFocus) this.sc.removeEventListener('focusin', this._onRevealFocus);
     if (this.mobileMenu) this.mobileMenu.destroy();
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
@@ -676,6 +695,27 @@ class Component extends DCLogic {
   checkSize() {
     const isMobile = window.innerWidth < 1000;
     if (isMobile !== this.state.isMobile) this.setState({ isMobile, menuOpen: false, langMenuOpen: false });
+  }
+
+  setupReveals() {
+    if (!this.sc || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const reveal = target => {
+      target.classList.add('membership-revealed');
+      this.revealObserver.unobserve(target);
+    };
+    this.revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
+    }, { threshold: .08, rootMargin: '0px 0px -24px 0px' });
+    this.sc.querySelectorAll('.membership-intro, .membership-photo, #plans .section-head, #plans .plan, #plans .plan-divider, #plans .tnote').forEach(target => {
+      target.classList.add('membership-reveal-ready');
+      this.revealObserver.observe(target);
+    });
+    // Keyboard navigation reveals the focused content immediately, too.
+    this._onRevealFocus = event => {
+      const target = event.target.closest('.membership-reveal-ready');
+      if (target) reveal(target);
+    };
+    this.sc.addEventListener('focusin', this._onRevealFocus);
   }
 
   // Progress bar plus section dots, index.html's pattern: the section under the middle of the
