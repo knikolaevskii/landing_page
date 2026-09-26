@@ -85,9 +85,23 @@ a:hover{color:#16291f}
 .btn-link-inv{color:#f1eada;border-bottom-color:rgba(241,234,218,.5)}
 .btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
 
-/* Hero ground: flat brand green. The photo layer was removed pending a wider, higher-res source
-   — the box is ~1870x420 at 1920, so it wants roughly 3:1 at 2880x960. */
-#top{background:#203c2c}
+/* Membership intro: cream copy and a framed club photograph on brand green. */
+nav{border-bottom:1px solid rgba(241,234,218,.45)}
+#top{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(28px,3vw,56px);align-items:stretch;padding:calc(var(--nav-height) + 24px) clamp(20px,1.7vw,32px) 24px clamp(28px,4vw,80px);background:#203c2c;color:#f1eada}
+.membership-intro{align-self:center;gap:clamp(20px,1.7vw,32px);margin:0;padding-block:clamp(28px,2.4vw,44px)}
+#top .section-slogan{font-size:clamp(32px,3.5vw,64px)}
+#top .lead{max-width:640px;color:rgba(241,234,218,.82);font-size:clamp(16px,1.25vw,24px);line-height:1.55}
+#top .membership-note{color:rgba(241,234,218,.95);font-style:italic}
+.membership-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px}
+.membership-photo{position:relative;width:100%;min-width:0;min-height:100%;aspect-ratio:5/4;margin:0;border:2px solid rgba(241,234,218,.65);overflow:hidden}
+.membership-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+@media(max-width:999px){
+  #top{grid-template-columns:minmax(0,1fr);gap:28px;padding:calc(var(--nav-height) + 32px) clamp(20px,4vw,40px) 28px}
+  .membership-intro{gap:20px;padding:0}
+  #top .section-slogan{font-size:clamp(28px,6vw,44px)}
+  #top .lead{font-size:clamp(15px,3.8vw,18px)}
+  .membership-photo{min-height:0;aspect-ratio:3/2}
+}
 
 /* Plans */
 /* Three equal tiers, ordered by price. Hierarchy comes from the featured card's fill, badge
@@ -299,18 +313,21 @@ a:hover{color:#16291f}
 <div ref="{{ scRef }}" style="font-family:\'Experience Poppins\',sans-serif;background:#203c2c;overflow-x:hidden">
 
 <!-- 01 · Intro ------------------------------------------------------------ -->
-<section id="top" style="padding:calc(var(--nav-height) + clamp(56px,9vh,110px)) calc(clamp(24px,5vw,120px) + clamp(8px,1.2vw,12px)) clamp(56px,8vh,96px);color:#f1eada">
-  <div class="wrap section-head" style="max-width:900px;margin:0">
+<section id="top">
+  <div class="wrap section-head membership-intro">
     <h1 class="section-title" data-i18n="mem.tag">Membership</h1>
     <p class="section-slogan" data-i18n="mem.h1">Your club. Your court.</p>
-    <p class="lead" data-i18n="mem.lead" style="color:rgba(241,234,218,.78);max-width:640px">Membership is for those who want to make The Courthouse part of their routine.</p>
-    <p class="lead" data-i18n="mem.lead1b" style="color:rgba(241,234,218,.78);max-width:640px">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
-    <p class="lead" data-i18n="mem.lead2" style="color:rgba(241,234,218,.95);font-style:italic">No unnecessary exclusivity. Just more reasons to play.</p>
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px">
+    <p class="lead" data-i18n="mem.lead">Membership is for those who want to make The Courthouse part of their routine.</p>
+    <p class="lead" data-i18n="mem.lead1b">Play more. Pay less. Get priority access, member benefits, exclusive events and a closer connection to the community around the club.</p>
+    <p class="lead membership-note" data-i18n="mem.lead2">No unnecessary exclusivity. Just more reasons to play.</p>
+    <div class="membership-actions">
       <a class="btn btn-inv-solid" href="#plans" data-goto="plans" data-i18n="mem.explore">Explore Membership</a>
       <a class="btn-link btn-link-inv" href="https://player.padelos.co/club/216959" data-i18n="mem.join">Join The Club</a>
     </div>
   </div>
+  <figure class="membership-photo">
+    <img src="assets/membership-community.webp" width="1536" height="1024" alt="Four club members relaxing together beside an indoor pickleball court" fetchpriority="high"/>
+  </figure>
 </section>
 
 <!-- 02 · Plans ------------------------------------------------------------ -->

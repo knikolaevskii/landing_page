@@ -4,6 +4,7 @@
 /court-house-classic.html
 /exports
 *.webp
+!/assets/membership-community.webp
 !/assets/classic/*-v2.webp
 !/assets/classic/social-feed/*.webp
 *.DS_Store
