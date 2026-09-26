@@ -11,7 +11,7 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
   if (panel && !panel.id) throw new Error('The menu panel needs a unique id');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const events = new AbortController();
-  let open = false, frame = 0, timer = 0, destroyed = false;
+  let open = false, frame = 0, panelFrame = 0, timer = 0, destroyed = false;
   let state = { width:24, rotation:0, cross:0 };
   let locked = false, previousOverflow = '', inertStates = [];
   const clamp = t => Math.max(0, Math.min(1, t));
@@ -47,18 +47,32 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
     if (destroyed || open === Boolean(value)) return;
     open = Boolean(value);
     cancelAnimationFrame(frame);
+    cancelAnimationFrame(panelFrame);
     clearTimeout(timer);
     button.setAttribute('aria-expanded', String(open));
     button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     onChange(open);
     if (panel) {
       if (open) {
+        const wasHidden = panel.hidden;
         panel.hidden = false;
         panel.inert = false;
         panel.setAttribute('aria-hidden', 'false');
-        void panel.offsetWidth; // Establish the offscreen transform before sliding down.
-        panel.dataset.open = 'true';
         lock();
+        if (motion.matches || !wasHidden) {
+          // Reverse an in-progress close from its current position.
+          panel.dataset.open = 'true';
+        } else {
+          // Give Safari a rendered offscreen frame after leaving display:none.
+          // A layout read in the same task does not guarantee a painted starting state.
+          panel.dataset.open = 'false';
+          panelFrame = requestAnimationFrame(() => {
+            panelFrame = requestAnimationFrame(() => {
+              panelFrame = 0;
+              if (open && !destroyed) panel.dataset.open = 'true';
+            });
+          });
+        }
       } else {
         if (panel.contains(document.activeElement)) button.focus();
         panel.inert = true;
@@ -118,7 +132,7 @@ window.createCourtMenu = function(button, { panel = null, background = [], heade
   return {
     open: () => setOpen(true), close: () => setOpen(false), toggle: () => setOpen(!open),
     destroy() {
-      destroyed = true; events.abort(); cancelAnimationFrame(frame); clearTimeout(timer); unlock();
+      destroyed = true; events.abort(); cancelAnimationFrame(frame); cancelAnimationFrame(panelFrame); clearTimeout(timer); unlock();
       state = {width:24,rotation:0,cross:0}; paint();
       button.setAttribute('aria-expanded','false'); button.setAttribute('aria-label','Open menu');
       if (panel) { panel.hidden = true; panel.inert = true; panel.dataset.open = 'false'; panel.setAttribute('aria-hidden','true'); }
