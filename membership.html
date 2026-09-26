@@ -86,10 +86,11 @@ a:hover{color:#16291f}
 .btn-link-inv:hover{color:#fffdf7;border-bottom-color:#fffdf7}
 
 /* Membership intro: cream copy and a framed club photograph on brand green. */
+@font-face{font-family:'Membership Playfair';src:url('assets/experience/playfair-400-latin-ext.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 nav{border-bottom:1px solid rgba(241,234,218,.45)}
 #top{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(28px,3vw,56px);align-items:stretch;padding:calc(var(--nav-height) + 24px) clamp(20px,1.7vw,32px) 24px clamp(28px,4vw,80px);background:#203c2c;color:#f1eada}
 .membership-intro{align-self:center;gap:clamp(20px,1.7vw,32px);margin:0;padding-block:clamp(28px,2.4vw,44px)}
-#top .section-slogan{font-size:clamp(32px,3.5vw,64px)}
+#top .section-slogan{font-family:'Membership Playfair','Experience Prata',serif;font-size:clamp(30px,3.2vw,58px);font-weight:400;-webkit-font-smoothing:antialiased}
 #top .lead{max-width:640px;color:rgba(241,234,218,.82);font-size:clamp(16px,1.25vw,24px);line-height:1.55}
 #top .membership-note{color:rgba(241,234,218,.95);font-style:italic}
 .membership-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:6px}
@@ -98,7 +99,7 @@ nav{border-bottom:1px solid rgba(241,234,218,.45)}
 @media(max-width:999px){
   #top{grid-template-columns:minmax(0,1fr);gap:28px;padding:calc(var(--nav-height) + 32px) clamp(20px,4vw,40px) 28px}
   .membership-intro{gap:20px;padding:0}
-  #top .section-slogan{font-size:clamp(28px,6vw,44px)}
+  #top .section-slogan{font-size:clamp(26px,5.5vw,40px)}
   #top .lead{font-size:clamp(15px,3.8vw,18px)}
   .membership-photo{min-height:0;aspect-ratio:3/2}
 }
