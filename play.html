@@ -142,12 +142,15 @@ a:hover{color:#16291f}
 .c-ball{fill:#f1eada;stroke:#1f3a2b;stroke-width:2}
 .c-mark circle{fill:#1f3a2b}
 .c-mark text{font-family:'Experience Poppins',sans-serif;font-size:12px;font-weight:400;fill:#f1eada}
+/* watchCourt() draws the rally and switches .on for each marker as the line reaches it. */
 .c-anim{opacity:0;transition:opacity .5s ease}
-.court-card.is-in .c-anim{opacity:1}
-.court-card.is-in .c-path{animation:courtDraw 2.6s cubic-bezier(.45,.05,.3,1) .2s forwards}
-@keyframes courtDraw{to{stroke-dashoffset:0}}
+.c-anim.on{opacity:1}
+.c-path{transition:opacity .7s ease}
+/* The first pass also brings the legend in, one line per step; after that it stays put. */
+.court-anim .legend li{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.court-anim .legend li.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .c-path{stroke-dashoffset:0!important;animation:none!important}
+  .c-path{stroke-dashoffset:0!important}
   .c-anim{opacity:1!important;transition:none!important}
 }
 .legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px}
@@ -375,7 +378,7 @@ a:hover{color:#16291f}
           </div>
           <svg viewBox="0 0 520 290" role="img" aria-labelledby="court-title court-desc">
             <title id="court-title">Pickleball court, seen from above</title>
-            <desc id="court-desc">Serve diagonally. Let the ball bounce once on each side at the beginning of the rally. Keep away from volleying inside the area closest to the net, known as the kitchen, and play your way to 11.</desc>
+            <desc id="court-desc">Serve diagonally. Let the ball bounce once on each side at the beginning of the rally. Keep away from volleying inside the area closest to the net, known as the kitchen. Play your way to 11.</desc>
             <rect class="c-surface" x="40" y="50" width="440" height="200"/>
             <rect class="c-kitchen" x="190" y="50" width="140" height="200"/>
             <rect class="c-line" x="40" y="50" width="440" height="200"/>
@@ -388,21 +391,21 @@ a:hover{color:#16291f}
             <text class="c-label" x="260" y="278" text-anchor="middle" data-i18n="court.net">NET</text>
 
             <path class="c-path" d="M28 205 L410 100 L105 195 L300 172"/>
-            <circle class="c-bounce c-anim" cx="410" cy="100" r="8" style="transition-delay:1.2s"/>
-            <circle class="c-bounce c-anim" cx="105" cy="195" r="8" style="transition-delay:2s"/>
-            <circle class="c-ball c-anim" cx="300" cy="172" r="6" style="transition-delay:2.7s"/>
+            <circle class="c-bounce c-anim" data-step="1" cx="410" cy="100" r="8"/>
+            <circle class="c-bounce c-anim" data-step="2" cx="105" cy="195" r="8"/>
+            <circle class="c-ball c-anim" data-step="3" cx="300" cy="172" r="6"/>
 
-            <g class="c-mark c-anim" style="transition-delay:.2s"><circle cx="20" cy="228" r="11"/><text x="20" y="232" text-anchor="middle">1</text></g>
-            <g class="c-mark c-anim" style="transition-delay:1.3s"><circle cx="432" cy="84" r="11"/><text x="432" y="88" text-anchor="middle">2</text></g>
-            <g class="c-mark c-anim" style="transition-delay:2.1s"><circle cx="84" cy="212" r="11"/><text x="84" y="216" text-anchor="middle">2</text></g>
-            <g class="c-mark c-anim" style="transition-delay:2.8s"><circle cx="296" cy="84" r="11"/><text x="296" y="88" text-anchor="middle">3</text></g>
+            <g class="c-mark c-anim" data-step="0"><circle cx="20" cy="228" r="11"/><text x="20" y="232" text-anchor="middle">1</text></g>
+            <g class="c-mark c-anim" data-step="1"><circle cx="432" cy="84" r="11"/><text x="432" y="88" text-anchor="middle">2</text></g>
+            <g class="c-mark c-anim" data-step="2"><circle cx="84" cy="212" r="11"/><text x="84" y="216" text-anchor="middle">2</text></g>
+            <g class="c-mark c-anim" data-step="3"><circle cx="296" cy="84" r="11"/><text x="296" y="88" text-anchor="middle">3</text></g>
           </svg>
           <figcaption class="stack" style="gap:clamp(20px,2.2vw,28px)">
             <ol class="legend">
-              <li><span class="legend-num" aria-hidden="true">1</span><div><span data-i18n="new.s1">Serve diagonally.</span></div></li>
-              <li><span class="legend-num" aria-hidden="true">2</span><div><span data-i18n="new.s2">Let the ball bounce once on each side at the beginning of the rally.</span></div></li>
-              <li><span class="legend-num" aria-hidden="true">3</span><div><span data-i18n="new.s3">Keep away from volleying inside the area closest to the net, known as the kitchen,</span></div></li>
-              <li><span class="legend-num" aria-hidden="true">4</span><div><span data-i18n="new.s4">and play your way to 11.</span></div></li>
+              <li data-step="0"><span class="legend-num" aria-hidden="true">1</span><div><span data-i18n="new.s1">Serve diagonally.</span></div></li>
+              <li data-step="1"><span class="legend-num" aria-hidden="true">2</span><div><span data-i18n="new.s2">Let the ball bounce once on each side at the beginning of the rally.</span></div></li>
+              <li data-step="3"><span class="legend-num" aria-hidden="true">3</span><div><span data-i18n="new.s3">Keep away from volleying inside the area closest to the net, known as the kitchen.</span></div></li>
+              <li data-step="4"><span class="legend-num" aria-hidden="true">4</span><div><span data-i18n="new.s4">Play your way to 11.</span></div></li>
             </ol>
             <div class="lines">
               <p class="body" data-i18n="new.b3" style="color:#1f3a2b">That’s enough to get your first game started.</p>
@@ -631,8 +634,8 @@ const SK = {
   'new.b1':'Pickleball sa dá hrať ako dvojhra aj štvorhra, najobľúbenejšia je však štvorhra.',
   'new.s1':'Podávajte diagonálne.',
   'new.s2':'Na začiatku výmeny nechajte loptičku raz odraziť na každej strane.',
-  'new.s3':'Nevolejujte v zóne najbližšie pri sieti, ktorej sa hovorí kuchyňa,',
-  'new.s4':'a dohrajte to do 11.',
+  'new.s3':'Nevolejujte v zóne najbližšie pri sieti, ktorej sa hovorí kuchyňa.',
+  'new.s4':'Dohrajte to do 11.',
   'new.b3':'To stačí na vašu prvú hru.',
   'new.b4':'A áno, zvyšok vám vysvetlíme na mieste.',
   'new.tag':'Nový v Pickleballe?',
@@ -727,6 +730,8 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this.mobileMenu) this.mobileMenu.destroy();
     if (this.courtObserver) this.courtObserver.disconnect();
+    if (this.courtTimers) this.courtTimers.forEach(clearTimeout);
+    if (this.courtRaf) cancelAnimationFrame(this.courtRaf);
     if (this.revealObservers) this.revealObservers.forEach(o => o.disconnect());
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('scroll', this.onScroll);
@@ -833,21 +838,56 @@ class Component extends DCLogic {
       const card = this.court;
       if (!card) return;
       const path = card.querySelector('.c-path');
-      if (path && path.getTotalLength) {
-        const len = Math.ceil(path.getTotalLength());
-        path.style.strokeDasharray = len;
+      if (!path || !path.getTotalLength || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const len = path.getTotalLength();
+      // Length along the path where each vertex sits: serve, first bounce, second bounce, landing.
+      const pts = [[28,205],[410,100],[105,195],[300,172]];
+      const at = [0];
+      for (let i = 1; i < pts.length; i++) at.push(at[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+      const marks = [...card.querySelectorAll('.c-anim')];
+      const lines = [...card.querySelectorAll('.legend li')];
+      const show = step => {
+        marks.forEach(m => { if (+m.dataset.step === step) m.classList.add('on'); });
+        lines.forEach(l => { if (+l.dataset.step === step) l.classList.add('on'); });
+      };
+      const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const DRAW = 3600, HOLD = 2600, FADE = 700;
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      card.classList.add('court-anim');
+      const draw = () => {
+        path.style.opacity = '1';
         path.style.strokeDashoffset = len;
-      }
-      const show = () => card.classList.add('is-in');
-      if (!('IntersectionObserver' in window)) { show(); return; }
+        let step = 0;
+        show(step++);
+        const t0 = performance.now();
+        const frame = now => {
+          const t = Math.min(1, (now - t0) / DRAW);
+          const drawn = len * ease(t);
+          path.style.strokeDashoffset = len - drawn;
+          while (step < at.length && drawn >= at[step] - 0.5) show(step++);
+          if (t < 1) { this.courtRaf = requestAnimationFrame(frame); return; }
+          this.courtTimers = [
+            setTimeout(() => show(4), 400),
+            setTimeout(() => {
+              path.style.opacity = '0';
+              marks.forEach(m => m.classList.remove('on'));
+            }, HOLD),
+            setTimeout(draw, HOLD + FADE + 100)
+          ];
+        };
+        this.courtRaf = requestAnimationFrame(frame);
+      };
+      if (!('IntersectionObserver' in window)) { draw(); return; }
       this.courtObserver = new IntersectionObserver(entries => {
         if (!entries.some(e => e.isIntersecting)) return;
-        show();
+        draw();
         this.courtObserver.disconnect();
       }, { threshold: 0.45 });
       this.courtObserver.observe(card);
     });
   }
+
 
   // Same approach as the home hero: the poster stays until the video is actually playing.
   startFinaleVideo() {
